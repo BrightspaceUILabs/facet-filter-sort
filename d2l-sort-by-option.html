@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item-behavior.html">
+
+<dom-module id="d2l-sort-by-option">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: flex;
+				flex-direction: column;
+			}
+			d2l-menu-item {
+				/**
+				 * Needed to show the background colour of d2l-menu-item when hovering;
+				 * d2l-menu-item is overriding the :hover style of d2l-menu
+				 */
+				background-color: transparent;
+			}
+		</style>
+		<d2l-menu-item text="[[text]]"></d2l-menu-item>
+	</template>
+	<script>
+		/**
+		 * `<d2l-sort-by-option>`
+		 * Option for sort by dropdown
+		 */
+		class SortByOption extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.MenuItemBehavior,
+			],
+			Polymer.Element
+		) {
+			static get is() { return 'd2l-sort-by-option'; }
+			static get properties() {
+				return {
+					text: {
+						type: String,
+					}
+				};
+			}
+		}
+		customElements.define(SortByOption.is, SortByOption);
+	</script>
+</dom-module>

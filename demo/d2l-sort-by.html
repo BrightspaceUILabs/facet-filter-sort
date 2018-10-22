@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-sort-by demo</title>
+		<script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-sort-by-option.html">
+		<link rel="import" href="../d2l-sort-by.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography">
+		<div class="vertical-section-container centered">
+			<h3>d2l-sort-by</h3>
+			<demo-snippet>
+				<template>
+					<d2l-sort-by label="Sort by options">
+						<d2l-sort-by-option text="Date"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Time"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Newest"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Oldest"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Name"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Price: High to Low"></d2l-sort-by-option>
+						<d2l-sort-by-option text="Price: Low to High"></d2l-sort-by-option>
+						<d2l-sort-by-option text="A sorting option with longer text"></d2l-sort-by-option>
+					</d2l-sort-by>
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+	<script>
+		document.addEventListener('WebComponentsReady', function() {
+			document.body.classList.add('d2l-typography');
+		});
+
+		document.addEventListener('d2l-sort-by-change', function(e) {
+			// eslint-disable-next-line no-console
+			console.log(e.detail);
+		});
+	</script>
+</html>

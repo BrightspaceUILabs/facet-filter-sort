@@ -1,0 +1,97 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
+<link rel="import" href="../d2l-menu/d2l-menu.html">
+
+<dom-module id="d2l-sort-by">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: inline-block;
+			}
+		</style>
+		<d2l-dropdown-button-subtle text="[[_buttonText]]">
+			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-menu">
+				<d2l-menu label="[[label]]">
+				  <slot></slot>
+				</d2l-menu>
+			  </d2l-dropdown-menu>
+		  </d2l-dropdown-button-subtle>
+	</template>
+	<script>
+		/**
+		 * `<d2l-sort-by>`
+		 * Polymer-based web component for D2L sort by component
+		 */
+		class SortBy extends Polymer.Element {
+			static get is() { return 'd2l-sort-by'; }
+			static get properties() {
+				return {
+					/**
+					* Reference to bound listener functions to be removed in disconnectedCallback
+					*/
+					_boundListeners: {
+						type: Object,
+						value: function() {
+							return {
+								_onItemSelect: null,
+							};
+						}
+					},
+					/**
+					* Text of the button
+					*/
+					_buttonText: {
+						type: String,
+						computed: 'getButtonText(selected)'
+					},
+					/**
+					* The currently selected option
+					*/
+					selected: {
+						type: String,
+						value: 'None', // TODO: langterm for default(none) selection
+						reflectToAttribute: true,
+					},
+					/**
+					* Label for the dropdown-menu
+					*/
+					label: {
+						type: String,
+						value: ''
+					}
+				};
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this._boundListeners = {
+					_onItemSelect: this._onItemSelect.bind(this),
+				};
+				this.$['d2l-sort-by-menu'].addEventListener('d2l-menu-item-select',
+					this._boundListeners._onItemSelect);
+			}
+
+			disconnectedCallback() {
+				super.disconnectedCallback();
+				this.$['d2l-sort-by-menu'].removeEventListener('d2l-menu-item-select',
+					this._boundListeners._onItemSelect);
+			}
+
+			_onItemSelect(e) {
+				this.selected = e.target.text;
+				this.dispatchEvent(new CustomEvent(
+					'd2l-sort-by-change',
+					{ bubbles: true, composed: true, detail: { value: this.selected } }
+				));
+				this.$['d2l-sort-by-menu'].close();
+			}
+
+			getButtonText(selection) {
+				// TODO: Add langterm with placeholder for localization
+				return 'Sort by: ' + selection;
+			}
+		}
+		customElements.define(SortBy.is, SortBy);
+	</script>
+</dom-module>
