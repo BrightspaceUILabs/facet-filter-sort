@@ -13,22 +13,38 @@
 	<body>
 		<test-fixture id="basic">
 			<template>
-				<d2l-sort-by-dropdown></d2l-sort-by-dropdown>
+				<d2l-sort-by-dropdown label="Sort by test">
+					<d2l-sort-by-dropdown-option id="option1" value="option1" text="Option 1"></d2l-sort-by-dropdown-option>
+					<d2l-sort-by-dropdown-option id="option2" value="option2" text="Option 2"></d2l-sort-by-dropdown-option>
+				</d2l-sort-by-dropdown>
 			</template>
 		</test-fixture>
 		<script>
 			describe('<d2l-sort-by-dropdown>', function() {
 				describe('basic', function() {
 					let basicFixture;
+					let option1;
+					let option2;
+
 					beforeEach(function(done) {
 						basicFixture = fixture('basic');
 						Polymer.RenderStatus.afterNextRender(basicFixture, function() {
+							option1 = document.getElementById('option1');
+							option2 = document.getElementById('option2');
 							done();
 						});
 					});
 
-					it('should pass', function() {
-						expect(1).to.equal(1);
+					it('should initially select the first option by default', function() {
+						expect(basicFixture.value).to.equal('option1');
+					});
+
+					it('should change to the selected option', function() {
+						MockInteractions.tap(option2);
+						expect(basicFixture.value).to.equal(option2.value);
+
+						MockInteractions.tap(option1);
+						expect(basicFixture.value).to.equal(option1.value);
 					});
 				});
 			});
