@@ -45,7 +45,7 @@
 			<slot></slot>
 			<template is="dom-if" if="[[hasMore]]">
 				<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
-					<button on-click="_showOptions">[[localize('more')]]</button>
+					<button on-click="_onMoreClicked">[[localize('more')]]</button>
 				</d2l-input-checkbox-spacer>
 			</template>
 		</fieldset>
