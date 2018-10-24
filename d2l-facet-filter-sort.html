@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="d2l-facet-filter-sort">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: inline-block;
+			}
+		</style>
+		<h2>Hello [[prop1]]!</h2>
+	</template>
+	<script>
+		/**
+		 * `<d2l-facet-filter-sort>`
+		 * Collection of (search) facet, filter and sort elements
+		 * @customElement
+		 * @polymer
+		 * @demo demo/index.hmtl
+		 */
+		class FacetFilterSort extends Polymer.Element {
+			static get is() { return 'd2l-facet-filter-sort'; }
+			static get properties() {
+				return {
+					/* Property1 description for documentation */
+					prop1: {
+						type: String,
+						value: 'd2l-facet-filter-sort'
+					}
+				};
+			}
+			constructor() {
+				super();
+			}
+		}
+		customElements.define(FacetFilterSort.is, FacetFilterSort);
+	</script>
+</dom-module>

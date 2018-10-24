@@ -1,0 +1,6 @@
+{
+	"extends": "brightspace/polymer-config",
+	"env": {
+    "es6": true
+  }
+}

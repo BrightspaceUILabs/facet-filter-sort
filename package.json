@@ -1,0 +1,28 @@
+{
+  "name": "d2l-facet-filter-sort",
+  "description": "Collection of (search) facet, filter and sort elements",
+  "private": true,
+  "scripts": {
+    "postinstall": "polymer install",
+    "lint": "npm run lint:wc && npm run lint:html",
+    "lint:html": "eslint *.html demo/*.html test/*.html",
+    "lint:wc": "polymer lint -i d2l-facet-filter-sort.html",
+    "test:polymer:local": "polymer test --skip-plugin sauce",
+    "test:polymer:sauce": "polymer test --skip-plugin local",
+    "test": "npm run lint && npm run test:polymer:local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrightspaceUI/facet-filter-sort.git"
+  },
+  "author": "D2L Corporation",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chromedriver": "^2.40.0",
+    "eslint": "^4.19.1",
+    "eslint-config-brightspace": "^0.4.0",
+    "eslint-plugin-html": "^4.0.5",
+    "polymer-cli": "^1.7.4",
+    "sauce-connect-launcher": "^1.2.4"
+  }
+}

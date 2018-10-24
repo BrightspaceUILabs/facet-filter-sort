@@ -1,0 +1,28 @@
+{
+  "name": "d2l-facet-filter-sort",
+  "description": "Collection of (search) facet, filter, and sort components",
+  "main": "d2l-facet-filter-sort.html",
+  "license": "Apache-2.0",
+  "ignore": [
+    "demo",
+    "test",
+    ".editorconfig",
+    ".eslintrc.json",
+    ".gitignore",
+    ".travis.yml",
+    "CODEOWNERS",
+    "package.json",
+    "polymer.json",
+    "wct.conf.json"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0"
+  },
+  "devDependencies": {
+    "d2l-typography": "BrightspaceUI/typography#^6.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}
