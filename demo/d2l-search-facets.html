@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-search-facets demo</title>
+		<script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../all-imports.html">
+		<link rel="import" href="./d2l-search-facets-demo-components.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography">
+		<div class="vertical-section-container centered">
+			<h3>d2l-search-facets</h3>
+			<demo-snippet>
+				<template>
+					<d2l-search-facets>
+						<d2l-search-facets-grouping label="My Status" initially-shown="2">
+							<d2l-search-facets-option text="New Courses Only" count="21"></d2l-search-facets-option>
+							<d2l-search-facets-option text="On My List" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option text="In Progress" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option text="Completed" count="1"></d2l-search-facets-option>
+						</d2l-search-facets-grouping>
+						<d2l-search-facets-grouping label="Format" initially-shown="1">
+							<d2l-search-facets-option text="Online" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option text="In-Class" count="2"></d2l-search-facets-option>
+						</d2l-search-facets-grouping>
+						<d2l-search-facets-grouping label="Location">
+							<d2l-search-facets-option text="Outside"></d2l-search-facets-option>
+							<d2l-search-facets-option text="Inside"></d2l-search-facets-option>
+						</d2l-search-facets-grouping>
+					</d2l-search-facets>
+				</template>
+			</demo-snippet>
+		</div>
+		<div class="vertical-section-container centered">
+			<h3>Templated d2l-search-facets demo</h3>
+			<demo-snippet>
+				<template>
+					<d2l-demo-templated-search-facets></d2l-demo-templated-search-facets>
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+	<script>
+		document.addEventListener('WebComponentsReady', function() {
+			document.body.classList.add('d2l-typography');
+		});
+
+		document.addEventListener('d2l-search-facets-change', function(e) {
+			// eslint-disable-next-line no-console
+			console.log(e.detail);
+		});
+	</script>
+</html>

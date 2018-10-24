@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="d2l-search-facets">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: inline-block;
+			}
+		</style>
+		<slot></slot>
+	</template>
+	<script>
+		/**
+		 * `<d2l-search-facets>`
+		 * Polymer-based web component for D2L search facets.
+		 */
+		class SearchFacets extends Polymer.Element {
+			static get is() { return 'd2l-search-facets'; }
+			static get properties() {
+				return {
+					/**
+					* An object that contains all selected options under the respective groupings.
+					* (e.g., { groupingA: ['optionA', ...] , groupingB: [...] })
+					*/
+					optionsSelected: {
+						type: Object,
+						value: function() { return {}; },
+					}
+				};
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this.addEventListener('d2l-search-facets-grouping-change', function(e) {
+					this.optionsSelected[e.detail.grouping] = e.detail.selected;
+					this.dispatchEvent(new CustomEvent(
+						'd2l-search-facets-change',
+						{ bubbles: true, composed: true, detail: this.optionsSelected }
+					));
+				}.bind(this));
+
+				// Query for the initial groupings and initialize the selected options
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					const groupings = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
+						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+
+					groupings.forEach(function(grouping) {
+						if (grouping.label) {
+							this.optionsSelected[grouping.label] = [];
+						}
+					}.bind(this));
+				}.bind(this));
+			}
+		}
+
+		customElements.define(SearchFacets.is, SearchFacets);
+	</script>
+</dom-module>

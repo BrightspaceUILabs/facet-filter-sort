@@ -1,0 +1,71 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../all-imports.html">
+
+<dom-module id="d2l-demo-templated-search-facets">
+	<template>
+		<d2l-search-facets>
+			<template items="{{searchFacets}}" is="dom-repeat">
+				<d2l-search-facets-grouping label$="{{item.name}}" initially-shown="{{item.initiallyShown}}">
+					<template items="{{item.options}}" is="dom-repeat" as="searchFacet">
+						<d2l-search-facets-option text$="{{searchFacet.name}}" count="{{searchFacet.count}}">
+						</d2l-search-facets-option>
+					</template>
+				</d2l-search-facets-grouping>
+			</template>
+		</d2l-search-facets>
+	</template>
+	<script>
+		/**
+		 * An example of templated search facets. The data can potentially be retrieved from an
+		 * external source, and given to the search-facets to handle.
+		**/
+		class TemplatedSearchFacetsDemo extends Polymer.Element {
+			static get is() { return 'd2l-demo-templated-search-facets'; }
+			static get properties() {
+				return {
+					searchFacets: {
+						type: Array,
+						value: function() { return []; }
+					}
+				};
+			}
+
+			constructor() {
+				super();
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this.searchFacets = [
+					{
+						name: 'My Status',
+						options: [
+							{ name: 'My Courses', count: 21 },
+							{ name: 'On My List', count: 1 },
+							{ name: 'In Progress', count: 1 },
+							{ name: 'Complete', count: 10 },
+						],
+						initiallyShown: 2,
+					},
+					{
+						name: 'Rating',
+						options: [
+							{ name: 'Excellent', count: '1000+' },
+							{ name: 'Good', count: 100 },
+							{ name: 'Poor', count: 10 },
+						],
+						initiallyShown: 2,
+					},
+					{
+						name: 'Format',
+						options: [
+							{ name: 'Online', count: '1000+' },
+							{ name: 'In-Class', count: 1 },
+						]
+					},
+				];
+			}
+		}
+		customElements.define(TemplatedSearchFacetsDemo.is, TemplatedSearchFacetsDemo);
+	</script>
+</dom-module>

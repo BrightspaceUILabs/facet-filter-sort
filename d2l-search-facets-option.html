@@ -1,0 +1,97 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-inputs/d2l-input-checkbox.html">
+
+<dom-module id="d2l-search-facets-option">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: inline-block;
+			}
+			.d2l-search-facets-option-checkbox {
+				@apply --d2l-body-compact-text;
+			}
+		</style>
+		<d2l-input-checkbox
+			checked={{checked::change}}
+			disabled=[[disabled]]
+			name="[[name]]"
+			on-change="_handleChange"
+			class="d2l-search-facets-option-checkbox"
+		>[[_facetText]]</d2l-input-checkbox>
+	</template>
+	<script>
+		/**
+		 * `<d2l-search-facets-option>`
+		 * Search facet option, with a count to display the number of results
+		 */
+		class SearchFacetsOption extends Polymer.Element {
+			static get is() { return 'd2l-search-facets-option'; }
+			static get properties() {
+				return {
+					/**
+					* The text displayed for this option. Adds the count next to the text if present
+					*/
+					_facetText: {
+						type: String,
+						value: '',
+						computed: '_getFacetText(text, count)'
+					},
+					/**
+					* Whether the option is selected or not. This property matches the value of
+					* the d2l-input-checkbox
+					*/
+					checked: {
+						type: Boolean,
+						reflectToAttribute: true,
+					},
+					/**
+					* The number of search results for this option
+					*/
+					count: {
+						type: String,
+					},
+					/**
+					* Whether this option should be disabled
+					*/
+					disabled: {
+						type: Boolean,
+						reflectToAttribute: true,
+						value: false
+					},
+					/**
+					* Gets or sets the checkbox name, "" by default.
+					*/
+					name: {
+						type: String,
+						reflectToAttribute: true,
+						value: ''
+					},
+					/**
+					* The text for this option
+					*/
+					text: {
+						type: String,
+						value: ''
+					},
+				};
+			}
+
+			_getFacetText(text, count) {
+				// TODO: This may change due to localization
+				if (count) {
+					return text + ' ' + '(' + count + ')';
+				}
+				return text;
+			}
+
+			_handleChange(e) {
+				this.dispatchEvent(new CustomEvent(
+					'd2l-search-facets-option-change',
+					{ bubbles: true, composed: true, detail: { option: this.text, checked: e.target.checked } }
+				));
+			}
+
+		}
+		customElements.define(SearchFacetsOption.is, SearchFacetsOption);
+	</script>
+</dom-module>

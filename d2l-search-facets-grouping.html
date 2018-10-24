@@ -1,0 +1,135 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-inputs/d2l-input-checkbox-spacer.html">
+<link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
+
+<dom-module id="d2l-search-facets-grouping">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: flex;
+				flex-direction: column;
+			}
+			.d2l-search-facets-grouping-label {
+				@apply --d2l-body-compact-text;
+				font-weight: bold;
+			}
+
+			.d2l-search-facets-grouping-show-more > button {
+				@apply --d2l-body-compact-text;
+				border: none;
+				color: var(--d2l-color-celestine);
+				font-family: inherit;
+				outline: none;
+				padding: 0px;
+			}
+
+			.d2l-search-facets-grouping-show-more > button:hover,
+			.d2l-search-facets-grouping-show-more > button:focus {
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+		</style>
+		<span class="d2l-search-facets-grouping-label">[[label]]</span>
+		<d2l-input-checkbox-spacer></d2l-input-checkbox-spacer>
+		<slot></slot>
+		<template is="dom-if" if="{{_showMoreButtonVisible}}">
+			<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
+				<button on-click="_showMore">More</button>
+			</d2l-input-checkbox-spacer>
+		</template>
+	</template>
+	<script>
+		/**
+		 * `<d2l-search-facets-grouping>`
+		 * A grouping of search facet options that keeps tracks of selected options
+		 */
+		class SearchFacetsGrouping extends Polymer.Element {
+			static get is() { return 'd2l-search-facets-grouping'; }
+			static get properties() {
+				return {
+					/**
+					* List of <d2l-search-facets-option> elements
+					*/
+					_optionElements: {
+						type: Array,
+						value: function() { return []; },
+					},
+					/**
+					* List of selected options (e.g., ['optionA', ...]s)
+					*/
+					_optionsSelected: {
+						type: Array,
+						value: function() { return []; },
+					},
+					/**
+					* Visibility of 'More' button - true if initiallyShown < _optionElements.length
+					*/
+					_showMoreButtonVisible: {
+						type: Boolean,
+						value: false,
+					},
+					/**
+					* Label of the grouping
+					*/
+					label: {
+						type: String,
+						value: '',
+					},
+					/**
+					* Number of facet options initially displayed. All options are shown by default
+					*/
+					initiallyShown: {
+						type: Number,
+					}
+				};
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this.addEventListener('d2l-search-facets-option-change', function(e) {
+					e.detail.checked
+						? this._optionsSelected.push(e.detail.option)
+						: this._optionsSelected.splice(this._optionsSelected.indexOf(e.detail.option), 1);
+
+					this.dispatchEvent(new CustomEvent(
+						'd2l-search-facets-grouping-change', {
+							bubbles: true, composed: true, detail:
+							{
+								grouping: this.label,
+								selected: this._optionsSelected,
+							}
+						}
+					));
+				}.bind(this));
+
+				// Child elements may not be rendered if this is a <dom-repeat>. Wait for next
+				// render to query for them
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					this._optionElements = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
+						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+
+					if (!this.initiallyShown) {
+						this.initiallyShown = this._optionElements.length;
+					}
+
+					this._showMoreButtonVisible = this.initiallyShown < this._optionElements.length;
+					this._updateOptionVisibility('none');
+				}.bind(this));
+			}
+
+			_showMore() {
+				this._updateOptionVisibility('inline-block');
+				this._showMoreButtonVisible = false;
+			}
+
+			_updateOptionVisibility(display) {
+				for (let index = this.initiallyShown; index < this._optionElements.length; index++) {
+					this._optionElements[index].style.display = display;
+				}
+			}
+
+		}
+		customElements.define(SearchFacetsGrouping.is, SearchFacetsGrouping);
+	</script>
+</dom-module>
