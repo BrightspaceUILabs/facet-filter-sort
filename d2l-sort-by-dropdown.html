@@ -3,7 +3,7 @@
 <link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
 <link rel="import" href="../d2l-menu/d2l-menu.html">
 
-<dom-module id="d2l-sort-by">
+<dom-module id="d2l-sort-by-dropdown">
 	<template strip-whitespace>
 		<style>
 			:host {
@@ -11,7 +11,7 @@
 			}
 		</style>
 		<d2l-dropdown-button-subtle text="[[_buttonText]]">
-			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-menu">
+			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-dropdown-menu">
 				<d2l-menu label="[[label]]">
 				  <slot></slot>
 				</d2l-menu>
@@ -20,11 +20,11 @@
 	</template>
 	<script>
 		/**
-		 * `<d2l-sort-by>`
-		 * Polymer-based web component for D2L sort by component
+		 * `<d2l-sort-by-dropdown>`
+		 * Polymer-based web component for D2L sort by dropdown component
 		 */
 		class SortBy extends Polymer.Element {
-			static get is() { return 'd2l-sort-by'; }
+			static get is() { return 'd2l-sort-by-dropdown'; }
 			static get properties() {
 				return {
 					/**
@@ -68,23 +68,23 @@
 				this._boundListeners = {
 					_onItemSelect: this._onItemSelect.bind(this),
 				};
-				this.$['d2l-sort-by-menu'].addEventListener('d2l-menu-item-select',
+				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-select',
 					this._boundListeners._onItemSelect);
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
-				this.$['d2l-sort-by-menu'].removeEventListener('d2l-menu-item-select',
+				this.$['d2l-sort-by-dropdown-menu'].removeEventListener('d2l-menu-item-select',
 					this._boundListeners._onItemSelect);
 			}
 
 			_onItemSelect(e) {
 				this.selected = e.target.text;
 				this.dispatchEvent(new CustomEvent(
-					'd2l-sort-by-change',
+					'd2l-sort-by-dropdown-change',
 					{ bubbles: true, composed: true, detail: { value: this.selected } }
 				));
-				this.$['d2l-sort-by-menu'].close();
+				this.$['d2l-sort-by-dropdown-menu'].close();
 			}
 
 			getButtonText(selection) {
