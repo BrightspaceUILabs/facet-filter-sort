@@ -6,7 +6,7 @@
     "postinstall": "polymer install",
     "lint": "npm run lint:wc && npm run lint:html",
     "lint:html": "eslint *.html demo/*.html test/*.html",
-    "lint:wc": "polymer lint -i d2l-facet-filter-sort.html",
+    "lint:wc": "polymer lint -i d2l-*.html",
     "test:polymer:local": "polymer test --skip-plugin sauce",
     "test:polymer:sauce": "polymer test --skip-plugin local",
     "test": "npm run lint && npm run test:polymer:local"

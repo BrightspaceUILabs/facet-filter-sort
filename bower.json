@@ -1,7 +1,6 @@
 {
   "name": "d2l-facet-filter-sort",
   "description": "Collection of (search) facet, filter, and sort components",
-  "main": "d2l-facet-filter-sort.html",
   "license": "Apache-2.0",
   "ignore": [
     "demo",
