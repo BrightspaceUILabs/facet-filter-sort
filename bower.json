@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
+    "d2l-colors": "^3.1.2",
     "d2l-dropdown": "^6.6.2",
     "d2l-icons": "^5.1.2",
     "d2l-inputs": "^1.0.2",
