@@ -1,14 +1,12 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../d2l-inputs/d2l-input-checkbox.html">
+<link rel="import" href="../d2l-localize-behavior/d2l-localize-behavior.html">
 
 <dom-module id="d2l-search-facets-option">
 	<template strip-whitespace>
 		<style>
 			:host {
-				display: inline-block;
-			}
-			.d2l-search-facets-option-checkbox {
-				@apply --d2l-body-compact-text;
+				display: block;
 			}
 		</style>
 		<d2l-input-checkbox
@@ -24,7 +22,12 @@
 		 * `<d2l-search-facets-option>`
 		 * Search facet option, with a count to display the number of results
 		 */
-		class SearchFacetsOption extends Polymer.Element {
+		class SearchFacetsOption extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.LocalizeBehavior
+			],
+			Polymer.Element
+		) {
 			static get is() { return 'd2l-search-facets-option'; }
 			static get properties() {
 				return {
@@ -78,7 +81,7 @@
 			_getFacetText(text, count) {
 				// TODO: This may change due to localization
 				if (count) {
-					return text + ' ' + '(' + count + ')';
+					return text + ' ' + '(' + this.formatNumber(count) + ')';
 				}
 				return text;
 			}

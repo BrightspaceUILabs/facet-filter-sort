@@ -1,17 +1,26 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../d2l-inputs/d2l-input-checkbox-spacer.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
+<link rel="import" href="../d2l-colors/d2l-colors.html">
 
 <dom-module id="d2l-search-facets-grouping">
 	<template strip-whitespace>
 		<style>
 			:host {
-				display: flex;
-				flex-direction: column;
+				display: block;
 			}
-			.d2l-search-facets-grouping-label {
+
+			.d2l-search-facets-grouping-fieldset {
+				border: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.d2l-search-facets-grouping-legend {
 				@apply --d2l-body-compact-text;
 				font-weight: bold;
+				margin-bottom: 0.4rem;
+				padding: 0;
 			}
 
 			.d2l-search-facets-grouping-show-more > button {
@@ -20,7 +29,7 @@
 				color: var(--d2l-color-celestine);
 				font-family: inherit;
 				outline: none;
-				padding: 0px;
+				padding: 0;
 			}
 
 			.d2l-search-facets-grouping-show-more > button:hover,
@@ -30,14 +39,15 @@
 			}
 
 		</style>
-		<span class="d2l-search-facets-grouping-label">[[label]]</span>
-		<d2l-input-checkbox-spacer></d2l-input-checkbox-spacer>
-		<slot></slot>
-		<template is="dom-if" if="{{_showMoreButtonVisible}}">
-			<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
-				<button on-click="_showMore">More</button>
-			</d2l-input-checkbox-spacer>
-		</template>
+		<fieldset class="d2l-search-facets-grouping-fieldset">
+			<legend class="d2l-search-facets-grouping-legend">[[text]]</legend>
+			<slot></slot>
+			<template is="dom-if" if="[[_showMoreButtonVisible]]">
+				<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
+					<button on-click="_showMore">More</button>
+				</d2l-input-checkbox-spacer>
+			</template>
+		</fieldset>
 	</template>
 	<script>
 		/**
