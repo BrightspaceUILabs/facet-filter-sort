@@ -12,9 +12,9 @@
 			}
 		</style>
 		<d2l-input-checkbox
-			checked={{checked::change}}
+			checked=[[checked]]
 			disabled=[[disabled]]
-			name="[[name]]"
+			name="[[text]]"
 			on-change="_handleChange"
 			class="d2l-search-facets-option-checkbox"
 		>[[_facetText]]</d2l-input-checkbox>
@@ -48,7 +48,7 @@
 					* The number of search results for this option
 					*/
 					count: {
-						type: String,
+						type: Number,
 					},
 					/**
 					* Whether this option should be disabled
@@ -59,17 +59,16 @@
 						value: false
 					},
 					/**
-					* Gets or sets the checkbox name, "" by default.
-					*/
-					name: {
-						type: String,
-						reflectToAttribute: true,
-						value: ''
-					},
-					/**
 					* The text for this option
 					*/
 					text: {
+						type: String,
+						value: ''
+					},
+					/**
+					* The value of this option
+					*/
+					value: {
 						type: String,
 						value: ''
 					},
@@ -87,7 +86,14 @@
 			_handleChange(e) {
 				this.dispatchEvent(new CustomEvent(
 					'd2l-search-facets-option-change',
-					{ bubbles: true, composed: true, detail: { option: this.text, checked: e.target.checked } }
+					{
+						bubbles: true,
+						composed: true,
+						detail: {
+							checked: e.target.checked,
+							value: this.value,
+						}
+					}
 				));
 			}
 

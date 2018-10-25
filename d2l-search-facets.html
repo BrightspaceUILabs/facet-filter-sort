@@ -19,6 +19,17 @@
 			static get properties() {
 				return {
 					/**
+					* Reference to bound listener functions to be removed in disconnectedCallback
+					*/
+					_boundListeners: {
+						type: Object,
+						value: function() {
+							return {
+								_onFacetGroupingChange: null,
+							};
+						}
+					},
+					/**
 					* An object that contains all selected options under the respective groupings.
 					* (e.g., { groupingA: ['optionA', ...] , groupingB: [...] })
 					*/
@@ -31,25 +42,35 @@
 
 			connectedCallback() {
 				super.connectedCallback();
-				this.addEventListener('d2l-search-facets-grouping-change', function(e) {
-					this.optionsSelected[e.detail.grouping] = e.detail.selected;
-					this.dispatchEvent(new CustomEvent(
-						'd2l-search-facets-change',
-						{ bubbles: true, composed: true, detail: this.optionsSelected }
-					));
-				}.bind(this));
 
-				// Query for the initial groupings and initialize the selected options
 				Polymer.RenderStatus.afterNextRender(this, function() {
+					this._boundListeners._onFacetGroupingChange = this._onFacetGroupingChange.bind(this);
+					this.addEventListener('d2l-search-facets-grouping-change',
+						this._boundListeners._onFacetGroupingChange);
+					// Query for the initial groupings and initialize the selected options
 					const groupings = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
 						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
 
 					groupings.forEach(function(grouping) {
-						if (grouping.label) {
-							this.optionsSelected[grouping.label] = [];
+						if (grouping.value) {
+							this.optionsSelected[grouping.value] = [];
 						}
 					}.bind(this));
 				}.bind(this));
+			}
+
+			disconnectedCallback() {
+				super.disconnectedCallback();
+				this.removeEventListener('d2l-search-facets-grouping-change',
+					this._boundListeners._onFacetGroupingChange);
+			}
+
+			_onFacetGroupingChange(e) {
+				this.optionsSelected[e.detail.grouping] = e.detail.selected;
+				this.dispatchEvent(new CustomEvent(
+					'd2l-search-facets-change',
+					{ bubbles: true, composed: true, detail: this.optionsSelected }
+				));
 			}
 		}
 

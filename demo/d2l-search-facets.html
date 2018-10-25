@@ -28,19 +28,19 @@
 			<demo-snippet>
 				<template>
 					<d2l-search-facets>
-						<d2l-search-facets-grouping label="My Status" initially-shown="2">
-							<d2l-search-facets-option text="New Courses Only" count="21"></d2l-search-facets-option>
-							<d2l-search-facets-option text="On My List" count="1"></d2l-search-facets-option>
-							<d2l-search-facets-option text="In Progress" count="1"></d2l-search-facets-option>
-							<d2l-search-facets-option text="Completed" count="1"></d2l-search-facets-option>
+						<d2l-search-facets-grouping value="status" text="My Status" hide-after="2">
+							<d2l-search-facets-option value="new-courses" text="New Courses Only" count="21"></d2l-search-facets-option>
+							<d2l-search-facets-option value="my-list" text="On My List" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option value="in-progress" text="In Progress" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option value="completed" text="Completed" count="10000"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
-						<d2l-search-facets-grouping label="Format" initially-shown="1">
-							<d2l-search-facets-option text="Online" count="1"></d2l-search-facets-option>
-							<d2l-search-facets-option text="In-Class" count="2"></d2l-search-facets-option>
+						<d2l-search-facets-grouping value="format" text="Format" hide-after="1">
+							<d2l-search-facets-option value="online" text="Online" count="1"></d2l-search-facets-option>
+							<d2l-search-facets-option value="in-class" text="In-Class" count="2"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
-						<d2l-search-facets-grouping label="Location">
-							<d2l-search-facets-option text="Outside"></d2l-search-facets-option>
-							<d2l-search-facets-option text="Inside"></d2l-search-facets-option>
+						<d2l-search-facets-grouping value="location" text="Location">
+							<d2l-search-facets-option value="outside" text="Outside"></d2l-search-facets-option>
+							<d2l-search-facets-option value="inside" text="Inside"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
 					</d2l-search-facets>
 				</template>

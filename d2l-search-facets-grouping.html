@@ -49,6 +49,17 @@
 			static get properties() {
 				return {
 					/**
+					* Reference to bound listener functions to be removed in disconnectedCallback
+					*/
+					_boundListeners: {
+						type: Object,
+						value: function() {
+							return {
+								_onFacetOptionChange: null,
+							};
+						}
+					},
+					/**
 					* List of <d2l-search-facets-option> elements
 					*/
 					_optionElements: {
@@ -70,62 +81,83 @@
 						value: false,
 					},
 					/**
-					* Label of the grouping
+					* Number of facet options initially displayed. All options are shown by default
 					*/
-					label: {
+					hideAfter: {
+						type: Number,
+					},
+					/**
+					* The name of the grouping
+					*/
+					text: {
 						type: String,
 						value: '',
 					},
 					/**
-					* Number of facet options initially displayed. All options are shown by default
+					* The value of the grouping name
 					*/
-					initiallyShown: {
-						type: Number,
-					}
+					value: {
+						type: String,
+						value: '',
+					},
 				};
 			}
 
 			connectedCallback() {
 				super.connectedCallback();
-				this.addEventListener('d2l-search-facets-option-change', function(e) {
-					e.detail.checked
-						? this._optionsSelected.push(e.detail.option)
-						: this._optionsSelected.splice(this._optionsSelected.indexOf(e.detail.option), 1);
-
-					this.dispatchEvent(new CustomEvent(
-						'd2l-search-facets-grouping-change', {
-							bubbles: true, composed: true, detail:
-							{
-								grouping: this.label,
-								selected: this._optionsSelected,
-							}
-						}
-					));
-				}.bind(this));
-
-				// Child elements may not be rendered if this is a <dom-repeat>. Wait for next
-				// render to query for them
 				Polymer.RenderStatus.afterNextRender(this, function() {
-					this._optionElements = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
-						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+					// Child elements may not be rendered if this is a <dom-repeat>. Wait for next
+					// render to query for them
+					this._boundListeners._onFacetOptionChange = this._onFacetOptionChange.bind(this);
 
-					if (!this.initiallyShown) {
-						this.initiallyShown = this._optionElements.length;
+					this.addEventListener('d2l-search-facets-option-change',
+						this._boundListeners._onFacetOptionChange);
+
+					if (!this.hideAfter) {
+						this.hideAfter = this._getOptionElements().length;
 					}
 
-					this._showMoreButtonVisible = this.initiallyShown < this._optionElements.length;
+					this._showMoreButtonVisible = this.hideAfter < this._getOptionElements().length;
 					this._updateOptionVisibility('none');
 				}.bind(this));
 			}
 
+			disconnectedCallback() {
+				super.disconnectedCallback();
+				this.removeEventListener('d2l-search-facets-option-change',
+					this._boundListeners._onFacetOptionChange);
+			}
+
+			_getOptionElements() {
+				return Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
+					.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+			}
+
+			_onFacetOptionChange(e) {
+				e.detail.checked
+					? this._optionsSelected.push(e.detail.value)
+					: this._optionsSelected.splice(this._optionsSelected.indexOf(e.detail.value), 1);
+
+				this.dispatchEvent(new CustomEvent(
+					'd2l-search-facets-grouping-change', {
+						bubbles: true, composed: true, detail:
+						{
+							grouping: this.value,
+							selected: this._optionsSelected,
+						}
+					}
+				));
+			}
+
 			_showMore() {
-				this._updateOptionVisibility('inline-block');
+				this._updateOptionVisibility('block');
 				this._showMoreButtonVisible = false;
 			}
 
 			_updateOptionVisibility(display) {
-				for (let index = this.initiallyShown; index < this._optionElements.length; index++) {
-					this._optionElements[index].style.display = display;
+				const optionElements = this._getOptionElements();
+				for (let index = this.hideAfter; index < optionElements.length; index++) {
+					optionElements[index].style.display = display;
 				}
 			}
 
