@@ -42,9 +42,9 @@
 		<fieldset class="d2l-search-facets-grouping-fieldset">
 			<legend class="d2l-search-facets-grouping-legend">[[text]]</legend>
 			<slot></slot>
-			<template is="dom-if" if="[[_showMoreButtonVisible]]">
+			<template is="dom-if" if="[[_showOptionsButtonVisible]]">
 				<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
-					<button on-click="_showMore">More</button>
+					<button on-click="_showOptions">More</button>
 				</d2l-input-checkbox-spacer>
 			</template>
 		</fieldset>
@@ -70,11 +70,11 @@
 						}
 					},
 					/**
-					* List of <d2l-search-facets-option> elements
+					* Reference to the style element created to hide options. Deleted when
+					* the show options button is clicked
 					*/
-					_optionElements: {
-						type: Array,
-						value: function() { return []; },
+					_hideOptionsStyleElement: {
+						type: HTMLElement,
 					},
 					/**
 					* List of selected options (e.g., ['optionA', ...]s)
@@ -84,14 +84,15 @@
 						value: function() { return []; },
 					},
 					/**
-					* Visibility of 'More' button - true if initiallyShown < _optionElements.length
+					* Visibility of 'More' button, true if hideAfter is present
 					*/
-					_showMoreButtonVisible: {
+					_showOptionsButtonVisible: {
 						type: Boolean,
 						value: false,
 					},
 					/**
-					* Number of facet options initially displayed. All options are shown by default
+					* Number of facet options initially displayed. All options are shown by default.
+					* Should not be greater than the number of child elements
 					*/
 					hideAfter: {
 						type: Number,
@@ -115,20 +116,18 @@
 
 			connectedCallback() {
 				super.connectedCallback();
+
+				if (this.hideAfter) {
+					this._hideOptions();
+					this._showOptionsButtonVisible = true;
+				}
+
 				Polymer.RenderStatus.afterNextRender(this, function() {
-					// Child elements may not be rendered if this is a <dom-repeat>. Wait for next
-					// render to query for them
 					this._boundListeners._onFacetOptionChange = this._onFacetOptionChange.bind(this);
 
 					this.addEventListener('d2l-search-facets-option-change',
 						this._boundListeners._onFacetOptionChange);
 
-					if (!this.hideAfter) {
-						this.hideAfter = this._getOptionElements().length;
-					}
-
-					this._showMoreButtonVisible = this.hideAfter < this._getOptionElements().length;
-					this._updateOptionVisibility('none');
 				}.bind(this));
 			}
 
@@ -138,7 +137,7 @@
 					this._boundListeners._onFacetOptionChange);
 			}
 
-			_getOptionElements() {
+			_getEffectiveChildren() {
 				return Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
 					.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
 			}
@@ -159,19 +158,24 @@
 				));
 			}
 
-			_showMore() {
-				this._updateOptionVisibility('block');
-				this._showMoreButtonVisible = false;
+			_hideOptions() {
+				const styleElement = document.createElement('style');
+				styleElement.type = 'text/css';
+				const hideOptionsCss = `.d2l-search-facets-grouping-fieldset ::slotted(d2l-search-facets-option:nth-child(n+${this.hideAfter + 1})) {
+					display: none
+				}`;
+				styleElement.appendChild(document.createTextNode(hideOptionsCss));
+				this._hideOptionsStyleElement = styleElement;
+
+				this.shadowRoot.appendChild(styleElement);
 			}
 
-			_updateOptionVisibility(display) {
-				const optionElements = this._getOptionElements();
-				for (let index = this.hideAfter; index < optionElements.length; index++) {
-					optionElements[index].style.display = display;
-				}
+			_showOptions() {
+				this.shadowRoot.removeChild(this._hideOptionsStyleElement);
+				this._showOptionsButtonVisible = false;
 			}
-
 		}
+
 		customElements.define(SearchFacetsGrouping.is, SearchFacetsGrouping);
 	</script>
 </dom-module>

@@ -80,10 +80,9 @@
 
 			_getFacetText(text, count) {
 				// TODO: This may change due to localization
-				if (count) {
-					return text + ' ' + '(' + this.formatNumber(count) + ')';
-				}
-				return text;
+				return count
+					? `${text} (${this.formatNumber(count)})`
+					: text;
 			}
 
 			_handleChange(e) {
