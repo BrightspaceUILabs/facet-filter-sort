@@ -43,15 +43,7 @@
 					*/
 					_buttonText: {
 						type: String,
-						computed: 'getButtonText(selected)'
-					},
-					/**
-					* The currently selected option
-					*/
-					selected: {
-						type: String,
-						value: 'None', // TODO: langterm for default(none) selection
-						reflectToAttribute: true,
+						computed: 'getButtonText(text)'
 					},
 					/**
 					* Label for the dropdown-menu
@@ -59,6 +51,20 @@
 					label: {
 						type: String,
 						value: ''
+					},
+					/**
+					* The text of the currently selected option
+					*/
+					text: {
+						type: String,
+						value: '',
+					},
+					/**
+					* The value of the currently selected option
+					*/
+					value: {
+						type: String,
+						reflectToAttribute: true,
 					}
 				};
 			}
@@ -68,28 +74,32 @@
 				this._boundListeners = {
 					_onItemSelect: this._onItemSelect.bind(this),
 				};
-				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-select',
+				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
 					this._boundListeners._onItemSelect);
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
-				this.$['d2l-sort-by-dropdown-menu'].removeEventListener('d2l-menu-item-select',
+				this.$['d2l-sort-by-dropdown-menu'].removeEventListener('d2l-menu-item-change',
 					this._boundListeners._onItemSelect);
 			}
 
 			_onItemSelect(e) {
-				this.selected = e.target.text;
+				this.text = e.target.text;
+				this.value = e.detail.value;
+
 				this.dispatchEvent(new CustomEvent(
 					'd2l-sort-by-dropdown-change',
-					{ bubbles: true, composed: true, detail: { value: this.selected } }
+					{ bubbles: true, composed: true, detail: { value: this.value } }
 				));
 				this.$['d2l-sort-by-dropdown-menu'].close();
 			}
 
 			getButtonText(selection) {
 				// TODO: Add langterm with placeholder for localization
-				return 'Sort by: ' + selection;
+				return selection
+					? `Sort by: ${selection}`
+					: 'Sort by'
 			}
 		}
 		customElements.define(SortBy.is, SortBy);
