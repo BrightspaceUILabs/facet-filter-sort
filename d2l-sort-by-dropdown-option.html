@@ -1,25 +1,14 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
-<link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
-<link rel="import" href="../d2l-menu/d2l-menu-item.html">
-<link rel="import" href="../d2l-menu/d2l-menu-item-behavior.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item-radio-behavior.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item-selectable-styles.html">
+<link rel="import" href="../d2l-icons/d2l-icon.html">
+<link rel="import" href="../d2l-icons/tier1-icons.html">
 
 <dom-module id="d2l-sort-by-dropdown-option">
 	<template strip-whitespace>
-		<style>
-			:host {
-				display: flex;
-				flex-direction: column;
-			}
-			d2l-menu-item {
-				/**
-				 * Needed to show the background colour of d2l-menu-item when hovering;
-				 * d2l-menu-item is overriding the :hover style of d2l-menu
-				 */
-				background-color: transparent;
-			}
-		</style>
-		<d2l-menu-item text="[[text]]"></d2l-menu-item>
+		<style include="d2l-menu-item-selectable-styles"></style>
+		<d2l-icon icon="d2l-tier1:check" aria-hidden="true"></d2l-icon>
+		<span>[[text]]</span>
 	</template>
 	<script>
 		/**
@@ -28,7 +17,7 @@
 		 */
 		class SortByOption extends Polymer.mixinBehaviors(
 			[
-				D2L.PolymerBehaviors.MenuItemBehavior,
+				D2L.PolymerBehaviors.MenuItemRadioBehavior,
 			],
 			Polymer.Element
 		) {
@@ -36,6 +25,9 @@
 			static get properties() {
 				return {
 					text: {
+						type: String,
+					},
+					value: {
 						type: String,
 					}
 				};
