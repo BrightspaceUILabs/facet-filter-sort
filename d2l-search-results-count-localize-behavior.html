@@ -1,0 +1,79 @@
+<link rel="import" href="../d2l-localize-behavior/d2l-localize-behavior.html">
+<script>
+	window.D2L = window.D2L || {};
+	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
+	window.D2L.PolymerBehaviors.SearchResultsCount = window.D2L.PolymerBehaviors.SearchResultsCount || {};
+
+	/**
+	 * Localizes the component strings.
+	 * @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior
+	 */
+	D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl = {
+		properties: {
+			/**
+			* Localization resources.
+			*/
+			// TODO: Add localization
+			resources: {
+				value: function() {
+					return {
+						'ar': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'en': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'es': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'fr': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'ja': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'ko': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'nl': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'pt': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'sv': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'tr': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'zh': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						},
+						'zh-tw': {
+							searchResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"'
+						}
+					};
+				}
+			}
+		}
+	};
+
+	/** @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior */
+	D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior = [
+		D2L.PolymerBehaviors.LocalizeBehavior,
+		D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl
+	];
+</script>

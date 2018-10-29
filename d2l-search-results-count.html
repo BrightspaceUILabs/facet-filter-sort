@@ -1,0 +1,72 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="d2l-search-results-count-localize-behavior.html">
+
+<dom-module id="d2l-search-results-count">
+	<template strip-whitespace>
+		<style>
+		</style>
+		[[_text]]
+	</template>
+	<script>
+		/**
+		 * `<d2l-search-results-count>`
+		 * Polymer-based web component for D2L search result
+		 */
+		class SearchResultsCount extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior
+			],
+			Polymer.Element
+		) {
+			static get is() { return 'd2l-search-results-count'; }
+			static get properties() {
+				return {
+					/**
+					* Displayed text
+					*/
+					_text: {
+						type: String,
+						value: ''
+					},
+					/**
+					* Range start
+					*/
+					rangeStart: {
+						type: Number,
+						value: 0
+					},
+					/**
+					* Range to
+ 					*/
+					rangeEnd: {
+						type: Number,
+						value: 0
+					},
+					/**
+					* Total count
+					*/
+					totalCount: {
+						type: Number,
+						value: 0
+					},
+					/**
+					* Search query
+					*/
+					query: {
+						type: String,
+						value: ''
+					}
+				};
+			}
+			connectedCallback() {
+				super.connectedCallback();
+				this._text = this.query
+					? this.localize('searchResultsForQuery',
+						'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount, 'query', this.query)
+					: this.localize('searchResults',
+						'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount);
+			}
+		}
+		customElements.define(SearchResultsCount.is, SearchResultsCount);
+	</script>
+</dom-module>
