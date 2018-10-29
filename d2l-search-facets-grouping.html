@@ -137,25 +137,12 @@
 					this._boundListeners._onFacetOptionChange);
 			}
 
-			_getEffectiveChildren() {
-				return Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
-					.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
-			}
-
 			_onFacetOptionChange(e) {
-				e.detail.checked
-					? this._optionsSelected.push(e.detail.value)
-					: this._optionsSelected.splice(this._optionsSelected.indexOf(e.detail.value), 1);
-
-				this.dispatchEvent(new CustomEvent(
-					'd2l-search-facets-grouping-change', {
-						bubbles: true, composed: true, detail:
-						{
-							grouping: this.value,
-							selected: this._optionsSelected,
-						}
-					}
-				));
+				this.dispatchEvent(new CustomEvent('d2l-search-facets-grouping-change', {
+					bubbles: true,
+					composed: true,
+					detail: Object.assign({}, e.detail, { grouping: this.value })
+				}));
 			}
 
 			_hideOptions() {

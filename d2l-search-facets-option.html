@@ -86,17 +86,11 @@
 			}
 
 			_handleChange(e) {
-				this.dispatchEvent(new CustomEvent(
-					'd2l-search-facets-option-change',
-					{
-						bubbles: true,
-						composed: true,
-						detail: {
-							checked: e.target.checked,
-							value: this.value,
-						}
-					}
-				));
+				this.dispatchEvent(new CustomEvent('d2l-search-facets-option-change', {
+					bubbles: true,
+					composed: true,
+					detail: { checked: e.target.checked, option: this.value }
+				}));
 			}
 
 		}

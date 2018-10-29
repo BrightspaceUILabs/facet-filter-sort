@@ -29,14 +29,6 @@
 							};
 						}
 					},
-					/**
-					* An object that contains all selected options under the respective groupings.
-					* (e.g., { groupingA: ['optionA', ...] , groupingB: [...] })
-					*/
-					optionsSelected: {
-						type: Object,
-						value: function() { return {}; },
-					}
 				};
 			}
 
@@ -47,30 +39,20 @@
 					this._boundListeners._onFacetGroupingChange = this._onFacetGroupingChange.bind(this);
 					this.addEventListener('d2l-search-facets-grouping-change',
 						this._boundListeners._onFacetGroupingChange);
-					// Query for the initial groupings and initialize the selected options
-					const groupings = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
-						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
-
-					groupings.forEach(function(grouping) {
-						if (grouping.value) {
-							this.optionsSelected[grouping.value] = [];
-						}
-					}.bind(this));
 				}.bind(this));
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
+
 				this.removeEventListener('d2l-search-facets-grouping-change',
 					this._boundListeners._onFacetGroupingChange);
 			}
 
 			_onFacetGroupingChange(e) {
-				this.optionsSelected[e.detail.grouping] = e.detail.selected;
-				this.dispatchEvent(new CustomEvent(
-					'd2l-search-facets-change',
-					{ bubbles: true, composed: true, detail: this.optionsSelected }
-				));
+				this.dispatchEvent(new CustomEvent('d2l-search-facets-change', {
+					bubbles: true, composed: true, detail: e.detail
+				}));
 			}
 		}
 

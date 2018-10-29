@@ -11,6 +11,7 @@
 							value$="[[searchFacet.value]]"
 							text$="[[searchFacet.name]]"
 							count="[[searchFacet.count]]"
+							checked="[[searchFacet.checked]]"
 						></d2l-search-facets-option>
 					</template>
 				</d2l-search-facets-grouping>
@@ -55,7 +56,7 @@
 						name: 'Rating',
 						value: 'rating',
 						options: [
-							{ name: 'Excellent', value: 'excellent', count: 1000 },
+							{ name: 'Excellent', value: 'excellent', count: 1000, checked: true },
 							{ name: 'Good', value: 'good', count: 100 },
 							{ name: 'Poor', value: 'poor', count: 10 },
 						],
