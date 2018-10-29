@@ -34,7 +34,7 @@
 						type: Object,
 						value: function() {
 							return {
-								_onItemSelect: null,
+								_onItemSelect: null
 							};
 						}
 					},
@@ -50,7 +50,7 @@
 					*/
 					_text: {
 						type: String,
-						value: '',
+						value: ''
 					},
 					/**
 					* Label for the dropdown-menu
@@ -64,16 +64,15 @@
 					*/
 					value: {
 						type: String,
-						reflectToAttribute: true,
+						reflectToAttribute: true
 					}
 				};
 			}
 
 			connectedCallback() {
 				super.connectedCallback();
-				this._boundListeners = {
-					_onItemSelect: this._onItemSelect.bind(this),
-				};
+				this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
+
 				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
 					this._boundListeners._onItemSelect);
 			}
