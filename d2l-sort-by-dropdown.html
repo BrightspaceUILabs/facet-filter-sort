@@ -10,7 +10,7 @@
 				display: inline-block;
 			}
 		</style>
-		<d2l-dropdown-button-subtle text="[[_buttonText]]">
+		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
 			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-dropdown-menu">
 				<d2l-menu label="[[label]]">
 				  <slot></slot>
@@ -41,9 +41,16 @@
 					/**
 					* Text of the button
 					*/
-					_buttonText: {
+					_selectedOptionText: {
 						type: String,
-						computed: 'getButtonText(text)'
+						computed: 'getSelectedOptionText(_text)'
+					},
+					/**
+					* The text of the currently selected option
+					*/
+					_text: {
+						type: String,
+						value: '',
 					},
 					/**
 					* Label for the dropdown-menu
@@ -51,13 +58,6 @@
 					label: {
 						type: String,
 						value: ''
-					},
-					/**
-					* The text of the currently selected option
-					*/
-					text: {
-						type: String,
-						value: '',
 					},
 					/**
 					* The value of the currently selected option
@@ -85,7 +85,7 @@
 			}
 
 			_onItemSelect(e) {
-				this.text = e.target.text;
+				this._text = e.target.text;
 				this.value = e.detail.value;
 
 				this.dispatchEvent(new CustomEvent(
@@ -94,7 +94,7 @@
 				));
 			}
 
-			getButtonText(selection) {
+			getSelectedOptionText(selection) {
 				// TODO: Add langterm with placeholder for localization
 				return selection
 					? `Sort by: ${selection}`
