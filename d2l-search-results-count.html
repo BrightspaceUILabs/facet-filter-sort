@@ -37,15 +37,13 @@
 					* Range start
 					*/
 					rangeStart: {
-						type: Number,
-						value: 0
+						type: Number
 					},
 					/**
 					* Range end
  					*/
 					rangeEnd: {
-						type: Number,
-						value: 0
+						type: Number
 					},
 					/**
 					* Total count
@@ -65,11 +63,17 @@
 			}
 			connectedCallback() {
 				super.connectedCallback();
-				this._text = this.query
-					? this.localize('searchResultsForQuery',
-						'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount, 'query', this.query)
-					: this.localize('searchResults',
-						'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount);
+				if (this.rangeStart && this.rangeEnd) {
+					this._text = this.query
+						? this.localize('searchPagedResultsForQuery',
+							'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount, 'query', this.query)
+						: this.localize('searchPagedResults',
+							'rangeStart', this.rangeStart, 'rangeEnd', this.rangeEnd, 'totalCount', this.totalCount);
+				} else {
+					this._text = this.query
+						? this.localize('searchResultsForQuery', 'totalCount', this.totalCount, 'query', this.query)
+						: this.localize('searchResults', 'totalCount', this.totalCount);
+				}
 			}
 		}
 		customElements.define(SearchResultsCount.is, SearchResultsCount);
