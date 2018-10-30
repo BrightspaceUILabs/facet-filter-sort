@@ -4,6 +4,11 @@
 <dom-module id="d2l-search-results-count">
 	<template strip-whitespace>
 		<style>
+			/*
+			 * https://github.com/Polymer/tools/issues/408
+			 * Empty style blocks break linter.
+			 */
+			:host {}
 		</style>
 		[[_text]]
 	</template>
@@ -36,7 +41,7 @@
 						value: 0
 					},
 					/**
-					* Range to
+					* Range end
  					*/
 					rangeEnd: {
 						type: Number,

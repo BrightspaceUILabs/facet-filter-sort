@@ -15,8 +15,8 @@
     "wct.conf.json"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
-    "d2l-localize-behavior": "BrightspaceUI/localize-behavior#^1.1.3"
+    "d2l-localize-behavior": "BrightspaceUI/localize-behavior#^1.1.3",
+    "polymer": "Polymer/polymer#^2.0.0"
   },
   "devDependencies": {
     "d2l-typography": "BrightspaceUI/typography#^6.0.0",

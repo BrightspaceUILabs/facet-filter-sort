@@ -8,7 +8,7 @@
 		<script src="../../web-component-tester/browser.js"></script>
 		<script src="../../iron-test-helpers/mock-interactions.js"></script>
 		<script src="../../iron-test-helpers/test-helpers.js"></script>
-		<link rel="import" href="../all-imports.html">
+		<link rel="import" href="../d2l-search-results-count.html">
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -28,14 +28,13 @@
 
 					beforeEach(function(done) {
 						basicFixture = fixture('basic');
-						Polymer.RenderStatus.afterNextRender(basicFixture, function() {
-							done();
-						});
+						Polymer.RenderStatus.afterNextRender(basicFixture, done);
 					});
 
 					it('text should match', function() {
 						const shadowRoot = basicFixture.shadowRoot;
-						expect(shadowRoot.textContent).to.contain('1 - 20 of 22 results for "Financial Planning"');
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('1 - 20 of 22 results for "Financial Planning"');
 					});
 				});
 
@@ -51,8 +50,8 @@
 
 					it('text should match', function() {
 						const shadowRoot = basicFixture.shadowRoot;
-						expect(shadowRoot.textContent).to.contain('1 - 20 of 22 results');
-						expect(shadowRoot.textContent).to.not.contain('1 - 20 of 22 results for');
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('1 - 20 of 22 results');
 					});
 				});
 			});
