@@ -2,6 +2,7 @@
 <link rel="import" href="../d2l-inputs/d2l-input-checkbox-spacer.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
 <link rel="import" href="../d2l-colors/d2l-colors.html">
+<link rel="import" href="./d2l-search-facets-localize-behavior.html">
 
 <dom-module id="d2l-search-facets-grouping">
 	<template strip-whitespace>
@@ -44,7 +45,7 @@
 			<slot></slot>
 			<template is="dom-if" if="[[hasMore]]">
 				<d2l-input-checkbox-spacer class="d2l-search-facets-grouping-show-more">
-					<button on-click="_onMoreClicked">More</button>
+					<button on-click="_showOptions">[[localize('more')]]</button>
 				</d2l-input-checkbox-spacer>
 			</template>
 		</fieldset>
@@ -54,7 +55,12 @@
 		 * `<d2l-search-facets-grouping>`
 		 * A grouping of search facet options that keeps tracks of selected options
 		 */
-		class SearchFacetsGrouping extends Polymer.Element {
+		class SearchFacetsGrouping extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.SearchFacets.LocalizeBehavior
+			],
+			Polymer.Element
+		) {
 			static get is() { return 'd2l-search-facets-grouping'; }
 			static get properties() {
 				return {
