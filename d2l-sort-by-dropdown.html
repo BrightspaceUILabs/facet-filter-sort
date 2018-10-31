@@ -2,6 +2,7 @@
 <link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
 <link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
 <link rel="import" href="../d2l-menu/d2l-menu.html">
+<link rel="import" href="./d2l-sort-by-dropdown-localize-behavior.html">
 
 <dom-module id="d2l-sort-by-dropdown">
 	<template strip-whitespace>
@@ -11,7 +12,7 @@
 			}
 		</style>
 		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
-			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-dropdown-menu">
+			<d2l-dropdown-menu id="d2l-sort-by-dropdown-menu">
 				<d2l-menu label="[[label]]">
 				  <slot></slot>
 				</d2l-menu>
@@ -23,7 +24,12 @@
 		 * `<d2l-sort-by-dropdown>`
 		 * Polymer-based web component for D2L sort by dropdown component
 		 */
-		class SortBy extends Polymer.Element {
+		class SortByDropdown extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior
+			],
+			Polymer.Element
+		) {
 			static get is() { return 'd2l-sort-by-dropdown'; }
 			static get properties() {
 				return {
@@ -39,18 +45,21 @@
 						}
 					},
 					/**
-					* Text of the button
+					* The text of the selected option, after localization
 					*/
 					_selectedOptionText: {
 						type: String,
-						computed: 'getSelectedOptionText(_text)'
 					},
 					/**
 					* The text of the currently selected option
 					*/
 					_text: {
 						type: String,
-						value: ''
+						value: '',
+						observer: function(selection) {
+							this._selectedOptionText =
+								this.localize('sortByWithOption', 'option', selection);
+						}
 					},
 					/**
 					* Label for the dropdown-menu
@@ -72,9 +81,26 @@
 			connectedCallback() {
 				super.connectedCallback();
 				this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
+						this._boundListeners._onItemSelect);
 
-				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
-					this._boundListeners._onItemSelect);
+					const effectiveChildren = Polymer.FlattenedNodesObserver.getFlattenedNodes(this)
+						.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+
+					let initialOption = effectiveChildren.find(function(child) {
+						return child.selected;
+					}.bind(this));
+
+					if (!initialOption) {
+						// Select the first option if none are selected
+						initialOption = effectiveChildren[0];
+						initialOption.setAttribute('selected', true);
+					}
+
+					this._text = initialOption.text;
+					this.value = initialOption.value;
+				}.bind(this));
 			}
 
 			disconnectedCallback() {
@@ -93,13 +119,7 @@
 				));
 			}
 
-			getSelectedOptionText(selection) {
-				// TODO: Add langterm with placeholder for localization
-				return selection
-					? `Sort by: ${selection}`
-					: 'Sort by';
-			}
 		}
-		customElements.define(SortBy.is, SortBy);
+		customElements.define(SortByDropdown.is, SortByDropdown);
 	</script>
 </dom-module>
