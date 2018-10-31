@@ -57,9 +57,19 @@
 						type: String,
 						value: '',
 						observer: function(selection) {
-							this._selectedOptionText =
-								this.localize('sortWithOption', 'option', selection);
+							this._selectedOptionText = this.compact
+								? this.localize('sort')
+								: this.localize('sortWithOption', 'option', selection);
 						}
+					},
+
+					/**
+					* Indicates whether the dropdown is in compact mode or not. The selection text
+					* will not be visible when compact is true
+					*/
+					compact: {
+						type: Boolean,
+						value: false
 					},
 					/**
 					* Label for the dropdown-menu
