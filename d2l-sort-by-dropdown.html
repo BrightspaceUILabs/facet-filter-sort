@@ -1,0 +1,105 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
+<link rel="import" href="../d2l-menu/d2l-menu.html">
+
+<dom-module id="d2l-sort-by-dropdown">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: inline-block;
+			}
+		</style>
+		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
+			<d2l-dropdown-menu no-padding no-auto-fit id="d2l-sort-by-dropdown-menu">
+				<d2l-menu label="[[label]]">
+				  <slot></slot>
+				</d2l-menu>
+			  </d2l-dropdown-menu>
+		  </d2l-dropdown-button-subtle>
+	</template>
+	<script>
+		/**
+		 * `<d2l-sort-by-dropdown>`
+		 * Polymer-based web component for D2L sort by dropdown component
+		 */
+		class SortBy extends Polymer.Element {
+			static get is() { return 'd2l-sort-by-dropdown'; }
+			static get properties() {
+				return {
+					/**
+					* Reference to bound listener functions to be removed in disconnectedCallback
+					*/
+					_boundListeners: {
+						type: Object,
+						value: function() {
+							return {
+								_onItemSelect: null
+							};
+						}
+					},
+					/**
+					* Text of the button
+					*/
+					_selectedOptionText: {
+						type: String,
+						computed: 'getSelectedOptionText(_text)'
+					},
+					/**
+					* The text of the currently selected option
+					*/
+					_text: {
+						type: String,
+						value: ''
+					},
+					/**
+					* Label for the dropdown-menu
+					*/
+					label: {
+						type: String,
+						value: ''
+					},
+					/**
+					* The value of the currently selected option
+					*/
+					value: {
+						type: String,
+						reflectToAttribute: true
+					}
+				};
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
+
+				this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
+					this._boundListeners._onItemSelect);
+			}
+
+			disconnectedCallback() {
+				super.disconnectedCallback();
+				this.$['d2l-sort-by-dropdown-menu'].removeEventListener('d2l-menu-item-change',
+					this._boundListeners._onItemSelect);
+			}
+
+			_onItemSelect(e) {
+				this._text = e.target.text;
+				this.value = e.detail.value;
+
+				this.dispatchEvent(new CustomEvent(
+					'd2l-sort-by-dropdown-change',
+					{ bubbles: true, composed: true, detail: { value: this.value } }
+				));
+			}
+
+			getSelectedOptionText(selection) {
+				// TODO: Add langterm with placeholder for localization
+				return selection
+					? `Sort by: ${selection}`
+					: 'Sort by';
+			}
+		}
+		customElements.define(SortBy.is, SortBy);
+	</script>
+</dom-module>

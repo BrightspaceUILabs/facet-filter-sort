@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item-radio-behavior.html">
+<link rel="import" href="../d2l-menu/d2l-menu-item-selectable-styles.html">
+<link rel="import" href="../d2l-icons/d2l-icon.html">
+<link rel="import" href="../d2l-icons/tier1-icons.html">
+
+<dom-module id="d2l-sort-by-dropdown-option">
+	<template strip-whitespace>
+		<style include="d2l-menu-item-selectable-styles">
+			/*
+			* https://github.com/Polymer/tools/issues/408
+			* Empty style blocks break linter.
+			*/
+			:host {}
+		</style>
+		<d2l-icon icon="d2l-tier1:check" aria-hidden="true"></d2l-icon>
+		<span>[[text]]</span>
+	</template>
+	<script>
+		/**
+		 * `<d2l-sort-by-dropdown-option>`
+		 * Option for sort by dropdown
+		 */
+		class SortByOption extends Polymer.mixinBehaviors(
+			[
+				D2L.PolymerBehaviors.MenuItemRadioBehavior
+			],
+			Polymer.Element
+		) {
+			static get is() { return 'd2l-sort-by-dropdown-option'; }
+			static get properties() {
+				return {
+					text: {
+						type: String
+					},
+					value: {
+						type: String
+					}
+				};
+			}
+		}
+		customElements.define(SortByOption.is, SortByOption);
+	</script>
+</dom-module>
