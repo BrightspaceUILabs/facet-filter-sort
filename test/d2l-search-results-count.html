@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-search-results-count test</title>
+		<script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../../iron-test-helpers/mock-interactions.js"></script>
+		<script src="../../iron-test-helpers/test-helpers.js"></script>
+		<link rel="import" href="../d2l-search-results-count.html">
+	</head>
+	<body>
+		<test-fixture id="basic">
+			<template>
+				<d2l-search-results-count total-count="22" query="Financial Planning"></d2l-search-results-count>
+			</template>
+		</test-fixture>
+		<test-fixture id="basic-no-query">
+			<template>
+				<d2l-search-results-count total-count="22"></d2l-search-results-count>
+			</template>
+		</test-fixture>
+		<test-fixture id="paged">
+			<template>
+				<d2l-search-results-count range-start="1" range-end="20" total-count="22" query="Financial Planning"></d2l-search-results-count>
+			</template>
+		</test-fixture>
+		<test-fixture id="paged-no-query">
+			<template>
+				<d2l-search-results-count range-start="1" range-end="20" total-count="22"></d2l-search-results-count>
+			</template>
+		</test-fixture>
+		<script>
+			describe('<d2l-search-results-count>', function() {
+				describe('basic', function() {
+					let basicFixture;
+
+					beforeEach(function(done) {
+						basicFixture = fixture('basic');
+						Polymer.RenderStatus.afterNextRender(basicFixture, done);
+					});
+
+					it('text should match', function() {
+						const shadowRoot = basicFixture.shadowRoot;
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('22 results for "Financial Planning"');
+					});
+				});
+
+				describe('basic no query', function() {
+					let basicFixture;
+
+					beforeEach(function(done) {
+						basicFixture = fixture('basic-no-query');
+						Polymer.RenderStatus.afterNextRender(basicFixture, done);
+					});
+
+					it('text should match', function() {
+						const shadowRoot = basicFixture.shadowRoot;
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('22 results');
+					});
+				});
+				describe('paged', function() {
+					let basicFixture;
+
+					beforeEach(function(done) {
+						basicFixture = fixture('paged');
+						Polymer.RenderStatus.afterNextRender(basicFixture, done);
+					});
+
+					it('text should match', function() {
+						const shadowRoot = basicFixture.shadowRoot;
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('1 - 20 of 22 results for "Financial Planning"');
+					});
+				});
+
+				describe('paged no query', function() {
+					let basicFixture;
+
+					beforeEach(function(done) {
+						basicFixture = fixture('paged-no-query');
+						Polymer.RenderStatus.afterNextRender(basicFixture, done);
+					});
+
+					it('text should match', function() {
+						const shadowRoot = basicFixture.shadowRoot;
+						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+						expect(text).to.equal('1 - 20 of 22 results');
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

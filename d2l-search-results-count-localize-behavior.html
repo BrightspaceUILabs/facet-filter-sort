@@ -1,0 +1,103 @@
+<link rel="import" href="../d2l-localize-behavior/d2l-localize-behavior.html">
+<script>
+	window.D2L = window.D2L || {};
+	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
+	window.D2L.PolymerBehaviors.SearchResultsCount = window.D2L.PolymerBehaviors.SearchResultsCount || {};
+
+	/**
+	 * Localizes the component strings.
+	 * @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior
+	 */
+	D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl = {
+		properties: {
+			/**
+			* Localization resources.
+			*/
+			// TODO: Add localization
+			resources: {
+				value: function() {
+					return {
+						'ar': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'en': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'es': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'fr': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'ja': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'ko': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'nl': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'pt': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'sv': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'tr': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'zh': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						},
+						'zh-tw': {
+							searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
+							searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
+							searchResults: '{totalCount} results',
+							searchResultsForQuery: '{totalCount} results for "{query}"'
+						}
+					};
+				}
+			}
+		}
+	};
+
+	/** @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior */
+	D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior = [
+		D2L.PolymerBehaviors.LocalizeBehavior,
+		D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl
+	];
+</script>

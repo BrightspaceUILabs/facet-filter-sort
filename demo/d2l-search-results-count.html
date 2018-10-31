@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-search-results-count demo</title>
+		<script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-search-results-count.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography">
+		<div class="vertical-section-container centered">
+				<h3>d2l-search-results-count</h3>
+				<demo-snippet>
+					<template>
+						<d2l-search-results-count total-count="22" query="Financial Planning">
+						</d2l-search-results-count>
+					</template>
+				</demo-snippet>
+			</div>
+			<div class="vertical-section-container centered">
+				<h3>d2l-search-results-count no query</h3>
+				<demo-snippet>
+					<template>
+						<d2l-search-results-count total-count="22">
+						</d2l-search-results-count>
+					</template>
+				</demo-snippet>
+			</div>
+		<div class="vertical-section-container centered">
+			<h3>d2l-search-results-count paged</h3>
+			<demo-snippet>
+				<template>
+					<d2l-search-results-count range-start="1" range-end="20" total-count="22" query="Financial Planning">
+					</d2l-search-results-count>
+				</template>
+			</demo-snippet>
+		</div>
+		<div class="vertical-section-container centered">
+			<h3>d2l-search-results-count paged no query</h3>
+			<demo-snippet>
+				<template>
+					<d2l-search-results-count range-start="1" range-end="20" total-count="22">
+					</d2l-search-results-count>
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+	<script>
+		document.addEventListener('WebComponentsReady', function() {
+			document.body.classList.add('d2l-typography');
+		});
+	</script>
+</html>
