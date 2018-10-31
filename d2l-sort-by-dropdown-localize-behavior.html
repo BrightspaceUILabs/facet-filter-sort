@@ -1,0 +1,68 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../d2l-localize-behavior/d2l-localize-behavior.html">
+<script>
+	window.D2L = window.D2L || {};
+	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
+	window.D2L.PolymerBehaviors.SortByDropdown = window.D2L.PolymerBehaviors.SortByDropdown || {};
+
+	/**
+	 * Localizes the sort-by-dropdown component.
+	 * @polymerBehavior D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior
+	 */
+	D2L.PolymerBehaviors.SortByDropdown.LocalizeBehaviorImpl = {
+		properties: {
+		/**
+		 * Localization resources.
+		 */
+			resources: {
+				value: function() {
+					return {
+						'ar': {
+							sortByWithOption: 'الفرز بحسب: {option}'
+						},
+						'en': {
+							sortByWithOption: 'Sort by: {option}'
+						},
+						'es': {
+							sortByWithOption: 'Ordenar por: {option}'
+						},
+						'fr': {
+							sortByWithOption: 'Trier par : {option}'
+						},
+						'ja': {
+							sortByWithOption: '並べ替え基準: {option}'
+						},
+						'ko': {
+							sortByWithOption: '정렬 기준: {option}'
+						},
+						'nl': {
+							sortByWithOption: 'Sorteren op: {option}'
+						},
+						'pt': {
+							sortByWithOption: 'Classificar por: {option}'
+						},
+						'sv': {
+							sortByWithOption: 'Sortera efter: {option}'
+						},
+						'tr': {
+							sortByWithOption: 'Sıralama ölçütü: {option}'
+						},
+						'zh': {
+							sortByWithOption: '排序依据：{option}'
+						},
+						'zh-tw': {
+							sortByWithOption: ' 排序方式：{option}'
+						}
+					};
+				}
+			}
+		}
+	};
+
+	/** @polymerBehavior D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior */
+	D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior = [
+		D2L.PolymerBehaviors.LocalizeBehavior,
+		D2L.PolymerBehaviors.SortByDropdown.LocalizeBehaviorImpl
+	];
+
+</script>
