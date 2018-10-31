@@ -5,7 +5,7 @@
 	<template>
 		<d2l-search-facets>
 			<template items="[[searchFacets]]" is="dom-repeat">
-				<d2l-search-facets-grouping value="[[item.value]]" text="[[item.name]]" hide-after="[[item.hideAfter]]">
+				<d2l-search-facets-grouping value="[[item.value]]" text="[[item.name]]">
 					<template items="[[item.options]]" is="dom-repeat" as="searchFacet">
 						<d2l-search-facets-option
 							value$="[[searchFacet.value]]"
@@ -50,7 +50,6 @@
 							{ name: 'In Progress', value: 'in-progress', count: 1 },
 							{ name: 'Complete', value: 'complete', count: 10 },
 						],
-						hideAfter: 2,
 					},
 					{
 						name: 'Rating',
@@ -60,7 +59,6 @@
 							{ name: 'Good', value: 'good', count: 100 },
 							{ name: 'Poor', value: 'poor', count: 10 },
 						],
-						hideAfter: 2,
 					},
 					{
 						name: 'Format',

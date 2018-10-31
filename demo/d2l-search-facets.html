@@ -28,17 +28,15 @@
 			<demo-snippet>
 				<template>
 					<d2l-search-facets>
-						<d2l-search-facets-grouping value="status" text="My Status" hide-after="2">
+						<d2l-search-facets-grouping id="status" value="status" text="My Status" has-more>
 							<d2l-search-facets-option value="new-courses" text="New Courses Only" count="21"></d2l-search-facets-option>
 							<d2l-search-facets-option value="my-list" text="On My List" count="1"></d2l-search-facets-option>
-							<d2l-search-facets-option value="in-progress" text="In Progress" count="1"></d2l-search-facets-option>
-							<d2l-search-facets-option value="completed" text="Completed" count="10000"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
-						<d2l-search-facets-grouping value="format" text="Format" hide-after="1">
+						<d2l-search-facets-grouping id="format" value="format" text="Format" has-more>
 							<d2l-search-facets-option value="online" text="Online" count="1"></d2l-search-facets-option>
 							<d2l-search-facets-option value="in-class" text="In-Class" count="2"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
-						<d2l-search-facets-grouping value="location" text="Location">
+						<d2l-search-facets-grouping value="location" value="location" text="Location">
 							<d2l-search-facets-option value="outside" text="Outside"></d2l-search-facets-option>
 							<d2l-search-facets-option value="inside" text="Inside"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
@@ -58,11 +56,38 @@
 	<script>
 		document.addEventListener('WebComponentsReady', function() {
 			document.body.classList.add('d2l-typography');
+
+			document.addEventListener('d2l-search-facets-change', function(e) {
+				// eslint-disable-next-line no-console
+				console.log(e.detail);
+			});
+
+			document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+				const options = [
+					{ text: 'In Progress', value: 'in-progress', count: '1' },
+					{ text: 'Completed', value: 'completed', count: '10000' }
+				];
+				addOptions(options, e.target);
+			});
+
+			document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+				const options = [
+					{ text: 'Interactive', value: 'interactive', count: '12' },
+					{ text: 'Video Only', value: 'video-only', count: '30' }
+				];
+				addOptions(options, e.target);
+			});
 		});
 
-		document.addEventListener('d2l-search-facets-change', function(e) {
-			// eslint-disable-next-line no-console
-			console.log(e.detail);
-		});
+		function addOptions(options, target) {
+			options.forEach(function(option) {
+				const element = document.createElement('d2l-search-facets-option');
+				element.setAttribute('text', option.text);
+				element.setAttribute('value', option.value);
+				element.setAttribute('count', option.count);
+				target.appendChild(element);
+			});
+			target.removeAttribute('has-more');
+		}
 	</script>
 </html>
