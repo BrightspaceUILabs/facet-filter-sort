@@ -15,13 +15,15 @@
     "wct.conf.json"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
+    "d2l-button": "^4.9.0",
     "d2l-colors": "^3.1.2",
     "d2l-dropdown": "^6.6.2",
     "d2l-icons": "^5.1.2",
     "d2l-inputs": "^1.0.2",
     "d2l-localize-behavior": "^1.1.3",
-    "d2l-menu": "^1.2.0"
+    "d2l-menu": "^1.2.0",
+    "d2l-polymer-behaviors": "^1.8.1",
+    "polymer": "Polymer/polymer#^2.0.0"
   },
   "devDependencies": {
     "d2l-typography": "BrightspaceUI/typography#^6.0.0",
