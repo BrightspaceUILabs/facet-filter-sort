@@ -1,3 +1,6 @@
 {
-	"extends": "brightspace/wct-config"
+  "extends": "brightspace/wct-config",
+  "globals": {
+    "selectOption": true
+  }
 }
