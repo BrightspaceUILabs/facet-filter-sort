@@ -79,10 +79,12 @@
 			}
 
 			_getFacetText(text, count) {
-				// TODO: This may change due to localization
-				return count
-					? `${text} (${this.formatNumber(count)})`
-					: text;
+				if (count) {
+					return document.dir === 'rtl'
+						? `(${this.formatNumber(count)}) ${text}`
+						: `${text} (${this.formatNumber(count)})`;
+				}
+				return text;
 			}
 
 			_handleChange(e) {
