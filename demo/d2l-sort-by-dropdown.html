@@ -20,6 +20,13 @@
 			html {
 				font-size: 20px;
 			}
+			demo-snippet {
+				display: flex;
+				flex-direction: column;
+			}
+			d2l-sort-by-dropdown {
+				float: right;
+			}
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
@@ -27,7 +34,7 @@
 			<h3>d2l-sort-by-dropdown</h3>
 			<demo-snippet>
 				<template>
-					<d2l-sort-by-dropdown label="Sort by options">
+					<d2l-sort-by-dropdown label="Sort by options" align="end">
 						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
 						<d2l-sort-by-dropdown-option value="time" text="Time"></d2l-sort-by-dropdown-option>
 						<d2l-sort-by-dropdown-option value="newest" text="Newest"></d2l-sort-by-dropdown-option>
@@ -42,7 +49,7 @@
 			<h3>d2l-sort-by-dropdown (compact)</h3>
 			<demo-snippet>
 				<template>
-					<d2l-sort-by-dropdown label="Compact sort by dropdown" compact>
+					<d2l-sort-by-dropdown align="end" label="Compact sort by dropdown" compact>
 						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
 						<d2l-sort-by-dropdown-option value="time" text="Time"></d2l-sort-by-dropdown-option>
 					</d2l-sort-by-dropdown>

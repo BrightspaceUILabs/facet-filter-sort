@@ -2,6 +2,7 @@
 <link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
 <link rel="import" href="../d2l-dropdown/d2l-dropdown-button-subtle.html">
 <link rel="import" href="../d2l-menu/d2l-menu.html">
+<link rel="import" href="./d2l-filter-sort-opener.html">
 <link rel="import" href="./d2l-sort-by-dropdown-localize-behavior.html">
 
 <dom-module id="d2l-sort-by-dropdown">
@@ -11,13 +12,13 @@
 				display: inline-block;
 			}
 		</style>
-		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
-			<d2l-dropdown-menu id="d2l-sort-by-dropdown-menu">
+		<d2l-filter-sort-opener text="[[_selectedOptionText]]">
+			<d2l-dropdown-menu align="[[align]]" no-pointer vertical-offset="10" id="d2l-sort-by-dropdown-menu">
 				<d2l-menu label="[[label]]">
 				  <slot></slot>
 				</d2l-menu>
 			  </d2l-dropdown-menu>
-		  </d2l-dropdown-button-subtle>
+		</d2l-filter-sort-opener>
 	</template>
 	<script>
 		/**
@@ -70,6 +71,13 @@
 					compact: {
 						type: Boolean,
 						value: false
+					},
+					/**
+					* Alignment of dropdown menu
+					*/
+					align: {
+						type: String,
+						value: 'start'
 					},
 					/**
 					* Label for the dropdown-menu
