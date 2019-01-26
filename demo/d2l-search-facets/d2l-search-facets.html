@@ -57,27 +57,29 @@
 	</body>
 	<script>
 		document.addEventListener('WebComponentsReady', function() {
-			document.body.classList.add('d2l-typography');
+			requestAnimationFrame(function() {
+				document.body.classList.add('d2l-typography');
 
-			document.addEventListener('d2l-search-facets-change', function(e) {
-				// eslint-disable-next-line no-console
-				console.log(e.detail);
-			});
+				document.addEventListener('d2l-search-facets-change', function(e) {
+					// eslint-disable-next-line no-console
+					console.log(e.detail);
+				});
 
-			document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
-				const options = [
-					{ text: 'In Progress', value: 'in-progress', count: '1' },
-					{ text: 'Completed', value: 'completed', count: '10000' }
-				];
-				addOptions(options, e.target);
-			});
+				document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+					const options = [
+						{ text: 'In Progress', value: 'in-progress', count: '1' },
+						{ text: 'Completed', value: 'completed', count: '10000' }
+					];
+					addOptions(options, e.target);
+				});
 
-			document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
-				const options = [
-					{ text: 'Interactive', value: 'interactive', count: '12' },
-					{ text: 'Video Only', value: 'video-only', count: '30' }
-				];
-				addOptions(options, e.target);
+				document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+					const options = [
+						{ text: 'Interactive', value: 'interactive', count: '12' },
+						{ text: 'Video Only', value: 'video-only', count: '30' }
+					];
+					addOptions(options, e.target);
+				});
 			});
 		});
 

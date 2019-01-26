@@ -59,7 +59,9 @@
 	</body>
 	<script>
 		document.addEventListener('WebComponentsReady', function() {
-			document.body.classList.add('d2l-typography');
+			requestAnimationFrame(function() {
+				document.body.classList.add('d2l-typography');
+			});
 		});
 
 		document.addEventListener('d2l-sort-by-dropdown-change', function(e) {
