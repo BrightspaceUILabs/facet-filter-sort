@@ -1,7 +1,6 @@
 // Clicking the option doesn't seem to trigger the change event, so this function
 // explicitly triggers it on the checkbox
 window.selectOption = function selectOption(option, selected = true) {
-	console.log('here');
 	const element = option.shadowRoot.querySelector('d2l-input-checkbox');
 	element.checked = selected;
 
