@@ -4,13 +4,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-search-facets test</title>
-		<script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
-		<script src="../../../iron-test-helpers/mock-interactions.js"></script>
+		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../../wct-browser-legacy/browser.js"></script>
+		<script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
 		<script src="./test-helper-functions.js"></script>
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets.html">
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets-grouping.html">
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets-option.html">
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets.js"></script>
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-grouping.js"></script>
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-option.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -33,50 +33,54 @@
 				</d2l-search-facets>
 			</template>
 		</test-fixture>
-		<script>
-			describe('<d2l-search-facets>', function() {
-				describe('basic', function() {
-					let basicFixture;
-					let grouping1;
-					let grouping1Option1;
-					let grouping1Option2;
+		<script type="module">
+import '../../components/d2l-search-facets/d2l-search-facets.js';
+import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
+import '../../components/d2l-search-facets/d2l-search-facets-option.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+describe('<d2l-search-facets>', function() {
+	describe('basic', function() {
+		let basicFixture;
+		let grouping1;
+		let grouping1Option1;
+		let grouping1Option2;
 
-					beforeEach(function(done) {
-						basicFixture = fixture('basic');
-						Polymer.RenderStatus.afterNextRender(basicFixture, function() {
-							grouping1 = document.getElementById('grouping1');
-							grouping1Option1 = document.getElementById('grouping1-option1');
-							grouping1Option2 = document.getElementById('grouping1-option2');
-							done();
-						});
-					});
-
-					it('should emit an event when an option is selected', function(done) {
-						let selectCount = 0;
-						basicFixture.addEventListener('d2l-search-facets-change', function(e) {
-							selectCount += 1;
-
-							if (selectCount === 1) {
-								expect(e.detail).to.deep.equal({
-									checked: true,
-									option: grouping1Option1.value,
-									grouping: grouping1.value,
-								});
-							} else {
-								expect(e.detail).to.deep.equal({
-									checked: true,
-									grouping: grouping1.value,
-									option: grouping1Option2.value
-								});
-								done();
-							}
-						});
-
-						selectOption(grouping1Option1);
-						selectOption(grouping1Option2);
-					});
-				});
+		beforeEach(function(done) {
+			basicFixture = fixture('basic');
+			afterNextRender(basicFixture, function() {
+				grouping1 = document.getElementById('grouping1');
+				grouping1Option1 = document.getElementById('grouping1-option1');
+				grouping1Option2 = document.getElementById('grouping1-option2');
+				done();
 			});
-		</script>
+		});
+
+		it('should emit an event when an option is selected', function(done) {
+			let selectCount = 0;
+			basicFixture.addEventListener('d2l-search-facets-change', function(e) {
+				selectCount += 1;
+
+				if (selectCount === 1) {
+					expect(e.detail).to.deep.equal({
+						checked: true,
+						option: grouping1Option1.value,
+						grouping: grouping1.value,
+					});
+				} else {
+					expect(e.detail).to.deep.equal({
+						checked: true,
+						grouping: grouping1.value,
+						option: grouping1Option2.value
+					});
+					done();
+				}
+			});
+
+			selectOption(grouping1Option1);
+			selectOption(grouping1Option2);
+		});
+	});
+});
+</script>
 	</body>
 </html>

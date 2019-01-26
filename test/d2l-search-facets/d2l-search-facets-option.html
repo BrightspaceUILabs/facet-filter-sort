@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-search-facets-option test</title>
-		<script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
-		<script src="../../../iron-test-helpers/mock-interactions.js"></script>
+		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../../wct-browser-legacy/browser.js"></script>
+		<script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
 		<script src="./test-helper-functions.js"></script>
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets-option.html">
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-option.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -30,51 +30,53 @@
 				></d2l-search-facets-option>
 			</template>
 		</test-fixture>
-		<script>
-			describe('<d2l-search-facets-option>', function() {
-				describe('basic', function() {
-					let basicFixture;
-					let option;
+		<script type="module">
+import '../../components/d2l-search-facets/d2l-search-facets-option.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+describe('<d2l-search-facets-option>', function() {
+	describe('basic', function() {
+		let basicFixture;
+		let option;
 
-					beforeEach(function(done) {
-						basicFixture = fixture('basic');
-						Polymer.RenderStatus.afterNextRender(basicFixture, function() {
-							option = document.getElementById('basic-option');
-							done();
-						});
-					});
-
-					it('should emit an event when selected', function(done) {
-						basicFixture.addEventListener('d2l-search-facets-option-change', function(e) {
-							expect(e.detail).to.deep.equal({ option: option.value, checked: true });
-							done();
-						});
-						selectOption(basicFixture);
-					});
-
-					it('should show the text along with the count', function() {
-						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
-						expect(text).to.equal(`${option.text} (${option.count})`);
-					});
-				});
-
-				describe('no-count', function() {
-					let noCountFixture;
-
-					beforeEach(function(done) {
-						noCountFixture = fixture('no-count');
-						Polymer.RenderStatus.afterNextRender(noCountFixture, done);
-					});
-
-					it('should not display the count if it is not present', function() {
-						const option = document.getElementById('no-count-option');
-						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
-						expect(option.count).to.be.undefined;
-						expect(text).to.equal(option.text);
-					});
-
-				});
+		beforeEach(function(done) {
+			basicFixture = fixture('basic');
+			afterNextRender(basicFixture, function() {
+				option = document.getElementById('basic-option');
+				done();
 			});
-		</script>
+		});
+
+		it('should emit an event when selected', function(done) {
+			basicFixture.addEventListener('d2l-search-facets-option-change', function(e) {
+				expect(e.detail).to.deep.equal({ option: option.value, checked: true });
+				done();
+			});
+			selectOption(basicFixture);
+		});
+
+		it('should show the text along with the count', function() {
+			const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
+			expect(text).to.equal(`${option.text} (${option.count})`);
+		});
+	});
+
+	describe('no-count', function() {
+		let noCountFixture;
+
+		beforeEach(function(done) {
+			noCountFixture = fixture('no-count');
+			afterNextRender(noCountFixture, done);
+		});
+
+		it('should not display the count if it is not present', function() {
+			const option = document.getElementById('no-count-option');
+			const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
+			expect(option.count).to.be.undefined;
+			expect(text).to.equal(option.text);
+		});
+
+	});
+});
+</script>
 	</body>
 </html>
