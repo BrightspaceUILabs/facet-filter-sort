@@ -1,4 +1,4 @@
-bower_components*
 node_modules
-bower-*.json
 package-lock.json
+
+node_modules
