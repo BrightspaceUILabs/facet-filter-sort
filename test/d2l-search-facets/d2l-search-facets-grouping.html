@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-search-facets test</title>
-		<script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
-		<script src="../../../iron-test-helpers/mock-interactions.js"></script>
+		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../../wct-browser-legacy/browser.js"></script>
+		<script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
 		<script src="./test-helper-functions.js"></script>
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets-grouping.html">
-		<link rel="import" href="../../components/d2l-search-facets/d2l-search-facets-option.html">
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-grouping.js"></script>
+		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-option.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -46,62 +46,65 @@
 				</d2l-search-facets-grouping>
 			</template>
 		</test-fixture>
-		<script>
-			describe('<d2l-search-facets-grouping>', function() {
-				describe('basic', function() {
-					let basicFixture;
+		<script type="module">
+import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
+import '../../components/d2l-search-facets/d2l-search-facets-option.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+describe('<d2l-search-facets-grouping>', function() {
+	describe('basic', function() {
+		let basicFixture;
 
-					beforeEach(function(done) {
-						basicFixture = fixture('basic');
-						Polymer.RenderStatus.afterNextRender(basicFixture, done);
-					});
+		beforeEach(function(done) {
+			basicFixture = fixture('basic');
+			afterNextRender(basicFixture, done);
+		});
 
-					it('should not display the "More" button', function() {
-						const showMoreButton = basicFixture.shadowRoot.querySelector('button');
-						expect(showMoreButton).to.be.null;
-					});
+		it('should not display the "More" button', function() {
+			const showMoreButton = basicFixture.shadowRoot.querySelector('button');
+			expect(showMoreButton).to.be.null;
+		});
 
-					it('should emit an event when options are selected', function(done) {
-						basicFixture.addEventListener('d2l-search-facets-grouping-change', function(e) {
-							expect(e.detail).to.deep.equal({
-								grouping: basicFixture.value,
-								option: option1.value,
-								checked: true
-							});
-							done();
-						});
-
-						const option1 = document.getElementById('basic-option1');
-						selectOption(option1);
-					});
-
+		it('should emit an event when options are selected', function(done) {
+			basicFixture.addEventListener('d2l-search-facets-grouping-change', function(e) {
+				expect(e.detail).to.deep.equal({
+					grouping: basicFixture.value,
+					option: option1.value,
+					checked: true
 				});
-
-				describe('has-more', function() {
-					let hasMoreFixture;
-
-					beforeEach(function(done) {
-						hasMoreFixture = fixture('has-more');
-						Polymer.RenderStatus.afterNextRender(hasMoreFixture, done);
-					});
-
-					it('should display the "More" button when has-more is true', function() {
-						const showMoreButton = hasMoreFixture.shadowRoot.querySelector('button');
-						expect(showMoreButton).to.not.be.null;
-					});
-
-					it('should fire an event when the "More" button is clicked', function(done) {
-						hasMoreFixture.addEventListener('d2l-search-facets-grouping-has-more', function(e) {
-							expect(e.detail).to.deep.equal({ grouping: hasMoreFixture.value });
-							done();
-						});
-
-						const showMoreButton = hasMoreFixture.shadowRoot.querySelector('button');
-						MockInteractions.tap(showMoreButton);
-					});
-				});
-
+				done();
 			});
-		</script>
+
+			const option1 = document.getElementById('basic-option1');
+			selectOption(option1);
+		});
+
+	});
+
+	describe('has-more', function() {
+		let hasMoreFixture;
+
+		beforeEach(function(done) {
+			hasMoreFixture = fixture('has-more');
+			afterNextRender(hasMoreFixture, done);
+		});
+
+		it('should display the "More" button when has-more is true', function() {
+			const showMoreButton = hasMoreFixture.shadowRoot.querySelector('button');
+			expect(showMoreButton).to.not.be.null;
+		});
+
+		it('should fire an event when the "More" button is clicked', function(done) {
+			hasMoreFixture.addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+				expect(e.detail).to.deep.equal({ grouping: hasMoreFixture.value });
+				done();
+			});
+
+			const showMoreButton = hasMoreFixture.shadowRoot.querySelector('button');
+			MockInteractions.tap(showMoreButton);
+		});
+	});
+
+});
+</script>
 	</body>
 </html>

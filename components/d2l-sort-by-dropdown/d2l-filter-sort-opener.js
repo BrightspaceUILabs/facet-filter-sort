@@ -1,14 +1,16 @@
-<link rel="import" href="../../../polymer/polymer-element.html">
-<link rel="import" href="../../../d2l-button/d2l-button-behavior.html">
-<link rel="import" href="../../../d2l-button/d2l-button-shared-styles.html">
-<link rel="import" href="../../../d2l-colors/d2l-colors.html">
-<link rel="import" href="../../../d2l-dropdown/d2l-dropdown-opener-behavior.html">
-<link rel="import" href="../../../d2l-icons/d2l-icon.html">
-<link rel="import" href="../../../d2l-icons/tier1-icons.html">
-<link rel="import" href="../../../d2l-polymer-behaviors/d2l-focusable-behavior.html">
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import 'd2l-button/d2l-button-behavior.js';
+import 'd2l-button/d2l-button-shared-styles.js';
+import 'd2l-colors/d2l-colors.js';
+import 'd2l-dropdown/d2l-dropdown-opener-behavior.js';
+import 'd2l-icons/d2l-icon.js';
+import 'd2l-icons/tier1-icons.js';
+import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+const $_documentContainer = document.createElement('template');
 
-<dom-module id="d2l-filter-sort-opener">
-	<template strip-whitespace>
+$_documentContainer.innerHTML = `<dom-module id="d2l-filter-sort-opener">
+	<template strip-whitespace="">
 		<style include="d2l-dropdown-opener-styles">
 			:host {
 				display: inline-block;
@@ -112,59 +114,46 @@
 				opacity: 0.5;
 			}
 		</style>
-		<button
-			aria-expanded$="[[ariaExpanded]]"
-			aria-haspopup$="[[ariaHaspopup]]"
-			aria-label$="[[ariaLabel]]"
-			class="d2l-focusable d2l-filter-sort-opener-button"
-			disabled$=[[disabled]]
-			autofocus$=[[autofocus]]
-			form$=[[form]]
-			formaction$=[[formaction]]
-			formenctype$=[[formenctype]]
-			formmethod$=[[formmethod]]
-			formnovalidate$=[[formnovalidate]]
-			formtarget$=[[formtarget]]
-			name$=[[name]]
-			type$=[[type]]>
+		<button aria-expanded$="[[ariaExpanded]]" aria-haspopup$="[[ariaHaspopup]]" aria-label$="[[ariaLabel]]" class="d2l-focusable d2l-filter-sort-opener-button" disabled$="[[disabled]]" autofocus$="[[autofocus]]" form$="[[form]]" formaction$="[[formaction]]" formenctype$="[[formenctype]]" formmethod$="[[formmethod]]" formnovalidate$="[[formnovalidate]]" formtarget$="[[formtarget]]" name$="[[name]]" type$="[[type]]">
 			<span class="d2l-filter-sort-opener-content">[[text]]</span>
 			<d2l-icon icon="d2l-tier1:chevron-down" class="d2l-filter-sort-opener-icon"></d2l-icon>
 		</button>
 		<slot></slot>
 	</template>
-	<script>
-		/**
-		 * `<d2l-filter-sort-opener>`
-		 * Dropdown opener for D2L filter/sort components
-		 */
-		class FilterSortOpener extends Polymer.mixinBehaviors(
-			[
-				D2L.PolymerBehaviors.Button.Behavior,
-				D2L.PolymerBehaviors.DropdownOpenerBehavior,
-				D2L.PolymerBehaviors.FocusableBehavior
-			],
-			Polymer.Element
-		) {
-			static get is() { return 'd2l-filter-sort-opener'; }
-			static get properties() {
-				return {
-					/**
-					 * Text of the sort opener
-					*/
-					text: {
-						type: String,
-						value: '',
-					},
-				};
-			}
+	
+</dom-module>`;
 
+document.head.appendChild($_documentContainer.content);
+/**
+ * `<d2l-filter-sort-opener>`
+ * Dropdown opener for D2L filter/sort components
+ */
+class FilterSortOpener extends mixinBehaviors(
+	[
+		D2L.PolymerBehaviors.Button.Behavior,
+		D2L.PolymerBehaviors.DropdownOpenerBehavior,
+		D2L.PolymerBehaviors.FocusableBehavior
+	],
+	PolymerElement
+) {
+	static get is() { return 'd2l-filter-sort-opener'; }
+	static get properties() {
+		return {
 			/**
-			* Gets the opener element (required by d2l-dropdown behavior).
+			 * Text of the sort opener
 			*/
-			getOpenerElement() {
-				return this.shadowRoot.querySelector('.d2l-filter-sort-opener-button');
-			}
-		}
-		customElements.define(FilterSortOpener.is, FilterSortOpener);
-	</script>
-</dom-module>
+			text: {
+				type: String,
+				value: '',
+			},
+		};
+	}
+
+	/**
+	* Gets the opener element (required by d2l-dropdown behavior).
+	*/
+	getOpenerElement() {
+		return this.shadowRoot.querySelector('.d2l-filter-sort-opener-button');
+	}
+}
+customElements.define(FilterSortOpener.is, FilterSortOpener);
