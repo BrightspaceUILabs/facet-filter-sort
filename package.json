@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "npm run lint:wc && npm run lint:js",
     "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html demo/**/*.js demo/**/*.html",
-    "lint:wc": "polymer lint",
+    "lint:wc": "polymer lint -i \"./*\" \"test\" \"demo\" \"components\"",
     "test:polymer:local": "polymer test --skip-plugin sauce",
     "test:polymer:sauce": "polymer test --skip-plugin local",
     "test": "npm run lint && npm run test:polymer:local"
@@ -37,6 +37,8 @@
     "type-detect": "1.0.0"
   },
   "dependencies": {
+    "@polymer/iron-input": "^3.0.1",
+    "@polymer/iron-pages": "^3.0.1",
     "d2l-button": "BrightspaceUI/button#semver:^5",
     "d2l-colors": "BrightspaceUI/colors#semver:^4",
     "d2l-dropdown": "BrightspaceUI/dropdown#semver:^7",
@@ -44,7 +46,7 @@
     "d2l-inputs": "BrightspaceUI/inputs#semver:^2",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
     "d2l-menu": "BrightspaceUI/menu#semver:^2",
-    "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
-    "@polymer/polymer": "^3.0.0"
+	"d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
+	"@polymer/polymer": "^3.0.0"
   }
 }
