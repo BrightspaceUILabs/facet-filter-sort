@@ -1,4 +1,5 @@
-import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
 import 'd2l-colors/d2l-colors.js';
@@ -6,13 +7,14 @@ import '@polymer/iron-pages/iron-pages.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import './d2l-filter-dropdown-page.js';
+import './d2l-filter-dropdown-localize-behavior.js';
 
 /**
  * @customElement
  * @polymer
  */
 
-class D2LFilterDropdown extends PolymerElement {
+class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropdown.LocalizeBehavior], PolymerElement) {
 	static get template() {
 		return html`
 			<style>
@@ -90,7 +92,7 @@ class D2LFilterDropdown extends PolymerElement {
 				<button
 					class="d2l-dropdown-opener"
 					aria-labelledby="filterText">
-					<span id="filterText">[[_text.filter]]</span><span class="d2l-filter-dropdown-total-filter-count" hidden$="[[!_numFilters]]">: [[_numFiltersText(_numFilters)]]</span></span>
+					<span id="filterText">[[_numFiltersText(_numFilters)]]</span>
 					<d2l-icon icon="d2l-tier1:chevron-down"></d2l-icon>
 				</button>
 				<d2l-dropdown-content
@@ -100,8 +102,8 @@ class D2LFilterDropdown extends PolymerElement {
 					render-content
 					no-pointer>
 					<div class="d2l-filter-dropdown-content-header">
-						<span>[[_text.header]]</span>
-						<button hidden$="[[!_numFilters]]" class="d2l-filter-dropdown-clear-button" on-click="_clearFilters">[[_text.clear]]</button>
+						<span>[[localize('filterBy')]]</span>
+						<button hidden$="[[!_numFilters]]" class="d2l-filter-dropdown-clear-button" on-click="_clearFilters">[[localize('clear')]]</button>
 					</div>
 					<div class="d2l-filter-dropdown-tab-selector">
 						<dom-repeat items="[[_filters]]">
@@ -159,14 +161,6 @@ class D2LFilterDropdown extends PolymerElement {
 			_maxWidth: {
 				type: Number,
 				value: 400
-			},
-			_text: {
-				type: Object,
-				value: {
-					filter: 'Filter',
-					header: 'Filter By',
-					clear: 'Clear'
-				}
 			},
 			_defaultSelectedTab: {
 				type: String,
@@ -357,7 +351,13 @@ class D2LFilterDropdown extends PolymerElement {
 	}
 
 	_numFiltersText() {
-		return `${this._numFilters} Filter${this._numFilters > 1 ? 's' : ''}`;
+		if (this._numFilters === 0) {
+			return this.localize('filter');
+		}
+		if (this._numFilters === 1) {
+			return this.localize('filterSingle');
+		}
+		return this.localize('filterMultiple', 'numOptions', this._numFilters);
 	}
 }
 

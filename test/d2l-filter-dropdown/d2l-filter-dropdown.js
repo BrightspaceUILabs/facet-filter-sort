@@ -163,8 +163,8 @@
 		test('total filter count is not shown when no options are selected', function(done) {
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('.d2l-filter-dropdown-total-filter-count');
-				assert.equal(true, totalCount.hidden);
+				var totalCount = filter.shadowRoot.querySelector('#filterText');
+				assert.equal('Filter', totalCount.innerHTML);
 				done();
 			});
 		});
@@ -172,9 +172,8 @@
 			_setSelectedOptions([2]);
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('.d2l-filter-dropdown-total-filter-count');
-				assert.equal(false, totalCount.hidden);
-				assert.equal(': 1 Filter', totalCount.innerHTML);
+				var totalCount = filter.shadowRoot.querySelector('#filterText');
+				assert.equal('Filter: 1 Filter', totalCount.innerHTML);
 				done();
 			});
 		});
@@ -183,9 +182,8 @@
 			_setSelectedOptions(selected);
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('.d2l-filter-dropdown-total-filter-count');
-				assert.equal(false, totalCount.hidden);
-				assert.equal(`: ${selected.length} Filters`, totalCount.innerHTML);
+				var totalCount = filter.shadowRoot.querySelector('#filterText');
+				assert.equal(`Filter: ${selected.length} Filters`, totalCount.innerHTML);
 				done();
 			});
 		});

@@ -1,15 +1,17 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@polymer/iron-input/iron-input.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-icons/tier2-icons.js';
+import './d2l-filter-dropdown-localize-behavior.js';
 
 /**
  * @customElement
  * @polymer
  */
 
-class D2LFilterDropdownPage extends PolymerElement {
+class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropdown.LocalizeBehavior], PolymerElement) {
 	static get template() {
 		return html`
 			<style>
@@ -101,7 +103,7 @@ class D2LFilterDropdownPage extends PolymerElement {
 			</style>
 			<div class="d2l-filter-dropdown-page-search" hidden$="[[disableSearch]]">
 				<iron-input bind-value="{{_searchInput}}" class="d2l-filter-dropdown-search-box">
-					<input class="d2l-filter-dropdown-page-search-input" value="{{_searchInput}}" placeholder="[[_placeHolderText]]" on-keydown="_onSearchChanged">
+					<input class="d2l-filter-dropdown-page-search-input" value="{{_searchInput}}" placeholder="[[localize('searchBy', 'category', parentTitle)]]" on-keydown="_onSearchChanged">
 				</iron-input>
 				<button type="button" on-click="_clearSearchInput" aria-label$="[[searchButtonLabel]]" class="d2l-filter-dropdown-clear-button" hidden$="[[!_showClearSearch]]">
 					<d2l-icon icon="d2l-tier1:close-default"></d2l-icon>
@@ -159,10 +161,6 @@ class D2LFilterDropdownPage extends PolymerElement {
 			_showClearSearch: {
 				type: Boolean,
 				computed: '_getShowClearSearch(_searchInput)'
-			},
-			_placeHolderText: {
-				type: String,
-				computed: '_getPlaceHolderText(parentTitle)'
 			}
 		};
 	}
@@ -217,10 +215,6 @@ class D2LFilterDropdownPage extends PolymerElement {
 				this._setOptionProp('display', clear || regex.test(this.options[i].title), i);
 			}
 		}
-	}
-
-	_getPlaceHolderText(title) {
-		return `Search by ${title}`;
 	}
 
 	_getShowClearSearch(input) {
