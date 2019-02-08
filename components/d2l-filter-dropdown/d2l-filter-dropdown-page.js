@@ -3,7 +3,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-icons/tier2-icons.js';
-import 'd2l-inputs/d2l-input-search.js'
+import 'd2l-inputs/d2l-input-search.js';
 import './d2l-filter-dropdown-page-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
