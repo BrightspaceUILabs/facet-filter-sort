@@ -134,7 +134,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						filterBy: '篩選依據',
 						filterMultiple: '篩選器：{numOptions} 個篩選器',
 						filterSingle: '篩選器：1 個篩選器',
-						searchBy: '依 {categoryF{}} 搜尋'
+						searchBy: '依 {category} 搜尋'
 					}
 				};
 			}
