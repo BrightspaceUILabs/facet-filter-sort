@@ -37,7 +37,6 @@
     "type-detect": "1.0.0"
   },
   "dependencies": {
-    "@polymer/iron-input": "^3.0.1",
     "@polymer/iron-pages": "^3.0.1",
     "d2l-button": "BrightspaceUI/button#semver:^5",
     "d2l-colors": "BrightspaceUI/colors#semver:^4",
@@ -46,7 +45,7 @@
     "d2l-inputs": "BrightspaceUI/inputs#semver:^2",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
     "d2l-menu": "BrightspaceUI/menu#semver:^2",
-	"d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
-	"@polymer/polymer": "^3.0.0"
+    "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
+    "@polymer/polymer": "^3.0.0"
   }
 }
