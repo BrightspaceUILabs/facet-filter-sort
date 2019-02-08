@@ -4,6 +4,7 @@ import '@polymer/iron-input/iron-input.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-icons/tier2-icons.js';
+import 'd2l-inputs/d2l-input-search.js'
 import './d2l-filter-dropdown-page-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
@@ -17,12 +18,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 		return html`
 			<style include="d2l-filter-dropdown-page-styles"></style>
 			<div class="d2l-filter-dropdown-page-search" hidden$="[[disableSearch]]">
-				<iron-input bind-value="{{_searchInput}}" class="d2l-filter-dropdown-search-box">
-					<input class="d2l-filter-dropdown-page-search-input" value="{{_searchInput}}" placeholder="[[localize('searchBy', 'category', parentTitle)]]" on-keydown="_onSearchChanged">
-				</iron-input>
-				<button type="button" on-click="_clearSearchInput" aria-label$="[[searchButtonLabel]]" class="d2l-filter-dropdown-clear-button" hidden$="[[!_showClearSearch]]">
-					<d2l-icon icon="d2l-tier1:close-default"></d2l-icon>
-				</button>
+				<d2l-input-search value="{{_searchInput}}" placeholder="[[localize('searchBy', 'category', parentTitle)]]"></d2l-input-search>
 			</div>
 			<dom-repeat items="{{options}}" as="o">
 				<template>
@@ -72,10 +68,6 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			_searchInput: {
 				type: String,
 				observer: '_onSearchChanged'
-			},
-			_showClearSearch: {
-				type: Boolean,
-				computed: '_getShowClearSearch(_searchInput)'
 			}
 		};
 	}
@@ -84,6 +76,11 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 
 	ready() {
 		super.ready();
+		var input = this.shadowRoot.querySelector('d2l-input-search');
+		if (input) {
+			input.shadowRoot.querySelector('.d2l-input-search-search').hidden = true;
+			input.shadowRoot.querySelector('.d2l-input-search-clear').hidden = true;
+		}
 	}
 
 	selectOptionByIndex(index) {
@@ -129,15 +126,11 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			for (var i = 0; i < this.options.length; i++) {
 				this._setOptionProp('display', clear || regex.test(this.options[i].title), i);
 			}
+			var input = this.shadowRoot.querySelector('d2l-input-search');
+			if (input) {
+				input.shadowRoot.querySelector('.d2l-input-search-clear').hidden = clear;
+			}
 		}
-	}
-
-	_getShowClearSearch(input) {
-		return input !== '';
-	}
-
-	_clearSearchInput() {
-		this._searchInput = '';
 	}
 }
 

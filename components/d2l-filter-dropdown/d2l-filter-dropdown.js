@@ -27,8 +27,8 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-icon icon="d2l-tier1:chevron-down"></d2l-icon>
 				</button>
 				<d2l-dropdown-content
-					min-width="[[_minWidth]]"
-					max-width="[[_maxWidth]]"
+				min-width="[[_minWidth]]"
+				max-width="[[_maxWidth]]"
 					no-padding
 					render-content
 					no-pointer>
@@ -63,10 +63,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			disableSearch: {
 				type: Boolean,
 				value: false
-			},
-			_loading: {
-				type: Boolean,
-				value: true
 			},
 			_filters: {
 				type: Array,
@@ -108,10 +104,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			_numFilters: {
 				type: Number,
 				computed: '_getTotalSelected(_filters.*)'
-			},
-			_singleFilter: {
-				type: Boolean,
-				computed: '_hasSingleFilter(_numFilters)'
 			}
 		};
 	}
@@ -218,10 +210,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			result += this._filters[i].numSelected;
 		}
 		return result;
-	}
-
-	_hasSingleFilter(total) {
-		return total === 1;
 	}
 
 	_setNumSelected(index) {
