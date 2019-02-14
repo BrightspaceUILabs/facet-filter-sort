@@ -67,7 +67,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 				height: 100%;
 				background: linear-gradient(to top, white, #f9fafb);
 			}
-			
+
 			button:focus > d2l-icon,
 			button:hover > d2l-icon,
 			button:focus > span,
