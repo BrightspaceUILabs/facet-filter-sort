@@ -2,10 +2,9 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
-import 'd2l-colors/d2l-colors.js';
-import '@polymer/iron-pages/iron-pages.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
+import 'd2l-tabs/d2l-tabs.js';
 import './d2l-filter-dropdown-page.js';
 import './d2l-filter-dropdown-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
@@ -27,8 +26,8 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-icon icon="d2l-tier1:chevron-down"></d2l-icon>
 				</button>
 				<d2l-dropdown-content
-				min-width="[[_minWidth]]"
-				max-width="[[_maxWidth]]"
+					min-width="[[_minWidth]]"
+					max-width="[[_maxWidth]]"
 					no-padding
 					render-content
 					no-pointer>
@@ -36,23 +35,13 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 						<span>[[localize('filterBy')]]</span>
 						<button hidden$="[[!_numFilters]]" class="d2l-filter-dropdown-clear-button" on-click="_clearFilters">[[localize('clear')]]</button>
 					</div>
-					<div class="d2l-filter-dropdown-tab-selector">
-						<dom-repeat items="[[_filters]]">
-							<template>
-								<div class="d2l-filter-dropdown-tab">
-									<div class="d2l-filter-dropdown-tab-highlight" hidden$="[[!item.active]]"></div>
-									<button class="d2l-filter-dropdown-tab-button" on-click="_selectTab"><span class="d2l-filter-dropdown-category-title">[[item.title]]</span><span class="d2l-filter-dropdown-category-filter-count" hidden$="[[!item.numSelected]]"> ([[item.numSelected]])</span></button>
-								</div>
-							</template>
-						</dom-repeat>
-					</div>
-					<iron-pages attr-for-selected="data-tab-name" selected="[[_selectedTab]]" fallback-selection="[[_defaultSelectedTab]]">
-						<dom-repeat items="[[_filters]]" as="f">
-							<template>
-								<d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" data-tab-name="[[f.key]]" options="{{f.options}}" disable-search="[[disableSearch]]">
-							</template>
-						</dom-repeat>
-					</iron-pages>
+					<d2l-tabs>
+					  <dom-repeat items="[[_filters]]" as="f">
+						<template>
+					    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" data-tab-name="[[f.key]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
+						</template>
+					  </dom-repeat>
+					</d2l-tabs>
 				</d2l-dropdown-content>
 			</d2l-dropdown>
 		`;
