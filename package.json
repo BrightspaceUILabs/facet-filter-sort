@@ -25,6 +25,7 @@
     "eslint": "^4.19.1",
     "eslint-config-brightspace": "^0.4.0",
     "eslint-plugin-html": "^4.0.5",
+    "frau-ci": "^1.33.2",
     "polymer-cli": "^1.9.5",
     "sauce-connect-launcher": "^1.2.4",
     "wct-browser-legacy": "^1.0.1"
