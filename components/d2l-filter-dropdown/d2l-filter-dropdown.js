@@ -38,7 +38,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-tabs>
 					  <dom-repeat items="[[_filters]]" as="f">
 						<template>
-					    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" data-tab-name="[[f.key]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
+					    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
 						</template>
 					  </dom-repeat>
 					</d2l-tabs>

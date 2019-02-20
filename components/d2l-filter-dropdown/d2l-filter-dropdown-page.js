@@ -18,7 +18,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			<div class="d2l-filter-dropdown-page-search" hidden$="[[disableSearch]]">
 				<d2l-input-search value="{{_searchInput}}" placeholder="[[localize('searchBy', 'category', parentTitle)]]"></d2l-input-search>
 			</div>
-			<dom-repeat items="{{options}}" as="o">
+			<dom-repeat items="[[options]]" as="o">
 				<template>
 					<div on-click="_optionSelected" class="d2l-filter-dropdown-option" hidden$="[[!o.display]]">
 						<d2l-icon class="icon-checked" icon="d2l-tier2:check-box" aria-hidden="true" hidden$="[[!o.selected]]"></d2l-icon>
@@ -51,13 +51,13 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 					// }
 				]
 			},
-			numSelected: {
-				type: Number,
-				value: 0
-			},
 			disableSearch: {
 				type: Boolean,
 				value: false
+			},
+			_numSelected: {
+				type: Number,
+				value: 0
 			},
 			_optionChanged: {
 				type: String,
