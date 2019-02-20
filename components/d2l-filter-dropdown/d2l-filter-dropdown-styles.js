@@ -33,12 +33,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 				padding: 0;
 			}
 			.d2l-filter-dropdown-content-header {
+				border-bottom: 1px solid var(--d2l-color-titanius);
 				box-sizing: border-box;
 				display: flex;
 				justify-content: space-between;
-				border-bottom: 1px solid var(--d2l-color-titanius);
-				width: 100%;
-				padding: 20px;
+				margin: 0 -1rem;
+				padding: 0 1rem 1rem 1rem;
 			}
 			.d2l-filter-dropdown-tab-button {
 				background: none;
@@ -66,6 +66,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 				width: 100%;
 				height: 100%;
 				background: linear-gradient(to top, white, #f9fafb);
+			}
+
+			d2l-tab-panel {
+				margin: -1px -1rem 0 -1rem;
+				border-top: 1px solid var(--d2l-color-gypsum);
+				padding: 1.2rem 1rem 0 1rem;
 			}
 
 			button:focus > d2l-icon,

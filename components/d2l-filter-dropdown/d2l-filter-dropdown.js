@@ -28,7 +28,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				<d2l-dropdown-content
 					min-width="[[_minWidth]]"
 					max-width="[[_maxWidth]]"
-					no-padding
 					render-content
 					no-pointer>
 					<div class="d2l-filter-dropdown-content-header">

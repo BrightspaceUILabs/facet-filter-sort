@@ -6,11 +6,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-page-styles
 	<template strip-whitespace="">
 		<style>
 			.d2l-filter-dropdown-option {
-				cursor: pointer;
 				border: 1px solid transparent;
 				color: var(--d2l-color-ferrite);
-				line-height: 1.2rem;
+				cursor: pointer;
 				font-size: 0.8rem;
+				line-height: 1.2rem;
+				margin: 0 -1rem;
 				padding: 0.5rem 1rem;
 			}
 			.d2l-filter-dropdown-option:hover {
@@ -29,12 +30,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-page-styles
 			.d2l-filter-dropdown-option d2l-icon {
 				--d2l-icon-height: 1rem;
 				--d2l-icon-width: 1rem;
-				visibility: visible;
 				margin-right: 0.5rem;
+				visibility: visible;
 			}
 			.d2l-filter-dropdown-page-search {
-				position: relative;
-				margin: 10px 20px;
+				margin-bottom: 0.5rem;
 			}
 		</style>
 	</template>
