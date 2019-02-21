@@ -2,6 +2,7 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
+import 'd2l-button/d2l-button-subtle.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-tabs/d2l-tabs.js';
@@ -32,7 +33,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					no-pointer>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[localize('filterBy')]]</span>
-						<button hidden$="[[!_numFilters]]" class="d2l-filter-dropdown-clear-button" on-click="_clearFilters">[[localize('clear')]]</button>
+						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
 					</div>
 					<d2l-tabs>
 					  <dom-repeat items="[[_filters]]" as="f">
