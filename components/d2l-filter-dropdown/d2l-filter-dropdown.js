@@ -2,9 +2,8 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
+import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
 import 'd2l-button/d2l-button-subtle.js';
-import 'd2l-icons/d2l-icon.js';
-import 'd2l-icons/tier1-icons.js';
 import 'd2l-tabs/d2l-tabs.js';
 import './d2l-filter-dropdown-page.js';
 import './d2l-filter-dropdown-styles.js';
@@ -20,29 +19,25 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
 			<d2l-dropdown class="d2l-filter-dropdown-container">
-				<button
-					class="d2l-dropdown-opener"
-					aria-labelledby="filterText">
-					<span id="filterText">[[_numFiltersText(_numFilters)]]</span>
-					<d2l-icon icon="d2l-tier1:chevron-down"></d2l-icon>
-				</button>
-				<d2l-dropdown-content
-					min-width="[[_minWidth]]"
-					max-width="[[_maxWidth]]"
-					render-content
-					no-pointer>
-					<div class="d2l-filter-dropdown-content-header">
-						<span>[[localize('filterBy')]]</span>
-						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
-					</div>
-					<d2l-tabs>
-					  <dom-repeat items="[[_filters]]" as="f">
-						<template>
-					    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
-						</template>
-					  </dom-repeat>
-					</d2l-tabs>
-				</d2l-dropdown-content>
+				<d2l-dropdown-button-subtle text="[[_numFiltersText(_numFilters)]]">
+					<d2l-dropdown-content
+						min-width="[[_minWidth]]"
+						max-width="[[_maxWidth]]"
+						render-content
+						no-pointer>
+						<div class="d2l-filter-dropdown-content-header">
+							<span>[[localize('filterBy')]]</span>
+							<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
+						</div>
+						<d2l-tabs>
+						  <dom-repeat items="[[_filters]]" as="f">
+							<template>
+						    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
+							</template>
+						  </dom-repeat>
+						</d2l-tabs>
+					</d2l-dropdown-content>
+				</d2l-dropdown-button-subtle>
 			</d2l-dropdown>
 		`;
 	}

@@ -8,23 +8,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 			d2l-dropdown-content {
 				--d2l-dropdown-verticaloffset: 5px;
 			}
-			.d2l-dropdown-opener {
-				background: none;
-				border: none;
-				cursor: pointer;
-				font-size: 0.95rem;
-				font-family: Lato;
-				margin-left: 1rem;
-				outline: none;
-				padding: 0;
-			}
-			button:focus > d2l-icon,
-			button:hover > d2l-icon,
-			button:focus > span,
-			button:hover > span {
-				text-decoration: underline;
-				color: var(--d2l-color-celestine);
-			}
 			.d2l-filter-dropdown-content-header {
 				border-bottom: 1px solid var(--d2l-color-titanius);
 				box-sizing: border-box;
