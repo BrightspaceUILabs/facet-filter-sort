@@ -18,13 +18,12 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	static get template() {
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
-			<d2l-dropdown class="d2l-filter-dropdown-container">
+			<d2l-dropdown>
 				<d2l-dropdown-button-subtle text="[[_numFiltersText(_numFilters)]]">
 					<d2l-dropdown-content
 						min-width="[[_minWidth]]"
 						max-width="[[_maxWidth]]"
-						render-content
-						no-pointer>
+						render-content>
 						<div class="d2l-filter-dropdown-content-header">
 							<span>[[localize('filterBy')]]</span>
 							<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
@@ -32,7 +31,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 						<d2l-tabs>
 						  <dom-repeat items="[[_filters]]" as="f">
 							<template>
-						    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])"><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
+						    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
 							</template>
 						  </dom-repeat>
 						</d2l-tabs>

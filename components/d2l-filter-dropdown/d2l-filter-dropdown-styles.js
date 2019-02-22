@@ -5,9 +5,6 @@ const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 	<template strip-whitespace="">
 		<style>
-			d2l-dropdown-content {
-				--d2l-dropdown-verticaloffset: 5px;
-			}
 			.d2l-filter-dropdown-content-header {
 				border-bottom: 1px solid var(--d2l-color-titanius);
 				box-sizing: border-box;
