@@ -110,9 +110,8 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 		var index = this.options.findIndex(function(option) {
 			return option.key === e.detail.value;
 		});
-		var numSelected = this._getNumSelected();
 		this._setOptionProp('selected', e.detail.selected, index);
-		this._dispatchOptionChanged(this.options[index].key, e.detail.selected, numSelected);
+		this._dispatchOptionChanged(this.options[index].key, e.detail.selected);
 	}
 
 	_getNumSelected() {
@@ -123,16 +122,16 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 		this.set(`options.${index}.${prop}`, value);
 	}
 
-	_dispatchOptionChanged(key, newValue, numSelected) {
+	_dispatchOptionChanged(key, newValue) {
 		this.dispatchEvent(
 			new CustomEvent(
 				this._optionChanged,
 				{
 					detail: {
-						category: this.parentKey,
-						option: key,
+						categoryKey: this.parentKey,
+						optionKey: key,
 						newValue: newValue,
-						numSelected: numSelected
+						numSelected: this._getNumSelected()
 					},
 					composed: true,
 					bubbles: true
