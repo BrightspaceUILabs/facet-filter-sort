@@ -18,26 +18,24 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	static get template() {
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
-			<d2l-dropdown>
-				<d2l-dropdown-button-subtle text="[[_numFiltersText(_numFiltersSelectedTotal)]]">
-					<d2l-dropdown-content
-						min-width="[[minWidth]]"
-						max-width="[[maxWidth]]"
-						render-content>
-						<div class="d2l-filter-dropdown-content-header">
-							<span>[[localize('filterBy')]]</span>
-							<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
-						</div>
-						<d2l-tabs>
-						  <dom-repeat items="[[_filters]]" as="f">
-							<template>
-						    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
-							</template>
-						  </dom-repeat>
-						</d2l-tabs>
-					</d2l-dropdown-content>
-				</d2l-dropdown-button-subtle>
-			</d2l-dropdown>
+			<d2l-dropdown-button-subtle text="[[_numFiltersText(_numFiltersSelectedTotal)]]">
+				<d2l-dropdown-content
+					min-width="[[minWidth]]"
+					max-width="[[maxWidth]]"
+					render-content>
+					<div class="d2l-filter-dropdown-content-header">
+						<span>[[localize('filterBy')]]</span>
+						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
+					</div>
+					<d2l-tabs>
+					  <dom-repeat items="[[_filters]]" as="f">
+						<template>
+					    	<d2l-tab-panel text="[[f.title]] ([[f.numSelected]])" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="{{f.options}}" disable-search="[[disableSearch]]"></d2l-tab-panel>
+						</template>
+					  </dom-repeat>
+					</d2l-tabs>
+				</d2l-dropdown-content>
+			</d2l-dropdown-button-subtle>
 		`;
 	}
 	static get is() { return 'd2l-filter-dropdown';	}
