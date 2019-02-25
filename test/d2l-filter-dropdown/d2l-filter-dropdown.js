@@ -1,3 +1,6 @@
+import '@polymer/iron-test-helpers/mock-interactions.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+
 (function() {
 	var filter;
 
@@ -11,7 +14,6 @@
 			expected.push({
 				key: c.key,
 				title: c.title,
-				active: c.active === undefined ? c === categories[0] : c.active,
 				numSelected: 0,
 				options: []
 			});
@@ -45,29 +47,25 @@
 		return expectedNum;
 	}
 
-	function _getCatByTitle(title) {
-		return categories.find(c => c.title === title);
-	}
-
 	function _getOptionByKeys(cKey, key) {
 		return options.find(o => o.cat === cKey && o.key === key);
 	}
-	function _getOptionByTitle(title, cKey) {
-		return options.find(o => o.title === title && (!cKey || o.cat === cKey));
-	}
 
+	function _getDropdownOpener() {
+		return filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+	}
+	function _getTabPanels() {
+		return filter.shadowRoot.querySelectorAll('d2l-tab-panel');
+	}
 	function _getPages() {
 		return filter.shadowRoot.querySelectorAll('d2l-filter-dropdown-page');
 	}
-	function _getPageTitles() {
-		return filter.shadowRoot.querySelectorAll('.d2l-filter-dropdown-category-title');
-	}
-	function _getOptionTitles(page) {
-		return page.shadowRoot.querySelectorAll('.d2l-filter-dropdown-option');
+	function _getOptions(page) {
+		return page.shadowRoot.querySelectorAll('d2l-menu-item-checkbox');
 	}
 
 	suite('d2l-filter-dropdown', function() {
-		setup(function() {
+		setup(function(done) {
 			filter = fixture('basic');
 			categories = [
 				{key: 'cat1', title: 'Cat 1'},
@@ -82,6 +80,7 @@
 				{cat: 'cat3', key: 'opt3-1', title: 'Opt 3-1'},
 				{cat: 'cat3', key: 'opt3-2', title: 'Opt 3-2'}
 			];
+			afterNextRender(filter, done);
 		});
 		test('instantiating the element works', function() {
 			assert.equal('d2l-filter-dropdown', filter.tagName.toLowerCase());
@@ -92,17 +91,6 @@
 		test('filters are imported correctly', function() {
 			var expected = _getExpectedAndImport(filter);
 			assert.deepEqual(expected, filter._filters);
-		});
-		test('manually importing active filter category is the only active category', function() {
-			var activeFilter = 1;
-			for (var i = 0; i < categories.length; i++) {
-				categories[i].active = i === activeFilter;
-			}
-			var expected = _getExpectedAndImport(filter);
-			assert.deepEqual(expected, filter._filters);
-			for (i = 0; i < filter._filters.length; i++) {
-				assert.equal(filter._filters[i].key === categories[activeFilter].key, filter._filters[i].active);
-			}
 		});
 		test('filter category num selected is correct after importing filters', function() {
 			var selected = [0, 4, 5];
@@ -125,22 +113,27 @@
 			window.requestAnimationFrame(function() {
 				var pages = _getPages();
 				for (var i = 0; i < pages.length; i++) {
-					for (var j = 0; j < i && j < pages[i].options.length; j++) {
-						pages[i].selectOptionByIndex(j);
+					var options = _getOptions(pages[i]);
+					for (var j = 0; j < i && j < options.length; j++) {
+						afterNextRender(options[j], function(option) {
+							MockInteractions.click(option);
+						}, [options[j]]);
 					}
 				}
-				for (i = 0; i < filter._filters.length; i++) {
-					assert.equal(Math.min(i, filter._filters[i].options.length), filter._filters[i].numSelected);
-				}
-				done();
+				window.setTimeout(function() {
+					for (i = 0; i < filter._filters.length; i++) {
+						assert.equal(Math.min(i, filter._filters[i].options.length), filter._filters[i].numSelected);
+					}
+					done();
+				}, 100);
 			});
 		});
 		test('filter category num selected count does not display if count is 0', function(done) {
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var counts = filter.shadowRoot.querySelectorAll('.d2l-filter-dropdown-category-filter-count');
-				for (var i = 0; i < counts.lengh; i++) {
-					assert.equal(true, counts[i].hidden);
+				var tabs = _getTabPanels();
+				for (var i = 0; i < tabs.length; i++) {
+					assert.equal(tabs[i].text, categories[i].title);
 				}
 				done();
 			});
@@ -149,13 +142,10 @@
 			var expectedNum = _setSelectedOptions([0, 4, 5]);
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var buttons = filter.shadowRoot.querySelectorAll('.d2l-filter-dropdown-tab-button');
-				for (var i = 0; i < buttons.length; i++) {
-					var title = buttons[i].querySelector('.d2l-filter-dropdown-category-title').innerHTML;
-					var key = _getCatByTitle(title).key;
-					var numSpan = buttons[i].querySelector('.d2l-filter-dropdown-category-filter-count');
-					assert.equal(expectedNum[key] === 0, numSpan.hidden);
-					assert.equal(` (${expectedNum[key]})`, numSpan.innerHTML);
+				var tabs = _getTabPanels();
+				for (var i = 0; i < tabs.length; i++) {
+					var expectedNumText = expectedNum[categories[i].key] !== 0 ? ` (${expectedNum[categories[i].key]})` : '';
+					assert.equal(tabs[i].text, `${categories[i].title}${expectedNumText}`);
 				}
 				done();
 			});
@@ -163,8 +153,8 @@
 		test('total filter count is not shown when no options are selected', function(done) {
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('#filterText');
-				assert.equal('Filter', totalCount.innerHTML);
+				var totalCount = _getDropdownOpener();
+				assert.equal('Filter', totalCount.text);
 				done();
 			});
 		});
@@ -172,8 +162,8 @@
 			_setSelectedOptions([2]);
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('#filterText');
-				assert.equal('Filter: 1 Filter', totalCount.innerHTML);
+				var totalCount = _getDropdownOpener();
+				assert.equal('Filter: 1 Filter', totalCount.text);
 				done();
 			});
 		});
@@ -182,82 +172,18 @@
 			_setSelectedOptions(selected);
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var totalCount = filter.shadowRoot.querySelector('#filterText');
-				assert.equal(`Filter: ${selected.length} Filters`, totalCount.innerHTML);
-				done();
-			});
-		});
-		test('active filter category is selected iron-page', function(done) {
-			_getExpectedAndImport(filter);
-			var selected = filter._getSelectedTab();
-			window.requestAnimationFrame(function() {
-				var ironPages = filter.shadowRoot.querySelector('iron-pages');
-				assert.equal(selected, ironPages.selected);
-				done();
-			});
-		});
-		test('changing active filter category is the only active category', function() {
-			_getExpectedAndImport(filter);
-			var newSelected = 1;
-			filter.selectFilterCategory(filter._filters[newSelected].key);
-			for (var i = 0; i < filter._filters.length; i++) {
-				assert.equal(i === newSelected, filter._filters[i].active);
-			}
-		});
-		test('changing active filter category is selected iron-page', function(done) {
-			_getExpectedAndImport(filter);
-			var newSelected = 1;
-			filter.selectFilterCategory(categories[newSelected].key);
-			var selected = filter._getSelectedTab();
-			window.requestAnimationFrame(function() {
-				var ironPages = filter.shadowRoot.querySelector('iron-pages');
-				assert.equal(categories[newSelected].key, selected);
-				assert.equal(selected, ironPages.selected);
-				done();
-			});
-		});
-		test('unselected option shows empty check box', function(done) {
-			_getExpectedAndImport(filter);
-			window.requestAnimationFrame(function() {
-				var pages = _getPages();
-				for (var i = 0; i < pages.length; i++) {
-					var checked = pages[i].shadowRoot.querySelectorAll('.d2l-filter-dropdown-option .icon-checked');
-					var unChecked = pages[i].shadowRoot.querySelectorAll('.d2l-filter-dropdown-option .icon-unchecked');
-					for (var j = 0; j < checked.length; j++) {
-						assert.equal(true, checked[j].hidden);
-					}
-					for (j = 0; j < unChecked.length; j++) {
-						assert.equal(false, unChecked[j].hidden);
-					}
-				}
-				done();
-			});
-		});
-		test('selected option shows checked check box', function(done) {
-			var selected = [0, 4, 5];
-			_setSelectedOptions(selected);
-			_getExpectedAndImport(filter);
-			window.requestAnimationFrame(function() {
-				var pages = _getPages();
-				for (var i = 0; i < pages.length; i++) {
-					var opts = _getOptionTitles(pages[i]);
-					for (var j = 0; j < opts.length; j++) {
-						var title = opts[j].querySelector('span').innerHTML;
-						var checked = _getOptionByTitle(title, opts[j].parentKey).selected;
-						assert.equal(!checked, opts[j].querySelector('.icon-checked').hidden);
-						assert.equal(checked, opts[j].querySelector('.icon-unchecked').hidden);
-					}
-				}
+				var totalCount = _getDropdownOpener();
+				assert.equal(`Filter: ${selected.length} Filters`, totalCount.text);
 				done();
 			});
 		});
 		test('filter categories display correctly', function(done) {
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
-				var headers = _getPageTitles();
+				var headers = _getTabPanels();
 				assert.equal(filter._filters.length, headers.length);
 				for (var i = 0; i < headers.length; i++) {
-					assert.equal(filter._filters[i].title, headers[i].innerHTML);
+					assert.equal(filter._filters[i].title, headers[i].text);
 				}
 				done();
 			});
@@ -267,10 +193,10 @@
 			window.requestAnimationFrame(function() {
 				var pages = _getPages();
 				for (var i = 0; i < pages.length; i++) {
-					var opts = pages[i].shadowRoot.querySelectorAll('.d2l-filter-dropdown-option');
+					var opts = _getOptions(pages[i]);
 					assert.equal(pages[i].options.length, opts.length);
 					for (var j = 0; j < opts.length; j++) {
-						assert.equal(pages[i].options[j].title, opts[j].querySelector('span').innerHTML);
+						assert.equal(pages[i].options[j].title, opts[j].text);
 					}
 				}
 				done();
@@ -280,15 +206,20 @@
 			_getExpectedAndImport(filter);
 			window.requestAnimationFrame(function() {
 				var pages = _getPages();
-				var search = options[0].title.substr(-1);
-				pages[0]._searchInput = search;
-				for (var i = 0; i < pages.length; i++) {
-					var opts = pages[i].querySelectorAll('.d2l-filter-dropdown-option');
-					for (var j = 0; j < opts.length; j++) {
-						assert.equal(!opts.shadowRoot.querySelector('span').innerHTML.includes(search), opts[j].hidden);
-					}
-				}
-				done();
+				var search = options[1].title.substr(-1);
+				var searchInput = pages[0].shadowRoot.querySelector('d2l-input-search');
+				searchInput.value = search;
+				var searchButton = searchInput.shadowRoot.querySelector('.d2l-input-search-search');
+				afterNextRender(searchButton, function(button) {
+					MockInteractions.tap(button);
+					requestAnimationFrame(function() {
+						var opts = _getOptions(pages[0]);
+						for (var i = 0; i < opts.length; i++) {
+							assert.equal(!opts[i].text.includes(search), opts[i].hidden || false);
+						}
+						done();
+					});
+				}, [searchButton]);
 			});
 		});
 		test('removing filter category updates filters', function() {
@@ -311,9 +242,9 @@
 			var removal = categories[0].key;
 			filter.removeFilterCategory(removal);
 			window.requestAnimationFrame(function() {
-				var headers = _getPageTitles();
+				var headers = _getTabPanels();
 				assert.equal(categories.length - 1, headers.length);
-				assert.deepEqual(categories.filter(c => c.key !== removal).map(c => c.title), [].map.call(headers, h => h.innerHTML));
+				assert.deepEqual(categories.filter(c => c.key !== removal).map(c => c.title), [].map.call(headers, h => h.text));
 				done();
 			});
 		});
@@ -327,8 +258,8 @@
 				var pages = _getPages();
 				for (var i = 0; i < pages.length; i++) {
 					var pCat = expected.find(e => e.key === pages[i].parentKey);
-					var opts = _getOptionTitles(pages[i]);
-					assert.deepEqual(pCat.options.map(o => o.title), [].map.call(opts, o => o.querySelector('span').innerHTML));
+					var opts = _getOptions(pages[i]);
+					assert.deepEqual(pCat.options.map(o => o.title), [].map.call(opts, o => o.text));
 				}
 				done();
 			});

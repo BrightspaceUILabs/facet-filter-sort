@@ -28,7 +28,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			</d2l-menu>
 		`;
 	}
-	static get is() { return 'd2l-filter-dropdown-page';	}
+	static get is() { return 'd2l-filter-dropdown-page'; }
 	static get properties() {
 		return {
 			parentKey: {
