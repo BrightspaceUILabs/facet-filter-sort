@@ -18,7 +18,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	static get template() {
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
-			<d2l-dropdown-button-subtle text="[[_numFiltersText(_numFiltersSelectedTotal)]]">
+			<d2l-dropdown-button-subtle text="[[_selectedFilterCountText(_selectedFilterCount)]]">
 				<d2l-dropdown-content
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
@@ -73,9 +73,9 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				type: String,
 				value: 'd2l-filter-dropdown-closed'
 			},
-			_numFiltersSelectedTotal: {
+			_selectedFilterCount: {
 				type: Number,
-				computed: '_getTotalNumFiltersSelected(_filters.*)'
+				computed: '_getSelectedFilterCount(_filters.*)'
 			}
 		};
 	}
@@ -213,7 +213,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return result;
 	}
 
-	_getTotalNumFiltersSelected() {
+	_getSelectedFilterCount() {
 		var result = 0;
 		for (var i = 0; i < this._filters.length; i++) {
 			result += this._filters[i].numSelected;
@@ -221,14 +221,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return result;
 	}
 
-	_numFiltersText() {
-		if (this._numFiltersSelectedTotal === 0) {
+	_selectedFilterCountText() {
+		if (this._selectedFilterCount === 0) {
 			return this.localize('filter');
 		}
-		if (this._numFiltersSelectedTotal === 1) {
+		if (this._selectedFilterCount === 1) {
 			return this.localize('filterSingle');
 		}
-		return this.localize('filterMultiple', 'numOptions', this._numFiltersSelectedTotal);
+		return this.localize('filterMultiple', 'numOptions', this._selectedFilterCount);
 	}
 }
 
