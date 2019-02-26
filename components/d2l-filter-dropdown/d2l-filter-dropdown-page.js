@@ -1,9 +1,9 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import 'd2l-icons/d2l-icon.js';
-import 'd2l-icons/tier1-icons.js';
-import 'd2l-icons/tier2-icons.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import 'd2l-inputs/d2l-input-search.js';
+import 'd2l-menu/d2l-menu.js';
+import 'd2l-menu/d2l-menu-item-checkbox.js';
 import './d2l-filter-dropdown-page-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
@@ -17,20 +17,18 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 		return html`
 			<style include="d2l-filter-dropdown-page-styles"></style>
 			<div class="d2l-filter-dropdown-page-search" hidden$="[[disableSearch]]">
-				<d2l-input-search value="{{_searchInput}}" placeholder="[[localize('searchBy', 'category', parentTitle)]]"></d2l-input-search>
+				<d2l-input-search placeholder="[[localize('searchBy', 'category', parentTitle)]]"></d2l-input-search>
 			</div>
-			<dom-repeat items="{{options}}" as="o">
-				<template>
-					<div on-click="_optionSelected" class="d2l-filter-dropdown-option" hidden$="[[!o.display]]">
-						<d2l-icon class="icon-checked" icon="d2l-tier2:check-box" aria-hidden="true" hidden$="[[!o.selected]]"></d2l-icon>
-						<d2l-icon class="icon-unchecked" icon="d2l-tier2:check-box-unchecked" aria-hidden="true" hidden="[[o.selected]]"></d2l-icon>
-						<span>[[o.title]]</span>
-					</div>
-				</template>
-			</dom-repeat>
+			<d2l-menu label="[[parentTitle]]">
+				<dom-repeat items="[[options]]" as="o">
+					<template>
+					<d2l-menu-item-checkbox text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]" selected=[[o.selected]]></d2l-menu-item-checkbox>
+					</template>
+				</dom-repeat>
+			</d2l-menu>
 		`;
 	}
-	static get is() { return 'd2l-filter-dropdown-page';	}
+	static get is() { return 'd2l-filter-dropdown-page'; }
 	static get properties() {
 		return {
 			parentKey: {
@@ -52,10 +50,6 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 					// }
 				]
 			},
-			numSelected: {
-				type: Number,
-				value: 0
-			},
 			disableSearch: {
 				type: Boolean,
 				value: false
@@ -63,10 +57,6 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			_optionChanged: {
 				type: String,
 				value: 'd2l-filter-dropdown-option-changed'
-			},
-			_searchInput: {
-				type: String,
-				observer: '_onSearchChanged'
 			}
 		};
 	}
@@ -75,26 +65,57 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 
 	ready() {
 		super.ready();
-		var input = this.shadowRoot.querySelector('d2l-input-search');
-		if (input) {
-			input.shadowRoot.querySelector('.d2l-input-search-search').hidden = true;
-			input.shadowRoot.querySelector('.d2l-input-search-clear').hidden = true;
+		this._handleSearchChange = this._handleSearchChange.bind(this);
+		this._handleMenuItemChange = this._handleMenuItemChange.bind(this);
+	}
+
+	attached() {
+		afterNextRender(this, function() {
+			var menu = this._getMenu();
+			var search = this._getSearchInput();
+
+			search.addEventListener('d2l-input-search-searched', this._handleSearchChange);
+			menu.addEventListener('d2l-menu-item-change', this._handleMenuItemChange);
+		}.bind(this));
+	}
+
+	detached() {
+		var menu = this._getMenu();
+		var search = this._getSearchInput();
+
+		search.removeEventListener('d2l-input-search-searched', this._handleSearchChange);
+		menu.removeEventListener('d2l-menu-item-change', this._handleMenuItemChange);
+	}
+
+	_getSearchInput() {
+		return this.shadowRoot.querySelector('d2l-input-search');
+	}
+
+	_getMenu() {
+		return this.shadowRoot.querySelector('d2l-menu');
+	}
+
+	_handleSearchChange(e) {
+		var value = e.detail.value;
+		var clear = value === '';
+		if (clear || value.length) {
+			var regex = new RegExp(value, 'i');
+			for (var i = 0; i < this.options.length; i++) {
+				this._setOptionProp('display', clear || regex.test(this.options[i].title), i);
+			}
 		}
 	}
 
-	selectOptionByIndex(index) {
-		var change = !this.options[index].selected;
-		this._setOptionProp('selected', change, index);
-		this._numSelected = this._getNumSelected();
-		this._dispatchOptionChanged(this.options[index].key, change);
+	_handleMenuItemChange(e) {
+		var index = this.options.findIndex(function(option) {
+			return option.key === e.detail.value;
+		});
+		this._setOptionProp('selected', e.detail.selected, index);
+		this._dispatchOptionChanged(this.options[index].key, e.detail.selected);
 	}
 
 	_getNumSelected() {
 		return this.options.filter(v => v.selected).length;
-	}
-
-	_optionSelected(e) {
-		this.selectOptionByIndex(e.model.index);
 	}
 
 	_setOptionProp(prop, value, index) {
@@ -107,29 +128,16 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 				this._optionChanged,
 				{
 					detail: {
-						category: this.parentKey,
-						option: key,
-						newValue: newValue
+						categoryKey: this.parentKey,
+						optionKey: key,
+						newValue: newValue,
+						numSelected: this._getNumSelected()
 					},
 					composed: true,
 					bubbles: true
 				}
 			)
 		);
-	}
-
-	_onSearchChanged(e) {
-		var clear = e === '';
-		if (clear || e.length) {
-			var regex = new RegExp(e, 'i');
-			for (var i = 0; i < this.options.length; i++) {
-				this._setOptionProp('display', clear || regex.test(this.options[i].title), i);
-			}
-			var input = this.shadowRoot.querySelector('d2l-input-search');
-			if (input) {
-				input.shadowRoot.querySelector('.d2l-input-search-clear').hidden = clear;
-			}
-		}
 	}
 }
 

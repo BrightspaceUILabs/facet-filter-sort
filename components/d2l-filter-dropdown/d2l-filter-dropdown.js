@@ -2,10 +2,9 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
-import 'd2l-colors/d2l-colors.js';
-import '@polymer/iron-pages/iron-pages.js';
-import 'd2l-icons/d2l-icon.js';
-import 'd2l-icons/tier1-icons.js';
+import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
+import 'd2l-button/d2l-button-subtle.js';
+import 'd2l-tabs/d2l-tabs.js';
 import './d2l-filter-dropdown-page.js';
 import './d2l-filter-dropdown-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
@@ -19,42 +18,24 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	static get template() {
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
-			<d2l-dropdown class="d2l-filter-dropdown-container">
-				<button
-					class="d2l-dropdown-opener"
-					aria-labelledby="filterText">
-					<span id="filterText">[[_numFiltersText(_numFilters)]]</span>
-					<d2l-icon icon="d2l-tier1:chevron-down"></d2l-icon>
-				</button>
+			<d2l-dropdown-button-subtle text="[[_selectedFilterCountText(_selectedFilterCount)]]">
 				<d2l-dropdown-content
-				min-width="[[_minWidth]]"
-				max-width="[[_maxWidth]]"
-					no-padding
-					render-content
-					no-pointer>
+					min-width="[[minWidth]]"
+					max-width="[[maxWidth]]"
+					render-content>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[localize('filterBy')]]</span>
-						<button hidden$="[[!_numFilters]]" class="d2l-filter-dropdown-clear-button" on-click="_clearFilters">[[localize('clear')]]</button>
+						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
 					</div>
-					<div class="d2l-filter-dropdown-tab-selector">
-						<dom-repeat items="[[_filters]]">
-							<template>
-								<div class="d2l-filter-dropdown-tab">
-									<div class="d2l-filter-dropdown-tab-highlight" hidden$="[[!item.active]]"></div>
-									<button class="d2l-filter-dropdown-tab-button" on-click="_selectTab"><span class="d2l-filter-dropdown-category-title">[[item.title]]</span><span class="d2l-filter-dropdown-category-filter-count" hidden$="[[!item.numSelected]]"> ([[item.numSelected]])</span></button>
-								</div>
-							</template>
-						</dom-repeat>
-					</div>
-					<iron-pages attr-for-selected="data-tab-name" selected="[[_selectedTab]]" fallback-selection="[[_defaultSelectedTab]]">
-						<dom-repeat items="[[_filters]]" as="f">
-							<template>
-								<d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" data-tab-name="[[f.key]]" options="{{f.options}}" disable-search="[[disableSearch]]">
-							</template>
-						</dom-repeat>
-					</iron-pages>
+					<d2l-tabs>
+					  <dom-repeat items="[[_filters]]" as="f">
+						<template>
+					    	<d2l-tab-panel text="[[_selectedCategoryCountText(f.title, f.numSelected)]]" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="[[f.options]]" disable-search="[[disableSearch]]"></d2l-tab-panel>
+						</template>
+					  </dom-repeat>
+					</d2l-tabs>
 				</d2l-dropdown-content>
-			</d2l-dropdown>
+			</d2l-dropdown-button-subtle>
 		`;
 	}
 	static get is() { return 'd2l-filter-dropdown';	}
@@ -64,13 +45,20 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				type: Boolean,
 				value: false
 			},
+			minWidth: {
+				type: Number,
+				value: 25
+			},
+			maxWidth: {
+				type: Number,
+				value: 400
+			},
 			_filters: {
 				type: Array,
 				value: [
 					// {
 					// 	key: '',
 					// 	title: '',
-					// 	active: false,
 					// 	numSelected: 0,
 					// 	options: [{
 					// 		key: '',
@@ -81,29 +69,13 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					// }
 				]
 			},
-			_minWidth: {
-				type: Number,
-				value: 25
-			},
-			_maxWidth: {
-				type: Number,
-				value: 400
-			},
-			_defaultSelectedTab: {
-				type: String,
-				computed: '_getDefaultSelectedTab(_filters.*)'
-			},
-			_selectedTab: {
-				type: String,
-				computed: '_getSelectedTab(_filters.*)'
-			},
 			_filterDropdownClosed: {
 				type: String,
 				value: 'd2l-filter-dropdown-closed'
 			},
-			_numFilters: {
+			_selectedFilterCount: {
 				type: Number,
-				computed: '_getTotalSelected(_filters.*)'
+				computed: '_getSelectedFilterCount(_filters.*)'
 			}
 		};
 	}
@@ -111,37 +83,26 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	ready() {
 		super.ready();
+	}
+
+	attached()  {
 		this.addEventListener('d2l-filter-dropdown-option-changed', this._optionChanged);
 		this.addEventListener('d2l-dropdown-close', this._dropdownClosed);
 	}
 
-	selectFilterCategory(key) {
-		var index = this._filters.findIndex(v => v.active);
-		if (index >= 0) {
-			if (this._filters[index].key === key) {
-				return;
-			}
-			this._setProp('active', false, index);
-		}
-		index = this._getFilterIndexFromKey(key);
-		if (index >= 0) {
-			this._setProp('active', true, index);
-		}
+	detached() {
+		this.removeEventListener('d2l-filter-dropdown-option-changed', this._optionChanged);
+		this.removeEventListener('d2l-dropdown-close', this._dropdownClosed);
 	}
 
-	addFilterCategory(key, title, active) {
+	addFilterCategory(key, title) {
 		if (!this._filters.find(v => v.key === key)) {
 			this._filters = this._filters.concat({
 				key: key,
 				title: title,
-				active: false,
 				numSelected: 0,
 				options: []
 			});
-
-			if (active || this._filters.length === 1) {
-				this.selectFilterCategory(this._filters.slice(-1)[0].key);
-			}
 		}
 	}
 
@@ -162,7 +123,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				}),
 				index);
 			if (selected) {
-				this._setNumSelected(index);
+				this._setNumSelected(index, this._filters[index].numSelected + 1);
 			}
 		}
 	}
@@ -174,46 +135,38 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		}
 	}
 
-	_selectTab(e) {
-		this.selectFilterCategory(e.model.item.key);
+	_getFilterIndexFromKey(key) {
+		return this._filters.findIndex(v => v.key === key);
+	}
+
+	_getOptionIndexFromKey(categoryIndex, key) {
+		return this._filters[categoryIndex].options.findIndex(v => v.key === key);
 	}
 
 	_clearFilters() {
 		for (var i = 0; i < this._filters.length; i++) {
 			for (var j = 0; j < this._filters[i].options.length; j++) {
-				this._setProp('selected', false, i, j);
+				this._setOptionSelected(i, j, false);
 			}
-			this._setNumSelected(i);
+			this._setNumSelected(i, 0);
 		}
 	}
 
-	_getDefaultSelectedTab() {
-		if (this._filters && this._filters.length) {
-			return this._filters[0].key;
+	_optionChanged(e) {
+		var categoryIndex = this._getFilterIndexFromKey(e.detail.categoryKey);
+		var optionIndex = this._getOptionIndexFromKey(categoryIndex, e.detail.optionKey);
+		if (categoryIndex >= 0 && optionIndex >= 0) {
+			this._setOptionSelected(categoryIndex, optionIndex, e.detail.newValue);
+			this._setNumSelected(categoryIndex, e.detail.numSelected);
 		}
-		return '';
 	}
 
-	_getSelectedTab() {
-		if (this._filters && this._filters.length) {
-			var f = this._filters.find(v => v.active);
-			if (f) {
-				return f.key;
-			}
-		}
-		return this._getDefaultSelectedTab();
+	_setOptionSelected(categoryIndex, optionIndex, isSelected) {
+		this._setProp('selected', isSelected, categoryIndex, optionIndex);
 	}
 
-	_getTotalSelected() {
-		var result = 0;
-		for (var i = 0; i < this._filters.length; i++) {
-			result += this._filters[i].numSelected;
-		}
-		return result;
-	}
-
-	_setNumSelected(index) {
-		this._setProp('numSelected', this._filters[index].options.filter(v => v.selected).length, index);
+	_setNumSelected(index, numSelected) {
+		this._setProp('numSelected', numSelected, index);
 	}
 
 	_setProp(prop, value, categoryIndex, optionsIndex) {
@@ -226,15 +179,9 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		this.set(property, value);
 	}
 
-	_optionChanged(e) {
-		var index = this._getFilterIndexFromKey(e.detail.category);
-		if (index >= 0) {
-			this._setNumSelected(index);
-		}
-	}
-
 	_dropdownClosed(e) {
-		if (e.target.localname === this.is) {
+		if (e.target === this) {
+			e.stopPropagation();
 			this._dispatchFilterDropdownClosed();
 		}
 	}
@@ -245,15 +192,16 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				this._filterDropdownClosed,
 				{
 					detail: {
-						activeFilters: this._getActiveFilters()
+						selectedFilters: this._getSelectedFilters()
 					},
-					composed: true
+					composed: true,
+					bubbles: true
 				}
 			)
 		);
 	}
 
-	_getActiveFilters() {
+	_getSelectedFilters() {
 		var result = [];
 		for (var i = 0; i < this._filters.length; i++) {
 			for (var j = 0; j < this._filters[i].options.length; j++) {
@@ -265,18 +213,29 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return result;
 	}
 
-	_getFilterIndexFromKey(key) {
-		return this._filters.findIndex(v => v.key === key);
+	_getSelectedFilterCount() {
+		var result = 0;
+		for (var i = 0; i < this._filters.length; i++) {
+			result += this._filters[i].numSelected;
+		}
+		return result;
 	}
 
-	_numFiltersText() {
-		if (this._numFilters === 0) {
+	_selectedFilterCountText() {
+		if (this._selectedFilterCount === 0) {
 			return this.localize('filter');
 		}
-		if (this._numFilters === 1) {
+		if (this._selectedFilterCount === 1) {
 			return this.localize('filterSingle');
 		}
-		return this.localize('filterMultiple', 'numOptions', this._numFilters);
+		return this.localize('filterMultiple', 'numOptions', this._selectedFilterCount);
+	}
+
+	_selectedCategoryCountText(title, numSelected) {
+		if (numSelected === 0) {
+			return title;
+		}
+		return this.localize('categoryTitleMultiple', 'title', title, 'numSelected', numSelected);
 	}
 }
 

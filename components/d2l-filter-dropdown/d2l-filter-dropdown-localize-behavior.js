@@ -17,6 +17,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 			value: function() {
 				return {
 					'ar': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'مسح',
 						filter: 'التصفية',
 						filterBy: 'تصفية بحسب',
@@ -25,6 +26,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'البحث عن {category}'
 					},
 					'de': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Löschen',
 						filter: 'Filter',
 						filterBy: 'Filtern nach',
@@ -33,6 +35,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Nach {category} suchen'
 					},
 					'en': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Clear',
 						filter: 'Filter',
 						filterBy: 'Filter By',
@@ -41,6 +44,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Search by {category}'
 					},
 					'es': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Borrar',
 						filter: 'Filtrar',
 						filterBy: 'Filtrar por',
@@ -49,6 +53,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Buscar por {category}'
 					},
 					'fi': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Tyhjennä',
 						filter: 'Suodatin',
 						filterBy: 'Suodatusperuste',
@@ -57,6 +62,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Hakuperuste {category}'
 					},
 					'fr': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Effacer',
 						filter: 'Filtrer',
 						filterBy: 'Filtrer par',
@@ -65,6 +71,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Recherche par {category}'
 					},
 					'ja': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'クリア',
 						filter: 'フィルタ',
 						filterBy: 'フィルタの条件',
@@ -73,6 +80,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: '{category} で検索'
 					},
 					'ko': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: '지우기',
 						filter: '필터',
 						filterBy: '필터링 기준',
@@ -81,6 +89,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: '{category} 필터로 검색'
 					},
 					'nb': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Fjern',
 						filter: 'Filter',
 						filterBy: 'Filtrer etter',
@@ -89,6 +98,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Søk etter {category}'
 					},
 					'nl': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Wissen',
 						filter: 'Filteren',
 						filterBy: 'Filteren op',
@@ -97,6 +107,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Zoeken op {category}'
 					},
 					'pt': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Apagar',
 						filter: 'Filtro',
 						filterBy: 'Filtrar por',
@@ -105,6 +116,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Pesquisar por {category}'
 					},
 					'sv': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Rensa',
 						filter: 'Filter',
 						filterBy: 'Filtrera efter',
@@ -113,6 +125,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: 'Sök per {category}'
 					},
 					'tr': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: 'Temizle',
 						filter: 'Filtrele',
 						filterBy: 'Filtreleme Ölçütü',
@@ -121,6 +134,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: '{category} Kullanarak Ara'
 					},
 					'zh': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: '清除',
 						filter: '筛选',
 						filterBy: '筛选条件',
@@ -129,6 +143,7 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						searchBy: '按 {category} 搜索'
 					},
 					'zh-tw': {
+						categoryTitleMultiple: '{title} ({numSelected})',
 						clear: '清除',
 						filter: '篩選',
 						filterBy: '篩選依據',
