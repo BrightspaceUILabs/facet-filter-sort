@@ -1,5 +1,6 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import 'd2l-dropdown/d2l-dropdown.js';
 import 'd2l-dropdown/d2l-dropdown-content.js';
 import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
@@ -30,7 +31,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-tabs>
 					  <dom-repeat items="[[_filters]]" as="f">
 						<template>
-					    	<d2l-tab-panel text="[[_selectedCategoryCountText(f.title, f.numSelected)]]" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="[[f.options]]" disable-search="[[disableSearch]]"></d2l-tab-panel>
+					    	<d2l-tab-panel id="[[_optionPanelIdPrefix]][[f.key]]" text="[[_selectedCategoryCountText(f.title, f.numSelected)]]" no-padding><d2l-filter-dropdown-page parent-key="[[f.key]]" parent-title="[[f.title]]" options="[[f.options]]" disable-search="[[disableSearch]]"></d2l-tab-panel>
 						</template>
 					  </dom-repeat>
 					</d2l-tabs>
@@ -73,6 +74,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				type: String,
 				value: 'd2l-filter-dropdown-closed'
 			},
+			_filterSelectedChanged: {
+				type: String,
+				value: 'd2l-filter-selected-changed'
+			},
+			_optionPanelIdPrefix: {
+				type: String,
+				value: 'd2l-filter-dropdown-panel-'
+			},
 			_selectedFilterCount: {
 				type: Number,
 				computed: '_getSelectedFilterCount(_filters.*)'
@@ -88,11 +97,13 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	attached()  {
 		this.addEventListener('d2l-filter-dropdown-option-changed', this._optionChanged);
 		this.addEventListener('d2l-dropdown-close', this._dropdownClosed);
+		this.addEventListener('d2l-tab-panel-selected', this._selectedTabChanged);
 	}
 
 	detached() {
 		this.removeEventListener('d2l-filter-dropdown-option-changed', this._optionChanged);
 		this.removeEventListener('d2l-dropdown-close', this._dropdownClosed);
+		this.removeEventListener('d2l-tab-panel-selected', this._selectedTabChanged);
 	}
 
 	addFilterCategory(key, title) {
@@ -197,6 +208,15 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		}
 	}
 
+	_selectedTabChanged(event) {
+		var selectedTab = dom(event).rootTarget;
+		var key = selectedTab.id.replace(this._optionPanelIdPrefix, '');
+		var filterIndex = this._getFilterIndexFromKey(key);
+		if (filterIndex >= 0) {
+			this._dispatchFilterSelectionChanged(this._filters[filterIndex].key);
+		}
+	}
+
 	_dispatchFilterDropdownClosed() {
 		this.dispatchEvent(
 			new CustomEvent(
@@ -204,6 +224,21 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				{
 					detail: {
 						selectedFilters: this._getSelectedFilters()
+					},
+					composed: true,
+					bubbles: true
+				}
+			)
+		);
+	}
+
+	_dispatchFilterSelectionChanged(key) {
+		this.dispatchEvent(
+			new CustomEvent(
+				this._filterSelectionChanged,
+				{
+					detail: {
+						selectedKey: key
 					},
 					composed: true,
 					bubbles: true
