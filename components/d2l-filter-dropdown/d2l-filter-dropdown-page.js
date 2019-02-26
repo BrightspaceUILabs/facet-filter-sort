@@ -107,9 +107,12 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 	}
 
 	_handleMenuItemChange(e) {
-		var index = this.options.findIndex(function(option) {
-			return option.key === e.detail.value;
-		});
+		var index = -1;
+		for (var i = 0 ; i < this.options.length; i++) {
+			if (this.options[i].key === e.detail.value) {
+				index = i;
+			}
+		}
 		this._setOptionProp('selected', e.detail.selected, index);
 		this._dispatchOptionChanged(this.options[index].key, e.detail.selected);
 	}

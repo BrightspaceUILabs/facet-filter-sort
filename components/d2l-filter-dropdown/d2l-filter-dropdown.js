@@ -96,7 +96,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	}
 
 	addFilterCategory(key, title) {
-		if (!this._filters.find(v => v.key === key)) {
+		if (this._filters.filter(v => v.key === key).length === 0) {
 			this._filters = this._filters.concat({
 				key: key,
 				title: title,
@@ -112,7 +112,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	addFilterOption(categoryKey, key, title, selected) {
 		var index = this._getFilterIndexFromKey(categoryKey);
-		if (index >= 0 && !this._filters[index].options.find(v => v.key === key)) {
+		if (index >= 0 && this._filters[index].options.filter(v => v.key === key).length === 0) {
 			this._setProp(
 				'options',
 				this._filters[index].options.concat({
@@ -136,11 +136,22 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	}
 
 	_getFilterIndexFromKey(key) {
-		return this._filters.findIndex(v => v.key === key);
+		for (var i = 0 ; i < this._filters.length; i++) {
+			if (this._filters[i].key === key) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	_getOptionIndexFromKey(categoryIndex, key) {
-		return this._filters[categoryIndex].options.findIndex(v => v.key === key);
+		var options = this._filters[categoryIndex].options;
+		for (var i = 0 ; i < options.length; i++) {
+			if (options[i].key === key) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	_clearFilters() {

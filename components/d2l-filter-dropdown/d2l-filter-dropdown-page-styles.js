@@ -7,7 +7,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-page-styles
 		<style>
 			d2l-menu {
 				margin: 0 -1rem;
-				width: unset;
+				width: auto;
 			}
 			.d2l-filter-dropdown-page-search {
 				margin-bottom: 0.5rem;

@@ -20,7 +20,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 		});
 		options.map(o => {
 			filter.addFilterOption(o.cat, o.key, o.title, o.selected);
-			expected.find(v => v.key === o.cat).options.push({
+			expected.filter(v => v.key === o.cat)[0].options.push({
 				key: o.key,
 				title: o.title,
 				selected: o.selected || false,
@@ -36,7 +36,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 	function _setSelectedOptions(selected) {
 		var expectedNum = {};
 		for (var i = 0; i < options.length; i++) {
-			options[i].selected = selected.includes(i);
+			options[i].selected = selected.filter(s => s === i).length !== 0;
 			if (!expectedNum[options[i].cat]) {
 				expectedNum[options[i].cat] = 0;
 			}
@@ -48,7 +48,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 	}
 
 	function _getOptionByKeys(cKey, key) {
-		return options.find(o => o.cat === cKey && o.key === key);
+		return options.filter(o => o.cat === cKey && o.key === key)[0];
 	}
 
 	function _getDropdownOpener() {
@@ -215,7 +215,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 					requestAnimationFrame(function() {
 						var opts = _getOptions(pages[0]);
 						for (var i = 0; i < opts.length; i++) {
-							assert.equal(!opts[i].text.includes(search), opts[i].hidden || false);
+							assert.equal(opts[i].text.indexOf(search) === -1, opts[i].hidden || false);
 						}
 						done();
 					});
@@ -233,7 +233,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 			var expected = _getExpectedAndImport(filter);
 			var removal = [options[1].cat, options[1].key];
 			filter.removeFilterOption(removal[0], removal[1]);
-			var cat = expected.find(e => e.key === removal[0]);
+			var cat = expected.filter(e => e.key === removal[0])[0];
 			cat.options = cat.options.filter(o => o.key !== removal[1]);
 			assert.deepEqual(expected, filter._filters);
 		});
@@ -252,12 +252,12 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 			var expected = _getExpectedAndImport(filter);
 			var removal = [options[1].cat, options[1].key];
 			filter.removeFilterOption(removal[0], removal[1]);
-			var cat = expected.find(e => e.key === removal[0]);
+			var cat = expected.filter(e => e.key === removal[0])[0];
 			cat.options = cat.options.filter(o => o.key !== removal[1]);
 			window.requestAnimationFrame(function() {
 				var pages = _getPages();
 				for (var i = 0; i < pages.length; i++) {
-					var pCat = expected.find(e => e.key === pages[i].parentKey);
+					var pCat = expected.filter(e => e.key === pages[i].parentKey)[0];
 					var opts = _getOptions(pages[i]);
 					assert.deepEqual(pCat.options.map(o => o.title), [].map.call(opts, o => o.text));
 				}
