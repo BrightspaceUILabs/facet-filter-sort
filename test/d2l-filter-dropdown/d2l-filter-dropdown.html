@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+		<title>d2l-filter-dropdown test</title>
+
+		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../../wct-browser-legacy/browser.js"></script>
+		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
+	</head>
+	<body>
+		<test-fixture id="basic">
+			<template strip-whitespace>
+				<d2l-filter-dropdown></d2l-filter-dropdown>
+			</template>
+		</test-fixture>
+		<test-fixture id="no-search">
+			<template strip-whitespace>
+				<d2l-filter-dropdown disable-search></d2l-filter-dropdown>
+			</template>
+		</test-fixture>
+
+		<script type="module" src="./d2l-filter-dropdown.js"></script>
+	</body>
+</html>
