@@ -235,7 +235,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	_dispatchFilterSelectionChanged(key) {
 		this.dispatchEvent(
 			new CustomEvent(
-				this._filterSelectionChanged,
+				this._filterSelectedChanged,
 				{
 					detail: {
 						selectedKey: key
