@@ -70,14 +70,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					// }
 				]
 			},
-			_filterDropdownClosed: {
-				type: String,
-				value: 'd2l-filter-dropdown-closed'
-			},
-			_filterSelectedChanged: {
-				type: String,
-				value: 'd2l-filter-selected-changed'
-			},
 			_optionPanelIdPrefix: {
 				type: String,
 				value: 'd2l-filter-dropdown-panel-'
@@ -220,7 +212,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	_dispatchFilterDropdownClosed() {
 		this.dispatchEvent(
 			new CustomEvent(
-				this._filterDropdownClosed,
+				'd2l-filter-dropdown-closed',
 				{
 					detail: {
 						selectedFilters: this._getSelectedFilters()
@@ -235,7 +227,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	_dispatchFilterSelectionChanged(key) {
 		this.dispatchEvent(
 			new CustomEvent(
-				this._filterSelectionChanged,
+				'd2l-filter-selected-changed',
 				{
 					detail: {
 						selectedKey: key
