@@ -164,6 +164,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			}
 			this._setNumSelected(i, 0);
 		}
+		this._dispatchFiltersCleared();
 	}
 
 	_optionChanged(e) {
@@ -232,6 +233,18 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					detail: {
 						selectedKey: key
 					},
+					composed: true,
+					bubbles: true
+				}
+			)
+		);
+	}
+
+	_dispatchFiltersCleared() {
+		this.dispatchEvent(
+			new CustomEvent(
+				'd2l-filter-dropdown-cleared',
+				{
 					composed: true,
 					bubbles: true
 				}
