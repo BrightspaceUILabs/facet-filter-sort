@@ -161,10 +161,10 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		for (var i = 0; i < this._filters.length; i++) {
 			for (var j = 0; j < this._filters[i].options.length; j++) {
 				this._setOptionSelected(i, j, false);
-				this._dispatchFilterOptionChanged(this._filters[i].key, this.filters[i].options[j], false);
 			}
 			this._setNumSelected(i, 0);
 		}
+		this._dispatchFiltersCleared();
 	}
 
 	_optionChanged(e) {
@@ -240,17 +240,11 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		);
 	}
 
-	_dispatchFilterOptionChanged(cKey, oKey, newValue) {
+	_dispatchFiltersCleared() {
 		this.dispatchEvent(
 			new CustomEvent(
 				'd2l-filter-dropdown-cleared',
 				{
-					detail: {
-						categoryKey: cKey,
-						optionKey: oKey,
-						newValue: newValue,
-						numSelected: this._getNumSelected()
-					},
 					composed: true,
 					bubbles: true
 				}
