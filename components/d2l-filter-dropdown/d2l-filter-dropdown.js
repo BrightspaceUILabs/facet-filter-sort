@@ -243,7 +243,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	_dispatchFilterOptionChanged(cKey, oKey, newValue) {
 		this.dispatchEvent(
 			new CustomEvent(
-				'd2l-filter-dropdown-option-changed',
+				'd2l-filter-dropdown-cleared',
 				{
 					detail: {
 						categoryKey: cKey,
