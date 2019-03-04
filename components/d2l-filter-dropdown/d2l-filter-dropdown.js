@@ -2,7 +2,7 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import 'd2l-dropdown/d2l-dropdown.js';
-import 'd2l-dropdown/d2l-dropdown-content.js';
+import 'd2l-dropdown/d2l-dropdown-tabs.js';
 import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
 import 'd2l-button/d2l-button-subtle.js';
 import 'd2l-tabs/d2l-tabs.js';
@@ -20,7 +20,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return html`
 			<style include="d2l-filter-dropdown-styles"></style>
 			<d2l-dropdown-button-subtle text="[[_selectedFilterCountText(_selectedFilterCount)]]">
-				<d2l-dropdown-content
+				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
 					render-content>
@@ -35,7 +35,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 						</template>
 					  </dom-repeat>
 					</d2l-tabs>
-				</d2l-dropdown-content>
+				</d2l-dropdown-tabs>
 			</d2l-dropdown-button-subtle>
 		`;
 	}
