@@ -92,10 +92,17 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 			var expected = _getExpectedAndImport(filter);
 			assert.deepEqual(expected, filter._filters);
 		});
-		test('filter category num selected is correct after importing filters', function() {
+		test('clear button is hidden if no filters are applied', function() {
+			var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
+			assert.isTrue(clearButton.hidden);
+		});
+		test('filter category num selected is correct after importing filters and clear button is visible', function() {
+			var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
 			var selected = [0, 4, 5];
 			var expectedNum = _setSelectedOptions(selected);
 			var expected = _getExpectedAndImport(filter);
+
+			assert.isFalse(clearButton.hidden);
 			assert.deepEqual(expected, filter._filters);
 			for (var i = 0; i < filter._filters.length; i++) {
 				var f = filter._filters[i];

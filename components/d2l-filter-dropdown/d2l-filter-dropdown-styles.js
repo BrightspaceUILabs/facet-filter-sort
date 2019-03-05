@@ -21,6 +21,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-styles">
 				border-top: 1px solid var(--d2l-color-gypsum);
 				padding: 1.2rem 1rem 0 1rem;
 			}
+			[hidden] {
+				display: none;
+			}
 		</style>
 	</template>
 </dom-module>`;

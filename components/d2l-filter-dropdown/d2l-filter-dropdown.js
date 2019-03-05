@@ -26,7 +26,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					render-content>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[localize('filterBy')]]</span>
-						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_numFilters]]" on-click="_clearFilters"></d2l-button-subtle>
+						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!_selectedFilterCount]]" on-click="_clearFilters"></d2l-button-subtle>
 					</div>
 					<d2l-tabs>
 					  <dom-repeat items="[[_filters]]" as="f">
