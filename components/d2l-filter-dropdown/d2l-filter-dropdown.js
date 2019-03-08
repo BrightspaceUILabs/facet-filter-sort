@@ -114,19 +114,28 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	}
 
 	addFilterOption(categoryKey, key, title, selected) {
-		var index = this._getFilterIndexFromKey(categoryKey);
-		if (index >= 0 && this._filters[index].options.filter(v => v.key === key).length === 0) {
-			this._setProp(
-				'options',
-				this._filters[index].options.concat({
-					key: key,
-					title: title,
-					selected: selected || false,
-					display: true
-				}),
-				index);
-			if (selected) {
-				this._setNumSelected(index, this._filters[index].numSelected + 1);
+		var cIndex = this._getFilterIndexFromKey(categoryKey);
+		if (cIndex >= 0) {
+			const oIndex = this._getOptionIndexFromKey(cIndex, key);
+			if (oIndex >= 0) {
+				if (this._filters[cIndex].options[oIndex].selected !== selected) {
+					this._setOptionSelected(cIndex, oIndex, selected);
+					this._setNumSelected(cIndex, this._filters[cIndex].numSelected + (selected ? 1 : -1));
+					this._setProp('title', title, cIndex, oIndex);
+				}
+			} else {
+				this._setProp(
+					'options',
+					this._filters[cIndex].options.concat({
+						key: key,
+						title: title,
+						selected: selected || false,
+						display: true
+					}),
+					cIndex);
+				if (selected) {
+					this._setNumSelected(cIndex, this._filters[cIndex].numSelected + 1);
+				}
 			}
 		}
 	}
@@ -143,7 +152,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		if (cIndex >= 0) {
 			const oIndex = this._getOptionIndexFromKey(cIndex, optionKey);
 			if (oIndex >= 0 && this._filters[cIndex].options[oIndex].selected !== value) {
-				this._setProp('selected', value, cIndex, oIndex);
+				this._setOptionSelected(cIndex, oIndex, value);
 				this._setNumSelected(cIndex, this._filters[cIndex].numSelected + (value ? 1 : -1));
 			}
 		}
