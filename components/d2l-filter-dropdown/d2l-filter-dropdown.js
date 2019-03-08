@@ -138,6 +138,17 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		}
 	}
 
+	updateFilterOptionSelectedStatus(categoryKey, optionKey, value) {
+		const cIndex = this._getFilterIndexFromKey(categoryKey);
+		if (cIndex >= 0) {
+			const oIndex = this._getOptionIndexFromKey(cIndex, optionKey);
+			if (oIndex >= 0 && this._filters[cIndex].options[oIndex].selected !== value) {
+				this._setProp('selected', value, cIndex, oIndex);
+				this._setNumSelected(cIndex, this._filters[cIndex].numSelected + (value ? 1 : -1));
+			}
+		}
+	}
+
 	_getFilterIndexFromKey(key) {
 		for (var i = 0 ; i < this._filters.length; i++) {
 			if (this._filters[i].key === key) {

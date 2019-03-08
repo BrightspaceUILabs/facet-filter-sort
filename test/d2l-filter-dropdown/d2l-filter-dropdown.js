@@ -47,6 +47,18 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 		return expectedNum;
 	}
 
+	function _updateExpectedOption(index, value, expected) {
+		for (let i = 0; i < expected.length; i++) {
+			const cat = expected[i];
+			for (let j = 0; j < cat.options.length; j++) {
+				if (options[index].cat === cat.key && options[index].key === cat.options[j].key && cat.options[j].selected != value) {
+					cat.options[j].selected = value;
+					cat.numSelected = cat.numSelected + (value ? 1 : -1);
+				}
+			}
+		}
+	}
+
 	function _getOptionByKeys(cKey, key) {
 		return options.filter(o => o.cat === cKey && o.key === key)[0];
 	}
@@ -271,6 +283,33 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 				done();
 			});
 		});
+		test('updating filter option updates filters', function() {
+			const update = 2;
+			_setSelectedOptions([0, 4, 5]);
+			let expected = _getExpectedAndImport(filter);
+			filter.updateFilterOptionSelectedStatus(options[update].cat, options[update].key, true);
+			_updateExpectedOption(update, true, expected);
+			assert.deepEqual(expected, filter._filters);
+		});
+		test('updating filter option updates display', function(done) {
+			const update = 2;
+			const selected = [0, 4, 5];
+			_setSelectedOptions(selected);
+			let expected = _getExpectedAndImport(filter);
+			filter.updateFilterOptionSelectedStatus(options[update].cat, options[update].key, true);
+			_updateExpectedOption(update, true, expected);
+			window.requestAnimationFrame(function() {
+				var pages = _getPages();
+				for (var i = 0; i < pages.length; i++) {
+					var opts = _getOptions(pages[i]);
+					assert.equal(pages[i].options.length, opts.length);
+					for (var j = 0; j < opts.length; j++) {
+						assert.equal (opts[j].selected, expected[i].options[j].selected);
+					}
+				}
+				done();
+			});
+		})
 	});
 
 	suite('d2l-filter-dropdown without search', function() {
