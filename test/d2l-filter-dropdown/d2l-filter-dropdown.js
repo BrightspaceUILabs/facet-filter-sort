@@ -47,6 +47,19 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 		return expectedNum;
 	}
 
+	function _updateExpectedOption(index, selected, title, expected) {
+		for (let i = 0; i < expected.length; i++) {
+			const cat = expected[i];
+			for (let j = 0; j < cat.options.length; j++) {
+				if (options[index].cat === cat.key && options[index].key === cat.options[j].key && cat.options[j].selected !== selected) {
+					cat.options[j].selected = selected;
+					cat.options[j].title = title || cat.options[j].title;
+					cat.numSelected = cat.numSelected + (selected ? 1 : -1);
+				}
+			}
+		}
+	}
+
 	function _getOptionByKeys(cKey, key) {
 		return options.filter(o => o.cat === cKey && o.key === key)[0];
 	}
@@ -267,6 +280,63 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 					var pCat = expected.filter(e => e.key === pages[i].parentKey)[0];
 					var opts = _getOptions(pages[i]);
 					assert.deepEqual(pCat.options.map(o => o.title), [].map.call(opts, o => o.text));
+				}
+				done();
+			});
+		});
+		test('updating filter option updates filters', function() {
+			const update = 2;
+			_setSelectedOptions([0, 4, 5]);
+			const expected = _getExpectedAndImport(filter);
+			filter.updateFilterOptionSelectedStatus(options[update].cat, options[update].key, true);
+			_updateExpectedOption(update, true, '', expected);
+			assert.deepEqual(expected, filter._filters);
+		});
+		test('updating filter option updates display', function(done) {
+			const update = 2;
+			const selected = [0, 4, 5];
+			_setSelectedOptions(selected);
+			const expected = _getExpectedAndImport(filter);
+			filter.updateFilterOptionSelectedStatus(options[update].cat, options[update].key, true);
+			_updateExpectedOption(update, true, '', expected);
+			window.requestAnimationFrame(function() {
+				var pages = _getPages();
+				for (var i = 0; i < pages.length; i++) {
+					var opts = _getOptions(pages[i]);
+					assert.equal(pages[i].options.length, opts.length);
+					for (var j = 0; j < opts.length; j++) {
+						assert.equal (opts[j].selected, expected[i].options[j].selected);
+					}
+				}
+				done();
+			});
+		});
+		test('adding duplicate filter option updates filters', function() {
+			const update = 2;
+			const newTitle = 'newTitle';
+			_setSelectedOptions([0, 4, 5]);
+			const expected = _getExpectedAndImport(filter);
+			filter.addFilterOption(options[update].cat, options[update].key, newTitle, true);
+			_updateExpectedOption(update, true, newTitle, expected);
+			assert.deepEqual(expected, filter._filters);
+		});
+		test('adding duplicate filter option updates display', function(done) {
+			const update = 2;
+			const newTitle = 'newTitle';
+			const selected = [0, 4, 5];
+			_setSelectedOptions(selected);
+			const expected = _getExpectedAndImport(filter);
+			filter.addFilterOption(options[update].cat, options[update].key, 'newTitle', true);
+			_updateExpectedOption(update, true, newTitle, expected);
+			window.requestAnimationFrame(function() {
+				var pages = _getPages();
+				for (var i = 0; i < pages.length; i++) {
+					var opts = _getOptions(pages[i]);
+					assert.equal(pages[i].options.length, opts.length);
+					for (var j = 0; j < opts.length; j++) {
+						assert.equal (opts[j].selected, expected[i].options[j].selected);
+						assert.equal(opts[j].text, expected[i].options[j].title);
+					}
 				}
 				done();
 			});

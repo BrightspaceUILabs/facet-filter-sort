@@ -98,12 +98,18 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		this.removeEventListener('d2l-tab-panel-selected', this._selectedTabChanged);
 	}
 
-	addFilterCategory(key, title) {
-		if (this._filters.filter(v => v.key === key).length === 0) {
+	addFilterCategory(key, title, numSelected) {
+		const cIndex = this._getFilterIndexFromKey(key);
+		if (cIndex >= 0) {
+			this._setProp('title', title, cIndex);
+			if (!this._filters[cIndex].options.length && numSelected >= 0) {
+				this._setNumSelected(cIndex, numSelected);
+			}
+		} else {
 			this._filters = this._filters.concat({
 				key: key,
 				title: title,
-				numSelected: 0,
+				numSelected: numSelected || 0,
 				options: []
 			});
 		}
@@ -114,19 +120,31 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	}
 
 	addFilterOption(categoryKey, key, title, selected) {
-		var index = this._getFilterIndexFromKey(categoryKey);
-		if (index >= 0 && this._filters[index].options.filter(v => v.key === key).length === 0) {
-			this._setProp(
-				'options',
-				this._filters[index].options.concat({
-					key: key,
-					title: title,
-					selected: selected || false,
-					display: true
-				}),
-				index);
-			if (selected) {
-				this._setNumSelected(index, this._filters[index].numSelected + 1);
+		var cIndex = this._getFilterIndexFromKey(categoryKey);
+		if (cIndex >= 0) {
+			const oIndex = this._getOptionIndexFromKey(cIndex, key);
+			if (oIndex >= 0) {
+				if (this._filters[cIndex].options[oIndex].selected !== selected) {
+					this._setOptionSelected(cIndex, oIndex, selected);
+					this._setNumSelected(cIndex, this._filters[cIndex].numSelected + (selected ? 1 : -1));
+				}
+				this._setProp('title', title, cIndex, oIndex);
+			} else {
+				if (this._filters[cIndex].options.length === 0) {
+					this._setNumSelected(cIndex, 0);
+				}
+				this._setProp(
+					'options',
+					this._filters[cIndex].options.concat({
+						key: key,
+						title: title,
+						selected: selected || false,
+						display: true
+					}),
+					cIndex);
+				if (selected) {
+					this._setNumSelected(cIndex, this._filters[cIndex].numSelected + 1);
+				}
 			}
 		}
 	}
@@ -135,6 +153,17 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		var index = this._getFilterIndexFromKey(categoryKey);
 		if (index >= 0) {
 			this._setProp('options', this._filters[index].options.filter(v => v.key !== key), index);
+		}
+	}
+
+	updateFilterOptionSelectedStatus(categoryKey, optionKey, value) {
+		const cIndex = this._getFilterIndexFromKey(categoryKey);
+		if (cIndex >= 0) {
+			const oIndex = this._getOptionIndexFromKey(cIndex, optionKey);
+			if (oIndex >= 0 && this._filters[cIndex].options[oIndex].selected !== value) {
+				this._setOptionSelected(cIndex, oIndex, value);
+				this._setNumSelected(cIndex, this._filters[cIndex].numSelected + (value ? 1 : -1));
+			}
 		}
 	}
 
@@ -201,8 +230,8 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		}
 	}
 
-	_selectedTabChanged(event) {
-		var selectedTab = dom(event).rootTarget;
+	_selectedTabChanged(e) {
+		var selectedTab = dom(e).rootTarget;
 		var key = selectedTab.id.replace(this._optionPanelIdPrefix, '');
 		var filterIndex = this._getFilterIndexFromKey(key);
 		if (filterIndex >= 0) {
