@@ -3,6 +3,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 (function() {
 	var filter;
+	let pageFixture;
 
 	var categories = [];
 	var options = [];
@@ -340,6 +341,27 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 				}
 				done();
 			});
+		});
+	});
+	suite('d2l-filter-dropdown-page', function() {
+		setup(function() {
+			pageFixture = fixture('page');
+		});
+		test('contains returns true when substring exists', function() {
+			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'Hello');
+			assert.equal(true, found);
+		});
+		test('contains returns false when substring doesn\'t exist', function() {
+			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'HelloWorld');
+			assert.equal(false, found);
+		});
+		test('contains returns true when substring exists, regardless of case', function() {
+			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'hello');
+			assert.equal(true, found);
+		});
+		test('contains can handle special characters', function() {
+			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World-/\\^$*+?.()|[]{}', 'world-/\\^$*+?.()|[]{}');
+			assert.equal(true, found);
 		});
 	});
 

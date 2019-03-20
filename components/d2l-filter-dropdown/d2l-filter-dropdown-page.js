@@ -99,11 +99,16 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 		var value = e.detail.value;
 		var clear = value === '';
 		if (clear || value.length) {
-			var regex = new RegExp(value, 'i');
 			for (var i = 0; i < this.options.length; i++) {
-				this._setOptionProp('display', clear || regex.test(this.options[i].title), i);
+				this._setOptionProp('display', clear || this._caseInsensitiveContainsSubstring(this.options[i].title, value), i);
 			}
 		}
+	}
+
+	_caseInsensitiveContainsSubstring(s, sub) {
+		const lowerS = s.toLowerCase();
+		const lowerSub = sub.toLowerCase();
+		return lowerS.indexOf(lowerSub) >= 0;
 	}
 
 	_handleMenuItemChange(e) {
