@@ -22,7 +22,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			<d2l-menu label="[[parentTitle]]">
 				<dom-repeat items="[[options]]" as="o">
 					<template>
-					<d2l-menu-item-checkbox text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]" selected=[[o.selected]]></d2l-menu-item-checkbox>
+					<d2l-menu-item-checkbox text="[[o.title]]" value="[[o.key]]" selected=[[o.selected]]></d2l-menu-item-checkbox>
 					</template>
 				</dom-repeat>
 			</d2l-menu>
@@ -45,8 +45,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 					// {
 					// 	key: '',
 					// 	title: '',
-					// 	selected: false,
-					// 	display: true
+					// 	selected: false
 					// }
 				]
 			},
@@ -96,19 +95,19 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 	}
 
 	_handleSearchChange(e) {
-		var value = e.detail.value;
-		var clear = value === '';
-		if (clear || value.length) {
-			for (var i = 0; i < this.options.length; i++) {
-				this._setOptionProp('display', clear || this._caseInsensitiveContainsSubstring(this.options[i].title, value), i);
-			}
-		}
-	}
-
-	_caseInsensitiveContainsSubstring(s, sub) {
-		const lowerS = s.toLowerCase();
-		const lowerSub = sub.toLowerCase();
-		return lowerS.indexOf(lowerSub) >= 0;
+		this.dispatchEvent(
+			new CustomEvent(
+				'd2l-filter-dropdown-page-searched',
+				{
+					detail: {
+						value: e.detail.value,
+						categoryKey: this.parentKey
+					},
+					composed: true,
+					bubbles: true
+				}
+			)
+		);
 	}
 
 	_handleMenuItemChange(e) {
