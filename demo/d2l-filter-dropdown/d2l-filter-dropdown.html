@@ -47,19 +47,66 @@
 		</div>
 	</body>
 	<script type="module">
-		window.requestAnimationFrame(function() {
-			var filter = document.querySelector('d2l-filter-dropdown.with-search');
-			for (var i = 0; i < 6; i++) {
-				filter.addFilterCategory('Cat' + i, 'Cat ' + i, i === 0);
-				for (var j = 0; j < 20; j++) {
-					filter.addFilterOption('Cat' + i, `option${i}-${j}`, `Option ${i}-${j}`, j === i);
-				}
+		function generateOptions(i) {
+			const options = [];
+			for (let j = 0; j < 20; j++) {
+				options.push({key: `option${i}-${j}`, title: `Option ${i}-${j}`, selected: j === i});
 			}
-			filter = document.querySelector('d2l-filter-dropdown.no-search');
-			for (i = 0; i < 4; i++) {
-				filter.addFilterCategory('NCat' + i, 'NCat ' + i, i === 0);
-				for (j = 0; j <= i; j++) {
-					filter.addFilterOption('NCat' + i, `Noption${i}-${j}`, `NOption ${i}-${j}`, j === i);
+			return options;
+		}
+		function generateCategory(i) {
+			const options = generateOptions(i);
+			return {
+				key: 'Cat' + i,
+				title: 'Cat ' + i,
+				numSelected: options.filter(o => o.selected).length,
+				options: options
+			}
+		}
+
+		function search(search, category, data) {
+			if (search === '') {
+				return data[category].options;
+			}
+
+			return data[category].options.filter(opt => opt.title.indexOf(search) >= 0);
+		}
+		window.requestAnimationFrame(function() {
+			const filter = document.querySelector('d2l-filter-dropdown.with-search');
+			const data = {};
+			// Generate mirror of data
+			for (let i = 0; i < 6; i++) {
+				data['Cat' + i] = generateCategory(i);
+			}
+
+			// Set up filter with our generated data
+			Object.keys(data).forEach(categoryKey => {
+				filter.addFilterCategory(categoryKey, data[categoryKey].title, data[categoryKey].numSelected);
+				data[categoryKey].options.forEach(option => {
+					filter.addFilterOption(categoryKey, option.key, option.title, option.selected);
+				});
+			});
+
+			// Listen for changes so search doesn't wipe the selected state
+			filter.addEventListener('d2l-filter-dropdown-option-changed', e => {
+				data[e.detail.categoryKey].options.forEach(option => {
+					if (option.key === e.detail.optionKey) {
+						option.selected = e.detail.newValue;
+					}
+				})
+			});
+
+			// Perform search
+			filter.addEventListener('d2l-filter-dropdown-page-searched', e => {
+				const newOptions = search(e.detail.value, e.detail.categoryKey, data);
+				filter.setFilterOptions(e.detail.categoryKey, newOptions);
+			});
+
+			const filterNoSearch = document.querySelector('d2l-filter-dropdown.no-search');
+			for (let i = 0; i < 4; i++) {
+				filterNoSearch.addFilterCategory('NCat' + i, 'NCat ' + i, i === 0);
+				for (let j = 0; j <= i; j++) {
+					filterNoSearch.addFilterOption('NCat' + i, `Noption${i}-${j}`, `NOption ${i}-${j}`, j === i);
 				}
 			}
 		});

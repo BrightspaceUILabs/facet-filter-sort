@@ -65,7 +65,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					// 		key: '',
 					// 		title: '',
 					// 		selected: false,
-					// 		display: true
 					// 	}]
 					// }
 				]
