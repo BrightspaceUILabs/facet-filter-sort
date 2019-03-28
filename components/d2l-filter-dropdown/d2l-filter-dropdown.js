@@ -157,7 +157,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	}
 
 	setFilterOptions(categoryKey, options) {
-		const index = this._getFilterIndexFromKey(categoryKey);
+		const index = this._getCategoryIndexFromKey(categoryKey);
 		if (index >= 0) {
 			this._setProp('options', [], index);
 			options.forEach(o => {
