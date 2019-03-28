@@ -223,26 +223,6 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 				done();
 			});
 		});
-		test('changing search input updates option display', function(done) {
-			_getExpectedAndImport(filter);
-			window.requestAnimationFrame(function() {
-				var pages = _getPages();
-				var search = options[1].title.substr(-1);
-				var searchInput = pages[0].shadowRoot.querySelector('d2l-input-search');
-				searchInput.value = search;
-				var searchButton = searchInput.shadowRoot.querySelector('.d2l-input-search-search');
-				afterNextRender(searchButton, function(button) {
-					MockInteractions.tap(button);
-					requestAnimationFrame(function() {
-						var opts = _getOptions(pages[0]);
-						for (var i = 0; i < opts.length; i++) {
-							assert.equal(opts[i].text.indexOf(search) === -1, opts[i].hidden || false);
-						}
-						done();
-					});
-				}, [searchButton]);
-			});
-		});
 		test('removing filter category updates filters', function() {
 			var expected = _getExpectedAndImport(filter);
 			var removal = categories[0].key;
@@ -347,21 +327,30 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 		setup(function() {
 			pageFixture = fixture('page');
 		});
-		test('contains returns true when substring exists', function() {
-			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'Hello');
-			assert.equal(true, found);
-		});
-		test('contains returns false when substring doesn\'t exist', function() {
-			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'HelloWorld');
-			assert.equal(false, found);
-		});
-		test('contains returns true when substring exists, regardless of case', function() {
-			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World', 'hello');
-			assert.equal(true, found);
-		});
-		test('contains can handle special characters', function() {
-			const found = pageFixture._caseInsensitiveContainsSubstring('Hello World-/\\^$*+?.()|[]{}', 'world-/\\^$*+?.()|[]{}');
-			assert.equal(true, found);
+
+		test('searching emits event with correct context', (done) => {
+			const search = 'abc123';
+			const key = 'this is a key';
+			pageFixture.parentKey = key;
+
+			pageFixture.addEventListener('d2l-filter-dropdown-page-searched', (e) => {
+				expect(e.composed).to.be.true;
+				expect(e.bubbles).to.be.true;
+				expect(e.detail.value).to.equal(search);
+				expect(e.detail.categoryKey).to.equal(key);
+				done();
+			});
+
+			window.requestAnimationFrame(() => {
+				const input = pageFixture.shadowRoot.querySelector('d2l-input-search');
+				input.value = search;
+				const button = input.shadowRoot.querySelector('.d2l-input-search-search');
+				console.log(input);
+				console.log(button);
+				afterNextRender(button, b => {
+					MockInteractions.tap(b);
+				}, [button]);
+			});
 		});
 	});
 
