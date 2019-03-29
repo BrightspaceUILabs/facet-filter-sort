@@ -61,7 +61,7 @@
 				title: 'Cat ' + i,
 				numSelected: options.filter(o => o.selected).length,
 				options: options
-			}
+			};
 		}
 
 		function search(search, category, data) {
@@ -93,7 +93,7 @@
 					if (option.key === e.detail.optionKey) {
 						option.selected = e.detail.newValue;
 					}
-				})
+				});
 			});
 
 			// Perform search
