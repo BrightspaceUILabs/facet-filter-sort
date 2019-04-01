@@ -41,7 +41,6 @@
 			<demo-snippet>
 				<template strip-whitespace>
 					<d2l-filter-dropdown class="with-search"></d2l-filter-dropdown>
-					<d2l-filter-dropdown disable-search class="no-search"></d2l-filter-dropdown>
 				</template>
 			</demo-snippet>
 		</div>
@@ -93,6 +92,16 @@
 					if (option.key === e.detail.optionKey) {
 						option.selected = e.detail.newValue;
 					}
+				});
+
+				// Listen for clear to wipe selected state
+				filter.addEventListener('d2l-filter-dropdown-cleared', () => {
+					Object.keys(data).forEach(categoryKey => {
+						data[categoryKey].numSelected = 0;
+						data[categoryKey].options.forEach(option => {
+							option.selected = false;
+						});
+					});
 				});
 			});
 
