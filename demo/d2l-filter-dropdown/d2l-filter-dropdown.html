@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+		<title>d2l-filter-dropdown demo</title>
+
+		<script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+		<script type="module">
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+			import '@polymer/iron-demo-helpers/demo-snippet';
+			import 'd2l-typography/d2l-typography.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
+
+			const $_documentContainer = document.createElement('template');
+			$_documentContainer.innerHTML = `
+				<custom-style>
+					<style is="custom-style" include="demo-pages-shared-styles"></style>
+				</custom-style>
+				<custom-style include="d2l-typography">
+					<style is="custom-style" include="d2l-typography"></style>
+				</custom-style>
+				<style>
+					html {
+						font-size: 20px;
+					}
+					d2l-filter-dropdown {
+						display: inline-block;
+						margin: 0 20px;
+					}
+				</style>
+			`;
+			document.body.appendChild($_documentContainer.content);
+		</script>
+	</head>
+	<body class="d2l-typography">
+		<div class="vertical-section-container fixedSize">
+			<h3>Basic d2l-filter-dropdown demo</h3>
+			<demo-snippet>
+				<template strip-whitespace>
+					<d2l-filter-dropdown class="with-search"></d2l-filter-dropdown>
+					<d2l-filter-dropdown disable-search class="no-search"></d2l-filter-dropdown>
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+	<script type="module">
+		window.requestAnimationFrame(function() {
+			var filter = document.querySelector('d2l-filter-dropdown.with-search');
+			for (var i = 0; i < 6; i++) {
+				filter.addFilterCategory('Cat' + i, 'Cat ' + i, i === 0);
+				for (var j = 0; j < 20; j++) {
+					filter.addFilterOption('Cat' + i, `option${i}-${j}`, `Option ${i}-${j}`, j === i);
+				}
+			}
+			filter = document.querySelector('d2l-filter-dropdown.no-search');
+			for (i = 0; i < 4; i++) {
+				filter.addFilterCategory('NCat' + i, 'NCat ' + i, i === 0);
+				for (j = 0; j <= i; j++) {
+					filter.addFilterOption('NCat' + i, `Noption${i}-${j}`, `NOption ${i}-${j}`, j === i);
+				}
+			}
+		});
+	</script>
+</html>
