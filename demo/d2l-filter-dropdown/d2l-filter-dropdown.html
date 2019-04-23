@@ -12,7 +12,10 @@
 			import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
 			import '@polymer/iron-demo-helpers/demo-snippet';
 			import 'd2l-typography/d2l-typography.js';
+			import 'd2l-menu/d2l-menu-item-checkbox.js';
 			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
+			import './d2l-demo-filter.js';
 
 			const $_documentContainer = document.createElement('template');
 			$_documentContainer.innerHTML = `
@@ -26,7 +29,7 @@
 					html {
 						font-size: 20px;
 					}
-					d2l-filter-dropdown {
+					d2l-demo-filter, d2l-filter-dropdown {
 						display: inline-block;
 						margin: 0 20px;
 					}
@@ -37,31 +40,81 @@
 	</head>
 	<body class="d2l-typography">
 		<div class="vertical-section-container fixedSize">
-			<h3>Basic d2l-filter-dropdown demo</h3>
+			<h3>d2l-filter-dropdown with dom-repeat data and event hookups</h3>
+			<demo-snippet>
+				<template>
+					<d2l-demo-filter></d2l-demo-filter>
+				</template>
+			</demo-snippet>
+			<h3>Basic d2l-filter-dropdown with hardcoded data and events console logged</h3>
 			<demo-snippet>
 				<template strip-whitespace>
-					<d2l-filter-dropdown class="with-search"></d2l-filter-dropdown>
-					<d2l-filter-dropdown disable-search class="no-search"></d2l-filter-dropdown>
+					<d2l-filter-dropdown id="filter" total-selected-option-count="4">
+						<d2l-filter-dropdown-category key="1" category-text="Category 1">
+							<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox selected text="Option 1 - 4" value="4"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 1 - 5" value="5"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 1 - 6" value="6"></d2l-menu-item-checkbox>
+						</d2l-filter-dropdown-category>
+						<d2l-filter-dropdown-category key="2" category-text="Category 2">
+							<d2l-menu-item-checkbox selected text="Option 2 - 1" value="1"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 2 - 2" value="2"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 2 - 3" value="3"></d2l-menu-item-checkbox>
+						</d2l-filter-dropdown-category>
+						<d2l-filter-dropdown-category key="3" category-text="Category 3">
+							<d2l-menu-item-checkbox text="Option 3 - 1" value="1"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 3 - 2" value="2"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 3 - 3" value="3"></d2l-menu-item-checkbox>
+						</d2l-filter-dropdown-category>
+						<d2l-filter-dropdown-category key="4" category-text="Category 4">
+							<d2l-menu-item-checkbox text="Option 4 - 1" value="1"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 4 - 2" value="2"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 4 - 3" value="3"></d2l-menu-item-checkbox>
+						</d2l-filter-dropdown-category>
+						<d2l-filter-dropdown-category key="5" category-text="Category 5" disable-search>
+							<d2l-menu-item-checkbox text="Option 5 - 1" value="1"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 5 - 2" value="2"></d2l-menu-item-checkbox>
+							<d2l-menu-item-checkbox text="Option 5 - 3" value="3"></d2l-menu-item-checkbox>
+						</d2l-filter-dropdown-category>
+					</d2l-filter-dropdown>
 				</template>
 			</demo-snippet>
 		</div>
 	</body>
 	<script type="module">
+		/* eslint-disable no-console */
+		function logEvent(e, text) {
+			console.group(text);
+			console.log('event', e);
+			if (e.detail) console.log('detail', e.detail);
+			console.groupEnd();
+		}
+		/* eslint-enable no-console */
+
 		window.requestAnimationFrame(function() {
-			var filter = document.querySelector('d2l-filter-dropdown.with-search');
-			for (var i = 0; i < 6; i++) {
-				filter.addFilterCategory('Cat' + i, 'Cat ' + i, i === 0);
-				for (var j = 0; j < 20; j++) {
-					filter.addFilterOption('Cat' + i, `option${i}-${j}`, `Option ${i}-${j}`, j === i);
+			var filter = document.querySelector('#filter');
+			filter.addEventListener('d2l-filter-dropdown-close', function(e) {
+				logEvent(e, 'Filter dropdown closed!');
+			});
+			filter.addEventListener('d2l-filter-dropdown-cleared', function(e) {
+				logEvent(e, 'Filters clear button clicked!');
+			});
+			filter.addEventListener('d2l-filter-dropdown-category-selected', function(e) {
+				logEvent(e, 'Filter category tab selected!');
+			});
+			filter.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
+				logEvent(e, 'Filter category searched!');
+			});
+			filter.addEventListener('d2l-filter-dropdown-menu-item-change', function(e) {
+				logEvent(e, 'Filter menu option clicked!');
+				if (e.detail.selected) {
+					filter.totalSelectedOptionCount++;
+				} else {
+					filter.totalSelectedOptionCount--;
 				}
-			}
-			filter = document.querySelector('d2l-filter-dropdown.no-search');
-			for (i = 0; i < 4; i++) {
-				filter.addFilterCategory('NCat' + i, 'NCat ' + i, i === 0);
-				for (j = 0; j <= i; j++) {
-					filter.addFilterOption('NCat' + i, `Noption${i}-${j}`, `NOption ${i}-${j}`, j === i);
-				}
-			}
+			});
 		});
 	</script>
 </html>
