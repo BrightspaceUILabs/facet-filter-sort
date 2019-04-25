@@ -1,6 +1,5 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import 'd2l-dropdown/d2l-dropdown-menu.js';
-import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
 import 'd2l-menu/d2l-menu.js';
 import './d2l-filter-sort-opener.js';
 import './d2l-sort-by-dropdown-localize-behavior.js';
@@ -17,14 +16,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">
 			}
 		</style>
 		<d2l-filter-sort-opener text="[[_selectedOptionText]]">
-			<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" id="d2l-sort-by-dropdown-menu">
-				<d2l-menu label="[[label]]">
+			<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
+				<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
 				  <slot></slot>
 				</d2l-menu>
 			  </d2l-dropdown-menu>
 		</d2l-filter-sort-opener>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -107,15 +106,16 @@ class SortByDropdown extends mixinBehaviors(
 		super.connectedCallback();
 		this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
 		afterNextRender(this, function() {
-			this.$['d2l-sort-by-dropdown-menu'].addEventListener('d2l-menu-item-change',
+			// Issues with event bubbling in Edge/IE11 - need to listen directly on the menu
+			this.$['d2l-sort-by-menu'].addEventListener('d2l-menu-item-change',
 				this._boundListeners._onItemSelect);
 
 			const effectiveChildren = FlattenedNodesObserver.getFlattenedNodes(this)
 				.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
 
-			let initialOption = effectiveChildren.find(function(child) {
+			let initialOption = effectiveChildren.filter(function(child) {
 				return child.selected;
-			}.bind(this));
+			})[0];
 
 			if (!initialOption) {
 				// Select the first option if none are selected
@@ -130,7 +130,7 @@ class SortByDropdown extends mixinBehaviors(
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.$['d2l-sort-by-dropdown-menu'].removeEventListener('d2l-menu-item-change',
+		this.$['d2l-sort-by-menu'].removeEventListener('d2l-menu-item-change',
 			this._boundListeners._onItemSelect);
 	}
 

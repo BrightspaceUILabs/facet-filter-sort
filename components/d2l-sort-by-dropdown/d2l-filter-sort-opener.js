@@ -25,7 +25,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-sort-opener">
 				};
 				--icon-right-rtl: {
 					left: 0.6rem;
-					right: initial;
+					right: auto;
 				};
 			}
 
@@ -79,14 +79,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-sort-opener">
 				padding-right: 1.2rem;
 			}
 
-			/* Duplicated because some browsers ignore CSS block for any invalid selector */
-			:host-context([dir="rtl"]) .d2l-filter-sort-opener-content {
-				@apply --content-icon-rtl;
-			}
 			:host(:dir(rtl)) .d2l-filter-sort-opener-content {
-				@apply --content-icon-rtl;
-			}
-			:host(:host-context([dir="rtl"])) .d2l-filter-sort-opener-content {
 				@apply --content-icon-rtl;
 			}
 
@@ -99,13 +92,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-sort-opener">
 				right: 0.6rem;
 			}
 
-			:host-context([dir="rtl"]) d2l-icon.d2l-filter-sort-opener-icon {
-				@apply --icon-right-rtl;
-			}
 			:host(:dir(rtl)) d2l-icon.d2l-filter-sort-opener-icon {
-				@apply --icon-right-rtl;
-			}
-			:host(:host-context([dir="rtl"])) d2l-icon.d2l-filter-sort-opener-icon {
 				@apply --icon-right-rtl;
 			}
 
@@ -114,13 +101,27 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-filter-sort-opener">
 				opacity: 0.5;
 			}
 		</style>
-		<button aria-expanded$="[[ariaExpanded]]" aria-haspopup$="[[ariaHaspopup]]" aria-label$="[[ariaLabel]]" class="d2l-focusable d2l-filter-sort-opener-button" disabled$="[[disabled]]" autofocus$="[[autofocus]]" form$="[[form]]" formaction$="[[formaction]]" formenctype$="[[formenctype]]" formmethod$="[[formmethod]]" formnovalidate$="[[formnovalidate]]" formtarget$="[[formtarget]]" name$="[[name]]" type$="[[type]]">
+		<button
+			aria-expanded$="[[ariaExpanded]]"
+			aria-haspopup$="[[ariaHaspopup]]"
+			aria-label$="[[ariaLabel]]"
+			class="d2l-focusable d2l-filter-sort-opener-button"
+			disabled$="[[disabled]]"
+			autofocus$="[[autofocus]]"
+			form$="[[form]]"
+			formaction$="[[formaction]]"
+			formenctype$="[[formenctype]]"
+			formmethod$="[[formmethod]]"
+			formnovalidate$="[[formnovalidate]]"
+			formtarget$="[[formtarget]]"
+			name$="[[name]]"
+			type$="[[type]]">
 			<span class="d2l-filter-sort-opener-content">[[text]]</span>
 			<d2l-icon icon="d2l-tier1:chevron-down" class="d2l-filter-sort-opener-icon"></d2l-icon>
 		</button>
 		<slot></slot>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
