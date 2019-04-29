@@ -33,6 +33,80 @@
 			</template>
 		</test-fixture>
 
-		<script type="module" src="./d2l-filter-dropdown.js"></script>
+		<script type="module">
+			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+
+			suite('d2l-filter-dropdown', function() {
+				var filter;
+
+				setup(function(done) {
+					filter = fixture('basic');
+					afterNextRender(filter, done);
+				});
+				test('instantiating the element works', function() {
+					assert.equal('d2l-filter-dropdown', filter.tagName.toLowerCase());
+				});
+				test('attributes are set correctly', function() {
+					assert.equal(filter.totalSelectedOptionCount, 3);
+				});
+				test('clear button is hidden if total selected count is 0, displayed otherwise', function(done) {
+					var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
+					assert.isFalse(clearButton.hidden);
+
+					filter.totalSelectedOptionCount = 0;
+
+					requestAnimationFrame(function() {
+						assert.isTrue(clearButton.hidden);
+						done();
+					});
+				});
+				test('pressing the clear button triggers the d2l-filter-dropdown-cleared event', function(done) {
+					var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
+					filter.addEventListener('d2l-filter-dropdown-cleared', function() {
+						done();
+					});
+
+					clearButton.click();
+				});
+				test('closing the filter triggers the d2l-filter-dropdown-close event', function(done) {
+					var dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
+					filter.addEventListener('d2l-filter-dropdown-close', function() {
+						done();
+					});
+
+					dropdown.toggleOpen();
+
+					requestAnimationFrame(function() {
+						requestAnimationFrame(function() {
+							dropdown.toggleOpen();
+						});
+					});
+				});
+				test('the opener text is set accordingly', function() {
+					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+					assert.equal(openerButton.text, 'Filter: 3 Filters');
+
+					filter.totalSelectedOptionCount = 1;
+					assert.equal(openerButton.text, 'Filter: 1 Filter');
+
+					filter.totalSelectedOptionCount = 0;
+					assert.equal(openerButton.text, 'Filter');
+				});
+				test('filter categories display correctly', function(done) {
+					function getTabs() {
+						var tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab');
+						if (tabs.length === 2) {
+							assert.equal(tabs[0].text, 'Category 1 (3)');
+							assert.equal(tabs[1].text, 'Category 2');
+							done();
+						} else {
+							setTimeout(getTabs, 25);
+						}
+					}
+
+					getTabs();
+				});
+			});
+		</script>
 	</body>
 </html>
