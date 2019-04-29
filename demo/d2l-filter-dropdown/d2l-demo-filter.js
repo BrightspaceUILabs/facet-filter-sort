@@ -12,11 +12,6 @@ import 'd2l-menu/d2l-menu-item-checkbox.js';
 class D2LDemoFilter extends PolymerElement {
 	static get template() {
 		return html`
-			<style>
-				[hidden] {
-					display: none;
-				}
-			</style>
 			<d2l-filter-dropdown total-selected-option-count="[[_totalSelected]]">
 				<dom-repeat items="[[_filters]]" as="f">
 					<template>

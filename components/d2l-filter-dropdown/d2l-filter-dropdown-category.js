@@ -35,7 +35,7 @@ class D2LFilterDropdownCategory extends mixinBehaviors([D2L.PolymerBehaviors.Tab
 				<d2l-input-search placeholder="[[localize('searchBy', 'category', categoryText)]]" value="[[searchValue]]"></d2l-input-search>
 			</div>
 			<d2l-menu label="[[text]]">
-				<slot class="d2l-menu-items"></slot>
+				<slot></slot>
 			</d2l-menu>
 		`;
 	}
@@ -151,11 +151,11 @@ class D2LFilterDropdownCategory extends mixinBehaviors([D2L.PolymerBehaviors.Tab
 		);
 	}
 
-	_updateTabText(text, numSelected) {
-		if (numSelected === 0) {
-			this.text = text;
+	_updateTabText(categoryText, selectedOptionCount) {
+		if (selectedOptionCount === 0) {
+			this.text = categoryText;
 		} else {
-			this.text = this.localize('categoryTitleMultiple', 'title', text, 'numSelected', numSelected);
+			this.text = this.localize('categoryTitleMultiple', 'title', categoryText, 'numSelected', selectedOptionCount);
 		}
 	}
 }

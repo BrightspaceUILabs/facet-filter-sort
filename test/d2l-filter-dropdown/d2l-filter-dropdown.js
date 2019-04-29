@@ -1,10 +1,10 @@
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 (function() {
-	var filter;
-	var categories = [];
 
 	suite('d2l-filter-dropdown', function() {
+		var filter;
+
 		setup(function(done) {
 			filter = fixture('basic');
 			afterNextRender(filter, done);
@@ -75,6 +75,9 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 	});
 
 	suite('d2l-filter-dropdown-category', function() {
+		var filter;
+		var categories = [];
+
 		setup(function(done) {
 			filter = fixture('basic');
 			categories = filter.querySelectorAll('d2l-filter-dropdown-category');
@@ -108,7 +111,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 			searchInput = categories[1].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
 			assert.equal(searchInput.hidden, true);
 		});
-		test('setting the search-value aattrbiute updates the value in the search input', function() {
+		test('setting the search-value attribute updates the value in the search input', function() {
 			categories[0].searchValue = 'test';
 
 			var searchInput = categories[0].shadowRoot.querySelector('d2l-input-search');
