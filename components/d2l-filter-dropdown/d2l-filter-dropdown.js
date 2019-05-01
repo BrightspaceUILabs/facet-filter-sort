@@ -21,11 +21,13 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					box-sizing: border-box;
 					display: flex;
 					justify-content: space-between;
-					margin: 0 -1rem;
-					padding: 0 1rem 1rem 1rem;
+					padding: 1rem;
 				}
 				.d2l-filter-dropdown-content-header > span {
 					align-self: center;
+				}
+				d2l-tabs {
+					padding: 0 1rem;
 				}
 				[hidden] {
 					display: none;
@@ -35,6 +37,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
+					no-padding
 					render-content>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[localize('filterBy')]]</span>
