@@ -31,7 +31,7 @@ Include the webcomponents.js polyfill loader (for browsers who don't natively su
 <script type="module" src="../../d2l-menu/d2l-menu-item-checkbox.js"></script>
 ```
 
-Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-menu-item-checbox` component.  For example:
+Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-menu-item-checkbox` component.  For example:
 
 ```html
 <d2l-filter-dropdown total-selected-option-count="3">
