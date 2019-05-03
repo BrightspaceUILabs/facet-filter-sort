@@ -5,48 +5,105 @@
 
 Collection of (search) facet, filter, and sort components
 
-## Installation
+## Components
 
-`d2l-facet-filter-sort` can be installed from [Bower][bower-url]:
-```shell
-bower install d2l-facet-filter-sort
-```
+- [d2l-filter-dropdown](#d2l-filter-dropdown)
+- [d2l-search-facets](#d2l-search-facets)
+- [d2l-search-results-count](#d2l-search-results-count)
+- [d2l-sort-by-dropdown](#d2l-sort-by-dropdown)
 
-## Usage
+### d2l-filter-dropdown
 
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) polyfill loader (for browsers who don't natively support web components), then import `d2l-facet-filter-sort.html`:
+<img src="/images/d2l-filter-dropdown.png?raw=true" width="450">
+
+#### Usage
+
+Include the webcomponents.js polyfill loader (for browsers who don't natively support web components), then import the following:
+
+- `d2l-filter-dropdown`
+- `d2l-filter-dropdown-category`
+- `d2l-menu-item-checkbox`
 
 ```html
-<head>
-	<script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-	<link rel="import" href="bower_components/d2l-facet-filter-sort/d2l-facet-filter-sort.html">
-</head>
+<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
+<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
+<script type="module" src="../../d2l-menu/d2l-menu-item-checkbox.js"></script>
 ```
 
-<!---
-```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-loader.js"></script>
-    <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-facet-filter-sort.html">
-    <custom-style include="d2l-typography">
-      <style is="custom-style" include="d2l-typography"></style>
-    </custom-style>
-    <style>
-      html {
-        font-size: 20px;
-        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-      }
-    </style>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-menu-item-checkbox` component.  For example:
+
 ```html
-<d2l-facet-filter-sort>My element</d2l-facet-filter-sort>
+<d2l-filter-dropdown total-selected-option-count="3">
+	<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="2">
+		<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
+	</d2l-filter-dropdown-category>
+	<d2l-filter-dropdown-category key="2" category-text="Category 2" selected-option-count="1">
+		<d2l-menu-item-checkbox selected text="Option 2 - 1" value="1"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox text="Option 2 - 2" value="2"></d2l-menu-item-checkbox>
+	</d2l-filter-dropdown-category>
+	<d2l-filter-dropdown-category key="3" category-text="Category 3" disable-search>
+		<d2l-menu-item-checkbox text="Option 3 - 1" value="1"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox text="Option 3 - 2" value="2"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox text="Option 3 - 3" value="3"></d2l-menu-item-checkbox>
+	</d2l-filter-dropdown-category>
+</d2l-filter-dropdown>
 ```
+
+#### Attributes
+
+`d2l-filter-dropdown`:
+
+- `max-width` (optional): Sets the max-width of the filter dropdown.
+- `min-width` (optional): Sets the min-width of the filter dropdown.
+- `total-selected-option-count`: The total number of selected filter options across all categories.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+
+`d2l-filter-dropdown-category`:
+
+- `category-text`: Name of the filter category, will be shown on the tab.
+- `disable-search` (optional): Hides the search bar inside a filter tab.
+- `key`: Unique id to represent a filter category, sent back in category events.
+- `search-value` (optional): Sets the value in the search input, useful if setting up the filter in a default state.
+- `selected-option-count`: The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+
+#### Events
+
+`d2l-filter-dropdown`:
+
+- `d2l-filter-dropdown-close`: Fired when the filter dropdown is closed.
+- `d2l-filter-dropdown-cleared`: Fired when the clear button is pressed to clear all filters.
+
+`d2l-filter-dropdown-category`:
+
+- `d2l-filter-dropdown-category-selected`: Fired when a filter tab is selected.
+- `d2l-filter-dropdown-category-searched`: Fired when a filter category is searched.
+- `d2l-filter-dropdown-menu-item-change`: Fired when a filter option is selected.
+
+### d2l-search-facets
+
+<img src="/images/d2l-search-facets.png?raw=true" width="450">
+
+#### Usage
+
+To Do
+
+### d2l-search-results-count
+
+<img src="/images/d2l-search-results-count.png?raw=true" width="450">
+
+#### Usage
+
+To Do
+
+### d2l-sort-by-dropdown
+
+<img src="/images/d2l-sort-by-dropdown.png?raw=true" width="450">
+
+#### Usage
+
+To Do
 
 ## Developing, Testing and Contributing
 
