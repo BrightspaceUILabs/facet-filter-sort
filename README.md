@@ -52,6 +52,17 @@ Then, add the `d2l-filter-dropdown` as the top level filter component.  For each
 </d2l-filter-dropdown>
 ```
 
+The default lang terms can be overidden by setting the appropriate attributes.
+
+```html
+<d2l-filter-dropdown total-selected-option-count="3" header-text="Send To" opener-text="Send" opener-single="Sending To One" opener-multiple="Sending To Many">
+	<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="1">
+		<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
+		<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+	</d2l-filter-dropdown-category>
+</d2l-filter-dropdown>
+```
+
 #### Attributes
 
 `d2l-filter-dropdown`:
@@ -59,6 +70,13 @@ Then, add the `d2l-filter-dropdown` as the top level filter component.  For each
 - `max-width` (optional): Sets the max-width of the filter dropdown.
 - `min-width` (optional): Sets the min-width of the filter dropdown.
 - `total-selected-option-count`: The total number of selected filter options across all categories.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+- `header-text` (optional): Sets the text for the filter content header.
+- `opener-text` (optional): Sets the text for the opener when there are no selections.
+- `opener-single` (optional): Sets the text for the opener when there is a single selection.
+- `opener-multiple` (optional): Sets the text for the opener when there are multiple selections.
+- `disable-opener-text-variation` (optional): Disables displaying different text for different number of selections, instead always displaying the term for no selections.
+
+Note that for the header and opener text overrides, if the terms are to reflect the number of selections (e.g. `Sending To 3 Selections`), the consumer is responsible for updating those terms when the number of selections change.
 
 `d2l-filter-dropdown-category`:
 
