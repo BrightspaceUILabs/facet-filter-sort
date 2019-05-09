@@ -130,7 +130,11 @@
 
 					getTabs();
 				});
-
+				test('focussing the filter sets the focus on the opener button', function() {
+					assert.equal(filter.shadowRoot.activeElement, null);
+					filter.focus();
+					assert.equal(filter.shadowRoot.activeElement.tagName.toLowerCase(), 'd2l-dropdown-button-subtle');
+				});
 				test('the text values can be overridden', function() {
 					filter = fixture('text-override');
 					var header = filter.shadowRoot.querySelector('.d2l-filter-dropdown-content-header span');
