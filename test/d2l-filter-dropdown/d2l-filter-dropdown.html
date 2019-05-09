@@ -33,6 +33,30 @@
 			</template>
 		</test-fixture>
 
+		<test-fixture id="text-override">
+			<template strip-whitespace>
+				<d2l-filter-dropdown total-selected-option-count="2" header-text="Send To" opener-text="Sending To None" opener-text-single="Sending To One" opener-text-multiple="Sending To Many">
+					<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="2">
+						<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
+						<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+						<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
+					</d2l-filter-dropdown-category>
+				</d2l-filter-dropdown>
+			</template>
+		</test-fixture>
+
+		<test-fixture id="text-variation-disabled">
+			<template strip-whitespace>
+				<d2l-filter-dropdown total-selected-option-count="2" disable-opener-text-variation>
+					<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="2">
+						<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
+						<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+						<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
+					</d2l-filter-dropdown-category>
+				</d2l-filter-dropdown>
+			</template>
+		</test-fixture>
+
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
@@ -105,6 +129,33 @@
 					}
 
 					getTabs();
+				});
+
+				test('the text values can be overridden', function() {
+					filter = fixture('text-override');
+					var header = filter.shadowRoot.querySelector('.d2l-filter-dropdown-content-header span');
+					assert.equal(header.innerText, 'Send To');
+
+					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+					assert.equal(openerButton.text, 'Sending To Many');
+
+					filter.totalSelectedOptionCount = 1;
+					assert.equal(openerButton.text, 'Sending To One');
+
+					filter.totalSelectedOptionCount = 0;
+					assert.equal(openerButton.text, 'Sending To None');
+				});
+
+				test('the opener text variations can be disabled', function() {
+					filter = fixture('text-variation-disabled');
+					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+					assert.equal(openerButton.text, 'Filter');
+
+					filter.totalSelectedOptionCount = 1;
+					assert.equal(openerButton.text, 'Filter');
+
+					filter.totalSelectedOptionCount = 0;
+					assert.equal(openerButton.text, 'Filter');
 				});
 			});
 		</script>

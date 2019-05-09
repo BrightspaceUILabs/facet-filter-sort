@@ -33,14 +33,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					display: none;
 				}
 			</style>
-			<d2l-dropdown-button-subtle text="[[_getOpenerText(totalSelectedOptionCount)]]">
+			<d2l-dropdown-button-subtle text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple)]]">
 				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
 					no-padding
 					render-content>
 					<div class="d2l-filter-dropdown-content-header">
-						<span>[[localize('filterBy')]]</span>
+						<span>[[_localizeOrAlt(headerText, 'filterBy')]]</span>
 						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="_clearFilters"></d2l-button-subtle>
 					</div>
 					<d2l-tabs>
@@ -64,6 +64,26 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			totalSelectedOptionCount: {
 				type: Number,
 				value: 0
+			},
+			headerText: {
+				type: String,
+				value: ''
+			},
+			openerText: {
+				type: String,
+				value: ''
+			},
+			openerTextSingle: {
+				type: String,
+				value: ''
+			},
+			openerTextMultiple: {
+				type: String,
+				value: ''
+			},
+			disableOpenerTextVariation: {
+				type: Boolean,
+				value: false
 			}
 		};
 	}
@@ -101,14 +121,18 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		);
 	}
 
-	_getOpenerText(totalSelectedOptionCount) {
-		if (totalSelectedOptionCount === 0) {
-			return this.localize('filter');
+	_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple) {
+		if (totalSelectedOptionCount === 0 || disableOpenerTextVariation) {
+			return this._localizeOrAlt(openerText, 'filter');
 		}
 		if (totalSelectedOptionCount === 1) {
-			return this.localize('filterSingle');
+			return this._localizeOrAlt(openerTextSingle, 'filterSingle');
 		}
-		return this.localize('filterMultiple', 'numOptions', totalSelectedOptionCount);
+		return this._localizeOrAlt(openerTextMultiple, 'filterMultiple', 'numOptions', totalSelectedOptionCount);
+	}
+
+	_localizeOrAlt(altText, ...args) {
+		return altText ? altText : this.localize(...args);
 	}
 }
 
