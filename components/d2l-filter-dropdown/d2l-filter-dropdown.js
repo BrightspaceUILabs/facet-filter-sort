@@ -33,7 +33,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					display: none;
 				}
 			</style>
-			<d2l-dropdown-button-subtle text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerSingle, openerMultiple)]]">
+			<d2l-dropdown-button-subtle text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple)]]">
 				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
@@ -73,11 +73,11 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				type: String,
 				value: ''
 			},
-			openerSingle: {
+			openerTextSingle: {
 				type: String,
 				value: ''
 			},
-			openerMultiple: {
+			openerTextMultiple: {
 				type: String,
 				value: ''
 			},
@@ -121,14 +121,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		);
 	}
 
-	_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerSingle, openerMultiple) {
+	_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple) {
 		if (totalSelectedOptionCount === 0 || disableOpenerTextVariation) {
 			return this._localizeOrAlt(openerText, 'filter');
 		}
 		if (totalSelectedOptionCount === 1) {
-			return this._localizeOrAlt(openerSingle, 'filterSingle');
+			return this._localizeOrAlt(openerTextSingle, 'filterSingle');
 		}
-		return this._localizeOrAlt(openerMultiple, 'filterMultiple', 'numOptions', totalSelectedOptionCount);
+		return this._localizeOrAlt(openerTextMultiple, 'filterMultiple', 'numOptions', totalSelectedOptionCount);
 	}
 
 	_localizeOrAlt(altText, ...args) {
