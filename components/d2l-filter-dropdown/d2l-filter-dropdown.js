@@ -134,6 +134,10 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	_localizeOrAlt(altText, ...args) {
 		return altText ? altText : this.localize(...args);
 	}
+
+	focus() {
+		this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
+	}
 }
 
 window.customElements.define(D2LFilterDropdown.is, D2LFilterDropdown);
