@@ -33,8 +33,8 @@ describe('<d2l-sort-by-dropdown>', function() {
 		beforeEach(function(done) {
 			basicFixture = fixture('basic');
 			afterNextRender(basicFixture, function() {
-				option1 = document.getElementById('option1');
-				option2 = document.getElementById('option2');
+				option1 = basicFixture.querySelector('#option1');
+				option2 = basicFixture.querySelector('#option2');
 				done();
 			});
 		});
@@ -45,10 +45,10 @@ describe('<d2l-sort-by-dropdown>', function() {
 
 		it('should change to the selected option', function() {
 			MockInteractions.tap(option2);
-			expect(basicFixture.value).to.equal(option2.value);
+			expect(basicFixture.getAttribute('value')).to.equal(option2.value);
 
 			MockInteractions.tap(option1);
-			expect(basicFixture.value).to.equal(option1.value);
+			expect(basicFixture.getAttribute('value')).to.equal(option1.value);
 		});
 	});
 });
