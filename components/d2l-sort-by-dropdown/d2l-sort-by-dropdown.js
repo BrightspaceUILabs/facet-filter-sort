@@ -1,7 +1,7 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
 import 'd2l-dropdown/d2l-dropdown-menu.js';
 import 'd2l-menu/d2l-menu.js';
-import './d2l-filter-sort-opener.js';
 import './d2l-sort-by-dropdown-localize-behavior.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
@@ -15,13 +15,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">
 				display: inline-block;
 			}
 		</style>
-		<d2l-filter-sort-opener text="[[_selectedOptionText]]">
+		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
 			<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
 				<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
 				  <slot></slot>
 				</d2l-menu>
 			  </d2l-dropdown-menu>
-		</d2l-filter-sort-opener>
+		</d2l-dropdown-button-subtle>
 	</template>
 
 </dom-module>`;
