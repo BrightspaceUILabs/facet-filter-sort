@@ -159,8 +159,8 @@ npm test
 
 [bower-url]: http://bower.io/search/?q=d2l-facet-filter-sort
 [bower-image]: https://badge.fury.io/bo/d2l-facet-filter-sort.svg
-[ci-url]: https://travis-ci.org/BrightspaceUI/facet-filter-sort
-[ci-image]: https://travis-ci.org/BrightspaceUI/facet-filter-sort.svg?branch=master
+[ci-url]: https://travis-ci.com/BrightspaceUI/facet-filter-sort
+[ci-image]: https://travis-ci.com/BrightspaceUI/facet-filter-sort.svg?branch=master
 
 ## Versioning & Releasing
 
