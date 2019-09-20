@@ -75,7 +75,7 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 		return filter.shadowRoot.querySelectorAll('d2l-filter-dropdown-page');
 	}
 	function _getOptions(page) {
-		return page.shadowRoot.querySelectorAll('d2l-menu-item-checkbox');
+		return page.shadowRoot.querySelectorAll('d2l-filter-dropdown-option');
 	}
 
 	suite('d2l-filter-dropdown', function() {
