@@ -3,7 +3,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import 'd2l-inputs/d2l-input-search.js';
 import 'd2l-menu/d2l-menu.js';
-import 'd2l-menu/d2l-menu-item-checkbox.js';
+import './d2l-filter-dropdown-option.js';
 import './d2l-filter-dropdown-page-styles.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
@@ -22,7 +22,7 @@ class D2LFilterDropdownPage extends mixinBehaviors([D2L.PolymerBehaviors.FilterD
 			<d2l-menu label="[[parentTitle]]">
 				<dom-repeat items="[[options]]" as="o">
 					<template>
-					<d2l-menu-item-checkbox text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]" selected=[[o.selected]]></d2l-menu-item-checkbox>
+					<d2l-filter-dropdown-option text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]" selected=[[o.selected]]></d2l-filter-dropdown-option>
 					</template>
 				</dom-repeat>
 			</d2l-menu>
