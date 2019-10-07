@@ -22,32 +22,32 @@ Include the webcomponents.js polyfill loader (for browsers who don't natively su
 
 - `d2l-filter-dropdown`
 - `d2l-filter-dropdown-category`
-- `d2l-menu-item-checkbox`
+- `d2l-filter-dropdown-option`
 
 ```html
 <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 <script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
 <script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-<script type="module" src="../../d2l-menu/d2l-menu-item-checkbox.js"></script>
+<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 ```
 
-Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-menu-item-checkbox` component.  For example:
+Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-filter-dropdown-option` component (which is a custom `d2l-menu-item` component).  For example:
 
 ```html
 <d2l-filter-dropdown total-selected-option-count="3">
 	<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="2">
-		<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
+		<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option selected text="Option 1 - 3" value="3"></d2l-filter-dropdown-option>
 	</d2l-filter-dropdown-category>
 	<d2l-filter-dropdown-category key="2" category-text="Category 2" selected-option-count="1">
-		<d2l-menu-item-checkbox selected text="Option 2 - 1" value="1"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox text="Option 2 - 2" value="2"></d2l-menu-item-checkbox>
+		<d2l-filter-dropdown-option selected text="Option 2 - 1" value="1"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-filter-dropdown-option>
 	</d2l-filter-dropdown-category>
 	<d2l-filter-dropdown-category key="3" category-text="Category 3" disable-search>
-		<d2l-menu-item-checkbox text="Option 3 - 1" value="1"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox text="Option 3 - 2" value="2"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox text="Option 3 - 3" value="3"></d2l-menu-item-checkbox>
+		<d2l-filter-dropdown-option text="Option 3 - 1" value="1"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option text="Option 3 - 2" value="2"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option text="Option 3 - 3" value="3"></d2l-filter-dropdown-option>
 	</d2l-filter-dropdown-category>
 </d2l-filter-dropdown>
 ```
@@ -85,6 +85,12 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 - `key`: Unique id to represent a filter category, sent back in category events.
 - `search-value` (optional): Sets the value in the search input, useful if setting up the filter in a default state.
 - `selected-option-count`: The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+
+`d2l-filter-dropdown-option`:
+
+- `text`: Text of the filter option.
+- `value`: Value returned in the change event.
+- `selected` (optional): If added, this item will be selected by default.
 
 #### Events
 

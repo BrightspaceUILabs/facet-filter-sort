@@ -8,26 +8,26 @@
 
 		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 		<script src="../../../wct-browser-legacy/browser.js"></script>
-		<script type="module" src="../../../d2l-menu/d2l-menu-item-checkbox.js"></script>
 		<script type="module" src="../../../d2l-tabs/d2l-tabs.js"></script>
 		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
+		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
 			<template strip-whitespace>
 				<d2l-tabs>
 					<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
-						<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox selected text="Option 1 - 3" value="3"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox selected text="Option 1 - 4" value="4"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox text="Option 1 - 5" value="5"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox text="Option 1 - 6" value="6"></d2l-menu-item-checkbox>
+						<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option selected text="Option 1 - 3" value="3"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option selected text="Option 1 - 4" value="4"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option text="Option 1 - 5" value="5"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option text="Option 1 - 6" value="6"></d2l-filter-dropdown-option>
 					</d2l-filter-dropdown-category>
 					<d2l-filter-dropdown-category key="2" category-text="Category 2" disable-search>
-						<d2l-menu-item-checkbox text="Option 2 - 1" value="1"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox text="Option 2 - 2" value="2"></d2l-menu-item-checkbox>
-						<d2l-menu-item-checkbox text="Option 2 - 3" value="3"></d2l-menu-item-checkbox>
+						<d2l-filter-dropdown-option text="Option 2 - 1" value="1"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-filter-dropdown-option>
+						<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
 					</d2l-filter-dropdown-category>
 				</d2l-tabs>
 			</span>
@@ -101,8 +101,8 @@
 
 					categories[1].selected = true;
 				});
-				test('selecting a menu option triggers the d2l-filter-dropdown-menu-item-change event', function(done) {
-					container.addEventListener('d2l-filter-dropdown-menu-item-change', function(e) {
+				test('selecting a menu option triggers the d2l-filter-dropdown-option-change event', function(done) {
+					container.addEventListener('d2l-filter-dropdown-option-change', function(e) {
 						assert.equal(e.detail.categoryKey, '1');
 
 						if (e.detail.menuItemKey === '1') {
@@ -114,7 +114,7 @@
 						}
 					});
 
-					var menuItems = categories[0].querySelectorAll('d2l-menu-item-checkbox');
+					var menuItems = categories[0].querySelectorAll('d2l-filter-dropdown-option');
 					menuItems[0].click();
 				});
 			});

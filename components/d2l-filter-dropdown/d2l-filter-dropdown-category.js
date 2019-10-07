@@ -122,7 +122,7 @@ class D2LFilterDropdownCategory extends mixinBehaviors([D2L.PolymerBehaviors.Tab
 		e.stopPropagation();
 		this.dispatchEvent(
 			new CustomEvent(
-				'd2l-filter-dropdown-menu-item-change',
+				'd2l-filter-dropdown-option-change',
 				{
 					detail: {
 						categoryKey: this.key,

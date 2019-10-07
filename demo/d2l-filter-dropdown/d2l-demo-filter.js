@@ -2,7 +2,7 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
 import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
-import 'd2l-menu/d2l-menu-item-checkbox.js';
+import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
 
 /**
  * @customElement
@@ -18,7 +18,7 @@ class D2LDemoFilter extends PolymerElement {
 						<d2l-filter-dropdown-category key="[[f.key]]" category-text="[[f.title]]" selected-option-count="[[f.numSelected]]">
 						<dom-repeat items="[[f.options]]" as="o">
 							<template>
-								<d2l-menu-item-checkbox selected="[[o.selected]]" text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]"></d2l-menu-item-checkbox>
+								<d2l-filter-dropdown-option selected="[[o.selected]]" text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]"></d2l-filter-dropdown-option>
 							</template>
 						</dom-repeat>
 						</d2l-filter-dropdown-category>
@@ -132,7 +132,7 @@ class D2LDemoFilter extends PolymerElement {
 	connectedCallback() {
 		super.connectedCallback();
 		afterNextRender(this, function() {
-			this.addEventListener('d2l-filter-dropdown-menu-item-change', this._handleMenuItemChange);
+			this.addEventListener('d2l-filter-dropdown-option-change', this._handleMenuItemChange);
 			this.addEventListener('d2l-filter-dropdown-cleared', this._handleClear);
 			this.addEventListener('d2l-filter-dropdown-category-searched', this._handleSearch);
 		}.bind(this));
@@ -140,7 +140,7 @@ class D2LDemoFilter extends PolymerElement {
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('d2l-filter-dropdown-menu-item-change', this._handleMenuItemChange);
+		this.removeEventListener('d2l-filter-dropdown-option-change', this._handleMenuItemChange);
 		this.removeEventListener('d2l-filter-dropdown-cleared', this._handleClear);
 		this.removeEventListener('d2l-filter-dropdown-category-searched', this._handleSearch);
 	}
