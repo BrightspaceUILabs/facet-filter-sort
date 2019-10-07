@@ -52,13 +52,13 @@ Then, add the `d2l-filter-dropdown` as the top level filter component.  For each
 </d2l-filter-dropdown>
 ```
 
-The default lang terms can be overidden by setting the appropriate attributes.
+The default lang terms can be overridden by setting the appropriate attributes.
 
 ```html
 <d2l-filter-dropdown total-selected-option-count="3" header-text="Send To" opener-text="Send" opener-text-single="Sending To One" opener-text-multiple="Sending To Many">
 	<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="1">
-		<d2l-menu-item-checkbox selected text="Option 1 - 1" value="1"></d2l-menu-item-checkbox>
-		<d2l-menu-item-checkbox text="Option 1 - 2" value="2"></d2l-menu-item-checkbox>
+		<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
+		<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
 	</d2l-filter-dropdown-category>
 </d2l-filter-dropdown>
 ```
@@ -103,7 +103,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 
 - `d2l-filter-dropdown-category-selected`: Fired when a filter tab is selected.
 - `d2l-filter-dropdown-category-searched`: Fired when a filter category is searched.
-- `d2l-filter-dropdown-menu-item-change`: Fired when a filter option is selected.
+- `d2l-filter-dropdown-option-change`: Fired when a filter option is selected.
 
 ### d2l-search-facets
 
