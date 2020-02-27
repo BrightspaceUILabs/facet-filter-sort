@@ -14,8 +14,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">
 			:host {
 				display: inline-block;
 			}
+			:host([hidden]) {
+				display: none;
+			}
 		</style>
-		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]">
+		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]" disabled="[[disabled]]">
 			<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
 				<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
 				  <slot></slot>
@@ -70,6 +73,14 @@ class SortByDropdown extends mixinBehaviors(
 				}
 			},
 
+			/**
+			* Whether this dropdown should be disabled
+			*/
+			disabled: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: false
+			},
 			/**
 			* Indicates whether the dropdown is in compact mode or not. The selection text
 			* will not be visible when compact is true
