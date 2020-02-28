@@ -89,7 +89,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			},
 			disabled: {
 				type: Boolean,
-				reflectToAttribute: true,
 				value: false
 			},
 		};
