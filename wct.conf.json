@@ -27,11 +27,6 @@
           "browserName": "microsoftedge",
           "platform": "Windows 10",
           "version": ""
-        },
-        {
-          "browserName": "internet explorer",
-          "platform": "Windows 10",
-          "version": "11"
         }
       ]
     }
