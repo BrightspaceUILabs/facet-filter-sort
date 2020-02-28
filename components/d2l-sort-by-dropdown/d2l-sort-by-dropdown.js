@@ -78,7 +78,6 @@ class SortByDropdown extends mixinBehaviors(
 			*/
 			disabled: {
 				type: Boolean,
-				reflectToAttribute: true,
 				value: false
 			},
 			/**
