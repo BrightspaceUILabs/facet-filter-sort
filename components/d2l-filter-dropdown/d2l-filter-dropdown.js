@@ -33,7 +33,9 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					display: none;
 				}
 			</style>
-			<d2l-dropdown-button-subtle text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple)]]">
+			<d2l-dropdown-button-subtle
+				text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple)]]"
+				disabled="[[disabled]]">
 				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
@@ -84,7 +86,11 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			disableOpenerTextVariation: {
 				type: Boolean,
 				value: false
-			}
+			},
+			disabled: {
+				type: Boolean,
+				value: false
+			},
 		};
 	}
 
