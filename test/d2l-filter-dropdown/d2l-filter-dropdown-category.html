@@ -89,8 +89,7 @@
 						done();
 					});
 
-					var searchInputButton = categories[0].shadowRoot.querySelector('d2l-input-search').shadowRoot.querySelector('d2l-button-icon:first-of-type');
-					searchInputButton.click();
+					categories[0].shadowRoot.querySelector('d2l-input-search').search();
 				});
 				test('changing the category tab triggers the d2l-filter-dropdown-category-selected event', function(done) {
 					container.addEventListener('d2l-filter-dropdown-category-selected', function(e) {
