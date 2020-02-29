@@ -108,13 +108,15 @@
 				});
 				test('the opener text is set accordingly', function() {
 					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
-					assert.equal(openerButton.text, 'Filter: 3 Filters');
+					requestAnimationFrame(function() {
+						assert.equal(openerButton.text, 'Filter: 3 Filters');
 
-					filter.totalSelectedOptionCount = 1;
-					assert.equal(openerButton.text, 'Filter: 1 Filter');
+						filter.totalSelectedOptionCount = 1;
+						assert.equal(openerButton.text, 'Filter: 1 Filter');
 
-					filter.totalSelectedOptionCount = 0;
-					assert.equal(openerButton.text, 'Filter');
+						filter.totalSelectedOptionCount = 0;
+						assert.equal(openerButton.text, 'Filter');
+					});
 				});
 				test('filter categories display correctly', function(done) {
 					function getTabs() {
