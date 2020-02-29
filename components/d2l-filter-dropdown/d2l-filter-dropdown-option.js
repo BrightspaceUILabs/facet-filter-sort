@@ -31,6 +31,10 @@ Polymer({
 		'role': 'menuitemcheckbox'
 	},
 
+	properties: {
+		noUpdate: Boolean
+	},
+
 	attached: function() {
 		afterNextRender(this, function() {
 			this.listen(this, 'd2l-menu-item-select', '_onSelect');
@@ -42,7 +46,9 @@ Polymer({
 	},
 
 	_onSelect: function(e) {
-		this.set('selected', !this.selected);
+		if (!this.noUpdate) {
+			this.set('selected', !this.selected);
+		}
 		this.__onSelect(e);
 	}
 
