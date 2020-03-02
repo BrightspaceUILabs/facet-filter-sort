@@ -144,6 +144,10 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	focus() {
 		this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
 	}
+
+	close() {
+		this.shadowRoot.querySelector('d2l-dropdown-tabs').close();
+	}
 }
 
 window.customElements.define(D2LFilterDropdown.is, D2LFilterDropdown);
