@@ -48,6 +48,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-tabs>
 						<slot></slot>
 					</d2l-tabs>
+					<slot name="footer" slot="footer"></slot>
 				</d2l-dropdown-tabs>
 			</d2l-dropdown-button-subtle>
 		`;
