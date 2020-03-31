@@ -40,6 +40,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					min-width="[[minWidth]]"
 					max-width="[[maxWidth]]"
 					no-padding
+					no-padding-footer$="[[noPaddingFooter]]"
 					render-content>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[_localizeOrAlt(headerText, 'filterBy')]]</span>
@@ -48,6 +49,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					<d2l-tabs>
 						<slot></slot>
 					</d2l-tabs>
+					<slot name="footer" slot="[[_getFooterSlotValue(_hasFooter)]]" on-slotchange="_handleFooterSlotChange"></slot>
 				</d2l-dropdown-tabs>
 			</d2l-dropdown-button-subtle>
 		`;
@@ -91,6 +93,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				type: Boolean,
 				value: false
 			},
+			_hasFooter: {
+				type: Boolean,
+				value: false
+			},
+			noPaddingFooter: {
+				type: Boolean,
+				value: false
+			}
 		};
 	}
 
@@ -125,6 +135,14 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 				}
 			)
 		);
+	}
+
+	_handleFooterSlotChange(e) {
+		this._hasFooter = e.target.assignedNodes().length !== 0;
+	}
+
+	_getFooterSlotValue(hasFooter) {
+		return hasFooter ? 'footer' : undefined;
 	}
 
 	_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple) {
