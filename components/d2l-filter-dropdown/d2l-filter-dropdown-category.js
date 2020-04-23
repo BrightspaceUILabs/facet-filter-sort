@@ -137,6 +137,7 @@ class D2LFilterDropdownCategory extends mixinBehaviors([D2L.PolymerBehaviors.Tab
 	}
 
 	_dispatchSelected() {
+		super._dispatchSelected();
 		this.dispatchEvent(
 			new CustomEvent(
 				'd2l-filter-dropdown-category-selected',
