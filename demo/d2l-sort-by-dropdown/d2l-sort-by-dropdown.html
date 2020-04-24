@@ -3,65 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-sort-by-dropdown demo</title>
-		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-		<script type="module" src="../../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../../../d2l-typography/d2l-typography.js"></script>
-		<script type="module" src="../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js"></script>
-		<script type="module" src="../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js"></script>
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<style>
-			html {
-				font-size: 20px;
-			}
-			demo-snippet {
-				display: flex !important; /* IE11 */
-				flex-direction: column;
-			}
-			d2l-sort-by-dropdown {
-				float: right;
-			}
-		</style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			import '/node_modules/@brightspace-ui/core/components/demo/demo-page.js';
+			import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js';
+			import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js';
+		</script>
+		<style>
+			d2l-sort-by-dropdown { float: right; }
+		</style>
 	</head>
-	<body unresolved class="d2l-typography">
-		<script type="module">
-const $_documentContainer = document.createElement('template');
+	<body unresolved>
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
-			<h3>d2l-sort-by-dropdown</h3>
-			<demo-snippet>
+		<d2l-demo-page page-title="d2l-sort-by-dropdown">
+
+			<h2>d2l-sort-by-dropdown</h2>
+
+			<d2l-demo-snippet>
 				<template>
 					<d2l-sort-by-dropdown label="Sort by options" align="end">
 						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
@@ -73,35 +32,30 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 						<d2l-sort-by-dropdown-option value="low-to-high" text="Price: Low to High"></d2l-sort-by-dropdown-option>
 						<d2l-sort-by-dropdown-option value="long-text" text="A sorting option with longer text"></d2l-sort-by-dropdown-option>
 					</d2l-sort-by-dropdown>
+					<div style="clear: both;"></div>
 				</template>
-			</demo-snippet>
-			<h3>d2l-sort-by-dropdown (compact)</h3>
-			<demo-snippet>
+			</d2l-demo-snippet>
+
+			<h2>d2l-sort-by-dropdown (compact)</h2>
+
+			<d2l-demo-snippet>
 				<template>
 					<d2l-sort-by-dropdown align="end" label="Compact sort by dropdown" compact="">
 						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
 						<d2l-sort-by-dropdown-option value="time" text="Time"></d2l-sort-by-dropdown-option>
 					</d2l-sort-by-dropdown>
+					<div style="clear: both;"></div>
 				</template>
-			</demo-snippet>
-		</div>`;
+			</d2l-demo-snippet>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+		</d2l-demo-page>
+
+		<script>
+			document.addEventListener('d2l-sort-by-dropdown-change', function(e) {
+				// eslint-disable-next-line no-console
+				console.log(e.detail);
+			});
+		</script>
+
 	</body>
-	<script type="module">
-import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '@polymer/iron-demo-helpers/demo-snippet.js';
-import 'd2l-typography/d2l-typography.js';
-import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js';
-import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js';
-requestAnimationFrame(function() {
-	document.body.classList.add('d2l-typography');
-});
-
-document.addEventListener('d2l-sort-by-dropdown-change', function(e) {
-	// eslint-disable-next-line no-console
-	console.log(e.detail);
-});
-</script>
 </html>

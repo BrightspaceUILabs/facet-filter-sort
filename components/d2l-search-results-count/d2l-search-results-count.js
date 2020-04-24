@@ -1,6 +1,7 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import './d2l-search-results-count-localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import './d2l-search-results-count-localize-behavior.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-search-results-count">
@@ -14,7 +15,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-results-count">
 		</style>
 		[[_text]]
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);

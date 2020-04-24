@@ -1,10 +1,11 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import 'd2l-inputs/d2l-input-checkbox-spacer.js';
-import 'd2l-typography/d2l-typography-shared-styles.js';
-import 'd2l-colors/d2l-colors.js';
-import './d2l-search-facets-localize-behavior.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import '@brightspace-ui/core/components/colors/colors.js';
+import '@brightspace-ui/core/components/inputs/input-checkbox-spacer.js';
+import 'd2l-typography/d2l-typography-shared-styles.js';
+import './d2l-search-facets-localize-behavior.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-grouping">
@@ -53,7 +54,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-grouping">
 			</template>
 		</fieldset>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);

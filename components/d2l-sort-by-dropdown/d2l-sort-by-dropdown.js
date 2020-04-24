@@ -1,11 +1,12 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
-import 'd2l-dropdown/d2l-dropdown-menu.js';
-import 'd2l-menu/d2l-menu.js';
-import './d2l-sort-by-dropdown-localize-behavior.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
+import '@brightspace-ui/core/components/dropdown/dropdown-menu.js';
+import '@brightspace-ui/core/components/menu/menu.js';
+import './d2l-sort-by-dropdown-localize-behavior.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">

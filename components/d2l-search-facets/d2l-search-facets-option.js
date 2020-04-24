@@ -1,7 +1,8 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import 'd2l-inputs/d2l-input-checkbox.js';
-import 'd2l-localize-behavior/d2l-localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import '@brightspace-ui/core/components/inputs/input-checkbox.js';
+import 'd2l-localize-behavior/d2l-localize-behavior.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-option">
@@ -13,7 +14,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-option">
 		</style>
 		<d2l-input-checkbox checked="[[checked]]" disabled="[[disabled]]" name="[[text]]" on-change="_handleChange" class="d2l-search-facets-option-checkbox">[[_facetText]]</d2l-input-checkbox>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);

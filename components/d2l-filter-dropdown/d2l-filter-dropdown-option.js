@@ -1,49 +1,39 @@
-import '@polymer/polymer/polymer-legacy.js';
+import '@brightspace-ui/core/components/icons/icon.js';
+import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { MenuItemSelectableMixin } from '@brightspace-ui/core/components/menu/menu-item-selectable-mixin.js';
+import { menuItemSelectableStyles } from '@brightspace-ui/core/components/menu/menu-item-selectable-styles.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
-import 'd2l-icons/d2l-icons.js';
-import 'd2l-menu/d2l-menu-item-selectable-styles.js';
-import 'd2l-menu/d2l-menu-item-selectable-behavior.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-const $_documentContainer = document.createElement('template');
+class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement)) {
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-filter-dropdown-option">
-	<template strip-whitespace="">
-		<style include="d2l-menu-item-selectable-styles">
+	static get styles() {
+		return [menuItemSelectableStyles, css`
 			:host > span {
 				white-space: normal;
 			}
-		</style>
-		<d2l-icon icon="d2l-tier1:check" aria-hidden="true"></d2l-icon>
-		<span>[[text]]</span>
-	</template>
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
-Polymer({
-	is: 'd2l-filter-dropdown-option',
-
-	behaviors: [
-		D2L.PolymerBehaviors.MenuItemSelectableBehavior
-	],
-
-	hostAttributes: {
-		'role': 'menuitemcheckbox'
-	},
-
-	attached: function() {
-		afterNextRender(this, function() {
-			this.listen(this, 'd2l-menu-item-select', '_onSelect');
-		}.bind(this));
-	},
-
-	detached: function() {
-		this.unlisten(this, 'd2l-menu-item-select', '_onSelect');
-	},
-
-	_onSelect: function(e) {
-		this.set('selected', !this.selected);
-		this.__onSelect(e);
+		`];
 	}
 
-});
+	constructor() {
+		super();
+		this.role = 'menuitemcheckbox';
+	}
+
+	firstUpdated(changedProperties) {
+		super.firstUpdated(changedProperties);
+		this.addEventListener('d2l-menu-item-select', (e) => {
+			this.selected = !this.selected;
+			this.__onSelect(e);
+		});
+	}
+
+	render() {
+		return html`
+			<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
+			<span>${this.text}</span>
+		`;
+	}
+
+}
+
+customElements.define('d2l-filter-dropdown-option', FilterDropdownOption);

@@ -1,10 +1,10 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import 'd2l-dropdown/d2l-dropdown-button-subtle.js';
-import 'd2l-dropdown/d2l-dropdown-tabs.js';
-import 'd2l-button/d2l-button-subtle.js';
-import 'd2l-tabs/d2l-tabs.js';
-import 'd2l-colors/d2l-colors.js';
+import '@brightspace-ui/core/components/button/button-subtle.js';
+import '@brightspace-ui/core/components/colors/colors.js';
+import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
+import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
+import '@brightspace-ui/core/components/tabs/tabs.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
 /**
