@@ -16,8 +16,6 @@
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.0",
-    "@polymer/iron-test-helpers": "^3.0.0",
     "@webcomponents/webcomponentsjs": "^2.2.4",
     "babel-eslint": "^10.0.1",
     "chromedriver": "^2.40.0",

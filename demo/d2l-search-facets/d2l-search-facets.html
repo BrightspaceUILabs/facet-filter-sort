@@ -3,60 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-search-facets demo</title>
-		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-		<script type="module" src="../../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../../../d2l-typography/d2l-typography.js"></script>
-		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets.js"></script>
-		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-grouping.js"></script>
-		<script type="module" src="../../components/d2l-search-facets/d2l-search-facets-option.js"></script>
-		<script type="module" src="./d2l-search-facets-demo-components.js"></script>
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<style>
-			html {
-				font-size: 20px;
-			}
-		</style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			import '/node_modules/@brightspace-ui/core/components/demo/demo-page.js';
+			import '../../components/d2l-search-facets/d2l-search-facets.js';
+			import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
+			import '../../components/d2l-search-facets/d2l-search-facets-option.js';
+			import './d2l-search-facets-demo-components.js';
+		</script>
 	</head>
-	<body unresolved class="d2l-typography">
-		<script type="module">
-const $_documentContainer = document.createElement('template');
+	<body unresolved>
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
-			<h3>d2l-search-facets</h3>
-			<demo-snippet>
+		<d2l-demo-page page-title="d2l-search-facets">
+
+			<h2>d2l-search-facets</h2>
+
+			<d2l-demo-snippet>
 				<template>
 					<d2l-search-facets>
 						<d2l-search-facets-grouping id="status" value="status" text="My Status" has-more="">
@@ -72,69 +35,52 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 							<d2l-search-facets-option value="inside" text="Inside"></d2l-search-facets-option>
 						</d2l-search-facets-grouping>
 					</d2l-search-facets>
+					<script>
+						document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+							const options = [
+								{ text: 'In Progress', value: 'in-progress', count: '1' },
+								{ text: 'Completed', value: 'completed', count: '10000' }
+							];
+							addOptions(options, e.target);
+						});
+						document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+							const options = [
+								{ text: 'Interactive', value: 'interactive', count: '12' },
+								{ text: 'Video Only', value: 'video-only', count: '30' }
+							];
+							addOptions(options, e.target);
+						});
+					</script>
 				</template>
-			</demo-snippet>
-		</div>`;
+			</d2l-demo-snippet>
 
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
+			<h2>d2l-search-facets (templated)</h2>
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
-			<h3>Templated d2l-search-facets demo</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<d2l-demo-templated-search-facets></d2l-demo-templated-search-facets>
 				</template>
-			</demo-snippet>
-		</div>`;
+			</d2l-demo-snippet>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+		</d2l-demo-page>
+
+		<script>
+			document.addEventListener('d2l-search-facets-change', function(e) {
+				// eslint-disable-next-line no-console
+				console.log(e.detail);
+			});
+
+			function addOptions(options, target) {
+				options.forEach(function(option) {
+					const element = document.createElement('d2l-search-facets-option');
+					element.setAttribute('text', option.text);
+					element.setAttribute('value', option.value);
+					element.setAttribute('count', option.count);
+					target.appendChild(element);
+				});
+				target.removeAttribute('has-more');
+			}
+		</script>
+
 	</body>
-	<script type="module">
-import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '@polymer/iron-demo-helpers/demo-snippet.js';
-import 'd2l-typography/d2l-typography.js';
-import '../../components/d2l-search-facets/d2l-search-facets.js';
-import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
-import '../../components/d2l-search-facets/d2l-search-facets-option.js';
-import './d2l-search-facets-demo-components.js';
-requestAnimationFrame(function() {
-	document.body.classList.add('d2l-typography');
-
-	document.addEventListener('d2l-search-facets-change', function(e) {
-		// eslint-disable-next-line no-console
-		console.log(e.detail);
-	});
-
-	document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
-		const options = [
-			{ text: 'In Progress', value: 'in-progress', count: '1' },
-			{ text: 'Completed', value: 'completed', count: '10000' }
-		];
-		addOptions(options, e.target);
-	});
-
-	document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
-		const options = [
-			{ text: 'Interactive', value: 'interactive', count: '12' },
-			{ text: 'Video Only', value: 'video-only', count: '30' }
-		];
-		addOptions(options, e.target);
-	});
-});
-
-function addOptions(options, target) {
-	options.forEach(function(option) {
-		const element = document.createElement('d2l-search-facets-option');
-		element.setAttribute('text', option.text);
-		element.setAttribute('value', option.value);
-		element.setAttribute('count', option.count);
-		target.appendChild(element);
-	});
-	target.removeAttribute('has-more');
-}
-</script>
 </html>
