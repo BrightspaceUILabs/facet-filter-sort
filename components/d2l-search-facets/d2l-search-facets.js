@@ -1,5 +1,6 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets">
@@ -11,7 +12,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets">
 		</style>
 		<slot></slot>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);

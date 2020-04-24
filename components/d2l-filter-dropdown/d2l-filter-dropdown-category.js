@@ -1,10 +1,10 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import '@brightspace-ui/core/components/colors/colors.js';
+import '@brightspace-ui/core/components/inputs/input-search.js';
+import '@brightspace-ui/core/components/menu/menu.js';
 import 'd2l-tabs/d2l-tab-panel-behavior.js';
-import 'd2l-inputs/d2l-input-search.js';
-import 'd2l-menu/d2l-menu.js';
-import 'd2l-colors/d2l-colors.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
 /**

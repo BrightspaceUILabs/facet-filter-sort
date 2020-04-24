@@ -1,9 +1,9 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import '@brightspace-ui/core/components/icons/icon.js';
 import 'd2l-menu/d2l-menu-item-radio-behavior.js';
 import 'd2l-menu/d2l-menu-item-selectable-styles.js';
-import 'd2l-icons/d2l-icon.js';
-import 'd2l-icons/tier1-icons.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown-option">
@@ -15,10 +15,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown-option">
 			*/
 			:host {}
 		</style>
-		<d2l-icon icon="d2l-tier1:check" aria-hidden="true"></d2l-icon>
+		<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
 		<span>[[text]]</span>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);

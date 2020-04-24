@@ -1,5 +1,6 @@
 import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-localize-behavior/d2l-localize-behavior.js';
+
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
 window.D2L.PolymerBehaviors.FilterDropdown = window.D2L.PolymerBehaviors.FilterDropdown || {};
