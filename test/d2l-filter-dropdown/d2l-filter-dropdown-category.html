@@ -8,7 +8,7 @@
 
 		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 		<script src="../../../wct-browser-legacy/browser.js"></script>
-		<script type="module" src="../../../d2l-tabs/d2l-tabs.js"></script>
+		<script type="module" src="../../../@brightspace-ui/core/components/tabs/tabs.js"></script>
 		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
 		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 	</head>
@@ -74,22 +74,24 @@
 					searchInput = categories[1].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
 					assert.equal(searchInput.hidden, true);
 				});
-				test('setting the search-value attribute updates the value in the search input', function() {
+				test('setting the search-value attribute updates the value in the search input', function(done) {
 					categories[0].searchValue = 'test';
-
-					var searchInput = categories[0].shadowRoot.querySelector('d2l-input-search');
-					assert.equal(searchInput.value, 'test');
+					categories[0].updateComplete.then(function() {
+						var searchInput = categories[0].shadowRoot.querySelector('d2l-input-search');
+						assert.equal(searchInput.value, 'test');
+						done();
+					});
 				});
 				test('searching triggers the d2l-filter-dropdown-category-searched event', function(done) {
-					categories[0].searchValue = 'test';
-
 					container.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
 						assert.equal(e.detail.categoryKey, '1');
 						assert.equal(e.detail.value, 'test');
 						done();
 					});
-
-					categories[0].shadowRoot.querySelector('d2l-input-search').search();
+					categories[0].searchValue = 'test';
+					categories[0].updateComplete.then(function() {
+						categories[0].shadowRoot.querySelector('d2l-input-search').search();
+					});
 				});
 				test('changing the category tab triggers the d2l-filter-dropdown-category-selected event', function(done) {
 					container.addEventListener('d2l-filter-dropdown-category-selected', function(e) {

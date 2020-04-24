@@ -9,7 +9,7 @@
 		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 		<script src="../../../wct-browser-legacy/browser.js"></script>
 		<script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
-		<script type="module" src="../../../d2l-menu/d2l-menu.js"></script>
+		<script type="module" src="../../../@brightspace-ui/core/components/menu/menu.js"></script>
 		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 	</head>
 	<body>
@@ -73,13 +73,16 @@
 						assert.equal(options[0].selected, expected);
 						assert.equal(e.detail.selected, expected);
 						assert.equal(e.detail.value, '1');
-						assert.equal(window.getComputedStyle(options[0].shadowRoot.querySelector('d2l-icon')).getPropertyValue('visibility'), expected ? 'visible' : 'hidden');
-						if (!expected) {
-							done();
-						}
-						expected = false;
+						options[0].updateComplete.then(function() {
+							assert.equal(window.getComputedStyle(options[0].shadowRoot.querySelector('d2l-icon')).getPropertyValue('visibility'), expected ? 'visible' : 'hidden');
+							if (expected) {
+								expected = false;
+								options[0].click();
+							} else {
+								done();
+							}
+						});
 					});
-					options[0].click();
 					options[0].click();
 				});
 				test('does not affect other checkboxes in the menu when selected', function(done) {

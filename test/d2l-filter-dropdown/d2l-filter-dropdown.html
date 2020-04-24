@@ -118,7 +118,7 @@
 				});
 				test('filter categories display correctly', function(done) {
 					function getTabs() {
-						var tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab');
+						var tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab-internal');
 						if (tabs.length === 2) {
 							assert.equal(tabs[0].text, 'Category 1 (3)');
 							assert.equal(tabs[1].text, 'Category 2');

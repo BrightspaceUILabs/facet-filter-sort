@@ -50,6 +50,16 @@
 							];
 							addOptions(options, e.target);
 						});
+						function addOptions(options, target) {
+							options.forEach(function(option) {
+								const element = document.createElement('d2l-search-facets-option');
+								element.setAttribute('text', option.text);
+								element.setAttribute('value', option.value);
+								element.setAttribute('count', option.count);
+								target.appendChild(element);
+							});
+							target.removeAttribute('has-more');
+						}
 					</script>
 				</template>
 			</d2l-demo-snippet>
@@ -69,17 +79,6 @@
 				// eslint-disable-next-line no-console
 				console.log(e.detail);
 			});
-
-			function addOptions(options, target) {
-				options.forEach(function(option) {
-					const element = document.createElement('d2l-search-facets-option');
-					element.setAttribute('text', option.text);
-					element.setAttribute('value', option.value);
-					element.setAttribute('count', option.count);
-					target.appendChild(element);
-				});
-				target.removeAttribute('has-more');
-			}
 		</script>
 
 	</body>

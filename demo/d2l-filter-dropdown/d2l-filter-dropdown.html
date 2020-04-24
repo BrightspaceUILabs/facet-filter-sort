@@ -84,22 +84,19 @@
 								filter.totalSelectedOptionCount--;
 							}
 						});
+						/* eslint-disable no-console */
+						function logEvent(e, text) {
+							console.group(text);
+							console.log('event', e);
+							if (e.detail) console.log('detail', e.detail);
+							console.groupEnd();
+						}
+						/* eslint-enable no-console */
 					</script>
 				</template>
 			</d2l-demo-snippet>
 
 		</d2l-demo-page>
-
-		<script>
-			/* eslint-disable no-console */
-			function logEvent(e, text) {
-				console.group(text);
-				console.log('event', e);
-				if (e.detail) console.log('detail', e.detail);
-				console.groupEnd();
-			}
-			/* eslint-enable no-console */
-		</script>
 
 	</body>
 </html>
