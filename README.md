@@ -133,7 +133,7 @@ To Do
 
 A multi-select-list allowing the user to see (and remove) the currently applied filters
 
-<img src="./images/d2l-applied-filters.png?raw=true" width="450">
+<img src="/images/d2l-applied-filters.png?raw=true" width="450">
 
 #### Usage
 
