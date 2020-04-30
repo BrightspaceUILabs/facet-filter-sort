@@ -4,7 +4,9 @@ import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
+import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
 
+const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
 
@@ -116,11 +118,12 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 	}
 
 	_setFilter() {
+		console.log('SETTING FILTER', this.for);
 		if (!this.for) {
 			return undefined;
 		}
 		if (this._target) {
-			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions);
 		}
 
 		const ownerRoot = this.getRootNode();
@@ -129,7 +132,7 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 		const target = ownerRoot.querySelector(targetSelector) || (ownerRoot && ownerRoot.host && ownerRoot.host.querySelector(targetSelector));
 
 		if (target) {
-			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions);
 		}
 		this._target = target;
 	}
@@ -137,16 +140,28 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 	_getFilterOptions() {
 		this._setFilter();
 		const dropdown = this._target;
+		console.log('DROPDOWN', dropdown, getComposedChildren(dropdown));
 
-		if (!dropdown || !dropdown.children) {
+		if (!dropdown) {
 			return [];
 		}
 
+		// Go down one layer if the "for" was for the container of the dropdown
+		let children = dropdown.children;
+		const composedChildren = getComposedChildren(dropdown);
+		const dropdownChildren = composedChildren.filter(x => x.nodeName === DROPDOWN_NAME);
+		if (dropdownChildren && dropdownChildren[0]) {
+			console.log('xyz', dropdownChildren.map(x => x.nodeName));
+			children = dropdownChildren[0].children;
+		}
+
+		console.log('CHILDREN', children);
 		const results = {};
-		[...dropdown.children]
+		[...children]
 			.filter(x => x.nodeName === DROPDOWN_CATEGORY_NAME)
 			.forEach(x => results[x.key] = [...x.children].filter(x => x.nodeName === DROPDOWN_OPTION_NAME));
 
+		console.log('RESULTS', results);
 		return results;
 	}
 
