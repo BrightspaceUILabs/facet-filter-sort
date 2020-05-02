@@ -137,7 +137,8 @@ A multi-select-list allowing the user to see (and remove) the currently applied 
 
 #### Usage
 
-Set the `for` param to be the id of the `d2l-filter-dropdown` that you want to track
+Set the `for` param to be the id of the `d2l-filter-dropdown` that you want to track.
+This also works if the `d2l-filter-dropdown` is a child in the shadow-dom of the element referenced by the id.
 
 ```html
 <d2l-filter-list-wrapper for="filter"><d2l-filter-list-wrapper>
