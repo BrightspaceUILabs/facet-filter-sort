@@ -89,7 +89,9 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 
 	constructor() {
 		super();
+		this._clearSelected = this._clearSelected.bind(this);
 		this._setSelectedOptions = this._setSelectedOptions.bind(this);
+		this._update = this._update.bind(this);
 	}
 
 	firstUpdated() {
@@ -117,22 +119,36 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 		entry.dispatchEvent(new CustomEvent('d2l-menu-item-select'));
 	}
 
+	_findDropdownIfNested(target) {
+		if (target.nodeName !== DROPDOWN_NAME) {
+			const dropdownChildren = getComposedChildren(target).filter(x => x.nodeName === DROPDOWN_NAME);
+			if (dropdownChildren && dropdownChildren[0]) {
+				target = dropdownChildren[0]
+			}
+		}
+		return target;
+	}
+
 	_setFilter() {
-		console.log('SETTING FILTER', this.for);
 		if (!this.for) {
 			return undefined;
 		}
 		if (this._target) {
-			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions);
+			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
+			this._target.removeEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
 
 		const ownerRoot = this.getRootNode();
 
 		const targetSelector = `#${this.for}`;
-		const target = ownerRoot.querySelector(targetSelector) || (ownerRoot && ownerRoot.host && ownerRoot.host.querySelector(targetSelector));
+		let target = ownerRoot.querySelector(targetSelector) || (ownerRoot && ownerRoot.host && ownerRoot.host.querySelector(targetSelector));
 
 		if (target) {
-			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions);
+			target = this._findDropdownIfNested(target);
+			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			target.addEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
+			target.addEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
 		this._target = target;
 	}
@@ -140,33 +156,25 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 	_getFilterOptions() {
 		this._setFilter();
 		const dropdown = this._target;
-		console.log('DROPDOWN', dropdown, getComposedChildren(dropdown));
 
 		if (!dropdown) {
 			return [];
 		}
 
-		// Go down one layer if the "for" was for the container of the dropdown
-		let children = dropdown.children;
-		const composedChildren = getComposedChildren(dropdown);
-		const dropdownChildren = composedChildren.filter(x => x.nodeName === DROPDOWN_NAME);
-		if (dropdownChildren && dropdownChildren[0]) {
-			console.log('xyz', dropdownChildren.map(x => x.nodeName));
-			children = dropdownChildren[0].children;
-		}
-
-		console.log('CHILDREN', children);
 		const results = {};
-		[...children]
+		[...dropdown.children]
 			.filter(x => x.nodeName === DROPDOWN_CATEGORY_NAME)
 			.forEach(x => results[x.key] = [...x.children].filter(x => x.nodeName === DROPDOWN_OPTION_NAME));
 
-		console.log('RESULTS', results);
 		return results;
 	}
 
 	_setOptions() {
 		this._entries = this._getFilterOptions();
+	}
+
+	_clearSelected() {
+		this._selectedEntries = [];
 	}
 
 	_setSelectedOptions() {
