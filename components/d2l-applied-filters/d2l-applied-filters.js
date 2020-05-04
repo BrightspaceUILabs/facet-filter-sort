@@ -122,12 +122,15 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 	_findDropdownIfNested(target) {
 		if (target.nodeName !== DROPDOWN_NAME) {
 			const dropdownChildren = getComposedChildren(target);
+
 			for (let i = 0; i < dropdownChildren.length; i++) {
 				const child = dropdownChildren[i];
+				if (child.nodeName === DROPDOWN_NAME) {
+					return child;
+				}
 				const t = child.querySelector('d2l-filter-dropdown');
 				if (t) {
-					target = t;
-					break;
+					return t;
 				}
 			}
 		}
