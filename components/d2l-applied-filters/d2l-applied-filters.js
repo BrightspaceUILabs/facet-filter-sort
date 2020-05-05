@@ -104,8 +104,8 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 		}
 	}
 
-	_update() {
-		this._setOptions();
+	_update(e) {
+		this._setOptions(e && e.detail.categoryKey);
 		this._setSelectedOptions();
 	}
 
@@ -161,7 +161,7 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 		this._target = target;
 	}
 
-	_getFilterOptions() {
+	_getFilterOptions(categoryKey) {
 		this._setFilter();
 		const dropdown = this._target;
 
@@ -170,15 +170,24 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 		}
 
 		const results = {};
-		[...dropdown.children]
-			.filter(x => x.nodeName === DROPDOWN_CATEGORY_NAME)
+
+		const childFilter = categoryKey ?
+			x => x.nodeName === DROPDOWN_CATEGORY_NAME && x.key === categoryKey :
+			x => x.nodeName === DROPDOWN_CATEGORY_NAME;
+
+		[...dropdown.children].filter(childFilter)
 			.forEach(x => results[x.key] = [...x.children].filter(x => x.nodeName === DROPDOWN_OPTION_NAME));
 
 		return results;
 	}
 
-	_setOptions() {
-		this._entries = this._getFilterOptions();
+	_setOptions(categoryKey) {
+		const result = this._getFilterOptions(categoryKey);
+		if (categoryKey) {
+			Object.assign(this._entries, result);
+		} else {
+			this._entries = result;
+		}
 	}
 
 	_clearSelected() {

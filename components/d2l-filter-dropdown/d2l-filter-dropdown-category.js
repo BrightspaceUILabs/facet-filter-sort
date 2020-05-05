@@ -145,7 +145,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 	}
 
 	_onSlotChange() {
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-slotchange', { bubbles: true, composed: true }));
+		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-slotchange', { bubbles: true, composed: true, detail: { categoryKey: this.key } }));
 	}
 
 	render() {

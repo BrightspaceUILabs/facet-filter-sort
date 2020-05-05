@@ -54,6 +54,9 @@
 						filter.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
 							logEvent(e, 'Filter category searched!');
 						});
+						filter.addEventListener('d2l-filter-dropdown-category-slotchange', function(e) {
+							logEvent(e, 'Filter category slotchange!');
+						});
 						filter.addEventListener('d2l-filter-dropdown-option-change', function(e) {
 							logEvent(e, 'Filter option clicked!');
 							if (e.detail.selected) {
