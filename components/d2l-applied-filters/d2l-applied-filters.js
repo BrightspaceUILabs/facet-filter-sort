@@ -5,12 +5,13 @@ import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
 const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
 
-class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
+class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	static get properties() {
 		return {
 			for: { type: String },
@@ -41,11 +42,20 @@ class D2lAppliedFilters extends LocalizeStaticMixin(LitElement) {
 				font-weight: bold;
 			}
 
+			:host([dir="rtl"]) .d2l-applied-filters-applied-filters-label {
+				margin-right: 0;
+				margin-left: 0.25rem;
+			}
+
 			.d2l-applied-filters-no-applied-filters-label {
 				display: inline-block;
 				padding-top: 0.3rem;
 				font-style: italic;
 				color: var(--d2l-color-corundum);
+			}
+
+			:host([hidden]) {
+				display: none;
 			}
 		`];
 	}
