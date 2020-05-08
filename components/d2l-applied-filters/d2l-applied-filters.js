@@ -123,9 +123,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this._setSelectedOptions();
 	}
 
-	_multiSelectItemDeleted(e) {
-		const entryIndex = Number.parseInt(e.path[0].attributes.index.value);
-		const entry = this._selectedEntries[entryIndex];
+	_multiSelectItemDeleted(entry) {
 		entry.deselect();
 	}
 
@@ -212,13 +210,13 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
-				@d2l-labs-multi-select-list-item-deleted="${this._multiSelectItemDeleted}"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
 					<d2l-labs-multi-select-list-item
 						text="${x.text}"
 						deletable
 						index="${index}"
+						@d2l-labs-multi-select-list-item-deleted="${() => this._multiSelectItemDeleted(x)}"
 					>
 					</d2l-labs-multi-select-list-item>
 				`)}
