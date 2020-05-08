@@ -126,7 +126,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	_multiSelectItemDeleted(e) {
 		const entryIndex = Number.parseInt(e.path[0].attributes.index.value);
 		const entry = this._selectedEntries[entryIndex];
-		entry.dispatchEvent(new CustomEvent('d2l-menu-item-select'));
+		entry.deselect();
 	}
 
 	_findDropdownIfNested(target) {

@@ -27,6 +27,11 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 		});
 	}
 
+	deselect() {
+		this.selected = false;
+		this.__onSelect(new CustomEvent('d2l-menu-item-select')); // passing in a blank event since the MenuItemSelectableMixin needs one
+	}
+
 	render() {
 		return html`
 			<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
