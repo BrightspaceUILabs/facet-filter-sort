@@ -40,28 +40,41 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-applied-filters', function() {
-				var appliedFilters;
+			suite('d2l-applied-filters3', function() {
+				var dropdown, appliedFilters;
 
 				setup(function(done) {
 					var testFixture = fixture('basic');
+					dropdown = testFixture.querySelector('d2l-filter-dropdown');
 					appliedFilters = testFixture.querySelector('d2l-applied-filters');
 					afterNextRender(testFixture, () => {
 						done();
 					});
 				});
-				test('instantiating the element works', function() {
-					assert.equal('d2l-applied-filters', appliedFilters.tagName.toLowerCase());
+
+				test('removing a filter removes from the list', function(done) {
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					options[0].deselect();
+					afterNextRender(options[0], () => {
+						const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
+						assert.equal(filters.length, 2);
+						assert.equal(filters[0].text, 'Option 1 - 4');
+						assert.equal(filters[1].text, 'Option 2 - 1');
+						done();
+					});
 				});
-				test('attributes are set correctly', function() {
-					assert.equal(appliedFilters.for, 'dropdown');
-				});
-				test('instantiates with the selected filters added as multi-select items', function() {
+
+				test('deleting an item from the multi-select list deselects the corresponding filter from the dropdown', function(done) {
 					const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
-					assert.equal(filters.length, 3);
-					assert.equal(filters[0].text, 'Option 1 - 1');
-					assert.equal(filters[1].text, 'Option 1 - 4');
-					assert.equal(filters[2].text, 'Option 2 - 1');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					assert.equal(options[0].selected, true);
+					filters[0].shadowRoot.querySelectorAll('.d2l-labs-multi-select-delete-icon')[0].click();
+
+					afterNextRender(options[0], () => {
+						assert.equal(options[0].selected, false);
+						done();
+					});
 				});
 			});
 		</script>
