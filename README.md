@@ -129,6 +129,25 @@ To Do
 
 To Do
 
+### d2l-applied-filters
+
+A multi-select-list allowing the user to see (and remove) the currently applied filters
+
+NOTE: This component uses the `slotchange` event and so will not work if you require IE support
+
+<img src="/images/d2l-applied-filters.png?raw=true" width="450">
+
+#### Usage
+
+Set the `for` param to be the id of the `d2l-filter-dropdown` that you want to track.
+This also works if the `d2l-filter-dropdown` is a child in the shadow-dom of the element referenced by the id.
+
+
+```html
+<d2l-filter-list-wrapper for="filter"><d2l-filter-list-wrapper>
+<d2l-filter-dropdown id="filter"> ... </d2l-filter-dropdown>
+```
+
 ## Developing, Testing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.
