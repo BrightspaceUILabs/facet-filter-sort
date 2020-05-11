@@ -131,9 +131,9 @@ To Do
 
 ### d2l-applied-filters
 
-A multi-select-list allowing the user to see (and remove) the currently applied filters
+A multi-select-list allowing the user to see (and remove) the currently applied filters.
 
-NOTE: This component uses the `slotchange` event and so will not work if you require IE support
+NOTE: This component uses the `slotchange` event and so will not work if you require IE support.
 
 <img src="/images/d2l-applied-filters.png?raw=true" width="450">
 
