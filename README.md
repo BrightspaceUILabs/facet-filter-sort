@@ -144,7 +144,7 @@ This also works if the `d2l-filter-dropdown` is a child in the shadow-dom of the
 
 
 ```html
-<d2l-filter-list-wrapper for="filter"><d2l-filter-list-wrapper>
+<d2l-applied-filters for="filter"></d2l-applied-filters>
 <d2l-filter-dropdown id="filter"> ... </d2l-filter-dropdown>
 ```
 
