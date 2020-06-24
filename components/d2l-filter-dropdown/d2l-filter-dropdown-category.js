@@ -6,14 +6,37 @@ import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mixin.js';
 
+/**
+ * A component wrapping grouped filters
+ * @slot - Contains the filters (e.g., d2l-filter-dropdown-option) that are in the category
+ * @fires d2l-filter-dropdown-category-slotchange - Dispatched when the slot content changes
+ * @fires d2l-filter-dropdown-category-selected - Dispatched when a filter tab is selected
+ * @fires d2l-filter-dropdown-category-searched - Dispatched when a filter category is searched
+ * @fires d2l-filter-dropdown-option-change - Dispatched when a filter option is selected
+ */
 class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElement)) {
 
 	static get properties() {
 		return {
+			/**
+			 * REQUIRED: Name of the filter category, will be shown on the tab
+			 */
 			categoryText: { type: String, attribute: 'category-text' },
+			/**
+			 * Hides the search bar inside a filter tab
+			 */
 			disableSearch: { type: Boolean, attribute: 'disable-search' },
+			/**
+			 * Unique id to represent a filter category, sent back in category events
+			 */
 			key: { type: String },
+			/**
+			 * Sets the value in the search input, useful if setting up the filter in a default state
+			 */
 			searchValue: { type: String, attribute: 'search-value' },
+			/**
+			 * The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+			 */
 			selectedOptionCount: { type: Number, attribute: 'selected-option-count' }
 		};
 	}

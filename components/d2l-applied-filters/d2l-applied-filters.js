@@ -11,9 +11,15 @@ const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
 
+/**
+ * A multi-select-list allowing the user to see (and remove) the currently applied filters.
+ */
 class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	static get properties() {
 		return {
+			/**
+			 * REQUIRED: The id of the "d2l-filter-dropdown" that you want to track
+			 */
 			for: { type: String },
 			_entries: { type: Array },
 			_selectedEntries: { type: Array },

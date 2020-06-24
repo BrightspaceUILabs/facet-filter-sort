@@ -4,6 +4,9 @@ import { MenuItemSelectableMixin } from '@brightspace-ui/core/components/menu/me
 import { menuItemSelectableStyles } from '@brightspace-ui/core/components/menu/menu-item-selectable-styles.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
+/**
+ * A filter menu item component.
+ */
 class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement)) {
 
 	static get styles() {

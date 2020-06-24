@@ -1,0 +1,708 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "d2l-applied-filters",
+      "path": "./components/d2l-applied-filters/d2l-applied-filters.js",
+      "description": "A multi-select-list allowing the user to see (and remove) the currently applied filters.",
+      "attributes": [
+        {
+          "name": "for",
+          "description": "REQUIRED: The id of the \"d2l-filter-dropdown\" that you want to track",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "for",
+          "attribute": "for",
+          "description": "REQUIRED: The id of the \"d2l-filter-dropdown\" that you want to track",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "d2l-filter-dropdown-category",
+      "path": "./components/d2l-filter-dropdown/d2l-filter-dropdown-category.js",
+      "description": "A component wrapping grouped filters",
+      "attributes": [
+        {
+          "name": "search-value",
+          "description": "Sets the value in the search input, useful if setting up the filter in a default state",
+          "type": "string"
+        },
+        {
+          "name": "category-text",
+          "description": "REQUIRED: Name of the filter category, will be shown on the tab",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "disable-search",
+          "description": "Hides the search bar inside a filter tab",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "key",
+          "description": "Unique id to represent a filter category, sent back in category events",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "selected-option-count",
+          "description": "The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.",
+          "type": "number",
+          "default": "0"
+        }
+      ],
+      "properties": [
+        {
+          "name": "searchValue",
+          "attribute": "search-value",
+          "description": "Sets the value in the search input, useful if setting up the filter in a default state",
+          "type": "string"
+        },
+        {
+          "name": "categoryText",
+          "attribute": "category-text",
+          "description": "REQUIRED: Name of the filter category, will be shown on the tab",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "disableSearch",
+          "attribute": "disable-search",
+          "description": "Hides the search bar inside a filter tab",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "key",
+          "attribute": "key",
+          "description": "Unique id to represent a filter category, sent back in category events",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "selectedOptionCount",
+          "attribute": "selected-option-count",
+          "description": "The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.",
+          "type": "number",
+          "default": "0"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-filter-dropdown-category-slotchange",
+          "description": "Dispatched when the slot content changes"
+        },
+        {
+          "name": "d2l-filter-dropdown-category-selected",
+          "description": "Dispatched when a filter tab is selected"
+        },
+        {
+          "name": "d2l-filter-dropdown-category-searched",
+          "description": "Dispatched when a filter category is searched"
+        },
+        {
+          "name": "d2l-filter-dropdown-option-change",
+          "description": "Dispatched when a filter option is selected"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Contains the filters (e.g., d2l-filter-dropdown-option) that are in the category"
+        }
+      ]
+    },
+    {
+      "name": "d2l-filter-dropdown-option",
+      "path": "./components/d2l-filter-dropdown/d2l-filter-dropdown-option.js",
+      "description": "A filter menu item component.",
+      "properties": [
+        {
+          "name": "role",
+          "type": "string",
+          "default": "\"menuitemcheckbox\""
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-menu-item-select"
+        }
+      ]
+    },
+    {
+      "name": "d2l-filter-dropdown",
+      "path": "./components/d2l-filter-dropdown/d2l-filter-dropdown.js",
+      "description": "A component containing filter options and emitting selection events",
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Disables the dropdown opener",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disable-opener-text-variation",
+          "description": "Disables displaying different text for different number of selections, instead always displaying the term for no selections.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "header-text",
+          "description": "Sets the text for the filter content header",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "max-width",
+          "description": "Sets the max-width of the filter dropdown",
+          "type": "number",
+          "default": "400"
+        },
+        {
+          "name": "min-width",
+          "description": "Sets the min-width of the filter dropdown",
+          "type": "number",
+          "default": "25"
+        },
+        {
+          "name": "opener-text",
+          "description": "Sets the text for the opener when there are no selections",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "opener-text-multiple",
+          "description": "Sets the text for the opener when there are multiple selections",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "opener-text-single",
+          "description": "Sets the text for the opener when there is a single selection",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "total-selected-option-count",
+          "description": "The total number of selected filter options across all categories.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "no-padding-footer",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Disables the dropdown opener",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disableOpenerTextVariation",
+          "attribute": "disable-opener-text-variation",
+          "description": "Disables displaying different text for different number of selections, instead always displaying the term for no selections.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "headerText",
+          "attribute": "header-text",
+          "description": "Sets the text for the filter content header",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "maxWidth",
+          "attribute": "max-width",
+          "description": "Sets the max-width of the filter dropdown",
+          "type": "number",
+          "default": "400"
+        },
+        {
+          "name": "minWidth",
+          "attribute": "min-width",
+          "description": "Sets the min-width of the filter dropdown",
+          "type": "number",
+          "default": "25"
+        },
+        {
+          "name": "openerText",
+          "attribute": "opener-text",
+          "description": "Sets the text for the opener when there are no selections",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "openerTextMultiple",
+          "attribute": "opener-text-multiple",
+          "description": "Sets the text for the opener when there are multiple selections",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "openerTextSingle",
+          "attribute": "opener-text-single",
+          "description": "Sets the text for the opener when there is a single selection",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "totalSelectedOptionCount",
+          "attribute": "total-selected-option-count",
+          "description": "The total number of selected filter options across all categories.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "noPaddingFooter",
+          "attribute": "no-padding-footer",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-filter-dropdown-cleared",
+          "description": "Dispatched when the clear button is pressed to clear all filters"
+        },
+        {
+          "name": "d2l-filter-dropdown-close",
+          "description": "Dispatched when the filter dropdown is closed"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Contents of the dropdown, including filter categories and options"
+        },
+        {
+          "name": "footer",
+          "description": "Dropdown footer contents"
+        }
+      ]
+    },
+    {
+      "name": "d2l-search-facets-grouping",
+      "path": "./components/d2l-search-facets/d2l-search-facets-grouping.js",
+      "description": "A grouping of search facet options that keeps tracks of selected options",
+      "attributes": [
+        {
+          "name": "has-more",
+          "description": "Indicates whether this grouping has more options to be added later. Controls\nthe visibility of the 'More' button",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "text",
+          "description": "The name of the grouping",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "description": "The value of the grouping name",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "hasMore",
+          "attribute": "has-more",
+          "description": "Indicates whether this grouping has more options to be added later. Controls\nthe visibility of the 'More' button",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "text",
+          "attribute": "text",
+          "description": "The name of the grouping",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "description": "The value of the grouping name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-search-facets-grouping-change",
+          "description": "Dispatched when the search group changes"
+        },
+        {
+          "name": "d2l-search-facets-grouping-has-more",
+          "description": "Dispatched when the more button is clicked"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Contains the search facets in the group"
+        }
+      ]
+    },
+    {
+      "name": "d2l-search-facets-option",
+      "path": "./components/d2l-search-facets/d2l-search-facets-option.js",
+      "description": "Search facet option, with a count to display the number of results",
+      "attributes": [
+        {
+          "name": "checked",
+          "description": "Whether the option is selected or not. This property matches the value of\nthe d2l-input-checkbox",
+          "type": "boolean"
+        },
+        {
+          "name": "count",
+          "description": "The number of search results for this option",
+          "type": "number"
+        },
+        {
+          "name": "disabled",
+          "description": "Whether this option should be disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "text",
+          "description": "The text for this option",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "description": "The value of this option",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "checked",
+          "attribute": "checked",
+          "description": "Whether the option is selected or not. This property matches the value of\nthe d2l-input-checkbox",
+          "type": "boolean"
+        },
+        {
+          "name": "count",
+          "attribute": "count",
+          "description": "The number of search results for this option",
+          "type": "number"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Whether this option should be disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "text",
+          "attribute": "text",
+          "description": "The text for this option",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "description": "The value of this option",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-search-facets-option-change",
+          "description": "Dispatched when the checked value of an option changes"
+        }
+      ]
+    },
+    {
+      "name": "d2l-search-facets",
+      "path": "./components/d2l-search-facets/d2l-search-facets.js",
+      "description": "Polymer-based web component for D2L search facets.",
+      "properties": [
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-search-facets-change",
+          "description": "Dispatched when the search facets group changes"
+        }
+      ]
+    },
+    {
+      "name": "d2l-search-results-count",
+      "path": "./components/d2l-search-results-count/d2l-search-results-count.js",
+      "description": "`<d2l-search-results-count>`\nPolymer-based web component for D2L search result",
+      "attributes": [
+        {
+          "name": "range-start",
+          "description": "Range start",
+          "type": "number"
+        },
+        {
+          "name": "range-end",
+          "description": "Range end",
+          "type": "number"
+        },
+        {
+          "name": "total-count",
+          "description": "Total count",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "query",
+          "description": "Search query",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "rangeStart",
+          "attribute": "range-start",
+          "description": "Range start",
+          "type": "number"
+        },
+        {
+          "name": "rangeEnd",
+          "attribute": "range-end",
+          "description": "Range end",
+          "type": "number"
+        },
+        {
+          "name": "totalCount",
+          "attribute": "total-count",
+          "description": "Total count",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "query",
+          "attribute": "query",
+          "description": "Search query",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ]
+    },
+    {
+      "name": "d2l-sort-by-dropdown-option",
+      "path": "./components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js",
+      "description": "A dropdown option menu item component."
+    },
+    {
+      "name": "d2l-sort-by-dropdown",
+      "path": "./components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js",
+      "description": "Polymer-based web component for D2L sort by dropdown component",
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Whether this dropdown should be disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "compact",
+          "description": "Indicates whether the dropdown is in compact mode or not. The selection text\nwill not be visible when compact is true",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "align",
+          "description": "Alignment of dropdown menu",
+          "type": "string",
+          "default": "\"start\""
+        },
+        {
+          "name": "label",
+          "description": "Label for the dropdown-menu",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "description": "The value of the currently selected option",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Whether this dropdown should be disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "compact",
+          "attribute": "compact",
+          "description": "Indicates whether the dropdown is in compact mode or not. The selection text\nwill not be visible when compact is true",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "align",
+          "attribute": "align",
+          "description": "Alignment of dropdown menu",
+          "type": "string",
+          "default": "\"start\""
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "description": "Label for the dropdown-menu",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "description": "The value of the currently selected option",
+          "type": "string"
+        },
+        {
+          "name": "rootPath",
+          "type": "string"
+        },
+        {
+          "name": "importPath",
+          "type": "string"
+        },
+        {
+          "name": "root",
+          "type": "HTMLElement | StampedTemplate | ShadowRoot | null"
+        },
+        {
+          "name": "$",
+          "type": "{ [key: string]: Element; }"
+        },
+        {
+          "name": "PROPERTY_EFFECT_TYPES"
+        }
+      ],
+      "events": [
+        {
+          "name": "d2l-sort-by-dropdown-change",
+          "description": "Dispatched when option is selected"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Contains the dropdown options (e.g., d2l-sort-by-dropdown-options)"
+        }
+      ]
+    }
+  ]
+}

@@ -59,8 +59,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-grouping">
 
 document.head.appendChild($_documentContainer.content);
 /**
- * `<d2l-search-facets-grouping>`
  * A grouping of search facet options that keeps tracks of selected options
+ * @slot - Contains the search facets in the group
+ * @fires d2l-search-facets-grouping-change - Dispatched when the search group changes
+ * @fires d2l-search-facets-grouping-has-more - Dispatched when the more button is clicked
  */
 class SearchFacetsGrouping extends mixinBehaviors(
 	[
