@@ -19,8 +19,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-option">
 
 document.head.appendChild($_documentContainer.content);
 /**
- * `<d2l-search-facets-option>`
  * Search facet option, with a count to display the number of results
+ * @fires d2l-search-facets-option-change - Dispatched when the checked value of an option changes
  */
 class SearchFacetsOption extends mixinBehaviors(
 	[

@@ -17,8 +17,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-search-facets">
 
 document.head.appendChild($_documentContainer.content);
 /**
- * `<d2l-search-facets>`
  * Polymer-based web component for D2L search facets.
+ * @fires d2l-search-facets-change - Dispatched when the search facets group changes
  */
 class SearchFacets extends PolymerElement {
 	static get is() { return 'd2l-search-facets'; }

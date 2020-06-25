@@ -8,10 +8,12 @@ import '@brightspace-ui/core/components/tabs/tabs.js';
 import './d2l-filter-dropdown-localize-behavior.js';
 
 /**
- * @customElement
- * @polymer
+ * A component containing filter options and emitting selection events
+ * @slot - Contents of the dropdown, including filter categories and options
+ * @slot footer - Dropdown footer contents
+ * @fires d2l-filter-dropdown-cleared - Dispatched when the clear button is pressed to clear all filters
+ * @fires d2l-filter-dropdown-close - Dispatched when the filter dropdown is closed
  */
-
 class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropdown.LocalizeBehavior], PolymerElement) {
 	static get template() {
 		return html`
@@ -57,41 +59,68 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	static get is() { return 'd2l-filter-dropdown'; }
 	static get properties() {
 		return {
-			minWidth: {
-				type: Number,
-				value: 25
+			/**
+			 * Disables the dropdown opener
+			 */
+			disabled: {
+				type: Boolean,
+				value: false
 			},
-			maxWidth: {
-				type: Number,
-				value: 400
-			},
-			totalSelectedOptionCount: {
-				type: Number,
-				value: 0
-			},
-			headerText: {
-				type: String,
-				value: ''
-			},
-			openerText: {
-				type: String,
-				value: ''
-			},
-			openerTextSingle: {
-				type: String,
-				value: ''
-			},
-			openerTextMultiple: {
-				type: String,
-				value: ''
-			},
+			/**
+			 * Disables displaying different text for different number of selections, instead always displaying the term for no selections.
+			 */
 			disableOpenerTextVariation: {
 				type: Boolean,
 				value: false
 			},
-			disabled: {
-				type: Boolean,
-				value: false
+			/**
+			 * Sets the text for the filter content header
+			 */
+			headerText: {
+				type: String,
+				value: ''
+			},
+			/**
+			 * Sets the max-width of the filter dropdown
+			 */
+			maxWidth: {
+				type: Number,
+				value: 400
+			},
+			/**
+			 * Sets the min-width of the filter dropdown
+			 */
+			minWidth: {
+				type: Number,
+				value: 25
+			},
+			/**
+			 * Sets the text for the opener when there are no selections
+			 */
+			openerText: {
+				type: String,
+				value: ''
+			},
+			/**
+			 * Sets the text for the opener when there are multiple selections
+			 */
+			openerTextMultiple: {
+				type: String,
+				value: ''
+			},
+			/**
+			 * Sets the text for the opener when there is a single selection
+			 */
+			openerTextSingle: {
+				type: String,
+				value: ''
+			},
+			/**
+			 * The total number of selected filter options across all categories.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
+			 */
+			totalSelectedOptionCount: {
+				type: Number,
+				value: 0
 			},
 			_hasFooter: {
 				type: Boolean,

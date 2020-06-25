@@ -32,8 +32,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">
 
 document.head.appendChild($_documentContainer.content);
 /**
- * `<d2l-sort-by-dropdown>`
  * Polymer-based web component for D2L sort by dropdown component
+ * @slot - Contains the dropdown options (e.g., d2l-sort-by-dropdown-options)
+ * @fires d2l-sort-by-dropdown-change - Dispatched when option is selected
  */
 class SortByDropdown extends mixinBehaviors(
 	[

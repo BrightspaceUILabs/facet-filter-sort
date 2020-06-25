@@ -4,6 +4,9 @@ import { MenuItemRadioMixin } from '@brightspace-ui/core/components/menu/menu-it
 import { menuItemSelectableStyles } from '@brightspace-ui/core/components/menu/menu-item-selectable-styles.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
+/**
+ * A dropdown option menu item component.
+ */
 class SortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
 
 	static get styles() {
