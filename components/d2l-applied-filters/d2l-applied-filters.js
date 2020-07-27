@@ -216,6 +216,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
+				aria-labelledby="d2l-applied-filters-label"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
 					<d2l-labs-multi-select-list-item
@@ -231,7 +232,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 		return html`
 			<div class="d2l-applied-filters-wrapper">
-				<span class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
+				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
 				${filters}
 			</div>
 		`;
