@@ -3,6 +3,7 @@ import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static
 
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
+import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
@@ -130,6 +131,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_multiSelectItemDeleted(entry) {
+		announce('filter ' + entry.text + ' removed');
 		entry.deselect();
 	}
 
