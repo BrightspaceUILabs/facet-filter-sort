@@ -223,6 +223,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 						text="${x.text}"
 						deletable
 						index="${index}"
+						role="listitem"
 						@d2l-labs-multi-select-list-item-deleted="${() => this._multiSelectItemDeleted(x)}"
 					>
 					</d2l-labs-multi-select-list-item>
