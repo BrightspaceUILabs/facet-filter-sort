@@ -131,7 +131,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_multiSelectItemDeleted(entry) {
-		announce('filter ' + entry.text + ' removed');
+		announce(`filter ${entry.text} removed`);
 		entry.deselect();
 	}
 
