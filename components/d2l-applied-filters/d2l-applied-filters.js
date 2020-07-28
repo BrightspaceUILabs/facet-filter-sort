@@ -75,7 +75,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			},
 			'en': {
 				appliedFilters: 'Applied Filters:',
-				noActiveFilters: 'No active filters'
+				noActiveFilters: 'No active filters',
+				filterRemoved: 'Filter {filterText} removed'
 			},
 			'es': {
 			},
@@ -131,7 +132,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_multiSelectItemDeleted(entry) {
-		announce(`filter ${entry.text} removed`);
+		announce(this.localize('filterRemoved', 'filterText', entry.text));
 		entry.deselect();
 	}
 
