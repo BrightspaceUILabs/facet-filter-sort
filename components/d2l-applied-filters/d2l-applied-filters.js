@@ -3,6 +3,7 @@ import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static
 
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
+import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
@@ -74,7 +75,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			},
 			'en': {
 				appliedFilters: 'Applied Filters:',
-				noActiveFilters: 'No active filters'
+				noActiveFilters: 'No active filters',
+				filterRemoved: 'Filter {filterText} removed'
 			},
 			'es': {
 			},
@@ -130,6 +132,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_multiSelectItemDeleted(entry) {
+		announce(this.localize('filterRemoved', 'filterText', entry.text));
 		entry.deselect();
 	}
 
@@ -216,6 +219,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
+				aria-labelledby="d2l-applied-filters-label"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
 					<d2l-labs-multi-select-list-item
@@ -231,7 +235,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 		return html`
 			<div class="d2l-applied-filters-wrapper">
-				<span class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
+				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
 				${filters}
 			</div>
 		`;
