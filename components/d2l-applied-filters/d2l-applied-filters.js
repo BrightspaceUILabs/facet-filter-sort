@@ -11,6 +11,7 @@ import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
+const CLEAR_FILTERS_THRESHOLD = 4;
 
 /**
  * A multi-select-list allowing the user to see (and remove) the currently applied filters.
@@ -76,7 +77,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			'en': {
 				appliedFilters: 'Applied Filters:',
 				noActiveFilters: 'No active filters',
-				filterRemoved: 'Filter {filterText} removed'
+				filterRemoved: 'Filter {filterText} removed',
+				clearFilters: 'Clear filters'
 			},
 			'es': {
 			},
@@ -108,8 +110,12 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	constructor() {
 		super();
 		this._clearSelected = this._clearSelected.bind(this);
+		this._getSelectedOptions = this._getSelectedOptions.bind(this);
 		this._setSelectedOptions = this._setSelectedOptions.bind(this);
 		this._update = this._update.bind(this);
+		this._updateClearFiltersButton = this._updateClearFiltersButton.bind(this);
+
+		this._updateClearFiltersButton();
 	}
 
 	firstUpdated() {
@@ -160,6 +166,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		}
 		if (this._target) {
 			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._updateClearFiltersButton, true);
+			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._updateClearFiltersButton, true);
 			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
 			this._target.removeEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
@@ -172,6 +180,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		if (target) {
 			target = this._findDropdownIfNested(target);
 			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
+			target.addEventListener('d2l-filter-dropdown-option-change', this._updateClearFiltersButton, true);
+			target.addEventListener('d2l-filter-dropdown-cleared', this._updateClearFiltersButton, true);
 			target.addEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
 			target.addEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
@@ -211,8 +221,16 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this._selectedEntries = [];
 	}
 
+	_getSelectedOptions() {
+		return [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
+	}
+
 	_setSelectedOptions() {
-		this._selectedEntries = [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
+		this._selectedEntries = this._getSelectedOptions();
+	}
+
+	_updateClearFiltersButton() {
+		this.hideClearFiltersButton = this._getSelectedOptions().length < CLEAR_FILTERS_THRESHOLD;
 	}
 
 	render() {
@@ -237,6 +255,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			<div class="d2l-applied-filters-wrapper">
 				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
 				${filters}
+				<d2l-button-subtle text="${this.localize('clearFilters')}" ?hidden="${this.hideClearFiltersButton}"></d2l-button-subtle>
 			</div>
 		`;
 	}
