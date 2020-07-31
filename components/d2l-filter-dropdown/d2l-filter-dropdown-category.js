@@ -165,6 +165,9 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 			this.selected = !this.selected;
 			this.__onSelect(e);
 		});
+		this.addEventListener('d2l-tab-panel-selected', () => {
+			this._dispatchSelected();
+		});
 	}
 
 	_onSlotChange() {
@@ -186,7 +189,6 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 	}
 
 	_dispatchSelected() {
-		super._dispatchSelected();
 		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-selected', {
 			detail: {
 				categoryKey: this.key
