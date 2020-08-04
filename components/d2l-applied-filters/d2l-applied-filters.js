@@ -167,7 +167,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		if (this._target) {
 			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
 			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._updateClearFiltersButton, true);
-			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._updateClearFiltersButton, true);
 			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
 			this._target.removeEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
@@ -181,7 +180,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			target = this._findDropdownIfNested(target);
 			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
 			target.addEventListener('d2l-filter-dropdown-option-change', this._updateClearFiltersButton, true);
-			target.addEventListener('d2l-filter-dropdown-cleared', this._updateClearFiltersButton, true);
 			target.addEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
 			target.addEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
 		}
@@ -219,6 +217,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	_clearSelected() {
 		this._selectedEntries = [];
+		this.hideClearFiltersButton = true;
 	}
 
 	_getSelectedOptions() {
