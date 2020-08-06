@@ -78,7 +78,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				appliedFilters: 'Applied Filters:',
 				noActiveFilters: 'No active filters',
 				filterRemoved: 'Filter {filterText} removed',
-				clearFilters: 'Clear filters'
+				clearFilters: 'Clear filters',
+				allFiltersRemoved: 'All filters removed'
 			},
 			'es': {
 			},
@@ -237,8 +238,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const dropdown = this._target;
 		if (!dropdown) { return; }
 		dropdown.clearFilters();
+		dropdown.focus();
 
 		this._clearSelected();
+
+		announce(this.localize('allFiltersRemoved'));
 	}
 
 	render() {
