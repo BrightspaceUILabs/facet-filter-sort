@@ -232,6 +232,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this.hideClearFiltersButton = this._getSelectedOptions().length < CLEAR_FILTERS_THRESHOLD;
 	}
 
+	_clearFiltersClicked() {
+		this._selectedEntries = [];
+		this.hideClearFiltersButton = true;
+	}
+
 	render() {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
@@ -254,7 +259,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			<div class="d2l-applied-filters-wrapper">
 				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
 				${filters}
-				<d2l-button-subtle text="${this.localize('clearFilters')}" ?hidden="${this.hideClearFiltersButton}"></d2l-button-subtle>
+				<d2l-button-subtle text="${this.localize('clearFilters')}" ?hidden="${this.hideClearFiltersButton}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
 			</div>
 		`;
 	}
