@@ -110,6 +110,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	constructor() {
 		super();
 		this._clearSelected = this._clearSelected.bind(this);
+		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
 		this._getSelectedOptions = this._getSelectedOptions.bind(this);
 		this._setSelectedOptions = this._setSelectedOptions.bind(this);
 		this._update = this._update.bind(this);
@@ -233,8 +234,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_clearFiltersClicked() {
-		this._selectedEntries = [];
-		this.hideClearFiltersButton = true;
+		const dropdown = this._target;
+		if (!dropdown) { return; }
+		dropdown.clearFilters();
+
+		this._clearSelected();
 	}
 
 	render() {
