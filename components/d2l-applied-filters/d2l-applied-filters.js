@@ -112,12 +112,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		super();
 		this._clearSelected = this._clearSelected.bind(this);
 		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
-		this._getSelectedOptions = this._getSelectedOptions.bind(this);
 		this._setSelectedOptions = this._setSelectedOptions.bind(this);
 		this._update = this._update.bind(this);
 		this._updateClearFiltersButton = this._updateClearFiltersButton.bind(this);
 
-		this._updateClearFiltersButton();
+		this.hideClearFiltersButton = true;
 	}
 
 	firstUpdated() {
@@ -222,16 +221,12 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this.hideClearFiltersButton = true;
 	}
 
-	_getSelectedOptions() {
-		return [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
-	}
-
 	_setSelectedOptions() {
-		this._selectedEntries = this._getSelectedOptions();
+		this._selectedEntries = [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
 	}
 
 	_updateClearFiltersButton() {
-		this.hideClearFiltersButton = this._getSelectedOptions().length < CLEAR_FILTERS_THRESHOLD;
+		this.hideClearFiltersButton = this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD;
 	}
 
 	_clearFiltersClicked() {
