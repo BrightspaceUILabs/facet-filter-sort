@@ -101,6 +101,95 @@
 						done();
 					});
 				});
+
+				test('clear filters button is hidden when 3 filters are applied', function() {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					assert.equal(clearFilters.hidden, true);
+				});
+				test('selecting a 4th filter reveals the clear filters button', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					options[1].click();
+
+					afterNextRender(options[1], () => {
+						assert.equal(clearFilters.hidden, false);
+						done();
+					});
+				});
+				test('selecting a 4th filter then removing it means clear filters button is hidden', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					options[1].click();
+
+					afterNextRender(options[1], () => {
+						options[1].deselect();
+
+						afterNextRender(options[1], () => {
+							assert.equal(clearFilters.hidden, true);
+							done();
+						});
+					});
+				});
+				test('clear filters button is visible when all filters are applied', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					options[1].click();
+					options[2].click();
+					options[4].click();
+					options[5].click();
+					options[7].click();
+					options[8].click();
+
+					afterNextRender(options[1], () => {
+						assert.equal(clearFilters.hidden, false);
+						done();
+					});
+				});
+				test('clear filters button is hidden when 0 filters are applied', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					options[0].click();
+					options[3].click();
+					options[6].click();
+
+					afterNextRender(options[0], () => {
+						assert.equal(clearFilters.hidden, true);
+						done();
+					});
+				});
+				test('clear filters button is hidden when 1 filters is applied', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					options[0].click();
+					options[3].click();
+
+					afterNextRender(options[0], () => {
+						assert.equal(clearFilters.hidden, true);
+						done();
+					});
+				});
+				test('selecting a 4th filter then clicking clear filters button removes filters and the clear filters button', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					options[1].click();
+
+					afterNextRender(clearFilters, () => {
+						var filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
+						assert.equal(filters.length, 4);
+						clearFilters.click();
+
+						afterNextRender(clearFilters, () => {
+							filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
+							assert.equal(filters.length, 0);
+							assert.equal(clearFilters.hidden, true);
+							done();
+						});
+					});
+				});
 			});
 		</script>
 	</body>
