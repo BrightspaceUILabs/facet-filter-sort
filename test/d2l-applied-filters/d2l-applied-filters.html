@@ -116,7 +116,7 @@
 						done();
 					});
 				});
-				test('selecting a 4th filter then removing it means clear filters button is hidden', function(done) {
+				test('selecting a 4th filter then removing it hides the clear filters button', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 					options[1].click();
@@ -150,9 +150,9 @@
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
-					options[0].click();
-					options[3].click();
-					options[6].click();
+					options[0].deselect();
+					options[3].deselect();
+					options[6].deselect();
 
 					afterNextRender(options[0], () => {
 						assert.equal(clearFilters.hidden, true);
@@ -163,15 +163,15 @@
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
-					options[0].click();
-					options[3].click();
+					options[0].deselect();
+					options[3].deselect();
 
 					afterNextRender(options[0], () => {
 						assert.equal(clearFilters.hidden, true);
 						done();
 					});
 				});
-				test('selecting a 4th filter then clicking clear filters button removes filters and the clear filters button, and fires an event', function(done) {
+				test('selecting a 4th filter & clicking clear filters removes filters, hides clear filters button, & fires event', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
@@ -182,12 +182,10 @@
 					options[1].click();
 
 					afterNextRender(clearFilters, () => {
-						var filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
-						assert.equal(filters.length, 4);
 						clearFilters.click();
 
 						afterNextRender(clearFilters, () => {
-							filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
+							const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 							assert.equal(filters.length, 0);
 							assert.equal(clearFilters.hidden, true);
 						});
