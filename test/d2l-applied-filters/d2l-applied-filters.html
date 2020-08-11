@@ -171,9 +171,13 @@
 						done();
 					});
 				});
-				test('selecting a 4th filter then clicking clear filters button removes filters and the clear filters button', function(done) {
+				test('selecting a 4th filter then clicking clear filters button removes filters and the clear filters button, and fires an event', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					document.addEventListener('d2l-filter-dropdown-cleared', () => {
+						done();
+					});
 
 					options[1].click();
 
@@ -186,7 +190,6 @@
 							filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 							assert.equal(filters.length, 0);
 							assert.equal(clearFilters.hidden, true);
-							done();
 						});
 					});
 				});
