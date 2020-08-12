@@ -171,7 +171,7 @@
 						done();
 					});
 				});
-				test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-option event', function(done) {
+				test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-cleared event', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
