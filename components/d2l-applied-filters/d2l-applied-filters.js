@@ -231,8 +231,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		dropdown.clearFilters();
 		dropdown.focus();
 
-		this._clearSelected();
-
 		announce(this.localize('allFiltersRemoved'));
 	}
 
