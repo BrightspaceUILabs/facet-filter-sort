@@ -82,14 +82,16 @@
 						done();
 					});
 				});
-				test('searching triggers the d2l-filter-dropdown-category-searched event', function(done) {
+				test('searching triggers the d2l-filter-dropdown-category-searched event and updates the searchValue property', function(done) {
 					container.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
 						assert.equal(e.detail.categoryKey, '1');
 						assert.equal(e.detail.value, 'test');
+						assert.equal(categories[0].searchValue, 'test');
 						done();
 					});
-					categories[0].searchValue = 'test';
+
 					categories[0].updateComplete.then(function() {
+						categories[0].shadowRoot.querySelector('d2l-input-search').value = 'test';
 						categories[0].shadowRoot.querySelector('d2l-input-search').search();
 					});
 				});

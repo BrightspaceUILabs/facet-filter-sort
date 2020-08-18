@@ -31,7 +31,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 			 */
 			key: { type: String },
 			/**
-			 * Sets the value in the search input, useful if setting up the filter in a default state
+			 * Sets the value in the search input
 			 */
 			searchValue: { type: String, attribute: 'search-value' },
 			/**
@@ -213,6 +213,8 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 
 	_handleSearchChange(e) {
 		e.stopPropagation();
+
+		this.searchValue = e.detail.value;
 		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-searched', {
 			detail: {
 				categoryKey: this.key,
