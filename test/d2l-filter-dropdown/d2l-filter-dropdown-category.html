@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
 		<title>d2l-filter-dropdown-category test</title>
-
-		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script src="../../../wct-browser-legacy/browser.js"></script>
-		<script type="module" src="../../../@brightspace-ui/core/components/tabs/tabs.js"></script>
-		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
+		<script type="module">
+			import '@brightspace-ui/core/components/tabs/tabs.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
+		</script>
 	</head>
 	<body>
 		<test-fixture id="basic">

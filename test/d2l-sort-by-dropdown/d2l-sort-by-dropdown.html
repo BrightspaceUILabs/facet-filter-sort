@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-sort-by-dropdown test</title>
-		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-		<script src="../../../wct-browser-legacy/browser.js"></script>
-		<script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
-		<script src="../../../@polymer/iron-test-helpers/test-helpers.js" type="module"></script>
-		<script type="module" src="../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js"></script>
-		<script type="module" src="../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js"></script>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
+		<script type="module">
+			import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js';
+			import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js';
+		</script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -21,37 +21,37 @@
 			</template>
 		</test-fixture>
 		<script type="module">
-import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown-option.js';
-import '../../components/d2l-sort-by-dropdown/d2l-sort-by-dropdown.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-describe('<d2l-sort-by-dropdown>', function() {
-	describe('basic', function() {
-		let basicFixture;
-		let option1;
-		let option2;
+			import '@polymer/iron-test-helpers/mock-interactions.js';
+			import '@polymer/iron-test-helpers/test-helpers.js';
+			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+			describe('d2l-sort-by-dropdown', function() {
+				describe('basic', function() {
+					let basicFixture;
+					let option1;
+					let option2;
 
-		beforeEach(function(done) {
-			basicFixture = fixture('basic');
-			afterNextRender(basicFixture, function() {
-				option1 = basicFixture.querySelector('#option1');
-				option2 = basicFixture.querySelector('#option2');
-				done();
+					beforeEach(function(done) {
+						basicFixture = fixture('basic');
+						afterNextRender(basicFixture, function() {
+							option1 = basicFixture.querySelector('#option1');
+							option2 = basicFixture.querySelector('#option2');
+							done();
+						});
+					});
+
+					it('should initially select the first option by default', function() {
+						expect(basicFixture.value).to.equal('option1');
+					});
+
+					it('should change to the selected option', function() {
+						MockInteractions.tap(option2);
+						expect(basicFixture.getAttribute('value')).to.equal(option2.value);
+
+						MockInteractions.tap(option1);
+						expect(basicFixture.getAttribute('value')).to.equal(option1.value);
+					});
+				});
 			});
-		});
-
-		it('should initially select the first option by default', function() {
-			expect(basicFixture.value).to.equal('option1');
-		});
-
-		it('should change to the selected option', function() {
-			MockInteractions.tap(option2);
-			expect(basicFixture.getAttribute('value')).to.equal(option2.value);
-
-			MockInteractions.tap(option1);
-			expect(basicFixture.getAttribute('value')).to.equal(option1.value);
-		});
-	});
-});
-</script>
+		</script>
 	</body>
 </html>
