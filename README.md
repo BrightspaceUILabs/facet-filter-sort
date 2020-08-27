@@ -1,5 +1,5 @@
 # d2l-facet-filter-sort
-[![Build status](https://travis-ci.com/BrightspaceUILabs/pfile-uploader.svg?branch=master)](https://travis-ci.com/BrightspaceUILabs/file-uploader)
+[![Build status](https://travis-ci.com/BrightspaceUILabs/facet-filter-sort.svg?branch=master)](https://travis-ci.com/BrightspaceUILabs/facet-filter-sort)
 
 > Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
 >
@@ -39,10 +39,10 @@ Include the webcomponents.js polyfill loader (for browsers who don't natively su
 - `d2l-filter-dropdown-option`
 
 ```html
-<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 ```
 
 Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-filter-dropdown-option` component (which is a custom `d2l-menu-item` component).  For example:
