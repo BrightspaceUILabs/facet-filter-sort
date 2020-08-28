@@ -1,7 +1,21 @@
 # d2l-facet-filter-sort
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/BrightspaceUI/facet-filter-sort)
-[![Bower version][bower-image]][bower-url]
-[![Build status][ci-image]][ci-url]
+[![Build status](https://travis-ci.com/BrightspaceUILabs/facet-filter-sort.svg?branch=master)](https://travis-ci.com/BrightspaceUILabs/facet-filter-sort)
+
+> Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
+>
+> - [ ] [Design organization buy-in](https://github.com/BrightspaceUI/guide/wiki/Before-you-build#working-with-design)
+> - [ ] [design.d2l entry](http://design.d2l/)
+> - [ ] [Architectural sign-off](https://github.com/BrightspaceUI/guide/wiki/Before-you-build#web-component-architecture)
+> - [x] [Continuous integration](https://github.com/BrightspaceUI/guide/wiki/Testing#testing-continuously-with-travis-ci)
+> - [x] [Cross-browser testing](https://github.com/BrightspaceUI/guide/wiki/Testing#cross-browser-testing-with-sauce-labs)
+> - [x] [Unit tests](https://github.com/BrightspaceUI/guide/wiki/Testing#testing-with-polymer-test) (if applicable)
+> - [ ] [Accessibility tests](https://github.com/BrightspaceUI/guide/wiki/Testing#automated-accessibility-testing-with-axe)
+> - [ ] [Visual diff tests](https://github.com/BrightspaceUI/visual-diff)
+> - [ ] [Localization](https://github.com/BrightspaceUI/guide/wiki/Localization) with Serge (if applicable)
+> - [x] Demo page
+> - [ ] README documentation
+
+For further information on this and other components, refer to [The Brightspace UI Guide](https://github.com/BrightspaceUI/guide/wiki).
 
 Collection of (search) facet, filter, and sort components
 
@@ -25,10 +39,10 @@ Include the webcomponents.js polyfill loader (for browsers who don't natively su
 - `d2l-filter-dropdown-option`
 
 ```html
-<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-<script type="module" src="../../d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
 ```
 
 Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-filter-dropdown-option` component (which is a custom `d2l-menu-item` component).  For example:
@@ -181,11 +195,6 @@ To lint AND run local unit tests:
 ```shell
 npm test
 ```
-
-[bower-url]: http://bower.io/search/?q=d2l-facet-filter-sort
-[bower-image]: https://badge.fury.io/bo/d2l-facet-filter-sort.svg
-[ci-url]: https://travis-ci.com/BrightspaceUI/facet-filter-sort
-[ci-image]: https://travis-ci.com/BrightspaceUI/facet-filter-sort.svg?branch=master
 
 ## Versioning & Releasing
 
