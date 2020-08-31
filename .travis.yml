@@ -17,9 +17,13 @@ script:
 after_success:
 - frauci-update-version -d=skip && export TRAVIS_TAG=$(frauci-get-version)
 deploy:
-  provider: releases
-  api_key: "$GITHUB_RELEASE_TOKEN"
+  provider: npm
+  email: d2ltravisdeploy@d2l.com
+  api_key:
+    # a52e......6710
+    secure: VdUuW9DjA+z7YpFDUkuuNcxetE+squMjom8MHql1pGAWIKQLlohkpavv9dsMmuOL94UQxRHN+Vb9pS9MhE4NENB2Zdn2r1syzUmT5gmXwSenutFY1FZAXbAwJ0msI+Zv/B3qVhfbo3nQkv10BfP7L6/OVl/e6d+6JY7OJ3zZ6UX70gaj2GOit0MNe7u3/7Z/H7cxHRaN3NkO6bz/gFvXJ5jg+MnsbFbQSqh6ll7w7mNL0E2aNYLY78koGT+XSXahPtdQfY45Az8DphZELOTmey+UQt0EKG/bWkAbyqrRhmrwZuj8HBe1qdkDjxL1yBfFkIbhPXbHUM4xHHNyF4h3HcDShNZd8+baaEuLUd1/33zoRLjIFVTbTA9ixs6NiG9bqFHVKZ6ZihGRATpulGVJNWCpSMv/qk1pBi6KcglE58Vp6gWwlwVmVecHhVK/59jSDWu5iJKRI8B+jXJfDcumyUUinGeT+kyU4OXGzm4AGZa1rl1NNpxSI0Y2upwHMy9vH3mullUXf52IgJYw21HmonJcZKmGaL3QLuAysKjC8HYKpzon9FkCuVzAw0wLU5od1Q8O6/MTTjnP05nxbTicKxDQx/3ie5p58OYeesQCq9Pbz6D0aT88vLhWnyUdx2KAT4msegZ5sWB5oCLJvqq6ET3jbMIZQOtXNObkTNWRQNI=
   on:
+    repo: BrightspaceUILabs/facet-filter-sort
     tags: true
 env:
   global:
