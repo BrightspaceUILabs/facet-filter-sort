@@ -1,24 +1,7 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import './d2l-search-results-count-localize-behavior.js';
 
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<dom-module id="d2l-search-results-count">
-	<template strip-whitespace="">
-		<style>
-			/*
-			 * https://github.com/Polymer/tools/issues/408
-			 * Empty style blocks break linter.
-			 */
-			:host {}
-		</style>
-		[[_text]]
-	</template>
-
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 /**
  * `<d2l-search-results-count>`
  * Polymer-based web component for D2L search result
@@ -67,6 +50,20 @@ class SearchResultsCount extends mixinBehaviors(
 			}
 		};
 	}
+
+	static get template() {
+		return html`
+			<style>
+				/*
+				* https://github.com/Polymer/tools/issues/408
+				* Empty style blocks break linter.
+				*/
+				:host {}
+			</style>
+			[[_text]]
+        `;
+	}
+
 	connectedCallback() {
 		super.connectedCallback();
 		if (this.rangeStart && this.rangeEnd) {
