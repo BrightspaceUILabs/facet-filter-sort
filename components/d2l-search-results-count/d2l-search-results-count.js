@@ -53,13 +53,6 @@ class SearchResultsCount extends mixinBehaviors(
 
 	static get template() {
 		return html`
-			<style>
-				/*
-				* https://github.com/Polymer/tools/issues/408
-				* Empty style blocks break linter.
-				*/
-				:host {}
-			</style>
 			[[_text]]
         `;
 	}
