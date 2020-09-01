@@ -27,53 +27,53 @@
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-filter-dropdown-option', function() {
-				var container;
-				var options = [];
+			suite('d2l-filter-dropdown-option', () => {
+				let container;
+				let options = [];
 
-				setup(function(done) {
+				setup((done) => {
 					container = fixture('basic');
 					options = container.querySelectorAll('d2l-filter-dropdown-option');
 					afterNextRender(container, done);
 				});
-				test('instantiating the element works', function() {
+				test('instantiating the element works', () => {
 					assert.equal('d2l-filter-dropdown-option', options[0].tagName.toLowerCase());
 				});
-				test('role is set properly', function() {
+				test('role is set properly', () => {
 					assert.equal(options[0].getAttribute('role'), 'menuitemcheckbox');
 
 				});
-				test('fires d2l-menu-item-change event when item is clicked', function(done) {
-					options[0].addEventListener('d2l-menu-item-change', function(e) {
+				test('fires d2l-menu-item-change event when item is clicked', (done) => {
+					options[0].addEventListener('d2l-menu-item-change', (e) => {
 						assert.equal(e.detail.value, '1');
 						assert.equal(e.detail.selected, true);
 						done();
 					});
 					options[0].click();
 				});
-				test('fires d2l-menu-item-change event when enter key pressed on item', function(done) {
-					options[0].addEventListener('d2l-menu-item-change', function(e) {
+				test('fires d2l-menu-item-change event when enter key pressed on item', (done) => {
+					options[0].addEventListener('d2l-menu-item-change', (e) => {
 						assert.equal(e.detail.value, '1');
 						assert.equal(e.detail.selected, true);
 						done();
 					});
 					MockInteractions.keyDownOn(options[0], 13);
 				});
-				test('fires d2l-menu-item-change event when space key pressed on item', function(done) {
-					options[0].addEventListener('d2l-menu-item-change', function(e) {
+				test('fires d2l-menu-item-change event when space key pressed on item', (done) => {
+					options[0].addEventListener('d2l-menu-item-change', (e) => {
 						assert.equal(e.detail.value, '1');
 						assert.equal(e.detail.selected, true);
 						done();
 					});
 					MockInteractions.keyDownOn(options[0], 32);
 				});
-				test('should toggle state on selection', function(done) {
-					var expected = true;
-					options[0].addEventListener('d2l-menu-item-change', function(e) {
+				test('should toggle state on selection', (done) => {
+					let expected = true;
+					options[0].addEventListener('d2l-menu-item-change', (e) => {
 						assert.equal(options[0].selected, expected);
 						assert.equal(e.detail.selected, expected);
 						assert.equal(e.detail.value, '1');
-						options[0].updateComplete.then(function() {
+						options[0].updateComplete.then(() => {
 							assert.equal(window.getComputedStyle(options[0].shadowRoot.querySelector('d2l-icon')).getPropertyValue('visibility'), expected ? 'visible' : 'hidden');
 							if (expected) {
 								expected = false;
@@ -85,8 +85,8 @@
 					});
 					options[0].click();
 				});
-				test('does not affect other checkboxes in the menu when selected', function(done) {
-					options[0].addEventListener('d2l-menu-item-change', function() {
+				test('does not affect other checkboxes in the menu when selected', (done) => {
+					options[0].addEventListener('d2l-menu-item-change', () => {
 						assert.equal(options[0].selected, true);
 						assert.notEqual(options[1].selected, true);
 						done();

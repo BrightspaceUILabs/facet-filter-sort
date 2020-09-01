@@ -1,6 +1,6 @@
+import './d2l-search-results-count-localize-behavior.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import './d2l-search-results-count-localize-behavior.js';
 
 /**
  * `<d2l-search-results-count>`
@@ -12,7 +12,6 @@ class SearchResultsCount extends mixinBehaviors(
 	],
 	PolymerElement
 ) {
-	static get is() { return 'd2l-search-results-count'; }
 	static get properties() {
 		return {
 			/**
@@ -50,6 +49,8 @@ class SearchResultsCount extends mixinBehaviors(
 			}
 		};
 	}
+
+	static get is() { return 'd2l-search-results-count'; }
 
 	static get template() {
 		return html`

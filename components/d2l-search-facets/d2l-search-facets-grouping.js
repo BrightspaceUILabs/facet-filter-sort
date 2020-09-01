@@ -1,10 +1,10 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/inputs/input-checkbox-spacer.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
 import './d2l-search-facets-localize-behavior.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * A grouping of search facet options that keeps tracks of selected options
@@ -18,7 +18,6 @@ class SearchFacetsGrouping extends mixinBehaviors(
 	],
 	PolymerElement
 ) {
-	static get is() { return 'd2l-search-facets-grouping'; }
 	static get properties() {
 		return {
 			/**
@@ -56,6 +55,8 @@ class SearchFacetsGrouping extends mixinBehaviors(
 			},
 		};
 	}
+
+	static get is() { return 'd2l-search-facets-grouping'; }
 
 	static get template() {
 		return html`
@@ -108,12 +109,12 @@ class SearchFacetsGrouping extends mixinBehaviors(
 	connectedCallback() {
 		super.connectedCallback();
 
-		afterNextRender(this, function() {
+		afterNextRender(this, () => {
 			this._boundListeners._onFacetOptionChange = this._onFacetOptionChange.bind(this);
 
 			this.addEventListener('d2l-search-facets-option-change',
 				this._boundListeners._onFacetOptionChange);
-		}.bind(this));
+		});
 	}
 
 	disconnectedCallback() {

@@ -1,6 +1,6 @@
 {
-	"extends": "brightspace/polymer-3-config",
-	"env": {
-    "es6": true
+  "extends": "brightspace/lit-config",
+  "rules": {
+    "lit/no-legacy-template-syntax": 0
   }
 }

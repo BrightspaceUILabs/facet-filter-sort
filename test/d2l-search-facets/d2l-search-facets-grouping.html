@@ -50,22 +50,22 @@
 			import './test-helper-functions.js';
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-search-facets-grouping', function() {
-				describe('basic', function() {
+			describe('d2l-search-facets-grouping', () => {
+				describe('basic', () => {
 					let basicFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('basic');
 						afterNextRender(basicFixture, done);
 					});
 
-					it('should not display the "More" button', function() {
+					it('should not display the "More" button', () => {
 						const showMoreButton = basicFixture.shadowRoot.querySelector('button');
 						expect(showMoreButton).to.be.null;
 					});
 
-					it('should emit an event when options are selected', function(done) {
-						basicFixture.addEventListener('d2l-search-facets-grouping-change', function(e) {
+					it('should emit an event when options are selected', (done) => {
+						basicFixture.addEventListener('d2l-search-facets-grouping-change', (e) => {
 							expect(e.detail).to.deep.equal({
 								grouping: basicFixture.value,
 								option: option1.value,
@@ -80,21 +80,21 @@
 
 				});
 
-				describe('has-more', function() {
+				describe('has-more', () => {
 					let hasMoreFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						hasMoreFixture = fixture('has-more');
 						afterNextRender(hasMoreFixture, done);
 					});
 
-					it('should display the "More" button when has-more is true', function() {
+					it('should display the "More" button when has-more is true', () => {
 						const showMoreButton = hasMoreFixture.shadowRoot.querySelector('button');
 						expect(showMoreButton).to.not.be.null;
 					});
 
-					it('should fire an event when the "More" button is clicked', function(done) {
-						hasMoreFixture.addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+					it('should fire an event when the "More" button is clicked', (done) => {
+						hasMoreFixture.addEventListener('d2l-search-facets-grouping-has-more', (e) => {
 							expect(e.detail).to.deep.equal({ grouping: hasMoreFixture.value });
 							done();
 						});

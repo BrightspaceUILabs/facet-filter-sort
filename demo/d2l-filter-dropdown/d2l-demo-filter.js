@@ -1,8 +1,8 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
 import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
 import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 /**
  * @customElement
@@ -10,7 +10,6 @@ import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
  */
 
 class D2LDemoFilter extends PolymerElement {
-	static get is() { return 'd2l-demo-filter'; }
 	static get properties() {
 		return {
 			_filters: {
@@ -112,6 +111,8 @@ class D2LDemoFilter extends PolymerElement {
 		};
 	}
 
+	static get is() { return 'd2l-demo-filter'; }
+
 	static get template() {
 		return html`
 			<d2l-filter-dropdown total-selected-option-count="[[_totalSelected]]">
@@ -132,11 +133,11 @@ class D2LDemoFilter extends PolymerElement {
 
 	connectedCallback() {
 		super.connectedCallback();
-		afterNextRender(this, function() {
+		afterNextRender(this, () => {
 			this.addEventListener('d2l-filter-dropdown-option-change', this._handleMenuItemChange);
 			this.addEventListener('d2l-filter-dropdown-cleared', this._handleClear);
 			this.addEventListener('d2l-filter-dropdown-category-searched', this._handleSearch);
-		}.bind(this));
+		});
 	}
 
 	disconnectedCallback() {
@@ -147,9 +148,9 @@ class D2LDemoFilter extends PolymerElement {
 	}
 
 	_handleClear() {
-		for (var i = 0; i < this._filters.length; i++) {
+		for (let i = 0; i < this._filters.length; i++) {
 			this.set(['_filters', i, 'numSelected'], 0);
-			for (var j = 0; j < this._filters[i].options.length; j++) {
+			for (let j = 0; j < this._filters[i].options.length; j++) {
 				this.set(['_filters', i, 'options', j, 'selected'], false);
 			}
 		}
@@ -157,11 +158,11 @@ class D2LDemoFilter extends PolymerElement {
 	}
 
 	_handleMenuItemChange(e) {
-		for (var i = 0; i < this._filters.length; i++) {
+		for (let i = 0; i < this._filters.length; i++) {
 			if (this._filters[i].key === e.detail.categoryKey) {
-				for (var j = 0; j < this._filters[i].options.length; j++) {
+				for (let j = 0; j < this._filters[i].options.length; j++) {
 					if (this._filters[i].options[j].key === e.detail.menuItemKey) {
-						var item = this._filters[i].options[j];
+						const item = this._filters[i].options[j];
 						if (item.selected !== e.detail.selected) {
 							item.selected = e.detail.selected;
 							if (e.detail.selected) {
@@ -179,9 +180,9 @@ class D2LDemoFilter extends PolymerElement {
 	}
 
 	_handleSearch(e) {
-		for (var i = 0; i < this._filters.length; i++) {
+		for (let i = 0; i < this._filters.length; i++) {
 			if (this._filters[i].key === e.detail.categoryKey) {
-				for (var j = 0; j < this._filters[i].options.length; j++) {
+				for (let j = 0; j < this._filters[i].options.length; j++) {
 					if (e.detail.value === '') {
 						this.set(['_filters', i, 'options', j, 'display'], true);
 					} else {

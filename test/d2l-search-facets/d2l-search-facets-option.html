@@ -35,42 +35,42 @@
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-search-facets-option', function() {
-				describe('basic', function() {
+			describe('d2l-search-facets-option', () => {
+				describe('basic', () => {
 					let basicFixture;
 					let option;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('basic');
-						afterNextRender(basicFixture, function() {
+						afterNextRender(basicFixture, () => {
 							option = document.getElementById('basic-option');
 							done();
 						});
 					});
 
-					it('should emit an event when selected', function(done) {
-						basicFixture.addEventListener('d2l-search-facets-option-change', function(e) {
+					it('should emit an event when selected', (done) => {
+						basicFixture.addEventListener('d2l-search-facets-option-change', (e) => {
 							expect(e.detail).to.deep.equal({ option: option.value, checked: true });
 							done();
 						});
 						selectOption(basicFixture);
 					});
 
-					it('should show the text along with the count', function() {
+					it('should show the text along with the count', () => {
 						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
 						expect(text).to.equal(`${option.text} (${option.count})`);
 					});
 				});
 
-				describe('no-count', function() {
+				describe('no-count', () => {
 					let noCountFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						noCountFixture = fixture('no-count');
 						afterNextRender(noCountFixture, done);
 					});
 
-					it('should not display the count if it is not present', function() {
+					it('should not display the count if it is not present', () => {
 						const option = document.getElementById('no-count-option');
 						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
 						expect(option.count).to.be.undefined;

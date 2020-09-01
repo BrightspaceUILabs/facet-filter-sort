@@ -1,11 +1,11 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-menu.js';
 import '@brightspace-ui/core/components/menu/menu.js';
 import './d2l-sort-by-dropdown-localize-behavior.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * Polymer-based web component for D2L sort by dropdown component
@@ -18,7 +18,6 @@ class SortByDropdown extends mixinBehaviors(
 	],
 	PolymerElement
 ) {
-	static get is() { return 'd2l-sort-by-dropdown'; }
 	static get properties() {
 		return {
 			/**
@@ -90,6 +89,8 @@ class SortByDropdown extends mixinBehaviors(
 		};
 	}
 
+	static get is() { return 'd2l-sort-by-dropdown'; }
+
 	static get template() {
 		return html`
 			<style>
@@ -113,15 +114,15 @@ class SortByDropdown extends mixinBehaviors(
 	connectedCallback() {
 		super.connectedCallback();
 		this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
-		afterNextRender(this, function() {
+		afterNextRender(this, () => {
 			// Issues with event bubbling in Edge/IE11 - need to listen directly on the menu
 			this.$['d2l-sort-by-menu'].addEventListener('d2l-menu-item-change',
 				this._boundListeners._onItemSelect);
 
 			const effectiveChildren = FlattenedNodesObserver.getFlattenedNodes(this)
-				.filter(function(n) { return n.nodeType === Node.ELEMENT_NODE; });
+				.filter((n) => { return n.nodeType === Node.ELEMENT_NODE; });
 
-			let initialOption = effectiveChildren.filter(function(child) {
+			let initialOption = effectiveChildren.filter((child) => {
 				return child.selected;
 			})[0];
 
@@ -133,7 +134,7 @@ class SortByDropdown extends mixinBehaviors(
 
 			this._text = initialOption.text;
 			this.value = initialOption.value;
-		}.bind(this));
+		});
 	}
 
 	disconnectedCallback() {
