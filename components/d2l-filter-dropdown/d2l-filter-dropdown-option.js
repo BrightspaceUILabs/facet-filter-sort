@@ -22,11 +22,6 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 		this.role = 'menuitemcheckbox';
 	}
 
-	deselect() {
-		this.selected = false;
-		this.__onSelect(new CustomEvent('d2l-menu-item-select')); // passing in a blank event since the MenuItemSelectableMixin needs one
-	}
-
 	firstUpdated(changedProperties) {
 		super.firstUpdated(changedProperties);
 		this.addEventListener('d2l-menu-item-select', (e) => {
@@ -40,6 +35,11 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 			<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
 			<span>${this.text}</span>
 		`;
+	}
+
+	deselect() {
+		this.selected = false;
+		this.__onSelect(new CustomEvent('d2l-menu-item-select')); // passing in a blank event since the MenuItemSelectableMixin needs one
 	}
 
 }

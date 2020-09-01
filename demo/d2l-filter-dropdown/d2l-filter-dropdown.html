@@ -63,20 +63,20 @@
 						</d2l-filter-dropdown-category>
 					</d2l-filter-dropdown>
 					<script>
-						var filter = document.querySelector('#filter');
-						filter.addEventListener('d2l-filter-dropdown-close', function(e) {
+						const filter = document.querySelector('#filter');
+						filter.addEventListener('d2l-filter-dropdown-close', (e) => {
 							logEvent(e, 'Filter dropdown closed!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-cleared', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-cleared', (e) => {
 							logEvent(e, 'Filters clear button clicked!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-category-selected', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-category-selected', (e) => {
 							logEvent(e, 'Filter category tab selected!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-category-searched', (e) => {
 							logEvent(e, 'Filter category searched!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-option-change', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-option-change', (e) => {
 							logEvent(e, 'Filter option clicked!');
 							if (e.detail.selected) {
 								filter.totalSelectedOptionCount++;

@@ -35,60 +35,60 @@
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 			import '@polymer/iron-test-helpers/test-helpers.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-search-results-count', function() {
-				describe('basic', function() {
+			describe('d2l-search-results-count', () => {
+				describe('basic', () => {
 					let basicFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('basic');
 						afterNextRender(basicFixture, done);
 					});
 
-					it('text should match', function() {
+					it('text should match', () => {
 						const shadowRoot = basicFixture.shadowRoot;
 						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 						expect(text).to.equal('22 results for "Financial Planning"');
 					});
 				});
 
-				describe('basic no query', function() {
+				describe('basic no query', () => {
 					let basicFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('basic-no-query');
 						afterNextRender(basicFixture, done);
 					});
 
-					it('text should match', function() {
+					it('text should match', () => {
 						const shadowRoot = basicFixture.shadowRoot;
 						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 						expect(text).to.equal('22 results');
 					});
 				});
-				describe('paged', function() {
+				describe('paged', () => {
 					let basicFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('paged');
 						afterNextRender(basicFixture, done);
 					});
 
-					it('text should match', function() {
+					it('text should match', () => {
 						const shadowRoot = basicFixture.shadowRoot;
 						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 						expect(text).to.equal('1 - 20 of 22 results for "Financial Planning"');
 					});
 				});
 
-				describe('paged no query', function() {
+				describe('paged no query', () => {
 					let basicFixture;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('paged-no-query');
 						afterNextRender(basicFixture, done);
 					});
 
-					it('text should match', function() {
+					it('text should match', () => {
 						const shadowRoot = basicFixture.shadowRoot;
 						const text = shadowRoot.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 						expect(text).to.equal('1 - 20 of 22 results');

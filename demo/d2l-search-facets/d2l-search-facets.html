@@ -36,14 +36,14 @@
 						</d2l-search-facets-grouping>
 					</d2l-search-facets>
 					<script>
-						document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+						document.getElementById('status').addEventListener('d2l-search-facets-grouping-has-more', (e) => {
 							const options = [
 								{ text: 'In Progress', value: 'in-progress', count: '1' },
 								{ text: 'Completed', value: 'completed', count: '10000' }
 							];
 							addOptions(options, e.target);
 						});
-						document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', function(e) {
+						document.getElementById('format').addEventListener('d2l-search-facets-grouping-has-more', (e) => {
 							const options = [
 								{ text: 'Interactive', value: 'interactive', count: '12' },
 								{ text: 'Video Only', value: 'video-only', count: '30' }
@@ -51,7 +51,7 @@
 							addOptions(options, e.target);
 						});
 						function addOptions(options, target) {
-							options.forEach(function(option) {
+							options.forEach((option) => {
 								const element = document.createElement('d2l-search-facets-option');
 								element.setAttribute('text', option.text);
 								element.setAttribute('value', option.value);
@@ -75,7 +75,7 @@
 		</d2l-demo-page>
 
 		<script>
-			document.addEventListener('d2l-search-facets-change', function(e) {
+			document.addEventListener('d2l-search-facets-change', (e) => {
 				// eslint-disable-next-line no-console
 				console.log(e.detail);
 			});

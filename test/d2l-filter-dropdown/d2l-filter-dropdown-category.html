@@ -37,26 +37,26 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-filter-dropdown-category', function() {
-				var container;
-				var categories = [];
+			suite('d2l-filter-dropdown-category', () => {
+				let container;
+				let categories = [];
 
-				setup(function(done) {
+				setup((done) => {
 					container = fixture('basic');
 					categories = container.querySelectorAll('d2l-filter-dropdown-category');
 					afterNextRender(container, done);
 				});
-				test('instantiating the element works', function() {
+				test('instantiating the element works', () => {
 					assert.equal('d2l-filter-dropdown-category', categories[0].tagName.toLowerCase());
 				});
-				test('attributes are set correctly (including d2l-tab-panel attributes)', function() {
+				test('attributes are set correctly (including d2l-tab-panel attributes)', () => {
 					assert.equal(categories[0].key, '1');
 					assert.equal(categories[0].getAttribute('role'), 'tabpanel');
 
 					assert.equal(categories[1].key, '2');
 					assert.equal(categories[1].getAttribute('role'), 'tabpanel');
 				});
-				test('tab text is set properly', function() {
+				test('tab text is set properly', () => {
 					assert.equal(categories[0].selectedOptionCount, 3);
 					assert.equal(categories[0].categoryText, 'Category 1');
 					assert.equal(categories[0].text, 'Category 1 (3)');
@@ -65,38 +65,38 @@
 					assert.equal(categories[1].categoryText, 'Category 2');
 					assert.equal(categories[1].text, 'Category 2');
 				});
-				test('search input is hidden if disable-search attribute is present', function() {
+				test('search input is hidden if disable-search attribute is present', () => {
 					assert.equal(categories[0].disableSearch, false);
-					var searchInput = categories[0].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
+					let searchInput = categories[0].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
 					assert.equal(searchInput.hidden, false);
 
 					assert.equal(categories[1].disableSearch, true);
 					searchInput = categories[1].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
 					assert.equal(searchInput.hidden, true);
 				});
-				test('setting the search-value attribute updates the value in the search input', function(done) {
+				test('setting the search-value attribute updates the value in the search input', (done) => {
 					categories[0].searchValue = 'test';
-					categories[0].updateComplete.then(function() {
-						var searchInput = categories[0].shadowRoot.querySelector('d2l-input-search');
+					categories[0].updateComplete.then(() => {
+						const searchInput = categories[0].shadowRoot.querySelector('d2l-input-search');
 						assert.equal(searchInput.value, 'test');
 						done();
 					});
 				});
-				test('searching triggers the d2l-filter-dropdown-category-searched event and updates the searchValue property', function(done) {
-					container.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
+				test('searching triggers the d2l-filter-dropdown-category-searched event and updates the searchValue property', (done) => {
+					container.addEventListener('d2l-filter-dropdown-category-searched', (e) => {
 						assert.equal(e.detail.categoryKey, '1');
 						assert.equal(e.detail.value, 'test');
 						assert.equal(categories[0].searchValue, 'test');
 						done();
 					});
 
-					categories[0].updateComplete.then(function() {
+					categories[0].updateComplete.then(() => {
 						categories[0].shadowRoot.querySelector('d2l-input-search').value = 'test';
 						categories[0].shadowRoot.querySelector('d2l-input-search').search();
 					});
 				});
-				test('changing the category tab triggers the d2l-filter-dropdown-category-selected event', function(done) {
-					container.addEventListener('d2l-filter-dropdown-category-selected', function(e) {
+				test('changing the category tab triggers the d2l-filter-dropdown-category-selected event', (done) => {
+					container.addEventListener('d2l-filter-dropdown-category-selected', (e) => {
 						if (e.detail.categoryKey === '2') {
 							done();
 						}
@@ -104,8 +104,8 @@
 
 					categories[1].selected = true;
 				});
-				test('selecting a menu option triggers the d2l-filter-dropdown-option-change event', function(done) {
-					container.addEventListener('d2l-filter-dropdown-option-change', function(e) {
+				test('selecting a menu option triggers the d2l-filter-dropdown-option-change event', (done) => {
+					container.addEventListener('d2l-filter-dropdown-option-change', (e) => {
 						assert.equal(e.detail.categoryKey, '1');
 
 						if (e.detail.menuItemKey === '1') {
@@ -117,7 +117,7 @@
 						}
 					});
 
-					var menuItems = categories[0].querySelectorAll('d2l-filter-dropdown-option');
+					const menuItems = categories[0].querySelectorAll('d2l-filter-dropdown-option');
 					menuItems[0].click();
 				});
 			});

@@ -37,16 +37,16 @@
 			import './test-helper-functions.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			describe('d2l-search-facets', function() {
-				describe('basic', function() {
+			describe('d2l-search-facets', () => {
+				describe('basic', () => {
 					let basicFixture;
 					let grouping1;
 					let grouping1Option1;
 					let grouping1Option2;
 
-					beforeEach(function(done) {
+					beforeEach((done) => {
 						basicFixture = fixture('basic');
-						afterNextRender(basicFixture, function() {
+						afterNextRender(basicFixture, () => {
 							grouping1 = document.getElementById('grouping1');
 							grouping1Option1 = document.getElementById('grouping1-option1');
 							grouping1Option2 = document.getElementById('grouping1-option2');
@@ -54,9 +54,9 @@
 						});
 					});
 
-					it('should emit an event when an option is selected', function(done) {
+					it('should emit an event when an option is selected', (done) => {
 						let selectCount = 0;
-						basicFixture.addEventListener('d2l-search-facets-change', function(e) {
+						basicFixture.addEventListener('d2l-search-facets-change', (e) => {
 							selectCount += 1;
 
 							if (selectCount === 1) {

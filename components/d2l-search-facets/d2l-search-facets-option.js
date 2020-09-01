@@ -1,7 +1,7 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@brightspace-ui/core/components/inputs/input-checkbox.js';
 import 'd2l-localize-behavior/d2l-localize-behavior.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * Search facet option, with a count to display the number of results
@@ -13,7 +13,6 @@ class SearchFacetsOption extends mixinBehaviors(
 	],
 	PolymerElement
 ) {
-	static get is() { return 'd2l-search-facets-option'; }
 	static get properties() {
 		return {
 			/**
@@ -62,6 +61,8 @@ class SearchFacetsOption extends mixinBehaviors(
 			},
 		};
 	}
+
+	static get is() { return 'd2l-search-facets-option'; }
 
 	static get template() {
 		return html`

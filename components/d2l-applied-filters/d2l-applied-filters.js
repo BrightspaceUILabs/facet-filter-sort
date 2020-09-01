@@ -1,11 +1,10 @@
-import { LitElement, css, html } from 'lit-element';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
-
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
+import { css, html, LitElement } from 'lit-element';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
+import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
 const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
@@ -127,7 +126,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 						text="${x.text}"
 						deletable
 						index="${index}"
-						@d2l-labs-multi-select-list-item-deleted="${() => this._multiSelectItemDeleted(x)}"
+						@d2l-labs-multi-select-list-item-deleted="${this._multiSelectItemDeleted}"
 					>
 					</d2l-labs-multi-select-list-item>
 				`)}
@@ -194,9 +193,9 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		return results;
 	}
 
-	_multiSelectItemDeleted(entry) {
-		announce(this.localize('filterRemoved', 'filterText', entry.text));
-		entry.deselect();
+	_multiSelectItemDeleted(e) {
+		announce(this.localize('filterRemoved', 'filterText', e.target.text));
+		this._selectedEntries[e.target.getAttribute('index')].deselect();
 	}
 
 	_setFilter() {
@@ -233,7 +232,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	_setSelectedOptions() {
-		this._selectedEntries = [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
+		this._selectedEntries = [].concat(... Object.values(this._entries || {})).filter(x => x.selected);
 	}
 
 	_update(e) {

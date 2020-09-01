@@ -6,7 +6,6 @@ import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
  * @fires d2l-search-facets-change - Dispatched when the search facets group changes
  */
 class SearchFacets extends PolymerElement {
-	static get is() { return 'd2l-search-facets'; }
 	static get properties() {
 		return {
 			/**
@@ -23,6 +22,8 @@ class SearchFacets extends PolymerElement {
 		};
 	}
 
+	static get is() { return 'd2l-search-facets'; }
+
 	static get template() {
 		return html`
 			<style>
@@ -37,11 +38,11 @@ class SearchFacets extends PolymerElement {
 	connectedCallback() {
 		super.connectedCallback();
 
-		afterNextRender(this, function() {
+		afterNextRender(this, () => {
 			this._boundListeners._onFacetGroupingChange = this._onFacetGroupingChange.bind(this);
 			this.addEventListener('d2l-search-facets-grouping-change',
 				this._boundListeners._onFacetGroupingChange);
-		}.bind(this));
+		});
 	}
 
 	disconnectedCallback() {

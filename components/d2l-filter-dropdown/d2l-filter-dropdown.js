@@ -1,11 +1,11 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@brightspace-ui/core/components/button/button-subtle.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
 import '@brightspace-ui/core/components/tabs/tabs.js';
 import './d2l-filter-dropdown-localize-behavior.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * A component containing filter options and emitting selection events
@@ -15,7 +15,6 @@ import './d2l-filter-dropdown-localize-behavior.js';
  * @fires d2l-filter-dropdown-close - Dispatched when the filter dropdown is closed
  */
 class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropdown.LocalizeBehavior], PolymerElement) {
-	static get is() { return 'd2l-filter-dropdown'; }
 	static get properties() {
 		return {
 			/**
@@ -91,6 +90,8 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 			}
 		};
 	}
+
+	static get is() { return 'd2l-filter-dropdown'; }
 
 	static get template() {
 		return html`

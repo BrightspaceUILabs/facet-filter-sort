@@ -40,31 +40,31 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-applied-filters', function() {
-				var dropdown, appliedFilters;
+			suite('d2l-applied-filters', () => {
+				let dropdown, appliedFilters;
 
-				setup(function(done) {
-					var testFixture = fixture('basic');
+				setup((done) => {
+					const testFixture = fixture('basic');
 					dropdown = testFixture.querySelector('d2l-filter-dropdown');
 					appliedFilters = testFixture.querySelector('d2l-applied-filters');
 					afterNextRender(testFixture, () => {
 						done();
 					});
 				});
-				test('instantiating the element works', function() {
+				test('instantiating the element works', () => {
 					assert.equal('d2l-applied-filters', appliedFilters.tagName.toLowerCase());
 				});
-				test('attributes are set correctly', function() {
+				test('attributes are set correctly', () => {
 					assert.equal(appliedFilters.for, 'dropdown');
 				});
-				test('instantiates with the selected filters added as multi-select items', function() {
+				test('instantiates with the selected filters added as multi-select items', () => {
 					const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 					assert.equal(filters.length, 3);
 					assert.equal(filters[0].text, 'Option 1 - 1');
 					assert.equal(filters[1].text, 'Option 1 - 4');
 					assert.equal(filters[2].text, 'Option 2 - 1');
 				});
-				test('selecting another filter adds to the list', function(done) {
+				test('selecting another filter adds to the list', (done) => {
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 					options[1].click();
 					afterNextRender(options[1], () => {
@@ -77,7 +77,7 @@
 						done();
 					});
 				});
-				test('removing a filter removes from the list', function(done) {
+				test('removing a filter removes from the list', (done) => {
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 					options[0].deselect();
 					afterNextRender(options[0], () => {
@@ -89,7 +89,7 @@
 					});
 				});
 
-				test('deleting an item from the multi-select list deselects the corresponding filter from the dropdown', function(done) {
+				test('deleting an item from the multi-select list deselects the corresponding filter from the dropdown', (done) => {
 					const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
