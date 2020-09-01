@@ -17,27 +17,26 @@
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@polymer/iron-test-helpers": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.2.4",
-    "babel-eslint": "^10.0.1",
-    "chromedriver": "^2.40.0",
-    "eslint": "^4.19.1",
-    "eslint-config-brightspace": "^0.4.0",
-    "eslint-plugin-html": "^4.0.5",
-    "frau-ci": "^1.33.2",
-    "polymer-cli": "^1.9.5",
-    "sauce-connect-launcher": "^1.2.4",
-    "wct-browser-legacy": "^1.0.1",
+    "@polymer/iron-test-helpers": "^3",
+    "@webcomponents/webcomponentsjs": "^2",
+    "babel-eslint": "^10",
+    "eslint": "^7",
+    "eslint-config-brightspace": "^0.10",
+    "eslint-plugin-html": "^6",
+    "eslint-plugin-sort-class-members": "^1",
+    "frau-ci": "^1",
+    "polymer-cli": "^1",
+    "wct-browser-legacy": "^1",
     "web-component-analyzer": "^1"
   },
   "version": "3.6.0",
   "dependencies": {
-    "@brightspace-ui/core": "^1.43.3",
+    "@brightspace-ui/core": "^1",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
     "@brightspace-ui-labs/multi-select": "BrightspaceUILabs/multi-select#semver:^3",
     "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
     "d2l-typography": "BrightspaceUI/typography#semver:^7",
     "lit-element": "^2",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3"
   }
 }

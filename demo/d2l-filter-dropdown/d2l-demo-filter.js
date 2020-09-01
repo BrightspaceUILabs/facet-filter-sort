@@ -10,23 +10,6 @@ import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
  */
 
 class D2LDemoFilter extends PolymerElement {
-	static get template() {
-		return html`
-			<d2l-filter-dropdown total-selected-option-count="[[_totalSelected]]">
-				<dom-repeat items="[[_filters]]" as="f">
-					<template>
-						<d2l-filter-dropdown-category key="[[f.key]]" category-text="[[f.title]]" selected-option-count="[[f.numSelected]]">
-						<dom-repeat items="[[f.options]]" as="o">
-							<template>
-								<d2l-filter-dropdown-option selected="[[o.selected]]" text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]"></d2l-filter-dropdown-option>
-							</template>
-						</dom-repeat>
-						</d2l-filter-dropdown-category>
-					</template>
-				</dom-repeat>
-			</d2l-filter-dropdown>
-		`;
-	}
 	static get is() { return 'd2l-demo-filter'; }
 	static get properties() {
 		return {
@@ -129,6 +112,24 @@ class D2LDemoFilter extends PolymerElement {
 		};
 	}
 
+	static get template() {
+		return html`
+			<d2l-filter-dropdown total-selected-option-count="[[_totalSelected]]">
+				<dom-repeat items="[[_filters]]" as="f">
+					<template>
+						<d2l-filter-dropdown-category key="[[f.key]]" category-text="[[f.title]]" selected-option-count="[[f.numSelected]]">
+						<dom-repeat items="[[f.options]]" as="o">
+							<template>
+								<d2l-filter-dropdown-option selected="[[o.selected]]" text="[[o.title]]" value="[[o.key]]" hidden$="[[!o.display]]"></d2l-filter-dropdown-option>
+							</template>
+						</dom-repeat>
+						</d2l-filter-dropdown-category>
+					</template>
+				</dom-repeat>
+			</d2l-filter-dropdown>
+		`;
+	}
+
 	connectedCallback() {
 		super.connectedCallback();
 		afterNextRender(this, function() {
@@ -143,6 +144,16 @@ class D2LDemoFilter extends PolymerElement {
 		this.removeEventListener('d2l-filter-dropdown-option-change', this._handleMenuItemChange);
 		this.removeEventListener('d2l-filter-dropdown-cleared', this._handleClear);
 		this.removeEventListener('d2l-filter-dropdown-category-searched', this._handleSearch);
+	}
+
+	_handleClear() {
+		for (var i = 0; i < this._filters.length; i++) {
+			this.set(['_filters', i, 'numSelected'], 0);
+			for (var j = 0; j < this._filters[i].options.length; j++) {
+				this.set(['_filters', i, 'options', j, 'selected'], false);
+			}
+		}
+		this._totalSelected = 0;
 	}
 
 	_handleMenuItemChange(e) {
@@ -165,16 +176,6 @@ class D2LDemoFilter extends PolymerElement {
 				}
 			}
 		}
-	}
-
-	_handleClear() {
-		for (var i = 0; i < this._filters.length; i++) {
-			this.set(['_filters', i, 'numSelected'], 0);
-			for (var j = 0; j < this._filters[i].options.length; j++) {
-				this.set(['_filters', i, 'options', j, 'selected'], false);
-			}
-		}
-		this._totalSelected = 0;
 	}
 
 	_handleSearch(e) {

@@ -9,6 +9,16 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
  * external source, and given to the search-facets to handle.
 **/
 class TemplatedSearchFacetsDemo extends PolymerElement {
+	static get is() { return 'd2l-demo-templated-search-facets'; }
+	static get properties() {
+		return {
+			searchFacets: {
+				type: Array,
+				value: function() { return []; }
+			}
+		};
+	}
+
 	static get template() {
 		return html`
 			<d2l-search-facets>
@@ -21,15 +31,6 @@ class TemplatedSearchFacetsDemo extends PolymerElement {
 				</template>
 			</d2l-search-facets>
 		`;
-	}
-	static get is() { return 'd2l-demo-templated-search-facets'; }
-	static get properties() {
-		return {
-			searchFacets: {
-				type: Array,
-				value: function() { return []; }
-			}
-		};
 	}
 
 	constructor() {

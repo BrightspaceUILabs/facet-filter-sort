@@ -170,10 +170,6 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 		});
 	}
 
-	_onSlotChange() {
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-slotchange', { bubbles: true, detail: { categoryKey: this.key } }));
-	}
-
 	render() {
 		return html`
 			<div class="d2l-filter-dropdown-page-search" ?hidden="${this.disableSearch}">
@@ -223,6 +219,10 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 			composed: true,
 			bubbles: true
 		}));
+	}
+
+	_onSlotChange() {
+		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-slotchange', { bubbles: true, detail: { categoryKey: this.key } }));
 	}
 
 	_updateTabText(categoryText, selectedOptionCount) {
