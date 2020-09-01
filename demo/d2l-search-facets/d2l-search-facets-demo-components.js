@@ -2,30 +2,26 @@ import '@polymer/polymer/polymer-legacy.js';
 import '../../components/d2l-search-facets/d2l-search-facets.js';
 import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
 import '../../components/d2l-search-facets/d2l-search-facets-option.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-const $_documentContainer = document.createElement('template');
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-demo-templated-search-facets">
-	<template strip-whitespace="">
-		<d2l-search-facets>
-			<template items="[[searchFacets]]" is="dom-repeat">
-				<d2l-search-facets-grouping value="[[item.value]]" text="[[item.name]]">
-					<template items="[[item.options]]" is="dom-repeat" as="searchFacet">
-						<d2l-search-facets-option value$="[[searchFacet.value]]" text$="[[searchFacet.name]]" count="[[searchFacet.count]]" checked="[[searchFacet.checked]]"></d2l-search-facets-option>
-					</template>
-				</d2l-search-facets-grouping>
-			</template>
-		</d2l-search-facets>
-	</template>
-	
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 /**
  * An example of templated search facets. The data can potentially be retrieved from an
  * external source, and given to the search-facets to handle.
 **/
 class TemplatedSearchFacetsDemo extends PolymerElement {
+	static get template() {
+		return html`
+			<d2l-search-facets>
+				<template items="[[searchFacets]]" is="dom-repeat">
+					<d2l-search-facets-grouping value="[[item.value]]" text="[[item.name]]">
+						<template items="[[item.options]]" is="dom-repeat" as="searchFacet">
+							<d2l-search-facets-option value$="[[searchFacet.value]]" text$="[[searchFacet.name]]" count="[[searchFacet.count]]" checked="[[searchFacet.checked]]"></d2l-search-facets-option>
+						</template>
+					</d2l-search-facets-grouping>
+				</template>
+			</d2l-search-facets>
+		`;
+	}
 	static get is() { return 'd2l-demo-templated-search-facets'; }
 	static get properties() {
 		return {
@@ -73,4 +69,5 @@ class TemplatedSearchFacetsDemo extends PolymerElement {
 		];
 	}
 }
+
 customElements.define(TemplatedSearchFacetsDemo.is, TemplatedSearchFacetsDemo);

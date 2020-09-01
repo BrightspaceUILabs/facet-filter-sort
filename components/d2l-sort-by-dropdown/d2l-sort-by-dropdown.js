@@ -1,4 +1,4 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
@@ -7,30 +7,6 @@ import '@brightspace-ui/core/components/dropdown/dropdown-menu.js';
 import '@brightspace-ui/core/components/menu/menu.js';
 import './d2l-sort-by-dropdown-localize-behavior.js';
 
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<dom-module id="d2l-sort-by-dropdown">
-	<template strip-whitespace="">
-		<style>
-			:host {
-				display: inline-block;
-			}
-			:host([hidden]) {
-				display: none;
-			}
-		</style>
-		<d2l-dropdown-button-subtle text="[[_selectedOptionText]]" disabled="[[disabled]]">
-			<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
-				<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
-				  <slot></slot>
-				</d2l-menu>
-			  </d2l-dropdown-menu>
-		</d2l-dropdown-button-subtle>
-	</template>
-
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 /**
  * Polymer-based web component for D2L sort by dropdown component
  * @slot - Contains the dropdown options (e.g., d2l-sort-by-dropdown-options)
@@ -112,6 +88,26 @@ class SortByDropdown extends mixinBehaviors(
 				reflectToAttribute: true
 			}
 		};
+	}
+
+	static get template() {
+		return html`
+			<style>
+				:host {
+					display: inline-block;
+				}
+				:host([hidden]) {
+					display: none;
+				}
+			</style>
+			<d2l-dropdown-button-subtle text="[[_selectedOptionText]]" disabled="[[disabled]]">
+				<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
+					<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
+					<slot></slot>
+					</d2l-menu>
+				</d2l-dropdown-menu>
+			</d2l-dropdown-button-subtle>
+        `;
 	}
 
 	connectedCallback() {
