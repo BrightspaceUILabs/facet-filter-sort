@@ -9,8 +9,8 @@ import { html, LitElement } from 'lit-element';
 class TemplatedFilterDropdownFilter extends LitElement {
 	static get properties() {
 		return {
-			_filters: { type: Array },
-			_totalSelected: { type: Number }
+			_filters: { attribute: false, type: Array },
+			_totalSelected: { attribute: false, type: Number }
 		};
 	}
 
