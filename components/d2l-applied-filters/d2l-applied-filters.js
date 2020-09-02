@@ -164,7 +164,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				if (child.nodeName === DROPDOWN_NAME) {
 					return child;
 				}
-				const t = child.querySelector('d2l-filter-dropdown');
+				const nestedChildren = getComposedChildren(child) || [];
+				const t = nestedChildren.find(x => x.nodeName === DROPDOWN_NAME);
 				if (t) {
 					return t;
 				}
