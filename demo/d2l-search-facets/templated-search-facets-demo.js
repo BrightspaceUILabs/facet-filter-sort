@@ -1,43 +1,22 @@
-import '@polymer/polymer/polymer-legacy.js';
 import '../../components/d2l-search-facets/d2l-search-facets.js';
 import '../../components/d2l-search-facets/d2l-search-facets-grouping.js';
 import '../../components/d2l-search-facets/d2l-search-facets-option.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-const $_documentContainer = document.createElement('template');
+import { html, LitElement } from 'lit-element';
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-demo-templated-search-facets">
-	<template strip-whitespace="">
-		<d2l-search-facets>
-			<template items="[[searchFacets]]" is="dom-repeat">
-				<d2l-search-facets-grouping value="[[item.value]]" text="[[item.name]]">
-					<template items="[[item.options]]" is="dom-repeat" as="searchFacet">
-						<d2l-search-facets-option value$="[[searchFacet.value]]" text$="[[searchFacet.name]]" count="[[searchFacet.count]]" checked="[[searchFacet.checked]]"></d2l-search-facets-option>
-					</template>
-				</d2l-search-facets-grouping>
-			</template>
-		</d2l-search-facets>
-	</template>
-	
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 /**
  * An example of templated search facets. The data can potentially be retrieved from an
  * external source, and given to the search-facets to handle.
 **/
-class TemplatedSearchFacetsDemo extends PolymerElement {
-	static get is() { return 'd2l-demo-templated-search-facets'; }
+class TemplatedSearchFacetsDemo extends LitElement {
 	static get properties() {
 		return {
-			searchFacets: {
-				type: Array,
-				value: function() { return []; }
-			}
+			searchFacets: { type: Array }
 		};
 	}
 
 	constructor() {
 		super();
+		this.searchFacets = [];
 	}
 
 	connectedCallback() {
@@ -72,5 +51,22 @@ class TemplatedSearchFacetsDemo extends PolymerElement {
 			},
 		];
 	}
+
+	render() {
+		return html`
+			<d2l-search-facets>
+				${this.searchFacets.map(item => html`
+					<d2l-search-facets-grouping value="${item.value}" text="${item.name}">
+						${item.options.map(searchFacet => html`
+							<d2l-search-facets-option
+								value="${searchFacet.value}" text="${searchFacet.name}" count="${searchFacet.count}" ?checked="${searchFacet.checked}">
+							</d2l-search-facets-option>
+						`)}
+					</d2l-search-facets-grouping>
+				`)}
+			</d2l-search-facets>
+		`;
+	}
 }
-customElements.define(TemplatedSearchFacetsDemo.is, TemplatedSearchFacetsDemo);
+
+customElements.define('d2l-labs-templated-search-facets-demo', TemplatedSearchFacetsDemo);

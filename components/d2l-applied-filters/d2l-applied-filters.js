@@ -1,11 +1,10 @@
-import { LitElement, css, html } from 'lit-element';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
-
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
+import { css, html, LitElement } from 'lit-element';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
+import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
 const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
@@ -126,24 +125,44 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this._update();
 	}
 
+	render() {
+		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
+			html`<d2l-labs-multi-select-list
+				collapsable
+				aria-labelledby="d2l-applied-filters-label"
+			>
+				${(this._selectedEntries || []).map((x, index) => html`
+					<d2l-labs-multi-select-list-item
+						text="${x.text}"
+						deletable
+						index="${index}"
+						@d2l-labs-multi-select-list-item-deleted="${this._multiSelectItemDeleted}"
+					>
+					</d2l-labs-multi-select-list-item>
+				`)}
+			</d2l-labs-multi-select-list>`
+			: html`<span class="d2l-applied-filters-no-applied-filters-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
+
+		return html`
+			<div class="d2l-applied-filters-wrapper">
+				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
+				${filters}
+			</div>
+		`;
+	}
+
 	updated(changedProperties) {
 		if (Object.keys(changedProperties).indexOf('for') > -1) {
 			this._update();
 		}
 	}
 
-	_update(e) {
-		this._setOptions(e && e.detail.categoryKey);
-		this._setSelectedOptions();
+	_clearSelected() {
+		this._selectedEntries = [];
 	}
 
 	_filterOptionChanged() {
 		this._setSelectedOptions();
-	}
-
-	_multiSelectItemDeleted(entry) {
-		announce(this.localize('filterRemoved', 'filterText', entry.text));
-		entry.deselect();
 	}
 
 	_findDropdownIfNested(target) {
@@ -155,13 +174,39 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				if (child.nodeName === DROPDOWN_NAME) {
 					return child;
 				}
-				const t = child.querySelector('d2l-filter-dropdown');
+				const nestedChildren = getComposedChildren(child) || [];
+				const t = nestedChildren.find(x => x.nodeName === DROPDOWN_NAME);
 				if (t) {
 					return t;
 				}
 			}
 		}
 		return target;
+	}
+
+	_getFilterOptions(categoryKey) {
+		this._setFilter();
+		const dropdown = this._target;
+
+		if (!dropdown) {
+			return [];
+		}
+
+		const results = {};
+
+		const childFilter = categoryKey ?
+			x => x.nodeName === DROPDOWN_CATEGORY_NAME && x.key === categoryKey :
+			x => x.nodeName === DROPDOWN_CATEGORY_NAME;
+
+		[...dropdown.children].filter(childFilter)
+			.forEach(x => results[x.key] = [...x.children].filter(x => x.nodeName === DROPDOWN_OPTION_NAME));
+
+		return results;
+	}
+
+	_multiSelectItemDeleted(e) {
+		announce(this.localize('filterRemoved', 'filterText', e.target.text));
+		this._selectedEntries[e.target.getAttribute('index')].deselect();
 	}
 
 	_setFilter() {
@@ -188,26 +233,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		this._target = target;
 	}
 
-	_getFilterOptions(categoryKey) {
-		this._setFilter();
-		const dropdown = this._target;
-
-		if (!dropdown) {
-			return [];
-		}
-
-		const results = {};
-
-		const childFilter = categoryKey ?
-			x => x.nodeName === DROPDOWN_CATEGORY_NAME && x.key === categoryKey :
-			x => x.nodeName === DROPDOWN_CATEGORY_NAME;
-
-		[...dropdown.children].filter(childFilter)
-			.forEach(x => results[x.key] = [...x.children].filter(x => x.nodeName === DROPDOWN_OPTION_NAME));
-
-		return results;
-	}
-
 	_setOptions(categoryKey) {
 		const result = this._getFilterOptions(categoryKey);
 		if (categoryKey) {
@@ -217,12 +242,8 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		}
 	}
 
-	_clearSelected() {
-		this._selectedEntries = [];
-	}
-
 	_setSelectedOptions() {
-		this._selectedEntries = [].concat.apply([], Object.values(this._entries || {})).filter(x => x.selected);
+		this._selectedEntries = [].concat(... Object.values(this._entries || {})).filter(x => x.selected);
 	}
 
 	_clearFiltersClicked() {
@@ -234,31 +255,9 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		announce(this.localize('allFiltersRemoved'));
 	}
 
-	render() {
-		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
-			html`<d2l-labs-multi-select-list
-				collapsable
-				aria-labelledby="d2l-applied-filters-label"
-			>
-				${(this._selectedEntries || []).map((x, index) => html`
-					<d2l-labs-multi-select-list-item
-						text="${x.text}"
-						deletable
-						index="${index}"
-						@d2l-labs-multi-select-list-item-deleted="${() => this._multiSelectItemDeleted(x)}"
-					>
-					</d2l-labs-multi-select-list-item>
-				`)}
-			</d2l-labs-multi-select-list>`
-			: html`<span class="d2l-applied-filters-no-applied-filters-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
-
-		return html`
-			<div class="d2l-applied-filters-wrapper">
-				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
-				${filters}
-				<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
-			</div>
-		`;
+	_update(e) {
+		this._setOptions(e && e.detail.categoryKey);
+		this._setSelectedOptions();
 	}
 }
 

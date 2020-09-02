@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
 		<title>d2l-filter-dropdown test</title>
-
-		<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script src="../../../wct-browser-legacy/browser.js"></script>
-		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
-		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-		<script type="module" src="../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
+		<script type="module">
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
+			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
+		</script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -60,54 +60,54 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-filter-dropdown', function() {
-				var filter;
+			suite('d2l-filter-dropdown', () => {
+				let filter;
 
-				setup(function(done) {
+				setup((done) => {
 					filter = fixture('basic');
 					afterNextRender(filter, done);
 				});
-				test('instantiating the element works', function() {
+				test('instantiating the element works', () => {
 					assert.equal('d2l-filter-dropdown', filter.tagName.toLowerCase());
 				});
-				test('attributes are set correctly', function() {
+				test('attributes are set correctly', () => {
 					assert.equal(filter.totalSelectedOptionCount, 3);
 				});
-				test('clear button is hidden if total selected count is 0, displayed otherwise', function(done) {
-					var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
+				test('clear button is hidden if total selected count is 0, displayed otherwise', (done) => {
+					const clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
 					assert.isFalse(clearButton.hidden);
 
 					filter.totalSelectedOptionCount = 0;
 
-					requestAnimationFrame(function() {
+					requestAnimationFrame(() => {
 						assert.isTrue(clearButton.hidden);
 						done();
 					});
 				});
-				test('pressing the clear button triggers the d2l-filter-dropdown-cleared event', function(done) {
-					var clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
-					filter.addEventListener('d2l-filter-dropdown-cleared', function() {
+				test('pressing the clear button triggers the d2l-filter-dropdown-cleared event', (done) => {
+					const clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
+					filter.addEventListener('d2l-filter-dropdown-cleared', () => {
 						done();
 					});
 
 					clearButton.click();
 				});
-				test('closing the filter triggers the d2l-filter-dropdown-close event', function(done) {
-					var dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
-					filter.addEventListener('d2l-filter-dropdown-close', function() {
+				test('closing the filter triggers the d2l-filter-dropdown-close event', (done) => {
+					const dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
+					filter.addEventListener('d2l-filter-dropdown-close', () => {
 						done();
 					});
 
 					dropdown.toggleOpen();
 
-					requestAnimationFrame(function() {
-						requestAnimationFrame(function() {
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
 							dropdown.toggleOpen();
 						});
 					});
 				});
-				test('the opener text is set accordingly', function() {
-					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+				test('the opener text is set accordingly', () => {
+					const openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
 					assert.equal(openerButton.text, 'Filter: 3 Filters');
 
 					filter.totalSelectedOptionCount = 1;
@@ -116,9 +116,9 @@
 					filter.totalSelectedOptionCount = 0;
 					assert.equal(openerButton.text, 'Filter');
 				});
-				test('filter categories display correctly', function(done) {
+				test('filter categories display correctly', (done) => {
 					function getTabs() {
-						var tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab-internal');
+						const tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab-internal');
 						if (tabs.length === 2) {
 							assert.equal(tabs[0].text, 'Category 1 (3)');
 							assert.equal(tabs[1].text, 'Category 2');
@@ -130,17 +130,17 @@
 
 					getTabs();
 				});
-				test('focussing the filter sets the focus on the opener button', function() {
+				test('focussing the filter sets the focus on the opener button', () => {
 					assert.equal(filter.shadowRoot.activeElement, null);
 					filter.focus();
 					assert.equal(filter.shadowRoot.activeElement.tagName.toLowerCase(), 'd2l-dropdown-button-subtle');
 				});
-				test('the text values can be overridden', function() {
+				test('the text values can be overridden', () => {
 					filter = fixture('text-override');
-					var header = filter.shadowRoot.querySelector('.d2l-filter-dropdown-content-header span');
+					const header = filter.shadowRoot.querySelector('.d2l-filter-dropdown-content-header span');
 					assert.equal(header.innerText, 'Send To');
 
-					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+					const openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
 					assert.equal(openerButton.text, 'Sending To Many');
 
 					filter.totalSelectedOptionCount = 1;
@@ -150,9 +150,9 @@
 					assert.equal(openerButton.text, 'Sending To None');
 				});
 
-				test('the opener text variations can be disabled', function() {
+				test('the opener text variations can be disabled', () => {
 					filter = fixture('text-variation-disabled');
-					var openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
+					const openerButton = filter.shadowRoot.querySelector('d2l-dropdown-button-subtle');
 					assert.equal(openerButton.text, 'Filter');
 
 					filter.totalSelectedOptionCount = 1;

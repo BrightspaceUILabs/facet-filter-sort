@@ -1,5 +1,5 @@
 {
-  "extends": "brightspace/wct-polymer-3-config",
+  "extends": "brightspace/wct-lit-config",
   "globals": {
     "selectOption": true
   }

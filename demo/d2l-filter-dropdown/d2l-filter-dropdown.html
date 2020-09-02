@@ -10,10 +10,10 @@
 			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown.js';
 			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-category.js';
 			import '../../components/d2l-filter-dropdown/d2l-filter-dropdown-option.js';
-			import './d2l-demo-filter.js';
+			import './templated-filter-dropdown-demo.js';
 		</script>
 		<style>
-			d2l-demo-filter, d2l-filter-dropdown { display: inline-block; }
+			d2l-labs-templated-filter-dropdown-demo, d2l-filter-dropdown { display: inline-block; }
 		</style>
 	</head>
 	<body unresolved>
@@ -24,7 +24,7 @@
 
 			<d2l-demo-snippet>
 				<template>
-					<d2l-demo-filter></d2l-demo-filter>
+					<d2l-labs-templated-filter-dropdown-demo></d2l-labs-templated-filter-dropdown-demo>
 				</template>
 			</d2l-demo-snippet>
 
@@ -63,20 +63,20 @@
 						</d2l-filter-dropdown-category>
 					</d2l-filter-dropdown>
 					<script>
-						var filter = document.querySelector('#filter');
-						filter.addEventListener('d2l-filter-dropdown-close', function(e) {
+						const filter = document.querySelector('#filter');
+						filter.addEventListener('d2l-filter-dropdown-close', (e) => {
 							logEvent(e, 'Filter dropdown closed!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-cleared', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-cleared', (e) => {
 							logEvent(e, 'Filters clear button clicked!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-category-selected', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-category-selected', (e) => {
 							logEvent(e, 'Filter category tab selected!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-category-searched', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-category-searched', (e) => {
 							logEvent(e, 'Filter category searched!');
 						});
-						filter.addEventListener('d2l-filter-dropdown-option-change', function(e) {
+						filter.addEventListener('d2l-filter-dropdown-option-change', (e) => {
 							logEvent(e, 'Filter option clicked!');
 							if (e.detail.selected) {
 								filter.totalSelectedOptionCount++;

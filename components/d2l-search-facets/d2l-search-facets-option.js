@@ -1,23 +1,8 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import '@brightspace-ui/core/components/inputs/input-checkbox.js';
 import 'd2l-localize-behavior/d2l-localize-behavior.js';
+import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<dom-module id="d2l-search-facets-option">
-	<template strip-whitespace="">
-		<style>
-			:host {
-				display: block;
-			}
-		</style>
-		<d2l-input-checkbox checked="[[checked]]" disabled="[[disabled]]" name="[[text]]" on-change="_handleChange" class="d2l-search-facets-option-checkbox">[[_facetText]]</d2l-input-checkbox>
-	</template>
-
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 /**
  * Search facet option, with a count to display the number of results
  * @fires d2l-search-facets-option-change - Dispatched when the checked value of an option changes
@@ -28,7 +13,6 @@ class SearchFacetsOption extends mixinBehaviors(
 	],
 	PolymerElement
 ) {
-	static get is() { return 'd2l-search-facets-option'; }
 	static get properties() {
 		return {
 			/**
@@ -45,13 +29,13 @@ class SearchFacetsOption extends mixinBehaviors(
 			*/
 			checked: {
 				type: Boolean,
-				reflectToAttribute: true,
+				reflectToAttribute: true
 			},
 			/**
 			* The number of search results for this option
 			*/
 			count: {
-				type: Number,
+				type: Number
 			},
 			/**
 			* Whether this option should be disabled
@@ -76,6 +60,19 @@ class SearchFacetsOption extends mixinBehaviors(
 				value: ''
 			},
 		};
+	}
+
+	static get is() { return 'd2l-search-facets-option'; }
+
+	static get template() {
+		return html`
+			<style>
+				:host {
+					display: block;
+				}
+			</style>
+			<d2l-input-checkbox checked="[[checked]]" disabled="[[disabled]]" name="[[text]]" on-change="_handleChange" class="d2l-search-facets-option-checkbox">[[_facetText]]</d2l-input-checkbox>
+        `;
 	}
 
 	_getFacetText(text, count) {
