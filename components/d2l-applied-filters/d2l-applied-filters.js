@@ -158,6 +158,15 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		}
 	}
 
+	_clearFiltersClicked() {
+		const dropdown = this._target;
+		if (!dropdown) { return; }
+		dropdown.clearFilters();
+		dropdown.focus();
+
+		announce(this.localize('allFiltersRemoved'));
+	}
+
 	_clearSelected() {
 		this._selectedEntries = [];
 	}
@@ -245,15 +254,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	_setSelectedOptions() {
 		this._selectedEntries = [].concat(... Object.values(this._entries || {})).filter(x => x.selected);
-	}
-
-	_clearFiltersClicked() {
-		const dropdown = this._target;
-		if (!dropdown) { return; }
-		dropdown.clearFilters();
-		dropdown.focus();
-
-		announce(this.localize('allFiltersRemoved'));
 	}
 
 	_update(e) {
