@@ -30,7 +30,7 @@
     "wct-browser-legacy": "^1",
     "web-component-analyzer": "^1"
   },
-  "version": "3.6.0",
+  "version": "3.7.0",
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
