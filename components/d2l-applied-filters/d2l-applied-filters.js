@@ -136,29 +136,29 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	render() {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
-			html`<div id="d2l-list-holder">
-				<d2l-labs-multi-select-list
-					collapsable
-					aria-labelledby="d2l-applied-filters-label"
-				>
-					${(this._selectedEntries || []).map((x, index) => html`
-						<d2l-labs-multi-select-list-item
-							text="${x.text}"
-							deletable
-							index="${index}"
-							@d2l-labs-multi-select-list-item-deleted="${this._multiSelectItemDeleted}"
-						>
-						</d2l-labs-multi-select-list-item>
-					`)}
-				</d2l-labs-multi-select-list>
-				<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
-			</div>`
+			html`<d2l-labs-multi-select-list
+				collapsable
+				aria-labelledby="d2l-applied-filters-label"
+			>
+				${(this._selectedEntries || []).map((x, index) => html`
+					<d2l-labs-multi-select-list-item
+						text="${x.text}"
+						deletable
+						index="${index}"
+						@d2l-labs-multi-select-list-item-deleted="${this._multiSelectItemDeleted}"
+					>
+					</d2l-labs-multi-select-list-item>
+				`)}
+			</d2l-labs-multi-select-list>`
 			: html`<span class="d2l-applied-filters-no-applied-filters-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
 
 		return html`
 			<div class="d2l-applied-filters-wrapper">
 				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
-				${filters}
+				<div id="d2l-list-holder">
+					${filters}
+					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
+				</div>
 			</div>
 		`;
 	}
