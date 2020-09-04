@@ -175,9 +175,12 @@
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
-					document.addEventListener('d2l-filter-dropdown-cleared', () => {
+					const handleClearEvent = () => {
+						document.removeEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
 						done();
-					});
+					};
+
+					document.addEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
 
 					options[1].click();
 
