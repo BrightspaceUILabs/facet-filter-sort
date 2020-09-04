@@ -113,7 +113,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 `d2l-filter-dropdown`:
 
 - `d2l-filter-dropdown-close`: Fired when the filter dropdown is closed.
-- `d2l-filter-dropdown-cleared`: Fired when the clear button is pressed to clear all filters.
+- `d2l-filter-dropdown-cleared`: Fired when the clear button or the clear filters button is pressed to clear all filters.
 
 `d2l-filter-dropdown-category`:
 

@@ -10,6 +10,7 @@ import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
+const CLEAR_FILTERS_THRESHOLD = 4;
 
 /**
  * A multi-select-list allowing the user to see (and remove) the currently applied filters.
@@ -60,8 +61,21 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				color: var(--d2l-color-corundum);
 			}
 
+			#d2l-clear-filters-button {
+				margin-left: 3px;
+				margin-right: 3px;
+			}
+
+			#d2l-list-holder {
+				flex: 1;
+			}
+
 			:host([hidden]) {
 				display: none;
+			}
+
+			[hidden] {
+				display: none !important;
 			}
 		`];
 	}
@@ -75,7 +89,9 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			'en': {
 				appliedFilters: 'Applied Filters:',
 				noActiveFilters: 'No active filters',
-				filterRemoved: 'Filter {filterText} removed'
+				filterRemoved: 'Filter {filterText} removed',
+				clearFilters: 'Clear filters',
+				allFiltersRemoved: 'All filters removed'
 			},
 			'es': {
 			},
@@ -106,9 +122,12 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	constructor() {
 		super();
+		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
 		this._clearSelected = this._clearSelected.bind(this);
 		this._setSelectedOptions = this._setSelectedOptions.bind(this);
 		this._update = this._update.bind(this);
+
+		this._setSelectedOptions();
 	}
 
 	firstUpdated() {
@@ -136,7 +155,10 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		return html`
 			<div class="d2l-applied-filters-wrapper">
 				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
-				${filters}
+				<div id="d2l-list-holder">
+					${filters}
+					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
+				</div>
 			</div>
 		`;
 	}
@@ -145,6 +167,15 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		if (Object.keys(changedProperties).indexOf('for') > -1) {
 			this._update();
 		}
+	}
+
+	_clearFiltersClicked() {
+		const dropdown = this._target;
+		if (!dropdown) { return; }
+		dropdown.clearFilters();
+		dropdown.focus();
+
+		announce(this.localize('allFiltersRemoved'));
 	}
 
 	_clearSelected() {

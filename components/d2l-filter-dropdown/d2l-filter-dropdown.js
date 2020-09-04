@@ -124,7 +124,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					render-content>
 					<div class="d2l-filter-dropdown-content-header">
 						<span>[[_localizeOrAlt(headerText, 'filterBy')]]</span>
-						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="_clearFilters"></d2l-button-subtle>
+						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="clearFilters"></d2l-button-subtle>
 					</div>
 					<d2l-tabs>
 						<slot></slot>
@@ -139,6 +139,18 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
 	}
 
+	clearFilters() {
+		this.dispatchEvent(
+			new CustomEvent(
+				'd2l-filter-dropdown-cleared',
+				{
+					composed: true,
+					bubbles: true
+				}
+			)
+		);
+	}
+
 	close() {
 		this.shadowRoot.querySelector('d2l-dropdown-tabs').close();
 	}
@@ -149,18 +161,6 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	focus() {
 		this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
-	}
-
-	_clearFilters() {
-		this.dispatchEvent(
-			new CustomEvent(
-				'd2l-filter-dropdown-cleared',
-				{
-					composed: true,
-					bubbles: true
-				}
-			)
-		);
 	}
 
 	_getFooterSlotValue(hasFooter) {
