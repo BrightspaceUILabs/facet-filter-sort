@@ -75,7 +75,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			}
 
 			[hidden] {
-				display: none !important;
+				display: none;
 			}
 		`];
 	}
