@@ -19,10 +19,24 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 				return {
 					'ar': {
 						clear: 'مسح',
-						filter: 'التصفية',
-						filterBy: 'تصفية بحسب',
-						filterMultiple: 'Filter: {numOptions} Filters',
+						filter: 'عامل التصفية',
+						filterBy: 'تصفية حسب',
+						filterMultiple: 'عامل التصفية: {numOptions} من عوامل التصفية',
 						filterSingle: 'التصفية: عامل تصفية واحد'
+					},
+					'cy': {
+						clear: 'Clirio',
+						filter: 'Hidlo',
+						filterBy: 'Hidlo yn ôl',
+						filterMultiple: 'Hidlo: {numOptions} Hidlyddion',
+						filterSingle: 'Hidlo: 1 Hidlydd'
+					},
+					'da': {
+						clear: 'Ryd',
+						filter: 'Filtrér',
+						filterBy: 'Filtrér efter',
+						filterMultiple: 'Filtrér: {numOptions} filtre',
+						filterSingle: 'Filtrér: 1 filter'
 					},
 					'de': {
 						clear: 'Löschen',
@@ -45,6 +59,13 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						filterMultiple: 'Filtro: {numOptions} filtros',
 						filterSingle: 'Filtro: 1 filtro'
 					},
+					'es-es': {
+						clear: 'Borrar',
+						filter: 'Filtro',
+						filterBy: 'Filtrar por',
+						filterMultiple: 'Filtro: {numOptions} filtros',
+						filterSingle: 'Filtro: 1 filtro'
+					},
 					'fi': {
 						clear: 'Tyhjennä',
 						filter: 'Suodatin',
@@ -55,6 +76,13 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 					'fr': {
 						clear: 'Effacer',
 						filter: 'Filtrer',
+						filterBy: 'Filtrer par',
+						filterMultiple: 'Filtre : {numOptions} filtres',
+						filterSingle: 'Filtre : 1 filtre'
+					},
+					'fr-fr': {
+						clear: 'Effacer',
+						filter: 'Filtre',
 						filterBy: 'Filtrer par',
 						filterMultiple: 'Filtre : {numOptions} filtres',
 						filterSingle: 'Filtre : 1 filtre'
@@ -77,8 +105,8 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						clear: 'Fjern',
 						filter: 'Filter',
 						filterBy: 'Filtrer etter',
-						filterSingle: 'Filter: 1 filter',
-						filterMultiple: 'Filter: {numOptions} filtre'
+						filterMultiple: 'Filter: {numOptions} filtre',
+						filterSingle: 'Filter: 1 filter'
 					},
 					'nl': {
 						clear: 'Wissen',
@@ -88,11 +116,11 @@ D2L.PolymerBehaviors.FilterDropdown.LocalizeBehaviorImpl = {
 						filterSingle: 'Filteren: 1 filter'
 					},
 					'pt': {
-						clear: 'Apagar',
-						filter: 'Filtro',
+						clear: 'Limpar',
+						filter: 'Filtrar',
 						filterBy: 'Filtrar por',
-						filterMultiple: 'Filtrar: {numOptions} filtros',
-						filterSingle: 'Filtrar: 1 Filtro'
+						filterMultiple: 'Filtros: {numOptions}',
+						filterSingle: 'Filtros: 1'
 					},
 					'sv': {
 						clear: 'Rensa',
