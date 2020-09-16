@@ -62,7 +62,15 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 		return {
 			'ar': {
 				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'البحث عن {category}'
+				searchBy: 'البحث حسب {category}'
+			},
+			'cy': {
+				categoryTitleMultiple: '{title} ({numSelected})',
+				searchBy: 'Chwilio yn ôl {category}'
+			},
+			'da': {
+				categoryTitleMultiple: '{title} ({numSelected})',
+				searchBy: 'Søg efter {category}'
 			},
 			'de': {
 				categoryTitleMultiple: '{title} ({numSelected})',
@@ -76,6 +84,10 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 				categoryTitleMultiple: '{title} ({numSelected})',
 				searchBy: 'Buscar por {category}'
 			},
+			'es-es': {
+				categoryTitleMultiple: '{title} ({numSelected})',
+				searchBy: 'Buscar por {category}'
+			},
 			'fi': {
 				categoryTitleMultiple: '{title} ({numSelected})',
 				searchBy: 'Hakuperuste {category}'
@@ -83,6 +95,10 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 			'fr': {
 				categoryTitleMultiple: '{title} ({numSelected})',
 				searchBy: 'Recherche par {category}'
+			},
+			'fr-fr': {
+				categoryTitleMultiple: '{title} ({numSelected})',
+				searchBy: 'Rechercher par {category}'
 			},
 			'ja': {
 				categoryTitleMultiple: '{title} ({numSelected})',
