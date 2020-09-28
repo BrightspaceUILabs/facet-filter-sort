@@ -27,10 +27,10 @@
 				<template>
 					<d2l-filter-dropdown id="filter" total-selected-option-count="2">
 						<d2l-filter-dropdown-category key="1" category-text="Cat1">
-							<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 3" value="3"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 4" value="4"></d2l-filter-dropdown-option>
+							<d2l-filter-dropdown-option selected text="Option 1-1" value="1"></d2l-filter-dropdown-option>
+							<d2l-filter-dropdown-option text="Option 1-2" value="2"></d2l-filter-dropdown-option>
+							<d2l-filter-dropdown-option text="Option 1-3" value="3"></d2l-filter-dropdown-option>
+							<d2l-filter-dropdown-option text="Option 1-4" value="4"></d2l-filter-dropdown-option>
 						</d2l-filter-dropdown-category>
 						<d2l-filter-dropdown-category key="2" category-text="Cat2">
 							<d2l-filter-dropdown-option selected text="Option 2 - 1" value="1"></d2l-filter-dropdown-option>
@@ -38,7 +38,7 @@
 							<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
 						</d2l-filter-dropdown-category>
 					</d2l-filter-dropdown>
-					<d2l-applied-filters for="filter">
+					<d2l-applied-filters for="filter" shrinkwrap="true" shrinkwrap-maximum-size="450px">
 					</d2l-applied-filters>
 					<script>
 						const filter = document.querySelector('#filter');
