@@ -142,8 +142,9 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				collapsable
 				?shrinkwrap="${this.shrinkwrap}"
 				shrinkwrap-maximum-size="${this.shrinkwrapMaximumSize}"
-				?show-clear-filters="${this._selectedEntries.length >= CLEAR_FILTERS_THRESHOLD}"
-				@d2l-multi-select-list-clear-filters-clicked="${this._clearFiltersClicked}"
+				?show-clear-list="${this._selectedEntries.length >= CLEAR_FILTERS_THRESHOLD}"
+				clear-list-button-text="${this.localize('clearFilters')}"
+				@d2l-multi-select-list-clear-list-clicked="${this._clearFiltersClicked}"
 				aria-labelledby="d2l-applied-filters-label"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
