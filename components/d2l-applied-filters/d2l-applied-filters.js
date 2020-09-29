@@ -26,7 +26,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			_selectedEntries: { type: Array },
 			_target: { type: Object },
 			shrinkwrap: { type: Boolean },
-			shrinkwrapMaximumSize: { type: String, attribute: 'shrinkwrap-maximum-size' }
 		};
 	}
 
@@ -141,7 +140,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			html`<d2l-labs-multi-select-list
 				collapsable
 				?shrinkwrap="${this.shrinkwrap}"
-				shrinkwrap-maximum-size="${this.shrinkwrapMaximumSize}"
 				?show-clear-list="${this._selectedEntries.length >= CLEAR_FILTERS_THRESHOLD}"
 				clear-list-button-text="${this.localize('clearFilters')}"
 				@d2l-multi-select-list-clear-list-clicked="${this._clearFiltersClicked}"
