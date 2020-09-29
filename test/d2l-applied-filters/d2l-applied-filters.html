@@ -171,6 +171,31 @@
 						done();
 					});
 				});
+				test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-cleared event', function(done) {
+					const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+
+					const handleClearEvent = () => {
+						document.removeEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+						assert.equal('true', 'true');
+						done();
+					};
+
+					document.addEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+
+					options[1].click();
+
+					afterNextRender(filterList, () => {
+						let clearFilters = undefined;
+						const buttons = filterList.shadowRoot.querySelectorAll('d2l-button-subtle');
+						buttons.forEach(a => {
+							if (a.getAttribute('text') === 'Clear filters' && a.getAttribute('class') !== 'hide') {
+								clearFilters = a;
+							}
+						});
+						clearFilters.click();
+					});
+				});
 				test('selecting a 4th filter & clicking clear filters removes filters', function(done) {
 					const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
 					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
