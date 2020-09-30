@@ -171,44 +171,44 @@
 						done();
 					});
 				});
-				// test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-cleared event', function(done) {
-				// 	const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
-				// 	const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+				test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-cleared event', function(done) {
+					const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
-				// 	const handleClearEvent = () => {
-				// 		document.removeEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
-				// 		assert.equal('true', 'true');
-				// 		done();
-				// 	};
+					const handleClearEvent = () => {
+						document.removeEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+						assert.equal('true', 'true');
+						done();
+					};
 
-				// 	document.addEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+					document.addEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
 
-				// 	options[1].click();
+					options[1].click();
 
-				// 	afterNextRender(filterList, () => {
-				// 		const buttons = Array.from(filterList.shadowRoot.querySelectorAll('d2l-button-subtle'));
-				// 		const clearFilters = buttons.find(a => a.getAttribute('text') === 'Clear filters' && !a.classList.contains('hide'));
-				// 		clearFilters.click();
-				// 	});
-				// });
-				// test('selecting a 4th filter & clicking clear filters removes filters', function(done) {
-				// 	const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
-				// 	const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					afterNextRender(filterList, () => {
+						const buttons = Array.from(filterList.shadowRoot.querySelectorAll('d2l-button-subtle'));
+						const clearFilters = buttons.find(a => a.getAttribute('text') === 'Clear filters' && !a.classList.contains('hide'));
+						clearFilters.click();
+					});
+				});
+				test('selecting a 4th filter & clicking clear filters removes filters', function(done) {
+					const filterList = appliedFilters.shadowRoot.querySelector('d2l-labs-multi-select-list');
+					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
 
-				// 	options[1].click();
+					options[1].click();
 
-				// 	afterNextRender(filterList, () => {
-				// 		const buttons = Array.from(filterList.shadowRoot.querySelectorAll('d2l-button-subtle'));
-				// 		const clearFilters = buttons.find(a => a.getAttribute('text') === 'Clear filters' && !a.classList.contains('hide'));
-				// 		clearFilters.click();
+					afterNextRender(filterList, () => {
+						const buttons = Array.from(filterList.shadowRoot.querySelectorAll('d2l-button-subtle'));
+						const clearFilters = buttons.find(a => a.getAttribute('text') === 'Clear filters' && !a.classList.contains('hide'));
+						clearFilters.click();
 
-				// 		afterNextRender(filterList, () => {
-				// 			const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
-				// 			assert.equal(filters.length, 0);
-				// 			done();
-				// 		});
-				// 	});
-				// });
+						afterNextRender(filterList, () => {
+							const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
+							assert.equal(filters.length, 0);
+							done();
+						});
+					});
+				});
 			});
 		</script>
 	</body>
