@@ -45,15 +45,12 @@
 
 				setup((done) => {
 					const testFixture = fixture('basic');
-					dropdown = testFixture.querySelector('d2l-filter-dropdown');
-					appliedFilters = testFixture.querySelector('d2l-applied-filters');
 
-					if (!(testFixture instanceof HTMLElement)) {
-						assert.fail('bad fixture');
-					}
-					afterNextRender(testFixture, () => {
+					setTimeout(() => {
+						dropdown = testFixture.querySelector('d2l-filter-dropdown');
+						appliedFilters = testFixture.querySelector('d2l-applied-filters');
 						done();
-					});
+					}, 100);
 				});
 				test('instantiating the element works', () => {
 					assert.equal('d2l-applied-filters', appliedFilters.tagName.toLowerCase());
