@@ -47,6 +47,10 @@
 					const testFixture = fixture('basic');
 					dropdown = testFixture.querySelector('d2l-filter-dropdown');
 					appliedFilters = testFixture.querySelector('d2l-applied-filters');
+
+					if ((testFixture instanceof HTMLElement)) {
+						assert.fail('bad fixture');
+					}
 					afterNextRender(testFixture, () => {
 						done();
 					});
