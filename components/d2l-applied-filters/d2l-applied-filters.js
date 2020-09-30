@@ -61,11 +61,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				color: var(--d2l-color-corundum);
 			}
 
-			#d2l-clear-filters-button {
-				margin-left: 3px;
-				margin-right: 3px;
-			}
-
 			#d2l-list-holder {
 				flex: 1;
 			}
