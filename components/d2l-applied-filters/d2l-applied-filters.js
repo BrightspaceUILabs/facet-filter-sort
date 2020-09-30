@@ -24,7 +24,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			for: { type: String },
 			_entries: { type: Array },
 			_selectedEntries: { type: Array },
-			_target: { type: Object }
+			_target: { type: Object },
 		};
 	}
 
@@ -130,10 +130,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 
 	render() {
+		const linterNice = true;
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
-				shrinkwrap
+				?shrinkwrap="${linterNice}"
 				?show-clear-list="${this._selectedEntries.length >= CLEAR_FILTERS_THRESHOLD}"
 				clear-list-button-text="${this.localize('clearFilters')}"
 				@d2l-multi-select-list-clear-list-clicked="${this._clearFiltersClicked}"
