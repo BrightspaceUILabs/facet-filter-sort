@@ -185,6 +185,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 	}
 
 	_dispatchSelected() {
+		// Event propagation stopped in d2l-filter-dropdown
 		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-selected', {
 			detail: {
 				categoryKey: this.key
