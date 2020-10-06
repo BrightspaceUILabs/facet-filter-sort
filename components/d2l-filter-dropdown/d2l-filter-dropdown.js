@@ -137,6 +137,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	attached()  {
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
+		this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 	}
 
 	clearFilters() {
@@ -157,6 +158,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	detached() {
 		this.removeEventListener('d2l-dropdown-close', this._handleDropdownClose);
+		this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 	}
 
 	focus() {
@@ -196,6 +198,11 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 
 	_localizeOrAlt(altText, ...args) {
 		return altText ? altText : this.localize(...args);
+	}
+
+	// Must be done here (instead of d2l-filter-dropdown-category) as the d2l-dropdown-tabs component needs to receive it
+	_stopTabPanelSelectedEvent(e) {
+		e.stopPropagation();
 	}
 }
 
