@@ -61,6 +61,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				color: var(--d2l-color-corundum);
 			}
 
+			#d2l-clear-filters-button {
+				margin-left: 3px;
+				margin-right: 3px;
+			}
+
 			#d2l-list-holder {
 				flex: 1;
 			}
@@ -133,10 +138,6 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
-				shrinkwrap
-				?show-clear-list="${this._selectedEntries.length >= CLEAR_FILTERS_THRESHOLD}"
-				clear-list-button-text="${this.localize('clearFilters')}"
-				@d2l-multi-select-list-clear-list-clicked="${this._clearFiltersClicked}"
 				aria-labelledby="d2l-applied-filters-label"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
@@ -156,6 +157,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.localize('appliedFilters')}</span>
 				<div id="d2l-list-holder">
 					${filters}
+					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
 				</div>
 			</div>
 		`;
