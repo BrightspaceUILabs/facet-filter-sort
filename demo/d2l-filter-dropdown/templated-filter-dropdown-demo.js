@@ -121,7 +121,7 @@ class TemplatedFilterDropdownFilter extends LitElement {
 						key="${f.key}"
 						category-text="${f.title}"
 						selected-option-count="${f.numSelected}">
-						
+
 						${f.options.map(o => html`
 							<d2l-filter-dropdown-option
 								?selected="${o.selected}"

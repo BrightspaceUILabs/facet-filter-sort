@@ -18,6 +18,12 @@
           "attribute": "for",
           "description": "REQUIRED: The id of the \"d2l-filter-dropdown\" that you want to track",
           "type": "string"
+        },
+        {
+          "name": "labelText",
+          "attribute": "label-text",
+          "description": "The text displayed in this component's label. Default: \"Applied Filters:\"",
+          "type": "string"
         }
       ]
     },
