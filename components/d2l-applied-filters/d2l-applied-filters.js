@@ -25,7 +25,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			/**
 			 * Optional: The text displayed in this component's label. Default: "Applied Filters:"
 			 */
-			appliedFiltersLabelText: { type: String, attribute: 'applied-filters-label-text' },
+			labelText: { type: String, attribute: 'label-text' },
 			_entries: { type: Array },
 			_selectedEntries: { type: Array },
 			_target: { type: Object },
@@ -126,7 +126,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	constructor() {
 		super();
-		this.appliedFiltersLabelText = '';
+		this.labelText = '';
 
 		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
 		this._clearSelected = this._clearSelected.bind(this);
@@ -160,7 +160,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 		return html`
 			<div class="d2l-applied-filters-wrapper">
-				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.appliedFiltersLabelText || this.localize('appliedFilters')}</span>
+				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.labelText || this.localize('appliedFilters')}</span>
 				<div id="d2l-list-holder">
 					${filters}
 					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>

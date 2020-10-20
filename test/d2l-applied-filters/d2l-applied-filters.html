@@ -32,7 +32,7 @@
 							<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
 						</d2l-filter-dropdown-category>
 					</d2l-filter-dropdown>
-					<d2l-applied-filters for="dropdown" applied-filters-label-text="The applied filters"></d2l-applied-filters>
+					<d2l-applied-filters for="dropdown" label-text="The applied filters"></d2l-applied-filters>
 				</div>
 			</template>
 		</test-fixture>
@@ -56,7 +56,7 @@
 				});
 				test('attributes are set correctly', () => {
 					assert.equal(appliedFilters.for, 'dropdown');
-					assert.equal(appliedFilters.appliedFiltersLabelText, 'The applied filters');
+					assert.equal(appliedFilters.labelText, 'The applied filters');
 				});
 				test('instantiates with the selected filters added as multi-select items', () => {
 					const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');

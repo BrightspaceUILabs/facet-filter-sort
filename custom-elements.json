@@ -20,8 +20,8 @@
           "type": "string"
         },
         {
-          "name": "appliedFiltersLabelText",
-          "attribute": "applied-filters-label-text",
+          "name": "labelText",
+          "attribute": "label-text",
           "description": "The text displayed in this component's label. Default: \"Applied Filters:\"",
           "type": "string"
         }
