@@ -156,7 +156,7 @@ NOTE: This component uses the `slotchange` event and so will not work if you req
 #### Attributes
 
 - `for`: The id of the `d2l-filter-dropdown` you want to track.
-- `label-text`: (optional) The text displayed in this component's label. Defaults to "Applied Filters:".
+- `label-text` (optional): The text displayed in this component's label. Defaults to "Applied Filters:".
 
 #### Usage
 
