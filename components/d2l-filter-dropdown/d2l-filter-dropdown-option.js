@@ -11,7 +11,7 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 
 	static get styles() {
 		return [menuItemSelectableStyles, css`
-			:host > span {
+			.d2l-menu-item-text {
 				white-space: normal;
 			}
 		`];
@@ -33,7 +33,7 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 	render() {
 		return html`
 			<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
-			<span>${this.text}</span>
+			<span class="d2l-menu-item-text">${this.text}</span>
 		`;
 	}
 
