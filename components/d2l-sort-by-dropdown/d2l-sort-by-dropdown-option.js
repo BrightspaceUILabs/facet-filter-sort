@@ -16,7 +16,7 @@ class SortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
 	render() {
 		return html`
 			<d2l-icon icon="tier1:check" aria-hidden="true"></d2l-icon>
-			<span>${this.text}</span>
+			<span class="d2l-menu-item-text">${this.text}</span>
 		`;
 	}
 
