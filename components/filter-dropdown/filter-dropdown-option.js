@@ -7,7 +7,7 @@ import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 /**
  * A filter menu item component.
  */
-class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement)) {
+class LabsFilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement)) {
 
 	static get styles() {
 		return [menuItemSelectableStyles, css`
@@ -44,4 +44,4 @@ class FilterDropdownOption extends RtlMixin(MenuItemSelectableMixin(LitElement))
 
 }
 
-customElements.define('d2l-filter-dropdown-option', FilterDropdownOption);
+customElements.define('d2l-labs-filter-dropdown-option', LabsFilterDropdownOption);

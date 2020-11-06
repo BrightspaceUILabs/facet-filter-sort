@@ -17,21 +17,21 @@
 		<test-fixture id="basic">
 			<template strip-whitespace>
 				<div>
-					<d2l-filter-dropdown id="dropdown" total-selected-option-count="3">
-						<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
-							<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 3" value="3"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option selected text="Option 1 - 4" value="4"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 5" value="5"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 1 - 6" value="6"></d2l-filter-dropdown-option>
-						</d2l-filter-dropdown-category>
-						<d2l-filter-dropdown-category key="2" category-text="Category 2" disable-search>
-							<d2l-filter-dropdown-option selected text="Option 2 - 1" value="1"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-filter-dropdown-option>
-							<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
-						</d2l-filter-dropdown-category>
-					</d2l-filter-dropdown>
+					<d2l-labs-filter-dropdown id="dropdown" total-selected-option-count="3">
+						<d2l-labs-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
+							<d2l-labs-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 1 - 3" value="3"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option selected text="Option 1 - 4" value="4"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 1 - 5" value="5"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 1 - 6" value="6"></d2l-labs-filter-dropdown-option>
+						</d2l-labs-filter-dropdown-category>
+						<d2l-labs-filter-dropdown-category key="2" category-text="Category 2" disable-search>
+							<d2l-labs-filter-dropdown-option selected text="Option 2 - 1" value="1"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-labs-filter-dropdown-option>
+							<d2l-labs-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-labs-filter-dropdown-option>
+						</d2l-labs-filter-dropdown-category>
+					</d2l-labs-filter-dropdown>
 					<d2l-labs-applied-filters for="dropdown" label-text="The applied filters"></d2l-labs-applied-filters>
 				</div>
 			</template>
@@ -45,7 +45,7 @@
 
 				setup((done) => {
 					const testFixture = fixture('basic');
-					dropdown = testFixture.querySelector('d2l-filter-dropdown');
+					dropdown = testFixture.querySelector('d2l-labs-filter-dropdown');
 					appliedFilters = testFixture.querySelector('d2l-labs-applied-filters');
 					afterNextRender(testFixture, () => {
 						done();
@@ -66,7 +66,7 @@
 					assert.equal(filters[2].text, 'Option 2 - 1');
 				});
 				test('selecting another filter adds to the list', (done) => {
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 					options[1].click();
 					afterNextRender(options[1], () => {
 						const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
@@ -79,7 +79,7 @@
 					});
 				});
 				test('removing a filter removes from the list', (done) => {
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 					options[0].deselect();
 					afterNextRender(options[0], () => {
 						const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
@@ -92,7 +92,7 @@
 
 				test('deleting an item from the multi-select list deselects the corresponding filter from the dropdown', (done) => {
 					const filters = appliedFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					assert.equal(options[0].selected, true);
 					filters[0].shadowRoot.querySelectorAll('.d2l-labs-multi-select-delete-icon')[0].click();
@@ -109,7 +109,7 @@
 				});
 				test('selecting a 4th filter reveals the clear filters button', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 					options[1].click();
 
 					afterNextRender(options[1], () => {
@@ -119,7 +119,7 @@
 				});
 				test('selecting a 4th filter then removing it hides the clear filters button', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 					options[1].click();
 
 					afterNextRender(options[1], () => {
@@ -133,7 +133,7 @@
 				});
 				test('clear filters button is visible when all filters are applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					options[1].click();
 					options[2].click();
@@ -149,7 +149,7 @@
 				});
 				test('clear filters button is hidden when 0 filters are applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					options[0].deselect();
 					options[3].deselect();
@@ -162,7 +162,7 @@
 				});
 				test('clear filters button is hidden when 1 filters is applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					options[0].deselect();
 					options[3].deselect();
@@ -172,16 +172,16 @@
 						done();
 					});
 				});
-				test('selecting a 4th filter & clicking clear filters fires a d2l-filter-dropdown-cleared event', function(done) {
+				test('selecting a 4th filter & clicking clear filters fires a d2l-labs-filter-dropdown-cleared event', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					const handleClearEvent = () => {
-						document.removeEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+						document.removeEventListener('d2l-labs-filter-dropdown-cleared', handleClearEvent);
 						done();
 					};
 
-					document.addEventListener('d2l-filter-dropdown-cleared', handleClearEvent);
+					document.addEventListener('d2l-labs-filter-dropdown-cleared', handleClearEvent);
 
 					options[1].click();
 
@@ -191,7 +191,7 @@
 				});
 				test('selecting a 4th filter & clicking clear filters removes filters & hides clear filters button', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
-					const options = dropdown.querySelectorAll('d2l-filter-dropdown-option');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 					options[1].click();
 

@@ -110,29 +110,29 @@ class TemplatedFilterDropdownFilter extends LitElement {
 
 	render() {
 		return html`
-			<d2l-filter-dropdown
-				@d2l-filter-dropdown-cleared="${this._handleClear}"
+			<d2l-labs-filter-dropdown
+				@d2l-labs-filter-dropdown-cleared="${this._handleClear}"
 				total-selected-option-count="${this._totalSelected}">
 
 				${this._filters.map(f => html`
-					<d2l-filter-dropdown-category
-						@d2l-filter-dropdown-category-searched="${this._handleSearch}"
-						@d2l-filter-dropdown-option-change="${this._handleMenuItemChange}"
+					<d2l-labs-filter-dropdown-category
+						@d2l-labs-filter-dropdown-category-searched="${this._handleSearch}"
+						@d2l-labs-filter-dropdown-option-change="${this._handleMenuItemChange}"
 						key="${f.key}"
 						category-text="${f.title}"
 						selected-option-count="${f.numSelected}">
 
 						${f.options.map(o => html`
-							<d2l-filter-dropdown-option
+							<d2l-labs-filter-dropdown-option
 								?selected="${o.selected}"
 								text="${o.title}"
 								value="${o.key}"
 								?hidden="${!o.display}">
-							</d2l-filter-dropdown-option>
+							</d2l-labs-filter-dropdown-option>
 						`)}
-					</d2l-filter-dropdown-category>
+					</d2l-labs-filter-dropdown-category>
 				`)}
-			</d2l-filter-dropdown>
+			</d2l-labs-filter-dropdown>
 		`;
 	}
 

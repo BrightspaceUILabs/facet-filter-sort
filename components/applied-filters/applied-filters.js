@@ -7,9 +7,9 @@ import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
 import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
-const DROPDOWN_NAME = 'D2L-FILTER-DROPDOWN';
-const DROPDOWN_CATEGORY_NAME = 'D2L-FILTER-DROPDOWN-CATEGORY';
-const DROPDOWN_OPTION_NAME = 'D2L-FILTER-DROPDOWN-OPTION';
+const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
+const DROPDOWN_CATEGORY_NAME = 'D2L-LABS-FILTER-DROPDOWN-CATEGORY';
+const DROPDOWN_OPTION_NAME = 'D2L-LABS-FILTER-DROPDOWN-OPTION';
 const CLEAR_FILTERS_THRESHOLD = 4;
 
 /**
@@ -19,7 +19,7 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	static get properties() {
 		return {
 			/**
-			 * REQUIRED: The id of the "d2l-filter-dropdown" that you want to track
+			 * REQUIRED: The id of the "d2l-labs-filter-dropdown" that you want to track
 			 */
 			for: { type: String },
 			/**
@@ -241,9 +241,9 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			return undefined;
 		}
 		if (this._target) {
-			this._target.removeEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
-			this._target.removeEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
-			this._target.removeEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
+			this._target.removeEventListener('d2l-labs-filter-dropdown-option-change', this._setSelectedOptions, true);
+			this._target.removeEventListener('d2l-labs-filter-dropdown-cleared', this._clearSelected, true);
+			this._target.removeEventListener('d2l-labs-filter-dropdown-category-slotchange', this._update, true);
 		}
 
 		const ownerRoot = this.getRootNode();
@@ -253,9 +253,9 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 		if (target) {
 			target = this._findDropdownIfNested(target);
-			target.addEventListener('d2l-filter-dropdown-option-change', this._setSelectedOptions, true);
-			target.addEventListener('d2l-filter-dropdown-cleared', this._clearSelected, true);
-			target.addEventListener('d2l-filter-dropdown-category-slotchange', this._update, true);
+			target.addEventListener('d2l-labs-filter-dropdown-option-change', this._setSelectedOptions, true);
+			target.addEventListener('d2l-labs-filter-dropdown-cleared', this._clearSelected, true);
+			target.addEventListener('d2l-labs-filter-dropdown-category-slotchange', this._update, true);
 		}
 		this._target = target;
 	}

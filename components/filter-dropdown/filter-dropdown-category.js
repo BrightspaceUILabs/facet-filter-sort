@@ -8,13 +8,13 @@ import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mi
 
 /**
  * A component wrapping grouped filters
- * @slot - Contains the filters (e.g., d2l-filter-dropdown-option) that are in the category
- * @fires d2l-filter-dropdown-category-slotchange - Dispatched when the slot content changes
- * @fires d2l-filter-dropdown-category-selected - Dispatched when a filter tab is selected
- * @fires d2l-filter-dropdown-category-searched - Dispatched when a filter category is searched
- * @fires d2l-filter-dropdown-option-change - Dispatched when a filter option is selected
+ * @slot - Contains the filters (e.g., d2l-labs-filter-dropdown-option) that are in the category
+ * @fires d2l-labs-filter-dropdown-category-slotchange - Dispatched when the slot content changes
+ * @fires d2l-labs-filter-dropdown-category-selected - Dispatched when a filter tab is selected
+ * @fires d2l-labs-filter-dropdown-category-searched - Dispatched when a filter category is searched
+ * @fires d2l-labs-filter-dropdown-option-change - Dispatched when a filter option is selected
  */
-class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElement)) {
+class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElement)) {
 
 	static get properties() {
 		return {
@@ -48,7 +48,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 				border-top: 1px solid var(--d2l-color-gypsum);
 				padding: 1.2rem 1rem 0 1rem;
 			}
-			.d2l-filter-dropdown-page-search {
+			.d2l-labs-filter-dropdown-page-search {
 				margin-bottom: 0.5rem;
 			}
 			d2l-menu {
@@ -188,7 +188,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 
 	render() {
 		return html`
-			<div class="d2l-filter-dropdown-page-search" ?hidden="${this.disableSearch}">
+			<div class="d2l-labs-filter-dropdown-page-search" ?hidden="${this.disableSearch}">
 				<d2l-input-search @d2l-input-search-searched="${this._handleSearchChange}"
 					placeholder="${this.localize('searchBy', 'category', this.categoryText)}"
 					value="${ifDefined(this.searchValue)}">
@@ -201,8 +201,8 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 	}
 
 	_dispatchSelected() {
-		// Event propagation stopped in d2l-filter-dropdown
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-selected', {
+		// Event propagation of d2l-tab-panel-selected stopped in d2l-labs-filter-dropdown
+		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-category-selected', {
 			detail: {
 				categoryKey: this.key
 			},
@@ -213,7 +213,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 
 	_handleMenuItemChange(e) {
 		e.stopPropagation();
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-option-change', {
+		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-option-change', {
 			detail: {
 				categoryKey: this.key,
 				menuItemKey: e.detail.value,
@@ -228,7 +228,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 		e.stopPropagation();
 
 		this.searchValue = e.detail.value;
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-searched', {
+		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-category-searched', {
 			detail: {
 				categoryKey: this.key,
 				value: e.detail.value
@@ -239,7 +239,7 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 	}
 
 	_onSlotChange() {
-		this.dispatchEvent(new CustomEvent('d2l-filter-dropdown-category-slotchange', { bubbles: true, detail: { categoryKey: this.key } }));
+		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-category-slotchange', { bubbles: true, detail: { categoryKey: this.key } }));
 	}
 
 	_updateTabText(categoryText, selectedOptionCount) {
@@ -252,4 +252,4 @@ class FilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElemen
 
 }
 
-customElements.define('d2l-filter-dropdown-category', FilterDropdownCategory);
+customElements.define('d2l-labs-filter-dropdown-category', LabsFilterDropdownCategory);

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-filter-dropdown-category test</title>
+		<title>d2l-labs-filter-dropdown-category test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -16,19 +16,19 @@
 		<test-fixture id="basic">
 			<template strip-whitespace>
 				<d2l-tabs>
-					<d2l-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
-						<d2l-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option selected text="Option 1 - 3" value="3"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option selected text="Option 1 - 4" value="4"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option text="Option 1 - 5" value="5"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option text="Option 1 - 6" value="6"></d2l-filter-dropdown-option>
-					</d2l-filter-dropdown-category>
-					<d2l-filter-dropdown-category key="2" category-text="Category 2" disable-search>
-						<d2l-filter-dropdown-option text="Option 2 - 1" value="1"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-filter-dropdown-option>
-						<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
-					</d2l-filter-dropdown-category>
+					<d2l-labs-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
+						<d2l-labs-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option selected text="Option 1 - 3" value="3"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option selected text="Option 1 - 4" value="4"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option text="Option 1 - 5" value="5"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option text="Option 1 - 6" value="6"></d2l-labs-filter-dropdown-option>
+					</d2l-labs-filter-dropdown-category>
+					<d2l-labs-filter-dropdown-category key="2" category-text="Category 2" disable-search>
+						<d2l-labs-filter-dropdown-option text="Option 2 - 1" value="1"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-labs-filter-dropdown-option>
+						<d2l-labs-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-labs-filter-dropdown-option>
+					</d2l-labs-filter-dropdown-category>
 				</d2l-tabs>
 			</span>
 			</template>
@@ -37,17 +37,17 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-filter-dropdown-category', () => {
+			suite('d2l-labs-filter-dropdown-category', () => {
 				let container;
 				let categories = [];
 
 				setup((done) => {
 					container = fixture('basic');
-					categories = container.querySelectorAll('d2l-filter-dropdown-category');
+					categories = container.querySelectorAll('d2l-labs-filter-dropdown-category');
 					afterNextRender(container, done);
 				});
 				test('instantiating the element works', () => {
-					assert.equal('d2l-filter-dropdown-category', categories[0].tagName.toLowerCase());
+					assert.equal('d2l-labs-filter-dropdown-category', categories[0].tagName.toLowerCase());
 				});
 				test('attributes are set correctly (including d2l-tab-panel attributes)', () => {
 					assert.equal(categories[0].key, '1');
@@ -67,11 +67,11 @@
 				});
 				test('search input is hidden if disable-search attribute is present', () => {
 					assert.equal(categories[0].disableSearch, false);
-					let searchInput = categories[0].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
+					let searchInput = categories[0].shadowRoot.querySelector('.d2l-labs-filter-dropdown-page-search');
 					assert.equal(searchInput.hidden, false);
 
 					assert.equal(categories[1].disableSearch, true);
-					searchInput = categories[1].shadowRoot.querySelector('.d2l-filter-dropdown-page-search');
+					searchInput = categories[1].shadowRoot.querySelector('.d2l-labs-filter-dropdown-page-search');
 					assert.equal(searchInput.hidden, true);
 				});
 				test('setting the search-value attribute updates the value in the search input', (done) => {
@@ -82,8 +82,8 @@
 						done();
 					});
 				});
-				test('searching triggers the d2l-filter-dropdown-category-searched event and updates the searchValue property', (done) => {
-					container.addEventListener('d2l-filter-dropdown-category-searched', (e) => {
+				test('searching triggers the d2l-labs-filter-dropdown-category-searched event and updates the searchValue property', (done) => {
+					container.addEventListener('d2l-labs-filter-dropdown-category-searched', (e) => {
 						assert.equal(e.detail.categoryKey, '1');
 						assert.equal(e.detail.value, 'test');
 						assert.equal(categories[0].searchValue, 'test');
@@ -95,8 +95,8 @@
 						categories[0].shadowRoot.querySelector('d2l-input-search').search();
 					});
 				});
-				test('changing the category tab triggers the d2l-filter-dropdown-category-selected event', (done) => {
-					container.addEventListener('d2l-filter-dropdown-category-selected', (e) => {
+				test('changing the category tab triggers the d2l-labs-filter-dropdown-category-selected event', (done) => {
+					container.addEventListener('d2l-labs-filter-dropdown-category-selected', (e) => {
 						if (e.detail.categoryKey === '2') {
 							done();
 						}
@@ -104,8 +104,8 @@
 
 					categories[1].selected = true;
 				});
-				test('selecting a menu option triggers the d2l-filter-dropdown-option-change event', (done) => {
-					container.addEventListener('d2l-filter-dropdown-option-change', (e) => {
+				test('selecting a menu option triggers the d2l-labs-filter-dropdown-option-change event', (done) => {
+					container.addEventListener('d2l-labs-filter-dropdown-option-change', (e) => {
 						assert.equal(e.detail.categoryKey, '1');
 
 						if (e.detail.menuItemKey === '1') {
@@ -117,7 +117,7 @@
 						}
 					});
 
-					const menuItems = categories[0].querySelectorAll('d2l-filter-dropdown-option');
+					const menuItems = categories[0].querySelectorAll('d2l-labs-filter-dropdown-option');
 					menuItems[0].click();
 				});
 			});

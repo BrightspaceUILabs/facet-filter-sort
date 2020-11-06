@@ -11,10 +11,10 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  * A component containing filter options and emitting selection events
  * @slot - Contents of the dropdown, including filter categories and options
  * @slot footer - Dropdown footer contents
- * @fires d2l-filter-dropdown-cleared - Dispatched when the clear button is pressed to clear all filters
- * @fires d2l-filter-dropdown-close - Dispatched when the filter dropdown is closed
+ * @fires d2l-labs-filter-dropdown-cleared - Dispatched when the clear button is pressed to clear all filters
+ * @fires d2l-labs-filter-dropdown-close - Dispatched when the filter dropdown is closed
  */
-class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropdown.LocalizeBehavior], PolymerElement) {
+class D2LLabsFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.LabsFilterDropdown.LocalizeBehavior], PolymerElement) {
 	static get properties() {
 		return {
 			/**
@@ -91,19 +91,19 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		};
 	}
 
-	static get is() { return 'd2l-filter-dropdown'; }
+	static get is() { return 'd2l-labs-filter-dropdown'; }
 
 	static get template() {
 		return html`
 			<style>
-				.d2l-filter-dropdown-content-header {
+				.d2l-labs-filter-dropdown-content-header {
 					border-bottom: 1px solid var(--d2l-color-titanius);
 					box-sizing: border-box;
 					display: flex;
 					justify-content: space-between;
 					padding: 1rem;
 				}
-				.d2l-filter-dropdown-content-header > span {
+				.d2l-labs-filter-dropdown-content-header > span {
 					align-self: center;
 				}
 				d2l-tabs {
@@ -122,7 +122,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 					no-padding
 					no-padding-footer$="[[noPaddingFooter]]"
 					render-content>
-					<div class="d2l-filter-dropdown-content-header">
+					<div class="d2l-labs-filter-dropdown-content-header">
 						<span>[[_localizeOrAlt(headerText, 'filterBy')]]</span>
 						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="clearFilters"></d2l-button-subtle>
 					</div>
@@ -143,7 +143,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 	clearFilters() {
 		this.dispatchEvent(
 			new CustomEvent(
-				'd2l-filter-dropdown-cleared',
+				'd2l-labs-filter-dropdown-cleared',
 				{
 					composed: true,
 					bubbles: true
@@ -183,7 +183,7 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		e.stopPropagation();
 		this.dispatchEvent(
 			new CustomEvent(
-				'd2l-filter-dropdown-close',
+				'd2l-labs-filter-dropdown-close',
 				{
 					composed: true,
 					bubbles: true
@@ -200,10 +200,10 @@ class D2LFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.FilterDropd
 		return altText ? altText : this.localize(...args);
 	}
 
-	// Must be done here (instead of d2l-filter-dropdown-category) as the d2l-dropdown-tabs component needs to receive it
+	// Must be done here (instead of d2l-labs-filter-dropdown-category) as the d2l-dropdown-tabs component needs to receive it
 	_stopTabPanelSelectedEvent(e) {
 		e.stopPropagation();
 	}
 }
 
-window.customElements.define(D2LFilterDropdown.is, D2LFilterDropdown);
+window.customElements.define(D2LLabsFilterDropdown.is, D2LLabsFilterDropdown);
