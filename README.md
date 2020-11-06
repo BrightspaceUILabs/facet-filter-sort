@@ -31,7 +31,7 @@ Collection of (search) facet, filter, and sort components
 
 ### d2l-labs-filter-dropdown
 
-<img src="/images/d2l-filter-dropdown.png?raw=true" width="450">
+<img src="/images/d2l-labs-filter-dropdown.png?raw=true" width="450">
 
 #### Usage
 
@@ -124,7 +124,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 
 ### d2l-labs-search-facets
 
-<img src="/images/d2l-search-facets.png?raw=true" width="450">
+<img src="/images/d2l-labs-search-facets.png?raw=true" width="450">
 
 #### Usage
 
@@ -132,7 +132,7 @@ To Do
 
 ### d2l-labs-search-results-count
 
-<img src="/images/d2l-search-results-count.png?raw=true" width="450">
+<img src="/images/d2l-labs-search-results-count.png?raw=true" width="450">
 
 #### Usage
 
@@ -140,7 +140,7 @@ To Do
 
 ### d2l-labs-sort-by-dropdown
 
-<img src="/images/d2l-sort-by-dropdown.png?raw=true" width="450">
+<img src="/images/d2l-labs-sort-by-dropdown.png?raw=true" width="450">
 
 #### Usage
 
@@ -152,7 +152,7 @@ A multi-select-list allowing the user to see (and remove) the currently applied 
 
 NOTE: This component uses the `slotchange` event and so will not work if you require IE support
 
-<img src="/images/d2l-applied-filters.png?raw=true" width="450">
+<img src="/images/d2l-labs-applied-filters.png?raw=true" width="450">
 
 #### Attributes
 
