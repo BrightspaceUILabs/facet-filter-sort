@@ -26,7 +26,7 @@ Collection of (search) facet, filter, and sort components
 - [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
 - [d2l-labs-search-facets](#d2l-labs-search-facets)
 - [d2l-labs-search-results-count](#d2l-labs-search-results-count)
-- [d2l-sort-by-dropdown](#d2l-sort-by-dropdown)
+- [d2l-labs-sort-by-dropdown](#d2l-labs-sort-by-dropdown)
 - [d2l-labs-applied-filters](#d2l-labs-applied-filters)
 
 ### d2l-labs-filter-dropdown
@@ -138,7 +138,7 @@ To Do
 
 To Do
 
-### d2l-sort-by-dropdown
+### d2l-labs-sort-by-dropdown
 
 <img src="/images/d2l-sort-by-dropdown.png?raw=true" width="450">
 

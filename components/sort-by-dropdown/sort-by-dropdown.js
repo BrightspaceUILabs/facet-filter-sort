@@ -9,12 +9,12 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * Polymer-based web component for D2L sort by dropdown component
- * @slot - Contains the dropdown options (e.g., d2l-sort-by-dropdown-options)
- * @fires d2l-sort-by-dropdown-change - Dispatched when option is selected
+ * @slot - Contains the dropdown options (e.g., d2l-labs-sort-by-dropdown-options)
+ * @fires d2l-labs-sort-by-dropdown-change - Dispatched when option is selected
  */
-class SortByDropdown extends mixinBehaviors(
+class LabsSortByDropdown extends mixinBehaviors(
 	[
-		D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior
+		D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehavior
 	],
 	PolymerElement
 ) {
@@ -89,7 +89,7 @@ class SortByDropdown extends mixinBehaviors(
 		};
 	}
 
-	static get is() { return 'd2l-sort-by-dropdown'; }
+	static get is() { return 'd2l-labs-sort-by-dropdown'; }
 
 	static get template() {
 		return html`
@@ -103,7 +103,7 @@ class SortByDropdown extends mixinBehaviors(
 			</style>
 			<d2l-dropdown-button-subtle text="[[_selectedOptionText]]" disabled="[[disabled]]">
 				<d2l-dropdown-menu align="[[align]]" no-pointer="" vertical-offset="10" >
-					<d2l-menu id="d2l-sort-by-menu" label="[[label]]">
+					<d2l-menu id="d2l-labs-sort-by-menu" label="[[label]]">
 					<slot></slot>
 					</d2l-menu>
 				</d2l-dropdown-menu>
@@ -116,7 +116,7 @@ class SortByDropdown extends mixinBehaviors(
 		this._boundListeners = { _onItemSelect: this._onItemSelect.bind(this) };
 		afterNextRender(this, () => {
 			// Issues with event bubbling in Edge/IE11 - need to listen directly on the menu
-			this.$['d2l-sort-by-menu'].addEventListener('d2l-menu-item-change',
+			this.$['d2l-labs-sort-by-menu'].addEventListener('d2l-menu-item-change',
 				this._boundListeners._onItemSelect);
 
 			const effectiveChildren = FlattenedNodesObserver.getFlattenedNodes(this)
@@ -139,7 +139,7 @@ class SortByDropdown extends mixinBehaviors(
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.$['d2l-sort-by-menu'].removeEventListener('d2l-menu-item-change',
+		this.$['d2l-labs-sort-by-menu'].removeEventListener('d2l-menu-item-change',
 			this._boundListeners._onItemSelect);
 	}
 
@@ -148,10 +148,10 @@ class SortByDropdown extends mixinBehaviors(
 		this.value = e.detail.value;
 
 		this.dispatchEvent(new CustomEvent(
-			'd2l-sort-by-dropdown-change',
+			'd2l-labs-sort-by-dropdown-change',
 			{ bubbles: true, composed: true, detail: { value: this.value } }
 		));
 	}
 
 }
-customElements.define(SortByDropdown.is, SortByDropdown);
+customElements.define(LabsSortByDropdown.is, LabsSortByDropdown);

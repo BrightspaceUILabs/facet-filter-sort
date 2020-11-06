@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-sort-by-dropdown test</title>
+		<title>d2l-labs-sort-by-dropdown test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -14,17 +14,17 @@
 	<body>
 		<test-fixture id="basic">
 			<template>
-				<d2l-sort-by-dropdown label="Sort by test">
-					<d2l-sort-by-dropdown-option id="option1" value="option1" text="Option 1"></d2l-sort-by-dropdown-option>
-					<d2l-sort-by-dropdown-option id="option2" value="option2" text="Option 2"></d2l-sort-by-dropdown-option>
-				</d2l-sort-by-dropdown>
+				<d2l-labs-sort-by-dropdown label="Sort by test">
+					<d2l-labs-sort-by-dropdown-option id="option1" value="option1" text="Option 1"></d2l-labs-sort-by-dropdown-option>
+					<d2l-labs-sort-by-dropdown-option id="option2" value="option2" text="Option 2"></d2l-labs-sort-by-dropdown-option>
+				</d2l-labs-sort-by-dropdown>
 			</template>
 		</test-fixture>
 		<script type="module">
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 			import '@polymer/iron-test-helpers/test-helpers.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-sort-by-dropdown', () => {
+			describe('d2l-labs-sort-by-dropdown', () => {
 				describe('basic', () => {
 					let basicFixture;
 					let option1;

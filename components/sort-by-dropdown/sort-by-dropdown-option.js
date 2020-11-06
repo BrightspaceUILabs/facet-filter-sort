@@ -7,7 +7,7 @@ import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 /**
  * A dropdown option menu item component.
  */
-class SortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
+class LabsSortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
 
 	static get styles() {
 		return menuItemSelectableStyles;
@@ -22,4 +22,4 @@ class SortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
 
 }
 
-customElements.define('d2l-sort-by-dropdown-option', SortByDropdownOption);
+customElements.define('d2l-labs-sort-by-dropdown-option', LabsSortByDropdownOption);

@@ -3,13 +3,13 @@ import 'd2l-localize-behavior/d2l-localize-behavior.js';
 
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
-window.D2L.PolymerBehaviors.SortByDropdown = window.D2L.PolymerBehaviors.SortByDropdown || {};
+window.D2L.PolymerBehaviors.LabsSortByDropdown = window.D2L.PolymerBehaviors.LabsSortByDropdown || {};
 
 /**
  * Localizes the sort-by-dropdown component.
- * @polymerBehavior D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior
+ * @polymerBehavior D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehavior
  */
-D2L.PolymerBehaviors.SortByDropdown.LocalizeBehaviorImpl = {
+D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehaviorImpl = {
 	properties: {
 	/**
 	 * Localization resources.
@@ -71,8 +71,8 @@ D2L.PolymerBehaviors.SortByDropdown.LocalizeBehaviorImpl = {
 	}
 };
 
-/** @polymerBehavior D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior */
-D2L.PolymerBehaviors.SortByDropdown.LocalizeBehavior = [
+/** @polymerBehavior D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehavior */
+D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehavior = [
 	D2L.PolymerBehaviors.LocalizeBehavior,
-	D2L.PolymerBehaviors.SortByDropdown.LocalizeBehaviorImpl
+	D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehaviorImpl
 ];

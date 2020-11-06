@@ -11,39 +11,39 @@
 			import '../../components/sort-by-dropdown/sort-by-dropdown.js';
 		</script>
 		<style>
-			d2l-sort-by-dropdown { float: right; }
+			d2l-labs-sort-by-dropdown { float: right; }
 		</style>
 	</head>
 	<body unresolved>
 
-		<d2l-demo-page page-title="d2l-sort-by-dropdown">
+		<d2l-demo-page page-title="d2l-labs-sort-by-dropdown">
 
-			<h2>d2l-sort-by-dropdown</h2>
+			<h2>d2l-labs-sort-by-dropdown</h2>
 
 			<d2l-demo-snippet>
 				<template>
-					<d2l-sort-by-dropdown label="Sort by options" align="end">
-						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="time" text="Time"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="newest" text="Newest"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="oldest" text="Oldest"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="name" text="Name"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="high-to-low" text="Price: High to Low"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="low-to-high" text="Price: Low to High"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="long-text" text="A sorting option with longer text"></d2l-sort-by-dropdown-option>
-					</d2l-sort-by-dropdown>
+					<d2l-labs-sort-by-dropdown label="Sort by options" align="end">
+						<d2l-labs-sort-by-dropdown-option value="date" text="Date"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="time" text="Time"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="newest" text="Newest"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="oldest" text="Oldest"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="name" text="Name"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="high-to-low" text="Price: High to Low"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="low-to-high" text="Price: Low to High"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="long-text" text="A sorting option with longer text"></d2l-labs-sort-by-dropdown-option>
+					</d2l-labs-sort-by-dropdown>
 					<div style="clear: both;"></div>
 				</template>
 			</d2l-demo-snippet>
 
-			<h2>d2l-sort-by-dropdown (compact)</h2>
+			<h2>d2l-labs-sort-by-dropdown (compact)</h2>
 
 			<d2l-demo-snippet>
 				<template>
-					<d2l-sort-by-dropdown align="end" label="Compact sort by dropdown" compact="">
-						<d2l-sort-by-dropdown-option value="date" text="Date"></d2l-sort-by-dropdown-option>
-						<d2l-sort-by-dropdown-option value="time" text="Time"></d2l-sort-by-dropdown-option>
-					</d2l-sort-by-dropdown>
+					<d2l-labs-sort-by-dropdown align="end" label="Compact sort by dropdown" compact="">
+						<d2l-labs-sort-by-dropdown-option value="date" text="Date"></d2l-labs-sort-by-dropdown-option>
+						<d2l-labs-sort-by-dropdown-option value="time" text="Time"></d2l-labs-sort-by-dropdown-option>
+					</d2l-labs-sort-by-dropdown>
 					<div style="clear: both;"></div>
 				</template>
 			</d2l-demo-snippet>
@@ -51,7 +51,7 @@
 		</d2l-demo-page>
 
 		<script>
-			document.addEventListener('d2l-sort-by-dropdown-change', (e) => {
+			document.addEventListener('d2l-labs-sort-by-dropdown-change', (e) => {
 				// eslint-disable-next-line no-console
 				console.log(e.detail);
 			});
