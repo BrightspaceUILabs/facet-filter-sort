@@ -25,7 +25,7 @@ Collection of (search) facet, filter, and sort components
 
 - [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
 - [d2l-labs-search-facets](#d2l-labs-search-facets)
-- [d2l-search-results-count](#d2l-search-results-count)
+- [d2l-labs-search-results-count](#d2l-labs-search-results-count)
 - [d2l-sort-by-dropdown](#d2l-sort-by-dropdown)
 - [d2l-labs-applied-filters](#d2l-labs-applied-filters)
 
@@ -130,7 +130,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 
 To Do
 
-### d2l-search-results-count
+### d2l-labs-search-results-count
 
 <img src="/images/d2l-search-results-count.png?raw=true" width="450">
 

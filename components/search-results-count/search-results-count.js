@@ -3,12 +3,12 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
- * `<d2l-search-results-count>`
+ * `<d2l-labs-search-results-count>`
  * Polymer-based web component for D2L search result
  */
-class SearchResultsCount extends mixinBehaviors(
+class LabsSearchResultsCount extends mixinBehaviors(
 	[
-		D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior
+		D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior
 	],
 	PolymerElement
 ) {
@@ -50,7 +50,7 @@ class SearchResultsCount extends mixinBehaviors(
 		};
 	}
 
-	static get is() { return 'd2l-search-results-count'; }
+	static get is() { return 'd2l-labs-search-results-count'; }
 
 	static get template() {
 		return html`
@@ -73,4 +73,4 @@ class SearchResultsCount extends mixinBehaviors(
 		}
 	}
 }
-customElements.define(SearchResultsCount.is, SearchResultsCount);
+customElements.define(LabsSearchResultsCount.is, LabsSearchResultsCount);

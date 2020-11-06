@@ -2,13 +2,13 @@ import 'd2l-localize-behavior/d2l-localize-behavior.js';
 
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
-window.D2L.PolymerBehaviors.SearchResultsCount = window.D2L.PolymerBehaviors.SearchResultsCount || {};
+window.D2L.PolymerBehaviors.LabsSearchResultsCount = window.D2L.PolymerBehaviors.LabsSearchResultsCount || {};
 
 /**
  * Localizes the component strings.
- * @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior
+ * @polymerBehavior D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior
  */
-D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl = {
+D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehaviorImpl = {
 	properties: {
 		/**
 		* Localization resources.
@@ -106,8 +106,8 @@ D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl = {
 	}
 };
 
-/** @polymerBehavior D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior */
-D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehavior = [
+/** @polymerBehavior D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior */
+D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior = [
 	D2L.PolymerBehaviors.LocalizeBehavior,
-	D2L.PolymerBehaviors.SearchResultsCount.LocalizeBehaviorImpl
+	D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehaviorImpl
 ];

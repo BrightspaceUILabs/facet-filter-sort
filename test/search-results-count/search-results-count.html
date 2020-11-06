@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-search-results-count test</title>
+		<title>d2l-labs-search-results-count test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -13,29 +13,29 @@
 	<body>
 		<test-fixture id="basic">
 			<template>
-				<d2l-search-results-count total-count="22" query="Financial Planning"></d2l-search-results-count>
+				<d2l-labs-search-results-count total-count="22" query="Financial Planning"></d2l-labs-search-results-count>
 			</template>
 		</test-fixture>
 		<test-fixture id="basic-no-query">
 			<template>
-				<d2l-search-results-count total-count="22"></d2l-search-results-count>
+				<d2l-labs-search-results-count total-count="22"></d2l-labs-search-results-count>
 			</template>
 		</test-fixture>
 		<test-fixture id="paged">
 			<template>
-				<d2l-search-results-count range-start="1" range-end="20" total-count="22" query="Financial Planning"></d2l-search-results-count>
+				<d2l-labs-search-results-count range-start="1" range-end="20" total-count="22" query="Financial Planning"></d2l-labs-search-results-count>
 			</template>
 		</test-fixture>
 		<test-fixture id="paged-no-query">
 			<template>
-				<d2l-search-results-count range-start="1" range-end="20" total-count="22"></d2l-search-results-count>
+				<d2l-labs-search-results-count range-start="1" range-end="20" total-count="22"></d2l-labs-search-results-count>
 			</template>
 		</test-fixture>
 		<script type="module">
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 			import '@polymer/iron-test-helpers/test-helpers.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-search-results-count', () => {
+			describe('d2l-labs-search-results-count', () => {
 				describe('basic', () => {
 					let basicFixture;
 
