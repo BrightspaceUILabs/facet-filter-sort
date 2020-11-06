@@ -42,9 +42,9 @@ Include the webcomponents.js polyfill loader (for browsers who don't natively su
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-category.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/d2l-filter-dropdown/d2l-filter-dropdown-option.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown-category.js"></script>
+<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown-option.js"></script>
 ```
 
 Then, add the `d2l-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-filter-dropdown-option` component (which is a custom `d2l-menu-item` component).  For example:
