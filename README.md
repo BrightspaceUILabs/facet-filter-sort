@@ -145,7 +145,7 @@ To Do
 
 To Do
 
-### d2l-applied-filters
+### d2l-labs-applied-filters
 
 A multi-select-list allowing the user to see (and remove) the currently applied filters.
 
@@ -165,7 +165,7 @@ This also works if the `d2l-filter-dropdown` is a child in the shadow-dom of the
 
 
 ```html
-<d2l-applied-filters for="filter"></d2l-applied-filters>
+<d2l-labs-applied-filters for="filter"></d2l-labs-applied-filters>
 <d2l-filter-dropdown id="filter"> ... </d2l-filter-dropdown>
 ```
 

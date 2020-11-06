@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-applied-filters test</title>
+		<title>d2l-labs-applied-filters test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -32,7 +32,7 @@
 							<d2l-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-filter-dropdown-option>
 						</d2l-filter-dropdown-category>
 					</d2l-filter-dropdown>
-					<d2l-applied-filters for="dropdown" label-text="The applied filters"></d2l-applied-filters>
+					<d2l-labs-applied-filters for="dropdown" label-text="The applied filters"></d2l-labs-applied-filters>
 				</div>
 			</template>
 		</test-fixture>
@@ -40,19 +40,19 @@
 		<script type="module">
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			suite('d2l-applied-filters', () => {
+			suite('d2l-labs-applied-filters', () => {
 				let dropdown, appliedFilters;
 
 				setup((done) => {
 					const testFixture = fixture('basic');
 					dropdown = testFixture.querySelector('d2l-filter-dropdown');
-					appliedFilters = testFixture.querySelector('d2l-applied-filters');
+					appliedFilters = testFixture.querySelector('d2l-labs-applied-filters');
 					afterNextRender(testFixture, () => {
 						done();
 					});
 				});
 				test('instantiating the element works', () => {
-					assert.equal('d2l-applied-filters', appliedFilters.tagName.toLowerCase());
+					assert.equal('d2l-labs-applied-filters', appliedFilters.tagName.toLowerCase());
 				});
 				test('attributes are set correctly', () => {
 					assert.equal(appliedFilters.for, 'dropdown');

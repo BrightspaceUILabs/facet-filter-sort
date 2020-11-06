@@ -15,7 +15,7 @@ const CLEAR_FILTERS_THRESHOLD = 4;
 /**
  * A multi-select-list allowing the user to see (and remove) the currently applied filters.
  */
-class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
+class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	static get properties() {
 		return {
 			/**
@@ -42,23 +42,23 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				flex: 1;
 			}
 
-			.d2l-applied-filters-wrapper {
+			.d2l-labs-applied-filters-wrapper {
 				display: flex;
 			}
 
-			.d2l-applied-filters-applied-filters-label {
+			.d2l-labs-applied-filters-label {
 				margin-right: 0.25rem;
 				display: inline-block;
 				padding-top: 0.3rem;
 				font-weight: bold;
 			}
 
-			:host([dir="rtl"]) .d2l-applied-filters-applied-filters-label {
+			:host([dir="rtl"]) .d2l-labs-applied-filters-label {
 				margin-right: 0;
 				margin-left: 0.25rem;
 			}
 
-			.d2l-applied-filters-no-applied-filters-label {
+			.d2l-labs-applied-filters-none-label {
 				display: inline-block;
 				padding-top: 0.3rem;
 				font-style: italic;
@@ -144,7 +144,7 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
 			html`<d2l-labs-multi-select-list
 				collapsable
-				aria-labelledby="d2l-applied-filters-label"
+				aria-labelledby="d2l-labs-applied-filters-label"
 			>
 				${(this._selectedEntries || []).map((x, index) => html`
 					<d2l-labs-multi-select-list-item
@@ -156,11 +156,11 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 					</d2l-labs-multi-select-list-item>
 				`)}
 			</d2l-labs-multi-select-list>`
-			: html`<span class="d2l-applied-filters-no-applied-filters-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
+			: html`<span class="d2l-labs-applied-filters-none-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
 
 		return html`
-			<div class="d2l-applied-filters-wrapper">
-				<span id="d2l-applied-filters-label" class="d2l-applied-filters-applied-filters-label d2l-body-compact">${this.labelText || this.localize('appliedFilters')}</span>
+			<div class="d2l-labs-applied-filters-wrapper">
+				<span id="d2l-labs-applied-filters-label" class="d2l-labs-applied-filters-label d2l-body-compact">${this.labelText || this.localize('appliedFilters')}</span>
 				<div id="d2l-list-holder">
 					${filters}
 					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
@@ -279,4 +279,4 @@ class D2lAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 	}
 }
 
-customElements.define('d2l-applied-filters', D2lAppliedFilters);
+customElements.define('d2l-labs-applied-filters', D2lLabsAppliedFilters);
