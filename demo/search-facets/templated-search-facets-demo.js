@@ -54,17 +54,17 @@ class TemplatedSearchFacetsDemo extends LitElement {
 
 	render() {
 		return html`
-			<d2l-search-facets>
+			<d2l-labs-search-facets>
 				${this.searchFacets.map(item => html`
-					<d2l-search-facets-grouping value="${item.value}" text="${item.name}">
+					<d2l-labs-search-facets-grouping value="${item.value}" text="${item.name}">
 						${item.options.map(searchFacet => html`
-							<d2l-search-facets-option
+							<d2l-labs-search-facets-option
 								value="${searchFacet.value}" text="${searchFacet.name}" count="${searchFacet.count}" ?checked="${searchFacet.checked}">
-							</d2l-search-facets-option>
+							</d2l-labs-search-facets-option>
 						`)}
-					</d2l-search-facets-grouping>
+					</d2l-labs-search-facets-grouping>
 				`)}
-			</d2l-search-facets>
+			</d2l-labs-search-facets>
 		`;
 	}
 }

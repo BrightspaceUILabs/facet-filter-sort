@@ -5,9 +5,9 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * Search facet option, with a count to display the number of results
- * @fires d2l-search-facets-option-change - Dispatched when the checked value of an option changes
+ * @fires d2l-labs-search-facets-option-change - Dispatched when the checked value of an option changes
  */
-class SearchFacetsOption extends mixinBehaviors(
+class LabsSearchFacetsOption extends mixinBehaviors(
 	[
 		D2L.PolymerBehaviors.LocalizeBehavior
 	],
@@ -62,7 +62,7 @@ class SearchFacetsOption extends mixinBehaviors(
 		};
 	}
 
-	static get is() { return 'd2l-search-facets-option'; }
+	static get is() { return 'd2l-labs-search-facets-option'; }
 
 	static get template() {
 		return html`
@@ -71,7 +71,7 @@ class SearchFacetsOption extends mixinBehaviors(
 					display: block;
 				}
 			</style>
-			<d2l-input-checkbox checked="[[checked]]" disabled="[[disabled]]" name="[[text]]" on-change="_handleChange" class="d2l-search-facets-option-checkbox">[[_facetText]]</d2l-input-checkbox>
+			<d2l-input-checkbox checked="[[checked]]" disabled="[[disabled]]" name="[[text]]" on-change="_handleChange" class="d2l-labs-search-facets-option-checkbox">[[_facetText]]</d2l-input-checkbox>
         `;
 	}
 
@@ -85,7 +85,7 @@ class SearchFacetsOption extends mixinBehaviors(
 	}
 
 	_handleChange(e) {
-		this.dispatchEvent(new CustomEvent('d2l-search-facets-option-change', {
+		this.dispatchEvent(new CustomEvent('d2l-labs-search-facets-option-change', {
 			bubbles: true,
 			composed: true,
 			detail: { checked: e.target.checked, option: this.value }
@@ -93,4 +93,4 @@ class SearchFacetsOption extends mixinBehaviors(
 	}
 
 }
-customElements.define(SearchFacetsOption.is, SearchFacetsOption);
+customElements.define(LabsSearchFacetsOption.is, LabsSearchFacetsOption);

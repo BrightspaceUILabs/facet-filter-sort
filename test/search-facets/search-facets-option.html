@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-search-facets-option test</title>
+		<title>d2l-labs-search-facets-option test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -13,21 +13,21 @@
 	<body>
 		<test-fixture id="basic">
 			<template>
-				<d2l-search-facets-option
+				<d2l-labs-search-facets-option
 					count="1"
 					id="basic-option"
 					text="Basic Option"
 					value="basic-option"
-				></d2l-search-facets-option>
+				></d2l-labs-search-facets-option>
 			</template>
 		</test-fixture>
 		<test-fixture id="no-count">
 			<template>
-				<d2l-search-facets-option
+				<d2l-labs-search-facets-option
 					id="no-count-option"
 					text="No count option"
 					value="no-count-option"
-				></d2l-search-facets-option>
+				></d2l-labs-search-facets-option>
 			</template>
 		</test-fixture>
 		<script type="module">
@@ -35,7 +35,7 @@
 			import '@polymer/iron-test-helpers/mock-interactions.js';
 
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-			describe('d2l-search-facets-option', () => {
+			describe('d2l-labs-search-facets-option', () => {
 				describe('basic', () => {
 					let basicFixture;
 					let option;
@@ -49,7 +49,7 @@
 					});
 
 					it('should emit an event when selected', (done) => {
-						basicFixture.addEventListener('d2l-search-facets-option-change', (e) => {
+						basicFixture.addEventListener('d2l-labs-search-facets-option-change', (e) => {
 							expect(e.detail).to.deep.equal({ option: option.value, checked: true });
 							done();
 						});

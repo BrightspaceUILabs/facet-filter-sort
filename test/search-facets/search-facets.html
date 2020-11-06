@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-search-facets test</title>
+		<title>d2l-labs-search-facets test</title>
 		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 		<script type="module">
@@ -15,29 +15,29 @@
 	<body>
 		<test-fixture id="basic">
 			<template>
-				<d2l-search-facets>
-					<d2l-search-facets-grouping id="grouping1" value="test-grouping1" text="Grouping 1">
-						<d2l-search-facets-option
+				<d2l-labs-search-facets>
+					<d2l-labs-search-facets-grouping id="grouping1" value="test-grouping1" text="Grouping 1">
+						<d2l-labs-search-facets-option
 							id="grouping1-option1"
 							value="grouping1-option1"
 							text="Grouping 1 Option 1"
 							count="1"
-						></d2l-search-facets-option>
-						<d2l-search-facets-option
+						></d2l-labs-search-facets-option>
+						<d2l-labs-search-facets-option
 							id="grouping1-option2"
 							value="grouping1-option2"
 							text="Grouping 1 Option 2"
 							count="2"
-						></d2l-search-facets-option>
-					</d2l-search-facets-grouping>
-				</d2l-search-facets>
+						></d2l-labs-search-facets-option>
+					</d2l-labs-search-facets-grouping>
+				</d2l-labs-search-facets>
 			</template>
 		</test-fixture>
 		<script type="module">
 			import './test-helper-functions.js';
 			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-			describe('d2l-search-facets', () => {
+			describe('d2l-labs-search-facets', () => {
 				describe('basic', () => {
 					let basicFixture;
 					let grouping1;
@@ -56,7 +56,7 @@
 
 					it('should emit an event when an option is selected', (done) => {
 						let selectCount = 0;
-						basicFixture.addEventListener('d2l-search-facets-change', (e) => {
+						basicFixture.addEventListener('d2l-labs-search-facets-change', (e) => {
 							selectCount += 1;
 
 							if (selectCount === 1) {

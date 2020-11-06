@@ -24,7 +24,7 @@ Collection of (search) facet, filter, and sort components
 ## Components
 
 - [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
-- [d2l-search-facets](#d2l-search-facets)
+- [d2l-labs-search-facets](#d2l-labs-search-facets)
 - [d2l-search-results-count](#d2l-search-results-count)
 - [d2l-sort-by-dropdown](#d2l-sort-by-dropdown)
 - [d2l-labs-applied-filters](#d2l-labs-applied-filters)
@@ -122,7 +122,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 - `d2l-labs-filter-dropdown-category-searched`: Fired when a filter category is searched.
 - `d2l-labs-filter-dropdown-option-change`: Fired when a filter option is selected.
 
-### d2l-search-facets
+### d2l-labs-search-facets
 
 <img src="/images/d2l-search-facets.png?raw=true" width="450">
 

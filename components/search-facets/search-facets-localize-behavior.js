@@ -3,13 +3,13 @@ import 'd2l-localize-behavior/d2l-localize-behavior.js';
 
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
-window.D2L.PolymerBehaviors.SearchFacets = window.D2L.PolymerBehaviors.SearchFacets || {};
+window.D2L.PolymerBehaviors.LabsSearchFacets = window.D2L.PolymerBehaviors.LabsSearchFacets || {};
 
 /**
  * Localizes the search facets component.
- * @polymerBehavior D2L.PolymerBehaviors.SearchFacets.LocalizeBehavior
+ * @polymerBehavior D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehavior
  */
-D2L.PolymerBehaviors.SearchFacets.LocalizeBehaviorImpl = {
+D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehaviorImpl = {
 	properties: {
 	/**
 	 * Localization resources.
@@ -59,8 +59,8 @@ D2L.PolymerBehaviors.SearchFacets.LocalizeBehaviorImpl = {
 	}
 };
 
-/** @polymerBehavior D2L.PolymerBehaviors.SearchFacets.LocalizeBehavior */
-D2L.PolymerBehaviors.SearchFacets.LocalizeBehavior = [
+/** @polymerBehavior D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehavior */
+D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehavior = [
 	D2L.PolymerBehaviors.LocalizeBehavior,
-	D2L.PolymerBehaviors.SearchFacets.LocalizeBehaviorImpl
+	D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehaviorImpl
 ];
