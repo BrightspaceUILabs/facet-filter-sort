@@ -1,7 +1,5 @@
 # d2l-facet-filter-sort
 
-![Build status](https://github.com/BrightspaceUILabs/facet-filter-sort/workflows/CI/badge.svg)
-
 > Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
 >
 > - [ ] [Design organization buy-in](https://github.com/BrightspaceUI/guide/wiki/Before-you-build#working-with-design)
