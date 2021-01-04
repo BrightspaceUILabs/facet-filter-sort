@@ -1,4 +1,4 @@
-# d2l-facet-filter-sort
+# facet-filter-sort
 
 > Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
 >
