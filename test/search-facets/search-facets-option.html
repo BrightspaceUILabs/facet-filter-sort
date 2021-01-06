@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-labs-search-facets-option test</title>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
+		<script type="module">
+			import '../../components/search-facets/search-facets-option.js';
+		</script>
+	</head>
+	<body>
+		<test-fixture id="basic">
+			<template>
+				<d2l-labs-search-facets-option
+					count="1"
+					id="basic-option"
+					text="Basic Option"
+					value="basic-option"
+				></d2l-labs-search-facets-option>
+			</template>
+		</test-fixture>
+		<test-fixture id="no-count">
+			<template>
+				<d2l-labs-search-facets-option
+					id="no-count-option"
+					text="No count option"
+					value="no-count-option"
+				></d2l-labs-search-facets-option>
+			</template>
+		</test-fixture>
+		<script type="module">
+			import './test-helper-functions.js';
+			import '@polymer/iron-test-helpers/mock-interactions.js';
+
+			import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+			describe('d2l-labs-search-facets-option', () => {
+				describe('basic', () => {
+					let basicFixture;
+					let option;
+
+					beforeEach((done) => {
+						basicFixture = fixture('basic');
+						afterNextRender(basicFixture, () => {
+							option = document.getElementById('basic-option');
+							done();
+						});
+					});
+
+					it('should emit an event when selected', (done) => {
+						basicFixture.addEventListener('d2l-labs-search-facets-option-change', (e) => {
+							expect(e.detail).to.deep.equal({ option: option.value, checked: true });
+							done();
+						});
+						selectOption(basicFixture);
+					});
+
+					it('should show the text along with the count', () => {
+						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
+						expect(text).to.equal(`${option.text} (${option.count})`);
+					});
+				});
+
+				describe('no-count', () => {
+					let noCountFixture;
+
+					beforeEach((done) => {
+						noCountFixture = fixture('no-count');
+						afterNextRender(noCountFixture, done);
+					});
+
+					it('should not display the count if it is not present', () => {
+						const option = document.getElementById('no-count-option');
+						const text = option.shadowRoot.querySelector('d2l-input-checkbox').innerHTML;
+						expect(option.count).to.be.undefined;
+						expect(text).to.equal(option.text);
+					});
+
+				});
+			});
+		</script>
+	</body>
+</html>
