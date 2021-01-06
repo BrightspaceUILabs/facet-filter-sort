@@ -17,7 +17,9 @@ jobs:
       - name: Setup Node
         uses: Brightspace/third-party-actions@actions/setup-node
       - name: Create custom-elements.json
-        run: npx wca analyze components/**/*.js --format json --outFile custom-elements.json
+        run: |
+          npm install web-component-analyzer@1 --no-save
+          npx wca analyze components/**/*.js --format json --outFile custom-elements.json
       - name: Semantic Release
         uses: BrightspaceUI/actions/semantic-release@master
         with:
