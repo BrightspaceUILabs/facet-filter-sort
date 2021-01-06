@@ -5,6 +5,12 @@
     "url": "https://github.com/BrightspaceUILabs/facet-filter-sort.git"
   },
   "name": "@brightspace-ui-labs/facet-filter-sort",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "/components"
+  ],
   "scripts": {
     "analyze": "wca analyze components/**/*.js --format json --outFile custom-elements.json",
     "lint": "npm run lint:wc && npm run lint:js",
