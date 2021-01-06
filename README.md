@@ -1,5 +1,7 @@
 # facet-filter-sort
 
+[![NPM version](https://img.shields.io/npm/v/@brightspace-ui-labs/facet-filter-sort.svg)](https://www.npmjs.org/package/@brightspace-ui-labs/facet-filter-sort)
+
 > Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
 >
 > - [ ] [Design organization buy-in](https://github.com/BrightspaceUI/guide/wiki/Before-you-build#working-with-design)
@@ -18,6 +20,12 @@ For further information on this and other components, refer to [The Brightspace 
 
 Collection of (search) facet, filter, and sort components
 
+## Installation
+
+```shell
+npm install @brightspace-ui-labs/facet-filter-sort
+```
+
 ## Components
 
 - [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
@@ -32,17 +40,14 @@ Collection of (search) facet, filter, and sort components
 
 #### Usage
 
-Include the webcomponents.js polyfill loader (for browsers who don't natively support web components), then import the following:
-
-- `d2l-labs-filter-dropdown`
-- `d2l-labs-filter-dropdown-category`
-- `d2l-labs-filter-dropdown-option`
+Import the three filter components:
 
 ```html
-<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown-category.js"></script>
-<script type="module" src="node_modules/@brightspace-ui-labs/d2l-facet-filter-sort/components/filter-dropdown/filter-dropdown-option.js"></script>
+<script type="module">
+	import '@brightspace-ui-labs/facet-filter-sort/components/filter-dropdown/filter-dropdown.js';
+	import '@brightspace-ui-labs/facet-filter-sort/components/filter-dropdown/filter-dropdown-category.js';
+	import '@brightspace-ui-labs/facet-filter-sort/components/filter-dropdown/filter-dropdown-option.js';
+</script>
 ```
 
 Then, add the `d2l-labs-filter-dropdown` as the top level filter component.  For each filter category, add a `d2l-labs-filter-dropdown-category` component, which is a custom `d2l-tab-panel` that includes a `d2l-menu`.  Then, for each filter option in that category, you should use the `d2l-labs-filter-dropdown-option` component (which is a custom `d2l-menu-item` component).  For example:
@@ -228,6 +233,7 @@ When a release is triggered, it will:
 * Update the version in `package.json`
 * Tag the commit
 * Create a GitHub release (including release notes)
+* Deploy a new package to NPM
 
 ### Releasing from Maintenance Branches
 
