@@ -233,6 +233,7 @@ When a release is triggered, it will:
 * Update the version in `package.json`
 * Tag the commit
 * Create a GitHub release (including release notes)
+* Deploy a new package to NPM
 
 ### Releasing from Maintenance Branches
 
