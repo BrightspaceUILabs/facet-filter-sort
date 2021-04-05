@@ -17,42 +17,42 @@ D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehaviorImpl = {
 		resources: {
 			value: function() {
 				return {
-					'ar': {
-						more: 'المزيد'
-					},
-					'en': {
-						more: 'More'
-					},
-					'es': {
-						more: 'Más'
-					},
-					'fr': {
-						more: 'Plus'
-					},
-					'ja': {
-						more: 'より多い'
-					},
-					'ko': {
-						more: '더 보',
-					},
-					'nl': {
-						more: 'Meer'
-					},
-					'pt': {
-						more: 'Mais'
-					},
-					'sv': {
-						more: 'Mer'
-					},
-					'tr': {
-						more: 'Diğer'
-					},
-					'zh': {
-						more: '更多'
-					},
-					'zh-tw': {
-						more: '較多'
-					}
+					// 'ar': {
+					// 	more: 'المزيد'
+					// },
+					// 'en': {
+					// 	more: 'More'
+					// },
+					// 'es': {
+					// 	more: 'Más'
+					// },
+					// 'fr': {
+					// 	more: 'Plus'
+					// },
+					// 'ja': {
+					// 	more: 'より多い'
+					// },
+					// 'ko': {
+					// 	more: '더 보',
+					// },
+					// 'nl': {
+					// 	more: 'Meer'
+					// },
+					// 'pt': {
+					// 	more: 'Mais'
+					// },
+					// 'sv': {
+					// 	more: 'Mer'
+					// },
+					// 'tr': {
+					// 	more: 'Diğer'
+					// },
+					// 'zh': {
+					// 	more: '更多'
+					// },
+					// 'zh-tw': {
+					// 	more: '較多'
+					// }
 				};
 			}
 		}

@@ -17,54 +17,54 @@ D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehaviorImpl = {
 		resources: {
 			value: function() {
 				return {
-					'ar': {
-						sort: 'فرز',
-						sortWithOption: 'فرز: {option}'
-					},
-					'en': {
-						sort: 'Sort',
-						sortWithOption: 'Sort: {option}'
-					},
-					'es': {
-						sort: 'Orden',
-						sortWithOption: 'Orden: {option}'
-					},
-					'fr': {
-						sort: 'Trier',
-						sortWithOption: 'Trier: {option}'
-					},
-					'ja': {
-						sort: '並べ替え',
-						sortWithOption: '並べ替え: {option}'
-					},
-					'ko': {
-						sort: '정렬',
-						sortWithOption: '정렬: {option}'
-					},
-					'nl': {
-						sort: 'Sorteren',
-						sortWithOption: 'Sorteren: {option}'
-					},
-					'pt': {
-						sort: 'Classificar',
-						sortWithOption: 'Classificar: {option}'
-					},
-					'sv': {
-						sort: 'Sortera',
-						sortWithOption: 'Sortera: {option}'
-					},
-					'tr': {
-						sort: 'Sırala',
-						sortWithOption: 'Sırala: {option}'
-					},
-					'zh': {
-						sort: '排序',
-						sortWithOption: '排序：{option}'
-					},
-					'zh-tw': {
-						sort: '排序',
-						sortWithOption: '排序：{option}'
-					}
+					// 'ar': {
+					// 	sort: 'فرز',
+					// 	sortWithOption: 'فرز: {option}'
+					// },
+					// 'en': {
+					// 	sort: 'Sort',
+					// 	sortWithOption: 'Sort: {option}'
+					// },
+					// 'es': {
+					// 	sort: 'Orden',
+					// 	sortWithOption: 'Orden: {option}'
+					// },
+					// 'fr': {
+					// 	sort: 'Trier',
+					// 	sortWithOption: 'Trier: {option}'
+					// },
+					// 'ja': {
+					// 	sort: '並べ替え',
+					// 	sortWithOption: '並べ替え: {option}'
+					// },
+					// 'ko': {
+					// 	sort: '정렬',
+					// 	sortWithOption: '정렬: {option}'
+					// },
+					// 'nl': {
+					// 	sort: 'Sorteren',
+					// 	sortWithOption: 'Sorteren: {option}'
+					// },
+					// 'pt': {
+					// 	sort: 'Classificar',
+					// 	sortWithOption: 'Classificar: {option}'
+					// },
+					// 'sv': {
+					// 	sort: 'Sortera',
+					// 	sortWithOption: 'Sortera: {option}'
+					// },
+					// 'tr': {
+					// 	sort: 'Sırala',
+					// 	sortWithOption: 'Sırala: {option}'
+					// },
+					// 'zh': {
+					// 	sort: '排序',
+					// 	sortWithOption: '排序：{option}'
+					// },
+					// 'zh-tw': {
+					// 	sort: '排序',
+					// 	sortWithOption: '排序：{option}'
+					// }
 				};
 			}
 		}
