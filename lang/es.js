@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangEsBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': 'Borrar',
 			'filter': 'Filtrar',
 			'filterBy': 'Filtrar por',
 			'filterMultiple': 'Filtro: {numOptions} filtros',
-			'filterSingle': 'Filtro: 1 filtro'
+			'filterSingle': 'Filtro: 1 filtro',
+			'searchBy': 'Buscar por {category}'
 		},
 		'SortByDropdown': {
 			'sort': 'Orden',

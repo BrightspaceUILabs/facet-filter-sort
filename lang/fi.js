@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangFiBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': 'Tyhjennä',
 			'filter': 'Suodatin',
 			'filterBy': 'Suodatusperuste',
 			'filterMultiple': 'Suodatus: {numOptions} suodatinta',
-			'filterSingle': 'Suodatus: 1 suodatin'
+			'filterSingle': 'Suodatus: 1 suodatin',
+			'searchBy': 'Hakuperuste {category}'
 		},
 		'SortByDropdown': {
 		},

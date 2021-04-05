@@ -60,82 +60,82 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 
 	static get resources() {
 		return {
-			'ar': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'البحث حسب {category}'
-			},
-			'cy': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Chwilio yn ôl {category}'
-			},
-			'da': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Søg efter {category}'
-			},
-			'de': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Nach {category} suchen'
-			},
-			'en': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Search by {category}'
-			},
-			'es': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Buscar por {category}'
-			},
-			'es-es': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Buscar por {category}'
-			},
-			'fi': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Hakuperuste {category}'
-			},
-			'fr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Recherche par {category}'
-			},
-			'fr-fr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Rechercher par {category}'
-			},
-			'ja': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} で検索'
-			},
-			'ko': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} 필터로 검색'
-			},
-			'nb': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Søk etter {category}'
-			},
-			'nl': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Zoeken op {category}'
-			},
-			'pt': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Pesquisar por {category}'
-			},
-			'sv': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Sök per {category}'
-			},
-			'tr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} Kullanarak Ara'
-			},
-			'zh': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '按 {category} 搜索'
-			},
-			'zh-tw': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '依 {category} 搜尋'
-			}
+			// 'ar': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'البحث حسب {category}'
+			// },
+			// 'cy': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Chwilio yn ôl {category}'
+			// },
+			// 'da': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Søg efter {category}'
+			// },
+			// 'de': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Nach {category} suchen'
+			// },
+			// 'en': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Search by {category}'
+			// },
+			// 'es': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Buscar por {category}'
+			// },
+			// 'es-es': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Buscar por {category}'
+			// },
+			// 'fi': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Hakuperuste {category}'
+			// },
+			// 'fr': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Recherche par {category}'
+			// },
+			// 'fr-fr': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Rechercher par {category}'
+			// },
+			// 'ja': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: '{category} で検索'
+			// },
+			// 'ko': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: '{category} 필터로 검색'
+			// },
+			// 'nb': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Søk etter {category}'
+			// },
+			// 'nl': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Zoeken op {category}'
+			// },
+			// 'pt': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Pesquisar por {category}'
+			// },
+			// 'sv': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: 'Sök per {category}'
+			// },
+			// 'tr': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: '{category} Kullanarak Ara'
+			// },
+			// 'zh': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: '按 {category} 搜索'
+			// },
+			// 'zh-tw': {
+			// 	categoryTitleMultiple: '{title} ({numSelected})',
+			// 	searchBy: '依 {category} 搜尋'
+			// }
 		};
 	}
 

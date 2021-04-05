@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangZhtwBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': '清除',
 			'filter': '篩選',
 			'filterBy': '篩選依據',
 			'filterMultiple': '篩選器：{numOptions} 個篩選器',
-			'filterSingle': '篩選器：1 個篩選器'
+			'filterSingle': '篩選器：1 個篩選器',
+			'searchBy': '依 {category} 搜尋'
 		},
 		'SortByDropdown': {
 			'sort': '排序',

@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangSvBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': 'Rensa',
 			'filter': 'Filter',
 			'filterBy': 'Filtrera efter',
 			'filterMultiple': 'Filter: {numOptions} filter',
-			'filterSingle': 'Filter: 1 filter'
+			'filterSingle': 'Filter: 1 filter',
+			'searchBy': 'Sök per {category}'
 		},
 		'SortByDropdown': {
 			'sort': 'Sortera',

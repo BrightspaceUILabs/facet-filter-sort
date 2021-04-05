@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangJaBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': 'クリア',
 			'filter': 'フィルタ',
 			'filterBy': 'フィルタの条件',
 			'filterMultiple': 'フィルタ数: {numOptions}',
-			'filterSingle': 'フィルタ数: 1'
+			'filterSingle': 'フィルタ数: 1',
+			'searchBy': '{category} で検索'
 		},
 		'SortByDropdown': {
 			'sort': '並べ替え',

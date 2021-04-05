@@ -10,11 +10,13 @@ window.D2L.PolymerBehaviors.LabsSearchFacets.LangArBehavior = {
 		'AppliedFilters': {
 		},
 		'FilterDropdown': {
+			'categoryTitleMultiple': '{title} ({numSelected})',
 			'clear': 'مسح',
 			'filter': 'عامل التصفية',
 			'filterBy': 'تصفية حسب',
 			'filterMultiple': 'عامل التصفية: {numOptions} من عوامل التصفية',
-			'filterSingle': 'التصفية: عامل تصفية واحد'
+			'filterSingle': 'التصفية: عامل تصفية واحد',
+			'searchBy': 'البحث حسب {category}'
 		},
 		'SortByDropdown': {
 			'sort': 'فرز',
