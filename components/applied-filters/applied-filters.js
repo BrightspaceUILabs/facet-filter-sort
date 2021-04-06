@@ -86,41 +86,41 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	static get resources() {
 		return {
-			'ar': {
-			},
-			'de': {
-			},
-			'en': {
-				appliedFilters: 'Applied Filters:',
-				noActiveFilters: 'No active filters',
-				filterRemoved: 'Filter {filterText} removed',
-				clearFilters: 'Clear filters',
-				allFiltersRemoved: 'All filters removed'
-			},
-			'es': {
-			},
-			'fi': {
-			},
-			'fr': {
-			},
-			'ja': {
-			},
-			'ko': {
-			},
-			'nb': {
-			},
-			'nl': {
-			},
-			'pt': {
-			},
-			'sv': {
-			},
-			'tr': {
-			},
-			'zh': {
-			},
-			'zh-tw': {
-			}
+			// 'ar': {
+			// },
+			// 'de': {
+			// },
+			// 'en': {
+			// 	appliedFilters: 'Applied Filters:',
+			// 	noActiveFilters: 'No active filters',
+			// 	filterRemoved: 'Filter {filterText} removed',
+			// 	clearFilters: 'Clear filters',
+			// 	allFiltersRemoved: 'All filters removed'
+			// },
+			// 'es': {
+			// },
+			// 'fi': {
+			// },
+			// 'fr': {
+			// },
+			// 'ja': {
+			// },
+			// 'ko': {
+			// },
+			// 'nb': {
+			// },
+			// 'nl': {
+			// },
+			// 'pt': {
+			// },
+			// 'sv': {
+			// },
+			// 'tr': {
+			// },
+			// 'zh': {
+			// },
+			// 'zh-tw': {
+			// }
 		};
 	}
 

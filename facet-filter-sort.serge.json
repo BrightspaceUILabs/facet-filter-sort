@@ -2,7 +2,7 @@
   "name": "Facet Filter Sort",
   "source_dir": "lang",
   "source_match": "en\\.json$",
-  "output_file_path": "lang/%LANG%.js",// TODO
+  "output_file_path": "lang/%LANG%.js",
   "parser_plugin": {
 		"plugin": "parse_js"
 	},
