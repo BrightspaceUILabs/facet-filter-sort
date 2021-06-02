@@ -1,5 +1,5 @@
 export default {
-	appliedFilters : 'Filtres appliqués :',
+	appliedFilters : 'Filtres appliqués:',
 	noActiveFilters: 'Aucun filtre actif',
 	filterRemoved: 'Filtre {filterText} supprimé',
 	clearFilters: 'Supprimer les filtres',
