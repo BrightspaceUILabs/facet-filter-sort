@@ -7,6 +7,25 @@ import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
 import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
+/* eslint sort-imports: "off" */
+import arSa from './lang/ar-sa.js';
+import de from './lang/de.js';
+import en from './lang/en.js';
+import es from './lang/es.js';
+import esMx from './lang/es-mx.js';
+import fr from './lang/fr.js';
+import frCa from './lang/fr-ca.js';
+import ja from './lang/ja.js';
+import ko from './lang/ko.js';
+import nl from './lang/nl.js';
+import ptBr from './lang/pt-br.js';
+import sv from './lang/sv.js';
+import tr from './lang/tr.js';
+// import zh from  './lang/zh.js';
+import zhCn from  './lang/zh-CN.js';
+import zhTw from './lang/zh-TW.js';
+/* eslint sort-imports: "warn" */
+
 const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-LABS-FILTER-DROPDOWN-CATEGORY';
 const DROPDOWN_OPTION_NAME = 'D2L-LABS-FILTER-DROPDOWN-OPTION';
@@ -86,41 +105,27 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	static get resources() {
 		return {
-			'ar': {
-			},
-			'de': {
-			},
-			'en': {
-				appliedFilters: 'Applied Filters:',
-				noActiveFilters: 'No active filters',
-				filterRemoved: 'Filter {filterText} removed',
-				clearFilters: 'Clear filters',
-				allFiltersRemoved: 'All filters removed'
-			},
-			'es': {
-			},
-			'fi': {
-			},
-			'fr': {
-			},
-			'ja': {
-			},
-			'ko': {
-			},
-			'nb': {
-			},
-			'nl': {
-			},
-			'pt': {
-			},
-			'sv': {
-			},
-			'tr': {
-			},
-			'zh': {
-			},
-			'zh-tw': {
-			}
+			'ar': arSa,
+			'de': de,
+			'en': en,
+			'es': es,
+			'es-mx': esMx,
+			'fi': {},
+			'fr': fr,
+			'fr-ca': frCa,
+			'fr-CA': frCa,
+			'ja': ja,
+			'ko': ko,
+			'nb': {},
+			'nl': nl,
+			'pt': ptBr,
+			'sv': sv,
+			'tr': tr,
+			'zh': {},
+			'zh-cn': zhCn,
+			'zh-CN': zhCn,
+			'zh-tw': zhTw,
+			'zh-TW': zhTw
 		};
 	}
 
