@@ -22,8 +22,8 @@ import ptBr from './lang/pt-br.js';
 import sv from './lang/sv.js';
 import tr from './lang/tr.js';
 // import zh from  './lang/zh.js';
-import zhCn from  './lang/zh-CN.js';
-import zhTw from './lang/zh-TW.js';
+import zhCn from  './lang/zh-cn.js';
+import zhTw from './lang/zh-tw.js';
 /* eslint sort-imports: "warn" */
 
 const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
