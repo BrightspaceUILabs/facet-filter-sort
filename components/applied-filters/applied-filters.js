@@ -1,13 +1,13 @@
+/* eslint sort-imports: ["error", {"allowSeparatedGroups": true}] */
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
-import { css, html, LitElement } from 'lit-element';
+import { LitElement, css, html } from 'lit-element';
+import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
-import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
-/* eslint-disable sort-imports */
 import ar from './lang/ar-sa.js';
 import de from './lang/de.js';
 import en from './lang/en.js';
@@ -25,7 +25,6 @@ import sv from './lang/sv.js';
 import tr from './lang/tr.js';
 import zhCn from  './lang/zh-cn.js';
 import zhTw from './lang/zh-tw.js';
-/* eslint-enable sort-imports*/
 
 const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-LABS-FILTER-DROPDOWN-CATEGORY';
