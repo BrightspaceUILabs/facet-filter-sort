@@ -13,15 +13,16 @@ import de from './lang/de.js';
 import en from './lang/en.js';
 import es from './lang/es.js';
 import esMx from './lang/es-mx.js';
+import fi from './lang/fi.js';
 import fr from './lang/fr.js';
 import frCa from './lang/fr-ca.js';
 import ja from './lang/ja.js';
 import ko from './lang/ko.js';
+import nb from './lang/nb.js';
 import nl from './lang/nl.js';
 import ptBr from './lang/pt-br.js';
 import sv from './lang/sv.js';
 import tr from './lang/tr.js';
-// import zh from  './lang/zh.js';
 import zhCn from  './lang/zh-cn.js';
 import zhTw from './lang/zh-tw.js';
 /* eslint sort-imports: "warn" */
@@ -110,22 +111,18 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			'en': en,
 			'es': es,
 			'es-mx': esMx,
-			'fi': {},
+			'fi': fi,
 			'fr': fr,
 			'fr-ca': frCa,
-			'fr-CA': frCa,
 			'ja': ja,
 			'ko': ko,
-			'nb': {},
+			'nb': nb,
 			'nl': nl,
 			'pt': ptBr,
 			'sv': sv,
 			'tr': tr,
-			'zh': {},
 			'zh-cn': zhCn,
-			'zh-CN': zhCn,
 			'zh-tw': zhTw,
-			'zh-TW': zhTw
 		};
 	}
 
