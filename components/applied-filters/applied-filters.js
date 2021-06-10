@@ -1,11 +1,30 @@
+/* eslint sort-imports: ["error", {"allowSeparatedGroups": true}] */
 import '@brightspace-ui-labs/multi-select/multi-select-list';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item';
-import { css, html, LitElement } from 'lit-element';
+import { LitElement, css, html } from 'lit-element';
+import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
-import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
+
+import ar from './lang/ar-sa.js';
+import de from './lang/de.js';
+import en from './lang/en.js';
+import es from './lang/es.js';
+import esMx from './lang/es-mx.js';
+import fi from './lang/fi.js';
+import fr from './lang/fr.js';
+import frCa from './lang/fr-ca.js';
+import ja from './lang/ja.js';
+import ko from './lang/ko.js';
+import nb from './lang/nb.js';
+import nl from './lang/nl.js';
+import pt from './lang/pt-br.js';
+import sv from './lang/sv.js';
+import tr from './lang/tr.js';
+import zhCn from  './lang/zh-cn.js';
+import zhTw from './lang/zh-tw.js';
 
 const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-LABS-FILTER-DROPDOWN-CATEGORY';
@@ -86,41 +105,23 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 
 	static get resources() {
 		return {
-			'ar': {
-			},
-			'de': {
-			},
-			'en': {
-				appliedFilters: 'Applied Filters:',
-				noActiveFilters: 'No active filters',
-				filterRemoved: 'Filter {filterText} removed',
-				clearFilters: 'Clear filters',
-				allFiltersRemoved: 'All filters removed'
-			},
-			'es': {
-			},
-			'fi': {
-			},
-			'fr': {
-			},
-			'ja': {
-			},
-			'ko': {
-			},
-			'nb': {
-			},
-			'nl': {
-			},
-			'pt': {
-			},
-			'sv': {
-			},
-			'tr': {
-			},
-			'zh': {
-			},
-			'zh-tw': {
-			}
+			'ar': ar,
+			'de': de,
+			'en': en,
+			'es': es,
+			'es-mx': esMx,
+			'fi': fi,
+			'fr': fr,
+			'fr-ca': frCa,
+			'ja': ja,
+			'ko': ko,
+			'nb': nb,
+			'nl': nl,
+			'pt': pt,
+			'sv': sv,
+			'tr': tr,
+			'zh-cn': zhCn,
+			'zh-tw': zhTw,
 		};
 	}
 
