@@ -155,7 +155,8 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 		const oldVal = this._categoryText;
 		if (oldVal !== val) {
 			this._categoryText = val;
-			this.requestUpdate().then(() => {
+			this.requestUpdate();
+			this.updateComplete.then(() => {
 				this._updateTabText(this._categoryText, this.selectedOptionCount);
 			});
 		}
@@ -169,7 +170,8 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 		const oldVal = this._selectedOptionCount;
 		if (oldVal !== val) {
 			this._selectedOptionCount = val;
-			this.requestUpdate().then(() => {
+			this.requestUpdate();
+			this.updateComplete.then(() => {
 				this._updateTabText(this.categoryText, this._selectedOptionCount);
 			});
 		}
