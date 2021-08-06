@@ -92,17 +92,15 @@
 
 					clearButton.click();
 				});
-				// dependent on a fix to: https://github.com/BrightspaceUI/core/issues/1575
-				test.skip('closing the filter triggers the d2l-labs-filter-dropdown-close event', (done) => {
+				test('closing the filter triggers the d2l-labs-filter-dropdown-close event', (done) => {
 					const dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
 					filter.addEventListener('d2l-labs-filter-dropdown-close', () => {
 						done();
 					});
 
-					dropdown.toggleOpen();
-
-					requestAnimationFrame(() => {
-						requestAnimationFrame(() => {
+					dropdown.updateComplete.then(() => {
+						dropdown.toggleOpen();
+						dropdown.updateComplete.then(() => {
 							dropdown.toggleOpen();
 						});
 					});
