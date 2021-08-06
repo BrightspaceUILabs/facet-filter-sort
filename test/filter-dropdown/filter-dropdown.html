@@ -92,7 +92,8 @@
 
 					clearButton.click();
 				});
-				test('closing the filter triggers the d2l-labs-filter-dropdown-close event', (done) => {
+				// dependent on a fix to: https://github.com/BrightspaceUI/core/issues/1575
+				test.skip('closing the filter triggers the d2l-labs-filter-dropdown-close event', (done) => {
 					const dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
 					filter.addEventListener('d2l-labs-filter-dropdown-close', () => {
 						done();
