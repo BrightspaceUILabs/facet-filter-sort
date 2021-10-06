@@ -192,6 +192,7 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 		return html`
 			<div class="d2l-labs-filter-dropdown-page-search" ?hidden="${this.disableSearch}">
 				<d2l-input-search @d2l-input-search-searched="${this._handleSearchChange}"
+					label="${this.localize('searchBy', 'category', this.categoryText)}"
 					placeholder="${this.localize('searchBy', 'category', this.categoryText)}"
 					value="${ifDefined(this.searchValue)}">
 				</d2l-input-search>
