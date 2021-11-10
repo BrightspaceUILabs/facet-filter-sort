@@ -132,7 +132,23 @@
 					});
 				});
 				test('clear filters button is visible when all filters are applied', function(done) {
+					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
+					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
+
+					assert.equal(clearFilters.hidden, true);
+					assert.equal(options.length, 9);
 					done();
+					// options[1].click();
+					// options[2].click();
+					// options[4].click();
+					// options[5].click();
+					// options[7].click();
+					// options[8].click();
+
+					// afterNextRender(options[1], () => {
+					// 	assert.equal(clearFilters.hidden, false);
+					//	done();
+					// });
 				});
 				test('clear filters button is hidden when 0 filters are applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
