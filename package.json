@@ -38,7 +38,7 @@
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
-    "@brightspace-ui-labs/multi-select": "^4",
+    "@brightspace-ui-labs/multi-select": "^4.2.4",
     "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
     "d2l-typography": "BrightspaceUI/typography#semver:^7",
     "lit-element": "^2",
