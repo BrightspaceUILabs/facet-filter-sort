@@ -145,12 +145,10 @@
 					options[7].click();
 					options[8].click();
 
-					done();
-
-					// afterNextRender(options[1], () => {
-					// 	assert.equal(clearFilters.hidden, false);
-					//	done();
-					// });
+					afterNextRender(options[1], () => {
+						assert.equal(clearFilters.hidden, true);
+						done();
+					});
 				});
 				test('clear filters button is hidden when 0 filters are applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
