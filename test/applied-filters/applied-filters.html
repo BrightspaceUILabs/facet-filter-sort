@@ -137,13 +137,15 @@
 
 					assert.equal(clearFilters.hidden, true);
 					assert.equal(options.length, 9);
+
+					options[1].click();
+					options[2].click();
+					options[4].click();
+					options[5].click();
+					options[7].click();
+					options[8].click();
+
 					done();
-					// options[1].click();
-					// options[2].click();
-					// options[4].click();
-					// options[5].click();
-					// options[7].click();
-					// options[8].click();
 
 					// afterNextRender(options[1], () => {
 					// 	assert.equal(clearFilters.hidden, false);
