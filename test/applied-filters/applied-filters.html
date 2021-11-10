@@ -134,7 +134,9 @@
 				test('clear filters button is visible when all filters are applied', function(done) {
 					const clearFilters = appliedFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
+					assert.equal(clearFilters.hidden, true);
 
+					assert.equal(options.length, 9);
 					options[1].click();
 					options[2].click();
 					options[4].click();
