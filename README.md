@@ -28,12 +28,59 @@ npm install @brightspace-ui-labs/facet-filter-sort
 
 ## Components
 
-- [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
 - [d2l-labs-search-facets](#d2l-labs-search-facets)
 - [d2l-labs-search-results-count](#d2l-labs-search-results-count)
 - [d2l-labs-sort-by-dropdown](#d2l-labs-sort-by-dropdown)
-- [d2l-labs-applied-filters](#d2l-labs-applied-filters)
 - [d2l-labs-applied-core-filters](#d2l-labs-applied-core-filters)
+
+### d2l-labs-search-facets
+
+<img src="/images/d2l-labs-search-facets.png?raw=true" width="450">
+
+#### Usage
+
+To Do
+
+### d2l-labs-search-results-count
+
+<img src="/images/d2l-labs-search-results-count.png?raw=true" width="450">
+
+#### Usage
+
+To Do
+
+### d2l-labs-sort-by-dropdown
+
+<img src="/images/d2l-labs-sort-by-dropdown.png?raw=true" width="450">
+
+#### Usage
+
+To Do
+
+### d2l-labs-applied-core-filters
+
+The same design as the `d2l-labs-applied-filters` above, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
+
+#### Attributes
+
+- `filter-ids`: Ids (space-delimited) of the filter components to subscribe to
+- `label-text` (optional): The text displayed in this component's label. Defaults to "Applied Filters:".
+
+#### Usage
+
+Set the `filter-ids` param to the ids of the `d2l-filter`s that you want to track.
+The `d2l-filter`s must be in the same DOM scope.
+
+```html
+<d2l-filter id="course"> ... </d2l-filter>
+<d2l-filter id="role"> ... </d2l-filter>
+<d2l-labs-applied-core-filters filter-ids="course role"></d2l-labs-applied-core-filters>
+```
+
+## Deprecated Components
+
+- [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
+- [d2l-labs-applied-filters](#d2l-labs-applied-filters)
 
 ### d2l-labs-filter-dropdown
 
@@ -127,33 +174,9 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 - `d2l-labs-filter-dropdown-category-searched`: Fired when a filter category is searched.
 - `d2l-labs-filter-dropdown-option-change`: Fired when a filter option is selected.
 
-### d2l-labs-search-facets
-
-<img src="/images/d2l-labs-search-facets.png?raw=true" width="450">
-
-#### Usage
-
-To Do
-
-### d2l-labs-search-results-count
-
-<img src="/images/d2l-labs-search-results-count.png?raw=true" width="450">
-
-#### Usage
-
-To Do
-
-### d2l-labs-sort-by-dropdown
-
-<img src="/images/d2l-labs-sort-by-dropdown.png?raw=true" width="450">
-
-#### Usage
-
-To Do
-
 ### d2l-labs-applied-filters
 
-A multi-select-list allowing the user to see (and remove) the currently applied filters.  Works with the `d2l-labs-filter-dropdown` above. If you are using `d2l-filter` from `core`, see [d2l-labs-applied-core-filters](#d2l-labs-applied-core-filters) below.
+A multi-select-list allowing the user to see (and remove) the currently applied filters.  Works with the `d2l-labs-filter-dropdown` above. If you are using `d2l-filter` from `core`, see [d2l-labs-applied-core-filters](#d2l-labs-applied-core-filters).
 
 NOTE: This component uses the `slotchange` event and so will not work if you require IE support
 
@@ -172,25 +195,6 @@ This also works if the `d2l-labs-filter-dropdown` is a child in the shadow-dom o
 ```html
 <d2l-labs-applied-filters for="filter"></d2l-labs-applied-filters>
 <d2l-labs-filter-dropdown id="filter"> ... </d2l-labs-filter-dropdown>
-```
-### d2l-labs-applied-core-filters
-
-The same design as the `d2l-labs-applied-filters` above, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
-
-#### Attributes
-
-- `filter-ids`: Ids (space-delimited) of the filter components to subscribe to
-- `label-text` (optional): The text displayed in this component's label. Defaults to "Applied Filters:".
-
-#### Usage
-
-Set the `filter-ids` param to the ids of the `d2l-filter`s that you want to track.
-The `d2l-filter`s must be in the same DOM scope.
-
-```html
-<d2l-filter id="course"> ... </d2l-filter>
-<d2l-filter id="role"> ... </d2l-filter>
-<d2l-labs-applied-core-filters filter-ids="course role"></d2l-labs-applied-core-filters>
 ```
 
 ## Developing, Testing and Contributing
