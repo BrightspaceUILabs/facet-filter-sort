@@ -1,13 +1,14 @@
-/* eslint sort-imports: ["error", {"allowSeparatedGroups": true}] */
-import '@brightspace-ui-labs/multi-select/multi-select-list';
-import '@brightspace-ui-labs/multi-select/multi-select-list-item';
-import { LitElement, css, html } from 'lit-element';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
-import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
+import '@brightspace-ui/core/components/button/button-subtle.js';
+import '@brightspace-ui-labs/multi-select/multi-select-list.js';
+import '@brightspace-ui-labs/multi-select/multi-select-list-item.js';
+import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
+import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
+// eslint-disable-next-line sort-imports
 import ar from './lang/ar-sa.js';
 import de from './lang/de.js';
 import en from './lang/en.js';
@@ -66,22 +67,22 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			}
 
 			.d2l-labs-applied-filters-label {
-				margin-right: 0.25rem;
 				display: inline-block;
-				padding-top: 0.3rem;
 				font-weight: bold;
+				margin-right: 0.25rem;
+				padding-top: 0.3rem;
 			}
 
 			:host([dir="rtl"]) .d2l-labs-applied-filters-label {
-				margin-right: 0;
 				margin-left: 0.25rem;
+				margin-right: 0;
 			}
 
 			.d2l-labs-applied-filters-none-label {
-				display: inline-block;
-				padding-top: 0.3rem;
-				font-style: italic;
 				color: var(--d2l-color-corundum);
+				display: inline-block;
+				font-style: italic;
+				padding-top: 0.3rem;
 			}
 
 			#d2l-clear-filters-button {
@@ -101,6 +102,18 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 				display: none;
 			}
 		`];
+	}
+
+	constructor() {
+		super();
+		this.labelText = '';
+
+		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
+		this._clearSelected = this._clearSelected.bind(this);
+		this._setSelectedOptions = this._setSelectedOptions.bind(this);
+		this._update = this._update.bind(this);
+
+		this._setSelectedOptions();
 	}
 
 	static get resources() {
@@ -123,18 +136,6 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 			'zh-cn': zhCn,
 			'zh-tw': zhTw,
 		};
-	}
-
-	constructor() {
-		super();
-		this.labelText = '';
-
-		this._clearFiltersClicked = this._clearFiltersClicked.bind(this);
-		this._clearSelected = this._clearSelected.bind(this);
-		this._setSelectedOptions = this._setSelectedOptions.bind(this);
-		this._update = this._update.bind(this);
-
-		this._setSelectedOptions();
 	}
 
 	firstUpdated() {
