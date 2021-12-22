@@ -34,7 +34,7 @@
     "polymer-cli": "^1",
     "wct-browser-legacy": "^1"
   },
-  "version": "4.1.5",
+  "version": "4.2.0",
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
