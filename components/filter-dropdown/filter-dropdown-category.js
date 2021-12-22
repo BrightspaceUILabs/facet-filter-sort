@@ -44,8 +44,8 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 	static get styles() {
 		return [super.styles, css`
 			:host {
-				margin: -1px -1rem 0 -1rem;
 				border-top: 1px solid var(--d2l-color-gypsum);
+				margin: -1px -1rem 0 -1rem;
 				padding: 1.2rem 1rem 0 1rem;
 			}
 			.d2l-labs-filter-dropdown-page-search {
@@ -56,6 +56,44 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 				width: auto;
 			}
 		`];
+	}
+
+	constructor() {
+		super();
+		this.categoryText = '';
+		this.disableSearch = false;
+		this.key = '';
+		this.selectedOptionCount = 0;
+	}
+
+	get categoryText() {
+		return this._categoryText;
+	}
+
+	set categoryText(val) {
+		const oldVal = this._categoryText;
+		if (oldVal !== val) {
+			this._categoryText = val;
+			this.requestUpdate();
+			this.updateComplete.then(() => {
+				this._updateTabText(this._categoryText, this.selectedOptionCount);
+			});
+		}
+	}
+
+	get selectedOptionCount() {
+		return this._selectedOptionCount;
+	}
+
+	set selectedOptionCount(val) {
+		const oldVal = this._selectedOptionCount;
+		if (oldVal !== val) {
+			this._selectedOptionCount = val;
+			this.requestUpdate();
+			this.updateComplete.then(() => {
+				this._updateTabText(this.categoryText, this._selectedOptionCount);
+			});
+		}
 	}
 
 	static get resources() {
@@ -137,44 +175,6 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 				searchBy: '依 {category} 搜尋'
 			}
 		};
-	}
-
-	constructor() {
-		super();
-		this.categoryText = '';
-		this.disableSearch = false;
-		this.key = '';
-		this.selectedOptionCount = 0;
-	}
-
-	get categoryText() {
-		return this._categoryText;
-	}
-
-	set categoryText(val) {
-		const oldVal = this._categoryText;
-		if (oldVal !== val) {
-			this._categoryText = val;
-			this.requestUpdate();
-			this.updateComplete.then(() => {
-				this._updateTabText(this._categoryText, this.selectedOptionCount);
-			});
-		}
-	}
-
-	get selectedOptionCount() {
-		return this._selectedOptionCount;
-	}
-
-	set selectedOptionCount(val) {
-		const oldVal = this._selectedOptionCount;
-		if (oldVal !== val) {
-			this._selectedOptionCount = val;
-			this.requestUpdate();
-			this.updateComplete.then(() => {
-				this._updateTabText(this.categoryText, this._selectedOptionCount);
-			});
-		}
 	}
 
 	firstUpdated(changedProperties) {

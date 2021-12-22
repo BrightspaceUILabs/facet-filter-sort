@@ -104,6 +104,7 @@
 					categories[1].selected = true;
 				});
 				test('selecting a menu option triggers the d2l-labs-filter-dropdown-option-change event', (done) => {
+					const menuItems = categories[0].querySelectorAll('d2l-labs-filter-dropdown-option');
 					container.addEventListener('d2l-labs-filter-dropdown-option-change', (e) => {
 						assert.equal(e.detail.categoryKey, '1');
 
@@ -116,7 +117,6 @@
 						}
 					});
 
-					const menuItems = categories[0].querySelectorAll('d2l-labs-filter-dropdown-option');
 					menuItems[0].click();
 				});
 			});

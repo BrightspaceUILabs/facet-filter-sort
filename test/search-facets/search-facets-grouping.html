@@ -64,6 +64,7 @@
 					});
 
 					it('should emit an event when options are selected', (done) => {
+						const option1 = document.getElementById('basic-option1');
 						basicFixture.addEventListener('d2l-labs-search-facets-grouping-change', (e) => {
 							expect(e.detail).to.deep.equal({
 								grouping: basicFixture.value,
@@ -73,7 +74,6 @@
 							done();
 						});
 
-						const option1 = document.getElementById('basic-option1');
 						selectOption(option1);
 					});
 
