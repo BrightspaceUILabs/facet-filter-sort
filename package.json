@@ -24,7 +24,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@polymer/iron-test-helpers": "^3",
-    "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
     "eslint": "^7",
     "eslint-config-brightspace": "^0.10",
