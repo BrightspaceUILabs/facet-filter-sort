@@ -59,7 +59,7 @@ To Do
 
 ### d2l-labs-applied-core-filters
 
-The same design as the `d2l-labs-applied-filters` above, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
+The same design as the deprecated `d2l-labs-applied-filters` below, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
 
 #### Attributes
 
