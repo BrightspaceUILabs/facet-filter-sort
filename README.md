@@ -214,22 +214,21 @@ npm start
 ```shell
 # eslint, lit-analyzer, polymer lint and style linting
 npm run lint
+
 # eslint only
 npm run lint:eslint
-# lit-analyzer only
-npm run lint:lit
-# polymer only
-npm run lint:polymer
 ```
 
 ### Testing
+
 ```shell
-# lint and unit test
+# lint & run headless unit tests
 npm test
+
 # unit tests only
 npm run test:headless
+
 # debug or run a subset of local unit tests
-# then navigate to `http://localhost:9876/debug.html`
 npm run test:headless:watch
 ```
 
