@@ -17,7 +17,7 @@
     "lint": "npm run lint:eslint && npm run lint:lit && npm run lint:polymer && npm run lint:style",
     "lint:eslint": "eslint . --ext .js,.html",
     "lint:lit": "lit-analyzer \"{components, test, demo}/**/*.js\" --strict --rules.no-unknown-tag-name off",
-    "lint:polymer": "polymer lint -i \"./*\" \"test\" \"demo\" \"components\"",
+    "lint:polymer": "polymer lint -i \"test/**/*.js\" \"demo/**/*.js\" \"components/**/*.js\"",
     "lint:style": "stylelint \"**/*.{js,html}\"",
     "start": "web-dev-server --node-resolve --watch --open",
     "test": "npm run lint && npm run test:headless",
@@ -41,6 +41,7 @@
     "eslint-plugin-lit": "^1",
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^1",
+    "polymer-cli": "^1",
     "sinon": "^12",
     "stylelint": "^14"
   },
