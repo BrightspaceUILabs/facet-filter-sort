@@ -1,5 +1,6 @@
 {
   "description": "Collection of (search) facet, filter and sort elements",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/BrightspaceUILabs/facet-filter-sort.git"
@@ -18,9 +19,10 @@
     "lint:lit": "lit-analyzer \"{components, test, demo}/**/*.js\" --strict --rules.no-unknown-tag-name off",
     "lint:polymer": "polymer lint -i \"./*\" \"test\" \"demo\" \"components\"",
     "lint:style": "stylelint \"**/*.{js,html}\"",
-    "test:polymer:local": "polymer test --skip-plugin sauce",
-    "test:polymer:sauce": "polymer test --skip-plugin local",
-    "test": "npm run lint && npm run test:polymer:local"
+    "start": "web-dev-server --node-resolve --watch --open",
+    "test": "npm run lint && npm run test:headless",
+    "test:headless": "web-test-runner --group default",
+    "test:headless:watch": "web-test-runner --group default --watch"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
@@ -28,7 +30,10 @@
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/stylelint-config": "^0.3",
-    "@polymer/iron-test-helpers": "^3",
+    "@open-wc/testing": "^2",
+    "@web/dev-server": "^0.1",
+    "@web/test-runner": "^0.13",
+    "@web/test-runner-saucelabs": "^0.6",
     "eslint": "^8",
     "eslint-config-brightspace": "^0.16",
     "eslint-plugin-html": "^6",
@@ -36,9 +41,8 @@
     "eslint-plugin-lit": "^1",
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^1",
-    "polymer-cli": "^1",
-    "stylelint": "^14",
-    "wct-browser-legacy": "^1"
+    "sinon": "^12",
+    "stylelint": "^14"
   },
   "version": "4.2.1",
   "dependencies": {
