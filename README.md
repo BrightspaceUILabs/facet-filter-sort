@@ -197,38 +197,39 @@ This also works if the `d2l-labs-filter-dropdown` is a child in the shadow-dom o
 <d2l-labs-filter-dropdown id="filter"> ... </d2l-labs-filter-dropdown>
 ```
 
-## Developing, Testing and Contributing
+## Developing
 
 After cloning the repo, run `npm install` to install dependencies.
 
-If you don't have it already, install the [Polymer CLI](https://www.polymer-project.org/3.0/docs/tools/polymer-cli) globally:
+### Running the demos
+
+To start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo page and tests:
 
 ```shell
-npm install -g polymer-cli
+npm start
 ```
 
-To start a [local web server](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
+### Linting
 
 ```shell
-polymer serve
-```
-
-To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#lint)):
-
-```shell
+# eslint, lit-analyzer, polymer lint and style linting
 npm run lint
+
+# eslint only
+npm run lint:eslint
 ```
 
-To run unit tests locally using [Polymer test](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#tests):
+### Testing
 
 ```shell
-npm run test:polymer:local
-```
-
-To lint AND run local unit tests:
-
-```shell
+# lint & run headless unit tests
 npm test
+
+# unit tests only
+npm run test:headless
+
+# debug or run a subset of local unit tests
+npm run test:headless:watch
 ```
 
 ## Versioning & Releasing
