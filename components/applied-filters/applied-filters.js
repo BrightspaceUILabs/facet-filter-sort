@@ -4,7 +4,7 @@ import '@brightspace-ui-labs/multi-select/multi-select-list-item.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
-import { getComposedChildren } from '@brightspace-ui/core/helpers/dom';
+import { getComposedChildren } from '@brightspace-ui/core/helpers/dom.js';
 import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
