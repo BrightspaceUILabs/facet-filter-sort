@@ -1,6 +1,6 @@
 # facet-filter-sort
 
-[![NPM version](https://img.shields.io/npm/v/@brightspace-ui-labs/facet-filter-sort.svg)](https://www.npmjs.org/package/@brightspace-ui-labs/facet-filter-sort)
+[![NPM version](https://img.shields.io/npm/v/@brightspace-ui-labs/facet-filter-sort.svg)](https://www.npmjs.org/package/@brightspace-ui-labs/facet-filter-sort) Testing
 
 > Note: this is a ["labs" component](https://github.com/BrightspaceUI/guide/wiki/Component-Tiers). While functional, these tasks are prerequisites to promotion to BrightspaceUI "official" status:
 >
