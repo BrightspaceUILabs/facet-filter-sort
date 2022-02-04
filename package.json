@@ -19,7 +19,7 @@
     "lint:lit": "lit-analyzer \"{components, test, demo}/**/*.js\" --strict --rules.no-unknown-tag-name off",
     "lint:polymer": "polymer lint -i \"test/**/*.js\" \"demo/**/*.js\" \"components/**/*.js\"",
     "lint:style": "stylelint \"**/*.{js,html}\"",
-    "start": "web-dev-server --node-resolve --watch --open",
+    "start": "web-dev-server --node-resolve --watch --open --app-index demo/index.html",
     "test": "npm run lint && npm run test:headless",
     "test:headless": "web-test-runner --group default",
     "test:headless:watch": "web-test-runner --group default --watch"
@@ -42,7 +42,7 @@
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^1",
     "polymer-cli": "^1",
-    "sinon": "^12",
+    "sinon": "^13",
     "stylelint": "^14"
   },
   "version": "4.2.3",
