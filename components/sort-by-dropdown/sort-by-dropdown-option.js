@@ -1,5 +1,5 @@
 import '@brightspace-ui/core/components/icons/icon.js';
-import { html, LitElement } from 'lit-element/lit-element.js';
+import { html, LitElement } from 'lit-element';
 import { MenuItemRadioMixin } from '@brightspace-ui/core/components/menu/menu-item-radio-mixin.js';
 import { menuItemSelectableStyles } from '@brightspace-ui/core/components/menu/menu-item-selectable-styles.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';

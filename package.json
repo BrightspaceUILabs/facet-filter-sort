@@ -52,6 +52,7 @@
     "@brightspace-ui-labs/multi-select": "^5",
     "d2l-typography": "BrightspaceUI/typography#semver:^7",
     "lit-element": "^2",
+    "lit-html": "^1",
     "@polymer/polymer": "^3"
   }
 }

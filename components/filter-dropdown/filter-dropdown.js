@@ -153,7 +153,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.LabsFil
 	}
 
 	close() {
-		this.shadowRoot.querySelector('d2l-dropdown-tabs').close();
+		if (this.shadowRoot) this.shadowRoot.querySelector('d2l-dropdown-tabs').close();
 	}
 
 	detached() {
@@ -162,7 +162,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.LabsFil
 	}
 
 	focus() {
-		this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
+		if (this.shadowRoot) this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
 	}
 
 	_getFooterSlotValue(hasFooter) {
