@@ -1,7 +1,7 @@
 import '@brightspace-ui/core/components/button/button-subtle.js';
 import '@brightspace-ui-labs/multi-select/multi-select-list.js';
 import '@brightspace-ui-labs/multi-select/multi-select-list-item.js';
-import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { css, html, LitElement } from 'lit-element';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom.js';
