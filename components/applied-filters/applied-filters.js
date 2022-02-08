@@ -158,11 +158,10 @@ class D2lLabsAppliedFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
 					</d2l-labs-multi-select-list-item>
 				`)}
 			</d2l-labs-multi-select-list>`
-			: html`<span class="d2l-labs-applied-filters-none-label d2l-body-compact">${this.localize('noActiveFilters')}</span>`;
+			: null;
 
 		return html`
 			<div class="d2l-labs-applied-filters-wrapper">
-				<span id="d2l-labs-applied-filters-label" class="d2l-labs-applied-filters-label d2l-body-compact">${this.labelText || this.localize('appliedFilters')}</span>
 				<div id="d2l-list-holder">
 					${filters}
 					<d2l-button-subtle id="d2l-clear-filters-button" text="${this.localize('clearFilters')}" ?hidden="${this._selectedEntries.length < CLEAR_FILTERS_THRESHOLD}" @click="${this._clearFiltersClicked}"></d2l-button-subtle>
