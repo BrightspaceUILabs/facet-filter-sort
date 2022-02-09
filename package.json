@@ -45,7 +45,7 @@
     "sinon": "^13",
     "stylelint": "^14"
   },
-  "version": "4.2.3",
+  "version": "4.2.4",
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
