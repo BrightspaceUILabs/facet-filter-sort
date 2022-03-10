@@ -6,12 +6,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  * `<d2l-labs-search-results-count>`
  * Polymer-based web component for D2L search result
  */
-class LabsSearchResultsCount extends mixinBehaviors(
-	[
-		D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior
-	],
-	PolymerElement
-) {
+class LabsSearchResultsCount extends mixinBehaviors([D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior],PolymerElement) {
 	static get properties() {
 		return {
 			/**

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "applied-filters",
+    "source_dir": "components/applied-filters/lang",
+    "output_file_path": "components/applied-filters/lang/%LANG%.js",
+    "parser_plugin": {
+      "plugin": "parse_js"
+    },
+    "source_match": "en\\.js$"
+  },{
+    "name": "filter-dropdown",
+    "parser_plugin": {
+      "plugin": "parse_js"
+    },
+    "source_match": "en\\.js$",
+    "source_dir": "components/filter-dropdown/lang",
+    "output_file_path": "components/filter-dropdown/lang/%LANG%.js"
+  },{
+    "name": "search-facets",
+    "parser_plugin": {
+      "plugin": "parse_js"
+    },
+    "source_match": "en\\.js$",
+    "source_dir": "components/search-facets/lang",
+    "output_file_path": "components/search-facets/lang/%LANG%.js"
+  },{
+    "name": "search-results-count",
+    "parser_plugin": {
+      "plugin": "parse_js"
+    },
+    "source_match": "en\\.js$",
+    "source_dir": "components/search-results-count/lang",
+    "output_file_path": "components/search-results-count/lang/%LANG%.js"
+  },{
+    "name": "sort-by-dropdown",
+    "parser_plugin": {
+      "plugin": "parse_js"
+    },
+    "source_match": "en\\.js$",
+    "source_dir": "components/sort-by-dropdown/lang",
+    "output_file_path": "components/sort-by-dropdown/lang/%LANG%.js"
+  }
+]

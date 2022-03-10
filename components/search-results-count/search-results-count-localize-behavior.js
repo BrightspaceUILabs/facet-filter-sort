@@ -1,4 +1,26 @@
 import 'd2l-localize-behavior/d2l-localize-behavior.js';
+import ar from './lang/ar.js';
+import da from './lang/da.js';
+import de from './lang/de.js';
+import en from './lang/en.js';
+import es from './lang/es.js';
+import fr from './lang/fr.js';
+import ja from './lang/ja.js';
+import ko from './lang/ko.js';
+import nl from './lang/nl.js';
+import pt from './lang/pt.js';
+import sv from './lang/sv.js';
+import tr from './lang/tr.js';
+import zh from './lang/zh.js';
+import zhtw from './lang/zh-tw.js';
+
+import { getLocalizeOverrideResources } from '@brightspace-ui/core/helpers/getLocalizeResources.js';
+import { LocalizeMixin } from '@brightspace-ui/core/mixins/localize-mixin.js';
+
+function resolveOverridesFunc() {
+	return '@brightspace-ui-labs/facet-filter-sort\\search-results-count';
+}
+const fetchQueue = {};
 
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
@@ -10,99 +32,51 @@ window.D2L.PolymerBehaviors.LabsSearchResultsCount = window.D2L.PolymerBehaviors
  */
 D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehaviorImpl = {
 	properties: {
-		/**
-		* Localization resources.
-		*/
 		resources: {
 			value: function() {
 				return {
-					'ar': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} من أصل {totalCount} من النتائج',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} من أصل {totalCount} من النتائج لـ "{query}"',
-						searchResults: '{totalCount} من النتائج',
-						searchResultsForQuery: '{totalCount} من النتائج لـ "{query}"'
-					},
-					'da': {
-						searchPagedResults: '{rangeStart}-{rangeEnd} af {totalCount} resultater',
-						searchPagedResultsForQuery: '{rangeStart}-{rangeEnd} af {totalCount} resultater for "{query}"',
-						searchResults: '{totalCount} resultater',
-						searchResultsForQuery: '{totalCount} resultater for "{query}"'
-					},
-					'de': {
-						searchPagedResults: '{rangeStart} – {rangeEnd} von {totalCount} Ergebnissen',
-						searchPagedResultsForQuery: '{rangeStart} – {rangeEnd} von {totalCount} Ergebnissen für „{query}“',
-						searchResults: '{totalCount} Ergebnisse',
-						searchResultsForQuery: '{totalCount} Ergebnisse für „{query}“'
-					},
-					'en': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} of {totalCount} results',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} of {totalCount} results for "{query}"',
-						searchResults: '{totalCount} results',
-						searchResultsForQuery: '{totalCount} results for "{query}"'
-					},
-					'es': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} de {totalCount} resultados',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} de {totalCount} resultados para "{query}"',
-						searchResults: '{totalCount} resultados',
-						searchResultsForQuery: '{totalCount} resultados para "{query}"'
-					},
-					'fr': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} de {totalCount} résultats',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} de {totalCount} résultats pour « {query} »',
-						searchResults: '{totalCount} résultats',
-						searchResultsForQuery: '{totalCount} résultats pour « {query} »'
-					},
-					'ja': {
-						searchPagedResults: '結果 {totalCount} 件のうち {rangeStart}～{rangeEnd} 件',
-						searchPagedResultsForQuery: '「{query}」の結果 {totalCount} 件のうち {rangeStart}～{rangeEnd} 件',
-						searchResults: '{totalCount} 件の結果',
-						searchResultsForQuery: '「{query}」の結果 {totalCount} 件'
-					},
-					'ko': {
-						searchPagedResults: '{rangeStart} - {rangeEnd}/{totalCount}개 결과',
-						searchPagedResultsForQuery: '{rangeStart} - "{query}"의 {rangeEnd}/{totalCount}개 결과',
-						searchResults: '{totalCount}개 결과',
-						searchResultsForQuery: '"{query}"의 {totalCount}개 결과'
-					},
-					'nl': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} van {totalCount} resultaten',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} van {totalCount} resultaten voor "{query}"',
-						searchResults: '{totalCount} resultaten',
-						searchResultsForQuery: '{totalCount} resultaten voor "{query}"'
-					},
-					'pt': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} de {totalCount} resultados',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} de {totalCount} resultados para "{query}"',
-						searchResults: '{totalCount} resultados',
-						searchResultsForQuery: '{totalCount} resultados para "{query}"'
-					},
-					'sv': {
-						searchPagedResults: '{rangeStart} – {rangeEnd} av {totalCount} resultat',
-						searchPagedResultsForQuery: '{rangeStart} – {rangeEnd} av {totalCount} resultat för "{query}"',
-						searchResults: '{totalCount} resultat',
-						searchResultsForQuery: '{totalCount} resultat för "{query}"'
-					},
-					'tr': {
-						searchPagedResults: 'Toplam {totalCount} sonuçtan {rangeStart} - {rangeEnd} arası',
-						searchPagedResultsForQuery: '"{query}" araması için toplam {totalCount} sonuçtan {rangeStart} - {rangeEnd} arası',
-						searchResults: '{totalCount} sonuç',
-						searchResultsForQuery: '"{query}" araması için toplam {totalCount} sonuç'
-					},
-					'zh': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} 条结果，共 {totalCount} 条',
-						searchPagedResultsForQuery: '{rangeStart} - {rangeEnd} 条关于“{query}”的结果，共 {totalCount} 条',
-						searchResults: '{totalCount} 条结果',
-						searchResultsForQuery: '{totalCount} 条关于“{query}”的结果'
-					},
-					'zh-tw': {
-						searchPagedResults: '{rangeStart} - {rangeEnd} 個結果 (共 {totalCount} 個)',
-						searchPagedResultsForQuery: '符合「{query}」的 {rangeStart} - {rangeEnd} 個結果 (共 {totalCount} 個)',
-						searchResults: '{totalCount} 個結果',
-						searchResultsForQuery: '{totalCount} 個結果符合「{query}」'
-					}
+					'ar': ar,
+					'da': da,
+					'de': de,
+					'en': en,
+					'es': es,
+					'fr': fr,
+					'ja': ja,
+					'ko': ko,
+					'nl': nl,
+					'pt': pt,
+					'sv': sv,
+					'tr': tr,
+					'zh': zh,
+					'zh-tw': zhtw
 				};
 			}
 		}
+	},
+		listeners: {
+		'd2l-localize-behavior-language-changed': '_onLanguageChange',
+		'app-localize-resources-loaded': '_onResourcesLoaded'
+
+	},
+	_onLanguageChange: function() {
+		if (this.language) {
+			this.loadResources(this.resolveUrl(`./lang/${this.language}.js`), this.language, true);
+		}
+	},
+	_onResourcesLoaded: async function(e) {
+		this.async(async() => {
+			if (!fetchQueue.hasOwnProperty(this.language)) {
+				fetchQueue[this.language] = getLocalizeOverrideResources(this.language, e.detail.response, resolveOverridesFunc);
+			}
+			const resourcesOverride = await fetchQueue[this.language];
+			const resources = {
+				...this.resources,
+				[resourcesOverride.language]: {
+					...resourcesOverride.resources
+				}
+			};
+			this.setProperties({ resources }, false);
+		}, 100);
 	}
 };
 
@@ -111,3 +85,76 @@ D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior = [
 	D2L.PolymerBehaviors.LocalizeBehavior,
 	D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehaviorImpl
 ];
+
+
+export const MyCoursesLocalizeMixin = superclass => class extends LocalizeMixin(superclass) {
+
+	static async getLocalizeResources(langs) {
+
+		function resolveOverridesFunc() {
+			return '@brightspace-ui-labs/facet-filter-sort\\search-results-count';
+		}
+
+		let translations;
+		for await (const lang of langs) {
+			switch (lang) {
+				case 'ar':
+					translations = ar;
+					break;
+				case 'da':
+					translations = da;
+					break;
+				case 'de':
+					translations = de;
+					break;
+				case 'en':
+					translations = en;
+					break;
+				case 'es':
+					translations = es;
+					break;
+				case 'fr':
+					translations = fr;
+					break;
+				case 'ja':
+					translations = ja;
+					break;
+				case 'ko':
+					translations = ko;
+					break;
+				case 'nl':
+					translations = nl;
+					break;
+				case 'pt':
+					translations = pt;
+					break;
+				case 'sv':
+					translations = sv;
+					break;
+				case 'tr':
+					translations = tr;
+					break;
+				case 'zh':
+					translations = zh;
+					break;
+				case 'zh-tw':
+					translations = zhtw;
+					break;
+			}
+
+			if (translations) {
+				return await getLocalizeOverrideResources(
+					lang,
+					translations,
+					resolveOverridesFunc
+				);
+			}
+		}
+		translations = en;
+		return await getLocalizeOverrideResources(
+			'en',
+			translations,
+			resolveOverridesFunc
+		);
+	}
+};
