@@ -47,10 +47,10 @@
   },
   "version": "4.2.3",
   "dependencies": {
-    "@brightspace-ui/core": "^2",
+    "@brightspace-ui/core": "https://github.com/BrightspaceUI/core#vmisechko/lit-2",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
-    "@brightspace-ui-labs/multi-select": "^6",
-    "d2l-typography": "BrightspaceUI/typography#semver:^8",
+    "@brightspace-ui-labs/multi-select": "https://github.com/BrightspaceUILabs/multi-select#vmisechko/lit-2",
+    "d2l-typography": "https://github.com/BrightspaceUI/typography#vmisechko/lit-2-ph-2",
     "lit-element": "^3",
     "lit-html": "^2",
     "@polymer/polymer": "^3"
