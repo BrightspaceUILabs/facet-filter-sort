@@ -30,7 +30,7 @@
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/stylelint-config": "^0.3",
-    "@open-wc/testing": "^2",
+    "@open-wc/testing": "^3",
     "@web/dev-server": "^0.1",
     "@web/test-runner": "^0.13",
     "@web/test-runner-saucelabs": "^0.6",
@@ -47,12 +47,12 @@
   },
   "version": "4.2.4",
   "dependencies": {
-    "@brightspace-ui/core": "^1",
+    "@brightspace-ui/core": "^2",
     "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
-    "@brightspace-ui-labs/multi-select": "^5",
-    "d2l-typography": "BrightspaceUI/typography#semver:^7",
-    "lit-element": "^2",
-    "lit-html": "^1",
+    "@brightspace-ui-labs/multi-select": "^6",
+    "d2l-typography": "BrightspaceUI/typography#semver:^8",
+    "lit-element": "^3",
+    "lit-html": "^2",
     "@polymer/polymer": "^3"
   }
 }

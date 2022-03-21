@@ -132,11 +132,6 @@ class D2lLabsAppliedCoreFilters extends RtlMixin(LocalizeStaticMixin(LitElement)
 		};
 	}
 
-	disconnectedCallback() {
-		super.disconnectedCallback();
-		this._filters.hostDisconnected();
-	}
-
 	render() {
 		let numActiveFilters = 0;
 		const allActiveFilters = Array.from(this._allActiveFilters);
@@ -166,11 +161,6 @@ class D2lLabsAppliedCoreFilters extends RtlMixin(LocalizeStaticMixin(LitElement)
 				</div>
 			</div>
 		`;
-	}
-
-	updated(changedProperties) {
-		super.updated(changedProperties);
-		this._filters.hostUpdated(changedProperties);
 	}
 
 	updateActiveFilters(filterId, activeFilters) {
