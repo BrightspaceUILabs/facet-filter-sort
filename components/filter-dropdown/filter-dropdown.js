@@ -3,8 +3,8 @@ import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
 import '@brightspace-ui/core/components/tabs/tabs.js';
-import './filter-dropdown-localize-behavior.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
@@ -14,7 +14,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  * @fires d2l-labs-filter-dropdown-cleared - Dispatched when the clear button is pressed to clear all filters
  * @fires d2l-labs-filter-dropdown-close - Dispatched when the filter dropdown is closed
  */
-class D2LLabsFilterDropdown extends mixinBehaviors([D2L.PolymerBehaviors.LabsFilterDropdown.LocalizeBehavior], PolymerElement) {
+class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerElement) {
 	static get properties() {
 		return {
 			/**

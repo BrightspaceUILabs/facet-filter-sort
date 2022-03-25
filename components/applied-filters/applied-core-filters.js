@@ -4,35 +4,16 @@ import '@brightspace-ui-labs/multi-select/multi-select-list-item.js';
 import { css, html, LitElement } from 'lit-element';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
+import { FilterLocalizeMixin } from '../localize-mixin.js';
 import { IdSubscriberController } from '@brightspace-ui/core/controllers/subscriber/subscriberControllers.js';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
-
-// eslint-disable-next-line sort-imports
-import ar from './lang/ar-sa.js';
-import de from './lang/de.js';
-import en from './lang/en.js';
-import es from './lang/es.js';
-import esMx from './lang/es-mx.js';
-import fi from './lang/fi.js';
-import fr from './lang/fr.js';
-import frCa from './lang/fr-ca.js';
-import ja from './lang/ja.js';
-import ko from './lang/ko.js';
-import nb from './lang/nb.js';
-import nl from './lang/nl.js';
-import pt from './lang/pt-br.js';
-import sv from './lang/sv.js';
-import tr from './lang/tr.js';
-import zhCn from  './lang/zh-cn.js';
-import zhTw from './lang/zh-tw.js';
 
 const CLEAR_FILTERS_THRESHOLD = 4;
 
 /**
  * A multi-select-list allowing the user to see (and remove) the currently applied filters, adjusted to work with the new core d2l-filter.
  */
-class D2lLabsAppliedCoreFilters extends RtlMixin(LocalizeStaticMixin(LitElement)) {
+class D2lLabsAppliedCoreFilters extends RtlMixin(FilterLocalizeMixin(LitElement)) {
 	static get properties() {
 		return {
 			/**
@@ -108,28 +89,6 @@ class D2lLabsAppliedCoreFilters extends RtlMixin(LocalizeStaticMixin(LitElement)
 			{ onUnsubscribe: this._removeLostFilter.bind(this) },
 			{ idPropertyName: 'filterIds' }
 		);
-	}
-
-	static get resources() {
-		return {
-			'ar': ar,
-			'de': de,
-			'en': en,
-			'es': es,
-			'es-mx': esMx,
-			'fi': fi,
-			'fr': fr,
-			'fr-ca': frCa,
-			'ja': ja,
-			'ko': ko,
-			'nb': nb,
-			'nl': nl,
-			'pt': pt,
-			'sv': sv,
-			'tr': tr,
-			'zh-cn': zhCn,
-			'zh-tw': zhTw,
-		};
 	}
 
 	render() {

@@ -1,5 +1,5 @@
-import './search-results-count-localize-behavior.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
@@ -8,7 +8,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  */
 class LabsSearchResultsCount extends mixinBehaviors(
 	[
-		D2L.PolymerBehaviors.LabsSearchResultsCount.LocalizeBehavior
+		LocalizeBehavior
 	],
 	PolymerElement
 ) {

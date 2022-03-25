@@ -10,8 +10,10 @@
     "access": "public"
   },
   "files": [
+    "facet-filter-sort.serge.json",
     "custom-elements.json",
-    "/components"
+    "/components",
+    "/lang"
   ],
   "scripts": {
     "lint": "npm run lint:eslint && npm run lint:lit && npm run lint:polymer && npm run lint:style",
