@@ -28,8 +28,9 @@ describe('d2l-labs-filter-dropdown-category', () => {
 
 	beforeEach(async() => {
 		container = await fixture(basic);
-		await container.updateComplete;
 		categories = container.querySelectorAll('d2l-labs-filter-dropdown-category');
+		await categories[0].updateComplete;
+		await categories[1].updateComplete;
 	});
 
 	it('should construct', () => {
