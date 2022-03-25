@@ -45,6 +45,9 @@ describe('d2l-labs-filter-dropdown', () => {
 
 	beforeEach(async() => {
 		filter = await fixture(basic);
+		const categories = filter.querySelectorAll('d2l-labs-filter-dropdown-category');
+		await categories[0].updateComplete;
+		await categories[1].updateComplete;
 		await new Promise(resolve => requestAnimationFrame(resolve));
 	});
 
