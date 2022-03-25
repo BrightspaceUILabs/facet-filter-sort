@@ -8,7 +8,7 @@ export default {
 		}
 	},
 	testRunnerHtml: testFramework =>
-		`<html lang="en">
+		`<html>
 			<body>
 				<script src="node_modules/@brightspace-ui/core/tools/resize-observer-test-error-handler.js"></script>
 				<script type="module" src="${testFramework}"></script>

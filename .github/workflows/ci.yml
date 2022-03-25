@@ -10,11 +10,11 @@ jobs:
         with:
           node-version: '14'
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install @web/test-runner-playwright --no-save
+          npx playwright install-deps
       - name: Lint
         run: npm run lint
-      - name: Unit Tests (SauceLabs)
-        run: npx web-test-runner --config web-test-runner.sauce.config.js
-        env:
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY_DESIRE2LEARN }}
-          SAUCE_USERNAME: Desire2Learn
+      - name: Unit Tests (cross-browser)
+        run: npx web-test-runner --config web-test-runner.config.js --group default --playwright --browsers chromium firefox webkit
