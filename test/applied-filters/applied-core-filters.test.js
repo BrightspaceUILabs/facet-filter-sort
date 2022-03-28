@@ -4,6 +4,7 @@ import '@brightspace-ui/core/components/filter/filter-dimension-set-value.js';
 import '../../components/applied-filters/applied-core-filters.js';
 import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-helper.js';
+import { spy } from 'sinon';
 
 const basic = html`
 	<div>
@@ -76,9 +77,10 @@ describe('d2l-labs-applied-core-filters', () => {
 			expect(items[2].text).to.equal('Value 2 - 1');
 		});
 		it('selecting another filter value adds to the list', async() => {
+			const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 			const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 			values[1].selected = true;
-			await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+			await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 
 			const items = appliedCoreFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 			expect(items.length).to.equal(4);
@@ -88,9 +90,10 @@ describe('d2l-labs-applied-core-filters', () => {
 			expect(items[3].text).to.equal('Value 2 - 1');
 		});
 		it('removing a filter value removes from the list', async() => {
+			const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 			const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 			values[0].selected = false;
-			await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+			await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 
 			const items = appliedCoreFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 			expect(items.length).to.equal(2);
@@ -122,29 +125,33 @@ describe('d2l-labs-applied-core-filters', () => {
 					expect(clearFilters.hidden).to.be.true;
 				});
 				it('selecting a 4th filter reveals the clear filters button, then removing it hides it', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 					values[1].selected = true;
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount === 1, 'Active filters were not updated');
 
 					expect(clearFilters.hidden).to.be.false;
 					values[1].selected = false;
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount === 2, 'Active filters were not updated a second time');
 
 					expect(clearFilters.hidden).to.be.true;
 				});
 				it('clear filters button is visible when all filters are applied', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
+
 					values[1].selected = true;
 					values[2].selected = true;
 					values[4].selected = true;
 					values[5].selected = true;
 
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					expect(clearFilters.hidden).to.be.false;
 				});
 				it('clear filters button is hidden when 0 filters are applied', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 
@@ -152,27 +159,29 @@ describe('d2l-labs-applied-core-filters', () => {
 					values[3].selected = false;
 					values[6].selected = false;
 
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 					expect(clearFilters.hidden).to.be.true;
 				});
 				it('clear filters button is hidden when 1 filters is applied', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 
 					values[0].selected = false;
 					values[3].selected = false;
 
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 					expect(clearFilters.hidden).to.be.true;
 				});
 			});
 			describe('functionality', () => {
 				it('selecting a 4th filter & clicking clear filters fires a d2l-filter-change event', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 
 					values[1].selected = true;
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 
 					setTimeout(() => clearFilters.click());
 					const e = await oneEvent(filter, 'd2l-filter-change');
@@ -183,14 +192,15 @@ describe('d2l-labs-applied-core-filters', () => {
 					expect(dimensions[1].cleared).to.be.true;
 				});
 				it('selecting a 4th filter & clicking clear filters removes filters & hides clear filters button', async() => {
+					const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 					const clearFilters = appliedCoreFilters.shadowRoot.querySelector('#d2l-clear-filters-button');
 					const values = filter.querySelectorAll('d2l-filter-dimension-set-value');
 
 					values[1].selected = true;
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount === 1, 'Active filters were not updated');
 
 					clearFilters.click();
-					await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+					await waitUntil(() => updateSpy.callCount === 2, 'Active filters were not updated a second time');
 
 					const filters = appliedCoreFilters.shadowRoot.querySelectorAll('d2l-labs-multi-select-list-item');
 					expect(filters.length).to.equal(0);
@@ -221,9 +231,10 @@ describe('d2l-labs-applied-core-filters', () => {
 			expect(items[1].text).to.equal('Value');
 		});
 		it('selecting another filter value adds to the list', async() => {
+			const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 			const values = filter1.querySelectorAll('d2l-filter-dimension-set-value');
 			values[1].selected = true;
-			await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+			await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 
 			expect(appliedCoreFilters._allActiveFilters.get('filter-1').length).to.equal(2);
 			expect(appliedCoreFilters._allActiveFilters.get('filter-2').length).to.equal(1);
@@ -234,9 +245,10 @@ describe('d2l-labs-applied-core-filters', () => {
 			expect(items[2].text).to.equal('Value');
 		});
 		it('removing a filter value removes from the list', async() => {
+			const updateSpy = spy(appliedCoreFilters, 'updateActiveFilters');
 			const values = filter1.querySelectorAll('d2l-filter-dimension-set-value');
 			values[0].selected = false;
-			await oneEvent(appliedCoreFilters, 'd2l-labs-applied-core-filters-updated');
+			await waitUntil(() => updateSpy.callCount > 0, 'Active filters were not updated');
 
 			expect(appliedCoreFilters._allActiveFilters.get('filter-1')).to.be.empty;
 			expect(appliedCoreFilters._allActiveFilters.get('filter-2').length).to.equal(1);

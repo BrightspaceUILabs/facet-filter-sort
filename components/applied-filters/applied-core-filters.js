@@ -122,15 +122,9 @@ class D2lLabsAppliedCoreFilters extends RtlMixin(FilterLocalizeMixin(LitElement)
 		`;
 	}
 
-	async updateActiveFilters(filterId, activeFilters) {
+	updateActiveFilters(filterId, activeFilters) {
 		this._allActiveFilters.set(filterId, activeFilters);
-		await this.requestUpdate();
-		this.dispatchEvent(new CustomEvent(
-			'd2l-labs-applied-core-filters-updated', {
-				bubbles: false,
-				composed: false
-			}
-		));
+		this.requestUpdate();
 	}
 
 	_clearFiltersClicked() {
