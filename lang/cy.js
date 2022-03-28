@@ -13,7 +13,7 @@ export default {
 	"filterBy": "Hidlo yn ôl",
 	"filterMultiple": "Hidlo: {numOptions} Hidlyddion",
 	"filterSingle": "Hidlo: 1 Hidlydd",
-	"more": "mwy",
+	"more": "Mwy",
 	"searchPagedResults": "{rangeStart} - {rangeEnd} of {totalCount} results",
 	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} of {totalCount} results for \"{query}\"",
 	"searchResults": "{totalCount} results",
