@@ -83,11 +83,8 @@ describe('d2l-labs-filter-dropdown-category', () => {
 		expect(categories[0].searchValue).to.equal('test');
 	});
 	it('changing the category tab triggers the d2l-labs-filter-dropdown-category-selected event', async() => {
-		let e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
-		expect(e.detail.categoryKey).to.equal('1');
-
 		categories[1].selected = true;
-		e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
+		const e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
 		expect(e.detail.categoryKey).to.equal('2');
 	});
 	it('selecting a menu option triggers the d2l-labs-filter-dropdown-option-change event', async() => {
