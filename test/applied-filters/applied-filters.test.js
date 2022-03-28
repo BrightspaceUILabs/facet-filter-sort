@@ -109,8 +109,7 @@ describe('d2l-labs-applied-filters', () => {
 		await options[1].updateComplete;
 		expect(clearFilters.hidden).to.equal(true);
 	});
-	// fails in Safari with "Script error."
-	it.skip('clear filters button is visible when all filters are applied', async() => {
+	it('clear filters button is visible when all filters are applied', async() => {
 		const options = dropdown.querySelectorAll('d2l-labs-filter-dropdown-option');
 
 		options[1].click();
