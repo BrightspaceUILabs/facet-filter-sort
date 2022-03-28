@@ -13,7 +13,7 @@ export default {
 	"filterBy": "Filtern nach",
 	"filterMultiple": "Filter: {numOptions} Filter",
 	"filterSingle": "Filter: 1 Filter",
-	"more": "mehr",
+	"more": "Mehr",
 	"searchPagedResults": "{rangeStart} – {rangeEnd} von {totalCount} Ergebnissen",
 	"searchPagedResultsForQuery": "{rangeStart} – {rangeEnd} von {totalCount} Ergebnissen für „{query}“",
 	"searchResults": "{totalCount} Ergebnisse",

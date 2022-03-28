@@ -13,7 +13,7 @@ export default {
 	"filterBy": "Filtrér efter",
 	"filterMultiple": "Filtrér: {numOptions} filtre",
 	"filterSingle": "Filtrér: 1 filter",
-	"more": "flere",
+	"more": "Flere",
 	"searchPagedResults": "{rangeStart}-{rangeEnd} af {totalCount} resultater",
 	"searchPagedResultsForQuery": "{rangeStart}-{rangeEnd} af {totalCount} resultater for \"{query}\"",
 	"searchResults": "{totalCount} resultater",
