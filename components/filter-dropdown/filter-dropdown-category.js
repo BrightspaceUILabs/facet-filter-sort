@@ -2,8 +2,8 @@ import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/inputs/input-search.js';
 import '@brightspace-ui/core/components/menu/menu.js';
 import { css, html, LitElement } from 'lit-element';
+import { FilterLocalizeMixin } from '../localize-mixin.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { LocalizeStaticMixin } from '@brightspace-ui/core/mixins/localize-static-mixin.js';
 import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mixin.js';
 
 /**
@@ -14,7 +14,7 @@ import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mi
  * @fires d2l-labs-filter-dropdown-category-searched - Dispatched when a filter category is searched
  * @fires d2l-labs-filter-dropdown-option-change - Dispatched when a filter option is selected
  */
-class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitElement)) {
+class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitElement)) {
 
 	static get properties() {
 		return {
@@ -94,87 +94,6 @@ class LabsFilterDropdownCategory extends LocalizeStaticMixin(TabPanelMixin(LitEl
 				this._updateTabText(this.categoryText, this._selectedOptionCount);
 			});
 		}
-	}
-
-	static get resources() {
-		return {
-			'ar': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'البحث حسب {category}'
-			},
-			'cy': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Chwilio yn ôl {category}'
-			},
-			'da': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Søg efter {category}'
-			},
-			'de': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Nach {category} suchen'
-			},
-			'en': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Search by {category}'
-			},
-			'es': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Buscar por {category}'
-			},
-			'es-es': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Buscar por {category}'
-			},
-			'fi': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Hakuperuste {category}'
-			},
-			'fr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Recherche par {category}'
-			},
-			'fr-fr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Rechercher par {category}'
-			},
-			'ja': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} で検索'
-			},
-			'ko': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} 필터로 검색'
-			},
-			'nb': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Søk etter {category}'
-			},
-			'nl': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Zoeken op {category}'
-			},
-			'pt': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Pesquisar por {category}'
-			},
-			'sv': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: 'Sök per {category}'
-			},
-			'tr': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '{category} Kullanarak Ara'
-			},
-			'zh': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '按 {category} 搜索'
-			},
-			'zh-tw': {
-				categoryTitleMultiple: '{title} ({numSelected})',
-				searchBy: '依 {category} 搜尋'
-			}
-		};
 	}
 
 	firstUpdated(changedProperties) {

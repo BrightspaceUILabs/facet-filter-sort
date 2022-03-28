@@ -1,10 +1,10 @@
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-menu.js';
 import '@brightspace-ui/core/components/menu/menu.js';
-import './sort-by-dropdown-localize-behavior.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
@@ -14,7 +14,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  */
 class LabsSortByDropdown extends mixinBehaviors(
 	[
-		D2L.PolymerBehaviors.LabsSortByDropdown.LocalizeBehavior
+		LocalizeBehavior
 	],
 	PolymerElement
 ) {

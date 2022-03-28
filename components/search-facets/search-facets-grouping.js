@@ -1,9 +1,9 @@
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/inputs/input-checkbox-spacer.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
-import './search-facets-localize-behavior.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 /**
@@ -14,7 +14,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
  */
 class LabsSearchFacetsGrouping extends mixinBehaviors(
 	[
-		D2L.PolymerBehaviors.LabsSearchFacets.LocalizeBehavior
+		LocalizeBehavior
 	],
 	PolymerElement
 ) {

@@ -57,6 +57,8 @@ describe('d2l-labs-applied-core-filters', () => {
 			const elem = await fixture(basic);
 			filter = elem.querySelector('d2l-filter');
 			appliedCoreFilters = elem.querySelector('d2l-labs-applied-core-filters');
+			await filter.updateComplete;
+			await appliedCoreFilters.updateComplete;
 			await waitUntil(() => appliedCoreFilters._allActiveFilters.get('filter').length === 3, 'Active filters were not set');
 		});
 
@@ -215,6 +217,8 @@ describe('d2l-labs-applied-core-filters', () => {
 			const elem = await fixture(twoFilters);
 			filter1 = elem.querySelector('#filter-1');
 			appliedCoreFilters = elem.querySelector('d2l-labs-applied-core-filters');
+			await filter1.updateComplete;
+			await appliedCoreFilters.updateComplete;
 			const activeMap = appliedCoreFilters._allActiveFilters;
 			await waitUntil(() => activeMap.get('filter-1').length === 1 && activeMap.get('filter-2').length === 1, 'Active filters were not set');
 		});

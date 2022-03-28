@@ -33,6 +33,7 @@ describe('d2l-labs-applied-filters', () => {
 		dropdown = elem.querySelector('d2l-labs-filter-dropdown');
 		appliedFilters = elem.querySelector('d2l-labs-applied-filters');
 		await elem.updateComplete;
+		await appliedFilters.updateComplete;
 	});
 
 	it('should construct', () => {
