@@ -29,8 +29,6 @@ describe('d2l-labs-filter-dropdown-category', () => {
 	beforeEach(async() => {
 		container = await fixture(basic);
 		categories = container.querySelectorAll('d2l-labs-filter-dropdown-category');
-		await categories[0].updateComplete;
-		await categories[1].updateComplete;
 	});
 
 	it('should construct', () => {
@@ -39,14 +37,18 @@ describe('d2l-labs-filter-dropdown-category', () => {
 	it('instantiating the element works', () => {
 		expect('d2l-labs-filter-dropdown-category').to.equal(categories[0].tagName.toLowerCase());
 	});
-	it('attributes are set correctly (including d2l-tab-panel attributes)', () => {
+	it('attributes are set correctly (including d2l-tab-panel attributes)', async() => {
+		await categories[0].updateComplete;
+		await categories[1].updateComplete;
 		expect(categories[0].key).to.equal('1');
 		expect(categories[0].getAttribute('role')).to.equal('tabpanel');
 
 		expect(categories[1].key).to.equal('2');
 		expect(categories[1].getAttribute('role')).to.equal('tabpanel');
 	});
-	it('tab text is set properly', () => {
+	it('tab text is set properly', async() => {
+		await categories[0].updateComplete;
+		await categories[1].updateComplete;
 		expect(categories[0].selectedOptionCount).to.equal(3);
 		expect(categories[0].categoryText).to.equal('Category 1');
 		expect(categories[0].text).to.equal('Category 1 (3)');
@@ -55,7 +57,9 @@ describe('d2l-labs-filter-dropdown-category', () => {
 		expect(categories[1].categoryText).to.equal('Category 2');
 		expect(categories[1].text).to.equal('Category 2');
 	});
-	it('search input is hidden if disable-search attribute is present', () => {
+	it('search input is hidden if disable-search attribute is present', async() => {
+		await categories[0].updateComplete;
+		await categories[1].updateComplete;
 		expect(categories[0].disableSearch).to.equal(false);
 		let searchInput = categories[0].shadowRoot.querySelector('.d2l-labs-filter-dropdown-page-search');
 		expect(searchInput.hidden).to.equal(false);
@@ -83,8 +87,11 @@ describe('d2l-labs-filter-dropdown-category', () => {
 		expect(categories[0].searchValue).to.equal('test');
 	});
 	it('changing the category tab triggers the d2l-labs-filter-dropdown-category-selected event', async() => {
-		categories[1].selected = true;
-		const e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
+		let e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
+		expect(e.detail.categoryKey).to.equal('1');
+
+		setTimeout(() => categories[1].selected = true);
+		e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
 		expect(e.detail.categoryKey).to.equal('2');
 	});
 	it('selecting a menu option triggers the d2l-labs-filter-dropdown-option-change event', async() => {
