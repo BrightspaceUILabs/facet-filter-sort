@@ -1,17 +1,17 @@
 /* eslint quotes: 0 */
 
 export default {
-	"appliedFilters": "Filtres appliqués:",
-	"noActiveFilters": "Aucun filtre appliqué",
+	"appliedFilters": "Filtres appliqués :",
+	"noActiveFilters": "Aucun filtre actif",
 	"filterRemoved": "Filtre {filterText} retiré",
-	"clearFilters": "Supprimer les filtres",
+	"clearFilters": "Effacer les filtres",
 	"allFiltersRemoved": "Tous les filtres sont retirés",
 	"categoryTitleMultiple": "{title} ({numSelected})",
-	"searchBy": "Recherche par {category}",
+	"searchBy": "Rechercher par {category}",
 	"clear": "Effacer",
 	"filter": "Filtrer",
-	"filterBy": "Filtrer par",
-	"filterMultiple": "Filtre : {numOptions} filtres",
+	"filterBy": "Filtrer à l’aide de",
+	"filterMultiple": "Filtre : Filtres {numOptions}",
 	"filterSingle": "Filtre : 1 filtre",
 	"more": "Plus",
 	"searchPagedResults": "{rangeStart} - {rangeEnd} de {totalCount} résultats",
@@ -19,5 +19,5 @@ export default {
 	"searchResults": "{totalCount} résultats",
 	"searchResultsForQuery": "{totalCount} résultats pour « {query} »",
 	"sort": "Trier",
-	"sortWithOption": "Trier: {option}"
+	"sortWithOption": "Trier : {option}"
 };
