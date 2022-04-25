@@ -1,23 +1,23 @@
 /* eslint quotes: 0 */
 
 export default {
-	"appliedFilters": "Hidlyddion a Gymhwyswyd:",
-	"noActiveFilters": "Dim hidlyddion gweithredol",
-	"filterRemoved": "Mae’r Hidlydd {filterText} wedi’i dynnu",
-	"clearFilters": "Clirio hidlyddion",
-	"allFiltersRemoved": "Tynnwyd pob hidlydd",
+	"appliedFilters": "Hidlyddion wedi’u Gosod:",
+	"noActiveFilters": "Dim hidlwyr gweithredol",
+	"filterRemoved": "Tynnwyd hidlydd {filterText}",
+	"clearFilters": "Clirio hidlwyr",
+	"allFiltersRemoved": "Tynnwyd yr holl hidlyddion",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "Chwilio yn ôl {category}",
 	"clear": "Clirio",
 	"filter": "Hidlo",
 	"filterBy": "Hidlo yn ôl",
-	"filterMultiple": "Hidlo: {numOptions} Hidlyddion",
+	"filterMultiple": "Hidlo: {numOptions} Hidlydd",
 	"filterSingle": "Hidlo: 1 Hidlydd",
 	"more": "Mwy",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} of {totalCount} results",
-	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} of {totalCount} results for \"{query}\"",
-	"searchResults": "{totalCount} results",
-	"searchResultsForQuery": "{totalCount} results for \"{query}\"",
-	"sort": "Sort",
-	"sortWithOption": "Sort: {option}"
+	"searchPagedResults": "{rangeStart} - {rangeEnd} o {totalCount} o ganlyniadau",
+	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} o {totalCount} o ganlyniadau ar gyfer \"{query}\"",
+	"searchResults": "{totalCount} o ganlyniadau",
+	"searchResultsForQuery": "{totalCount} o ganlyniadau ar gyfer \"{query}\"",
+	"sort": "Trefnu",
+	"sortWithOption": "Trefnu: {option}"
 };

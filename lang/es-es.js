@@ -2,10 +2,10 @@
 
 export default {
 	"appliedFilters": "Filtros aplicados:",
-	"noActiveFilters": "Sin filtros activos",
+	"noActiveFilters": "No hay filtros activos",
 	"filterRemoved": "Filtro {filterText} eliminado",
 	"clearFilters": "Borrar filtros",
-	"allFiltersRemoved": "Todos los filtros eliminados",
+	"allFiltersRemoved": "Se han eliminado todos los filtros",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "Buscar por {category}",
 	"clear": "Borrar",
@@ -18,6 +18,6 @@ export default {
 	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} de {totalCount} resultados para \"{query}\"",
 	"searchResults": "{totalCount} resultados",
 	"searchResultsForQuery": "{totalCount} resultados para \"{query}\"",
-	"sort": "Orden",
-	"sortWithOption": "Orden: {option}"
+	"sort": "Ordenar",
+	"sortWithOption": "Ordenar: {option}"
 };
