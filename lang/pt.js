@@ -11,7 +11,7 @@ export default {
 	"clear": "Limpar",
 	"filter": "Filtrar",
 	"filterBy": "Filtrar por",
-	"filterMultiple": "Filtro: (numOptions) filtros",
+	"filterMultiple": "Filtro: {numOptions} filtros",
 	"filterSingle": "Filtros: 1",
 	"more": "Mais",
 	"searchPagedResults": "{rangeStart} – {rangeEnd} de {totalCount} resultados",

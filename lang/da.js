@@ -19,5 +19,5 @@ export default {
 	"searchResults": "{totalCount} resultater",
 	"searchResultsForQuery": "{totalCount} resultater for \"{query}\"",
 	"sort": "Sortér",
-	"sortWithOption": "Sortér: {Option}"
+	"sortWithOption": "Sortér: {option}"
 };

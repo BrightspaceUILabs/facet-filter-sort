@@ -7,7 +7,7 @@ export default {
 	"clearFilters": "Filtreleri temizle",
 	"allFiltersRemoved": "Tüm filtreler kaldırıldı",
 	"categoryTitleMultiple": "{title} ({numSelected})",
-	"searchBy": "{Category} kategorisine göre ara",
+	"searchBy": "{category} kategorisine göre ara",
 	"clear": "Temizle",
 	"filter": "Filtrele",
 	"filterBy": "Filtreleme Ölçütü",
