@@ -182,7 +182,7 @@ This also works if the `d2l-labs-filter-dropdown` is a child in the shadow-dom o
 
 **DEPRECATED: Use [`d2l-filter-tags`](https://github.com/BrightspaceUI/core/tree/main/components/filter#tags-for-applied-filters-d2l-filter-tags) in `BrightspaceUI/core`.**
 
-The same design as the deprecated `d2l-labs-applied-filters` below, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
+The same design as the deprecated `d2l-labs-applied-filters` above, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
 
 #### Attributes
 
