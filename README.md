@@ -57,30 +57,11 @@ To Do
 
 To Do
 
-### d2l-labs-applied-core-filters
-
-The same design as the deprecated `d2l-labs-applied-filters` below, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
-
-#### Attributes
-
-- `filter-ids`: Ids (space-delimited) of the filter components to subscribe to
-- `label-text` (optional): The text displayed in this component's label. Defaults to "Applied Filters:".
-
-#### Usage
-
-Set the `filter-ids` param to the ids of the `d2l-filter`s that you want to track.
-The `d2l-filter`s must be in the same DOM scope.
-
-```html
-<d2l-filter id="course"> ... </d2l-filter>
-<d2l-filter id="role"> ... </d2l-filter>
-<d2l-labs-applied-core-filters filter-ids="course role"></d2l-labs-applied-core-filters>
-```
-
 ## Deprecated Components
 
 - [d2l-labs-filter-dropdown](#d2l-labs-filter-dropdown)
 - [d2l-labs-applied-filters](#d2l-labs-applied-filters)
+- [d2l-labs-applied-core-filters](#d2l-labs-applied-core-filters)
 
 ### d2l-labs-filter-dropdown
 
@@ -195,6 +176,28 @@ This also works if the `d2l-labs-filter-dropdown` is a child in the shadow-dom o
 ```html
 <d2l-labs-applied-filters for="filter"></d2l-labs-applied-filters>
 <d2l-labs-filter-dropdown id="filter"> ... </d2l-labs-filter-dropdown>
+```
+
+### d2l-labs-applied-core-filters
+
+**DEPRECATED: Use [`d2l-filter-tags`](https://github.com/BrightspaceUI/core/tree/main/components/filter#tags-for-applied-filters-d2l-filter-tags) in `BrightspaceUI/core`.**
+
+The same design as the deprecated `d2l-labs-applied-filters` below, but this version works with the `d2l-filter` component in `core`. It supports hooking up to multiple filters and will be migrated to `core` once designs are finalized.
+
+#### Attributes
+
+- `filter-ids`: Ids (space-delimited) of the filter components to subscribe to
+- `label-text` (optional): The text displayed in this component's label. Defaults to "Applied Filters:".
+
+#### Usage
+
+Set the `filter-ids` param to the ids of the `d2l-filter`s that you want to track.
+The `d2l-filter`s must be in the same DOM scope.
+
+```html
+<d2l-filter id="course"> ... </d2l-filter>
+<d2l-filter id="role"> ... </d2l-filter>
+<d2l-labs-applied-core-filters filter-ids="course role"></d2l-labs-applied-core-filters>
 ```
 
 ## Developing
