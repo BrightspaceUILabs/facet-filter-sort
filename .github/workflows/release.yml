@@ -5,7 +5,6 @@ on:
       - main
 jobs:
   release:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
     name: Release
     timeout-minutes: 5
     runs-on: ubuntu-latest
@@ -17,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: Brightspace/third-party-actions@actions/setup-node
         with:
-          node-version: '14'
+          node-version-file: .nvmrc
       - name: Create custom-elements.json
         run: |
           npm install web-component-analyzer@1 --no-save

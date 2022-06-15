@@ -1,4 +1,4 @@
-import 'd2l-localize-behavior/d2l-localize-behavior.js';
+import '@brightspace-ui/localize-behavior/d2l-localize-behavior.js';
 import ar from '../lang/ar.js';
 import cy from '../lang/cy.js';
 import da from '../lang/da.js';
