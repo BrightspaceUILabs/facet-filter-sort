@@ -45,8 +45,8 @@ class LabsSortByDropdown extends mixinBehaviors(
 				value: '',
 				observer: function(selection) {
 					this._selectedOptionText = this.compact
-						? this.localize('sort')
-						: this.localize('sortWithOption', 'option', selection);
+						? this.isFilter ? this.localize('filter') : this.localize('sort')
+						: this.isFilter ? this.localize('filterWithOption', 'option', selection) : this.localize('sortWithOption', 'option', selection);
 				}
 			},
 
@@ -85,6 +85,14 @@ class LabsSortByDropdown extends mixinBehaviors(
 			value: {
 				type: String,
 				reflectToAttribute: true
+			},
+			/**
+			 * Indicates whether the selector text displays Sort or Filter
+			 */
+			isFilter: {
+				type: Boolean,
+				value: false,
+				attribute:'is-filter'
 			}
 		};
 	}
