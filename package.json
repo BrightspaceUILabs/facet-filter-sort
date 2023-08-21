@@ -44,7 +44,7 @@
     "sinon": "^13",
     "stylelint": "^14"
   },
-  "version": "5.4.0",
+  "version": "5.5.0",
   "dependencies": {
     "@brightspace-ui/core": "^2",
     "@brightspace-ui/localize-behavior": "^2",
