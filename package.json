@@ -30,27 +30,21 @@
   "devDependencies": {
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
-    "@brightspace-ui/stylelint-config": "^0.3",
+    "@brightspace-ui/stylelint-config": "^0.8",
     "@open-wc/testing": "^3",
-    "@web/dev-server": "^0.1",
-    "@web/test-runner": "^0.13",
+    "@web/dev-server": "^0.3",
+    "@web/test-runner": "^0.15",
     "eslint": "^8",
-    "eslint-config-brightspace": "^0.16",
-    "eslint-plugin-html": "^6",
-    "eslint-plugin-import": "^2",
-    "eslint-plugin-lit": "^1",
-    "eslint-plugin-sort-class-members": "^1",
+    "eslint-config-brightspace": "^0.25",
     "lit-analyzer": "^1",
-    "sinon": "^13",
-    "stylelint": "^14"
+    "stylelint": "^15"
   },
   "version": "5.5.0",
   "dependencies": {
     "@brightspace-ui/core": "^2",
     "@brightspace-ui/localize-behavior": "^2",
     "@brightspace-ui-labs/multi-select": "^6",
-    "lit-element": "^3",
-    "lit-html": "^2",
+    "lit": "^2",
     "@polymer/polymer": "^3"
   }
 }

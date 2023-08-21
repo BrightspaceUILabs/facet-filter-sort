@@ -1,7 +1,7 @@
 import '../../components/filter-dropdown/filter-dropdown.js';
 import '../../components/filter-dropdown/filter-dropdown-category.js';
 import '../../components/filter-dropdown/filter-dropdown-option.js';
-import { html, LitElement } from 'lit-element';
+import { html, LitElement } from 'lit';
 
 /**
  * An example of a templated filter-dropdown.
