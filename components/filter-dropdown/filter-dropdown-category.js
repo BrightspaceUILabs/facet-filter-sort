@@ -1,9 +1,9 @@
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/inputs/input-search.js';
 import '@brightspace-ui/core/components/menu/menu.js';
-import { css, html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit';
 import { FilterLocalizeMixin } from '../localize-mixin.js';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mixin.js';
 
 /**

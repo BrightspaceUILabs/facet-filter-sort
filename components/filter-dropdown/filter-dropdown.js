@@ -135,7 +135,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 		`;
 	}
 
-	attached()  {
+	attached() {
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
 		this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 	}
