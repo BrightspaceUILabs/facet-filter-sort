@@ -16,9 +16,7 @@
 > - [x] Demo page
 > - [ ] README documentation
 
-For further information on this and other components, refer to [The Brightspace UI Guide](https://github.com/BrightspaceUI/guide/wiki).
-
-Collection of (search) facet, filter, and sort components
+Collection of old filter and sort components. Use the `d2l-filter` in [BrightspaceUI/core](https://github.com/BrightspaceUI/core/tree/main/components/filter). A sort dropdown component will be coming to `core` eventually.
 
 ## Installation
 
