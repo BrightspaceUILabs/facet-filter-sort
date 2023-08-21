@@ -13,10 +13,6 @@ export default {
 	"filterBy": "Filtreleme Ölçütü",
 	"filterMultiple": "Filtre: {numOptions} Filtre",
 	"filterSingle": "Filtre: 1 Filtre",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} / {totalCount} sonuç",
-	"searchPagedResultsForQuery": "\"{query}\" için {rangeStart} - {rangeEnd} / {totalCount} sonuç",
-	"searchResults": "{totalCount} sonuç",
-	"searchResultsForQuery": "\"{query}\" için {totalCount} sonuç",
 	"sort": "Sırala",
 	"sortWithOption": "Sırala: {option}"
 };

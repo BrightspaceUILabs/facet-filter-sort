@@ -13,10 +13,6 @@ export default {
 	"filterBy": "フィルタの条件",
 	"filterMultiple": "フィルタ数: {numOptions}",
 	"filterSingle": "フィルタ数: 1",
-	"searchPagedResults": "結果 {totalCount} 件中の {rangeStart}～{rangeEnd}",
-	"searchPagedResultsForQuery": "「{query}」の結果 {totalCount} 件中の {rangeStart}～{rangeEnd}",
-	"searchResults": "結果 {totalCount} 件",
-	"searchResultsForQuery": "「{query}」の結果 {totalCount} 件",
 	"sort": "並べ替え",
 	"sortWithOption": "並べ替え: {option}"
 };

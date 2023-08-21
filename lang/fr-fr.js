@@ -13,10 +13,6 @@ export default {
 	"filterBy": "Filtrer par",
 	"filterMultiple": "Filtre : {numOptions} filtres",
 	"filterSingle": "Filtre : 1 filtre",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} résultats sur {totalCount}",
-	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} résultats sur {totalCount} pour « {query} »",
-	"searchResults": "{totalCount} résultats",
-	"searchResultsForQuery": "{totalCount} résultats pour « {query} »",
 	"sort": "Trier",
 	"sortWithOption": "Trier : {option}"
 };

@@ -13,10 +13,6 @@ export default {
 	"filterBy": "筛选条件",
 	"filterMultiple": "筛选：{numOptions} 个筛选条件",
 	"filterSingle": "筛选：1 个筛选条件",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} 个结果，共 {totalCount} 个",
-	"searchPagedResultsForQuery": "\"{query}\" 的 {rangeStart} - {rangeEnd} 个结果，共 {totalCount} 个",
-	"searchResults": "{totalCount} 个结果",
-	"searchResultsForQuery": "\"{query}\" 的 {totalCount} 个结果",
 	"sort": "排序",
 	"sortWithOption": "排序：{option}"
 };

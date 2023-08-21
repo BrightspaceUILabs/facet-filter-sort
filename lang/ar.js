@@ -13,10 +13,6 @@ export default {
 	"filterBy": "تصفية حسب",
 	"filterMultiple": "عامل التصفية: {numOptions} من عوامل التصفية",
 	"filterSingle": "عامل التصفية: عامل تصفية واحد",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} من أصل {totalCount} من النتائج",
-	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} من أصل {totalCount} من نتائج \"{query}\"",
-	"searchResults": "{totalCount} من النتائج",
-	"searchResultsForQuery": "{totalCount} من النتائج لـ \"{query}\"",
 	"sort": "فرز",
 	"sortWithOption": "فرز: {option}"
 };
