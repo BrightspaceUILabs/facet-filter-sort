@@ -48,7 +48,6 @@
   "dependencies": {
     "@brightspace-ui/core": "^2",
     "@brightspace-ui/localize-behavior": "^2",
-    "@brightspace-ui/typography": "^8",
     "@brightspace-ui-labs/multi-select": "^6",
     "lit-element": "^3",
     "lit-html": "^2",

@@ -13,11 +13,6 @@ export default {
 	"filterBy": "Hidlo yn ôl",
 	"filterMultiple": "Hidlo: {numOptions} Hidlydd",
 	"filterSingle": "Hidlo: 1 Hidlydd",
-	"more": "Mwy",
-	"searchPagedResults": "{rangeStart} - {rangeEnd} o {totalCount} o ganlyniadau",
-	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} o {totalCount} o ganlyniadau ar gyfer \"{query}\"",
-	"searchResults": "{totalCount} o ganlyniadau",
-	"searchResultsForQuery": "{totalCount} o ganlyniadau ar gyfer \"{query}\"",
 	"sort": "Trefnu",
 	"sortWithOption": "Trefnu: {option}"
 };

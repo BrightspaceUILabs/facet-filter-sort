@@ -13,11 +13,6 @@ export default {
 	"filterBy": "Filtrera efter",
 	"filterMultiple": "Filter: {numOptions} filter",
 	"filterSingle": "Filter: 1 filter",
-	"more": "Mer",
-	"searchPagedResults": "{rangeStart}–{rangeEnd} av {totalCount} resultat",
-	"searchPagedResultsForQuery": "{rangeStart}–{rangeEnd} av {totalCount} resultat för \"{query}\"",
-	"searchResults": "{totalCount} resultat",
-	"searchResultsForQuery": "{totalCount} resultat för \"{query}\"",
 	"sort": "Sortera",
 	"sortWithOption": "Sortera: {option}"
 };

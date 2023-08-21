@@ -16,9 +16,7 @@
 > - [x] Demo page
 > - [ ] README documentation
 
-For further information on this and other components, refer to [The Brightspace UI Guide](https://github.com/BrightspaceUI/guide/wiki).
-
-Collection of (search) facet, filter, and sort components
+Collection of old filter and sort components. Use the `d2l-filter` in [BrightspaceUI/core](https://github.com/BrightspaceUI/core/tree/main/components/filter). A sort dropdown component will be coming to `core` eventually.
 
 ## Installation
 
@@ -28,25 +26,7 @@ npm install @brightspace-ui-labs/facet-filter-sort
 
 ## Components
 
-- [d2l-labs-search-facets](#d2l-labs-search-facets)
-- [d2l-labs-search-results-count](#d2l-labs-search-results-count)
 - [d2l-labs-sort-by-dropdown](#d2l-labs-sort-by-dropdown)
-
-### d2l-labs-search-facets
-
-<img src="/images/d2l-labs-search-facets.png?raw=true" width="450">
-
-#### Usage
-
-To Do
-
-### d2l-labs-search-results-count
-
-<img src="/images/d2l-labs-search-results-count.png?raw=true" width="450">
-
-#### Usage
-
-To Do
 
 ### d2l-labs-sort-by-dropdown
 

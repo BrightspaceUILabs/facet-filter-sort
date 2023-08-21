@@ -13,11 +13,6 @@ export default {
 	"filterBy": "篩選依據",
 	"filterMultiple": "篩選器：{numOptions} 個篩選器",
 	"filterSingle": "篩選器：1 個篩選器",
-	"more": "較多",
-	"searchPagedResults": "{rangeStart} - {rangeEnd}，總共 {totalCount} 個結果",
-	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd}，「{query}」共有 {totalCount} 個結果",
-	"searchResults": "{totalCount} 個結果",
-	"searchResultsForQuery": "「{query}」共有 {totalCount} 個結果",
 	"sort": "排序",
 	"sortWithOption": "排序：{option}"
 };
