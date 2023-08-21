@@ -13,7 +13,6 @@ export default {
 	"filterBy": "필터링 기준",
 	"filterMultiple": "필터: {numOptions}개 필터",
 	"filterSingle": "필터: 1개 필터",
-	"more": "더 보기",
 	"searchPagedResults": "{rangeStart} - {rangeEnd}/{totalCount}개 결과",
 	"searchPagedResultsForQuery": "\"{query}\"에 대한 {rangeStart} - {rangeEnd}/{totalCount}개 결과",
 	"searchResults": "{totalCount}개 결과",

@@ -28,17 +28,8 @@ npm install @brightspace-ui-labs/facet-filter-sort
 
 ## Components
 
-- [d2l-labs-search-facets](#d2l-labs-search-facets)
 - [d2l-labs-search-results-count](#d2l-labs-search-results-count)
 - [d2l-labs-sort-by-dropdown](#d2l-labs-sort-by-dropdown)
-
-### d2l-labs-search-facets
-
-<img src="/images/d2l-labs-search-facets.png?raw=true" width="450">
-
-#### Usage
-
-To Do
 
 ### d2l-labs-search-results-count
 

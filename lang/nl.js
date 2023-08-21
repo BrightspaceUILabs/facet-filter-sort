@@ -13,7 +13,6 @@ export default {
 	"filterBy": "Filteren op",
 	"filterMultiple": "Filter: {numOptions} filters",
 	"filterSingle": "Filter: 1 filter",
-	"more": "Meer",
 	"searchPagedResults": "{rangeStart} - {rangeEnd} van {totalCount} resultaten",
 	"searchPagedResultsForQuery": "{rangeStart} - {rangeEnd} van {totalCount} resultaten voor \"{query}\"",
 	"searchResults": "{totalCount} resultaten",
