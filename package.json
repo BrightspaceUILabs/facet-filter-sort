@@ -41,10 +41,11 @@
   },
   "version": "5.5.1",
   "dependencies": {
+    "@brightspace-ui-labs/multi-select": "^6",
     "@brightspace-ui/core": "^2",
     "@brightspace-ui/localize-behavior": "^2",
-    "@brightspace-ui-labs/multi-select": "^6",
-    "lit": "^2",
-    "@polymer/polymer": "^3"
+    "@brightspace-ui/testing": "^0.34.0",
+    "@polymer/polymer": "^3",
+    "lit": "^2"
   }
 }
