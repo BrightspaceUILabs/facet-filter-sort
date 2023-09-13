@@ -2,7 +2,7 @@
 import '../../components/filter-dropdown/filter-dropdown.js';
 import '../../components/filter-dropdown/filter-dropdown-category.js';
 import '../../components/filter-dropdown/filter-dropdown-option.js';
-import { expect, fixture, html, oneEvent } from '@open-wc/testing';
+import { clickElem, expect, fixture, html, oneEvent } from '@brightspace-ui/testing';
 import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-helper.js';
 
 const basic = html`
@@ -71,16 +71,13 @@ describe('d2l-labs-filter-dropdown', () => {
 	});
 	it('pressing the clear button triggers the d2l-labs-filter-dropdown-cleared event', async() => {
 		const clearButton = filter.shadowRoot.querySelector('d2l-button-subtle');
-		setTimeout(() => clearButton.click());
+		await clickElem(filter);
+		clickElem(clearButton);
 		await oneEvent(filter, 'd2l-labs-filter-dropdown-cleared');
 	});
 	it('closing the filter triggers the d2l-labs-filter-dropdown-close event', async() => {
-		const dropdown = filter.shadowRoot.querySelector('d2l-dropdown-tabs');
-		await dropdown.updateComplete;
-		dropdown.toggleOpen();
-		await dropdown.updateComplete;
-		dropdown.toggleOpen();
-
+		await clickElem(filter);
+		clickElem(filter);
 		await oneEvent(filter, 'd2l-labs-filter-dropdown-close');
 	});
 	it('the opener text is set accordingly', () => {
