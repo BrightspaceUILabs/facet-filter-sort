@@ -114,7 +114,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 				}
 			</style>
 			<d2l-dropdown-button-subtle
-				text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple)]]"
+				text="[[_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple, localize, resources)]]"
 				disabled="[[disabled]]">
 				<d2l-dropdown-tabs
 					min-width="[[minWidth]]"
@@ -123,7 +123,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 					no-padding-footer$="[[noPaddingFooter]]"
 					render-content>
 					<div class="d2l-labs-filter-dropdown-content-header">
-						<span>[[_localizeOrAlt(headerText, 'filterBy')]]</span>
+						<span>[[_localizeOrAlt(headerText, 'filterBy', localize, resources)]]</span>
 						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="clearFilters"></d2l-button-subtle>
 					</div>
 					<d2l-tabs>
@@ -170,6 +170,8 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 	}
 
 	_getOpenerText(totalSelectedOptionCount, disableOpenerTextVariation, openerText, openerTextSingle, openerTextMultiple) {
+		if (!this.localize || !this.resources) return;
+
 		if (totalSelectedOptionCount === 0 || disableOpenerTextVariation) {
 			return this._localizeOrAlt(openerText, 'filter');
 		}
@@ -197,6 +199,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 	}
 
 	_localizeOrAlt(altText, ...args) {
+		if (!this.localize || !this.resources) return;
 		return altText ? altText : this.localize(...args);
 	}
 

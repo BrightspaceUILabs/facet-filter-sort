@@ -22,8 +22,7 @@
     "lint:style": "stylelint \"**/*.{js,html}\"",
     "start": "web-dev-server --node-resolve --watch --open --app-index demo/index.html",
     "test": "npm run lint && npm run test:headless",
-    "test:headless": "web-test-runner --group default",
-    "test:headless:watch": "web-test-runner --group default --watch"
+    "test:headless": "d2l-test-runner"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
@@ -31,9 +30,8 @@
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/stylelint-config": "^0.8",
-    "@open-wc/testing": "^3",
+    "@brightspace-ui/testing": "^1",
     "@web/dev-server": "^0.3",
-    "@web/test-runner": "^0.15",
     "eslint": "^8",
     "eslint-config-brightspace": "^0.25",
     "lit-analyzer": "^1",
@@ -41,10 +39,10 @@
   },
   "version": "5.5.1",
   "dependencies": {
+    "@brightspace-ui-labs/multi-select": "^6",
     "@brightspace-ui/core": "^2",
     "@brightspace-ui/localize-behavior": "^2",
-    "@brightspace-ui-labs/multi-select": "^6",
-    "lit": "^2",
-    "@polymer/polymer": "^3"
+    "@polymer/polymer": "^3",
+    "lit": "^2"
   }
 }

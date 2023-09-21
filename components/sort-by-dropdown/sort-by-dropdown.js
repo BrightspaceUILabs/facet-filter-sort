@@ -36,18 +36,14 @@ class LabsSortByDropdown extends mixinBehaviors(
 			*/
 			_selectedOptionText: {
 				type: String,
+				computed: '_computeSelectedOptionText(_text, localize, resources)'
 			},
 			/**
 			* The text of the currently selected option
 			*/
 			_text: {
 				type: String,
-				value: '',
-				observer: function(selection) {
-					this._selectedOptionText = this.compact
-						? this.localize('sort')
-						: this.localize('sortWithOption', 'option', selection);
-				}
+				value: ''
 			},
 
 			/**
@@ -141,6 +137,13 @@ class LabsSortByDropdown extends mixinBehaviors(
 		super.disconnectedCallback();
 		this.$['d2l-labs-sort-by-menu'].removeEventListener('d2l-menu-item-change',
 			this._boundListeners._onItemSelect);
+	}
+
+	_computeSelectedOptionText(selection, localize, resources) {
+		if (!selection || !localize || !resources) return;
+		return this.compact
+			? this.localize('sort')
+			: this.localize('sortWithOption', 'option', selection);
 	}
 
 	_onItemSelect(e) {

@@ -1,6 +1,6 @@
 import '../../components/sort-by-dropdown/sort-by-dropdown-option.js';
 import '../../components/sort-by-dropdown/sort-by-dropdown.js';
-import { expect, fixture, html, oneEvent } from '@open-wc/testing';
+import { clickElem, expect, fixture, html, oneEvent } from '@brightspace-ui/testing';
 import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-helper.js';
 
 const basic = html`
@@ -28,14 +28,17 @@ describe('d2l-labs-sort-by-dropdown', () => {
 
 		it('should initially select the first option by default', () => {
 			expect(basicFixture.value).to.equal('option1');
+			expect(basicFixture._selectedOptionText).to.equal('Sort: Option 1');
 		});
 
 		it('should change to the selected option', async() => {
-			setTimeout(() => option2.click());
+			await clickElem(basicFixture);
+			clickElem(option2);
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-change');
 			expect(basicFixture.getAttribute('value')).to.equal(option2.value);
 
-			setTimeout(() => option1.click());
+			await clickElem(basicFixture);
+			clickElem(option1);
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-change');
 			expect(basicFixture.getAttribute('value')).to.equal(option1.value);
 		});
