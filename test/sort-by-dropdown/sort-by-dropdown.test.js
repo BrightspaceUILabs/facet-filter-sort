@@ -31,11 +31,21 @@ describe('d2l-labs-sort-by-dropdown', () => {
 			expect(basicFixture._selectedOptionText).to.equal('Sort: Option 1');
 		});
 
+		it('should update the displayed text when the selected option text changes', async() => {
+			const newText = 'New Text';
+			expect(basicFixture._text).to.equal(option1.text);
+			option1.text = newText;
+			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-option-selected-text-change');
+			expect(basicFixture._text).to.equal(newText);
+		});
+
 		it('should change to the selected option', async() => {
 			await clickElem(basicFixture);
 			clickElem(option2);
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-change');
 			expect(basicFixture.getAttribute('value')).to.equal(option2.value);
+
+			await oneEvent(basicFixture, 'd2l-dropdown-close');
 
 			await clickElem(basicFixture);
 			clickElem(option1);
