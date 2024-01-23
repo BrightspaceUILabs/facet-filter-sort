@@ -37,6 +37,8 @@ describe('d2l-labs-sort-by-dropdown', () => {
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-change');
 			expect(basicFixture.getAttribute('value')).to.equal(option2.value);
 
+			await oneEvent(basicFixture, 'd2l-dropdown-close');
+
 			await clickElem(basicFixture);
 			clickElem(option1);
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-change');
