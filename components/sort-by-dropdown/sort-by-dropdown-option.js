@@ -25,8 +25,8 @@ class LabsSortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) 
 		if (changedProperties.has('text') && this.selected) {
 			this.dispatchEvent(new CustomEvent('d2l-labs-sort-by-dropdown-option-selected-text-change', {
 				detail: { text: this.text },
-				bubbles: true }
-			));
+				bubbles: true
+			}));
 		}
 	}
 

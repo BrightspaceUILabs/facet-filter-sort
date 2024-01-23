@@ -32,10 +32,8 @@ describe('d2l-labs-sort-by-dropdown', () => {
 		});
 
 		it('should update the displayed text when the selected option text changes', async() => {
-			await clickElem(basicFixture);
-			expect(basicFixture._text).to.equal(option1.text);
-
 			const newText = 'New Text';
+			expect(basicFixture._text).to.equal(option1.text);
 			option1.text = newText;
 			await oneEvent(basicFixture, 'd2l-labs-sort-by-dropdown-option-selected-text-change');
 			expect(basicFixture._text).to.equal(newText);
