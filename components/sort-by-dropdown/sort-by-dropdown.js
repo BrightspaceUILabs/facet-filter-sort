@@ -131,12 +131,17 @@ class LabsSortByDropdown extends mixinBehaviors(
 			this._text = initialOption.text;
 			this.value = initialOption.value;
 		});
+
+		this._selectedTextChangeHandler = e => this._text = e.detail.text;
+		this.addEventListener('d2l-labs-sort-by-dropdown-option-selected-text-change', this._selectedTextChangeHandler);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		this.$['d2l-labs-sort-by-menu'].removeEventListener('d2l-menu-item-change',
-			this._boundListeners._onItemSelect);
+			this._boundListeners._onItemSelect
+		);
+		this.removeEventListener('d2l-labs-sort-by-dropdown-option-selected-text-change', this._selectedTextChangeHandler);
 	}
 
 	_computeSelectedOptionText(selection, localize, resources) {
