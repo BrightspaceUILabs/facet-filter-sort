@@ -37,7 +37,7 @@
     "lit-analyzer": "^1",
     "stylelint": "^15"
   },
-  "version": "5.6.2",
+  "version": "6.0.0",
   "dependencies": {
     "@brightspace-ui-labs/multi-select": "^7",
     "@brightspace-ui/core": "^3",
