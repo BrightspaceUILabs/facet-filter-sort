@@ -14,5 +14,5 @@ export default {
 	"filterMultiple": "Filter: {numOptions} filtre",
 	"filterSingle": "Filtrer: 1 filter",
 	"sort": "Sortér",
-	"sortWithOption": "Sortér: {option}"
+	"sortWithOption": "Sortér: {Option}"
 };
