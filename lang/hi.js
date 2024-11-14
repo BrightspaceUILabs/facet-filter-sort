@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "लगाए गए फ़िल्टर:",
 	"noActiveFilters": "कोई सक्रिय फ़िल्टर नहीं हैं",
-	"filterRemoved": "फ़िल्टर {filterText} निकाला गया",
 	"clearFilters": "फ़िल्टर साफ़ करें",
-	"allFiltersRemoved": "सभी फ़िल्टर निकाले गए",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "{category} के अनुसार खोजें",
 	"clear": "साफ़ करें",

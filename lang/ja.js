@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "適用されるフィルタ:",
 	"noActiveFilters": "アクティブフィルタなし",
-	"filterRemoved": "フィルタ {filterText} が削除されました",
 	"clearFilters": "フィルタのクリア",
-	"allFiltersRemoved": "削除されたすべてのフィルタ",
 	"categoryTitleMultiple": "{title}（{numSelected}）",
 	"searchBy": "{category} で検索",
 	"clear": "クリア",

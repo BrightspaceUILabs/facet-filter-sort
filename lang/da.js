@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "Anvende filtre:",
 	"noActiveFilters": "Ingen aktive filtre",
-	"filterRemoved": "Filter {filterText} fjernet",
 	"clearFilters": "Ryd filtre",
-	"allFiltersRemoved": "Alle filtre fjernet",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "Søg efter {category}",
 	"clear": "Ryd",

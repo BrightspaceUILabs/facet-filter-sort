@@ -135,7 +135,7 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 
 ### d2l-labs-applied-filters
 
-A multi-select-list allowing the user to see (and remove) the currently applied filters.  Works with the `d2l-labs-filter-dropdown` above.
+A tag-list allowing the user to see (and remove) the currently applied filters.  Works with the `d2l-labs-filter-dropdown` above.
 
 NOTE: This component uses the `slotchange` event and so will not work if you require IE support
 

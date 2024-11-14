@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "已应用筛选器：",
 	"noActiveFilters": "没有活动的筛选器",
-	"filterRemoved": "已移除筛选条件 {filterText}",
 	"clearFilters": "清除筛选",
-	"allFiltersRemoved": "所有筛选器均已移除",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "按 {category} 搜索",
 	"clear": "清除",
