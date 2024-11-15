@@ -1,11 +1,8 @@
-import '@brightspace-ui/core/components/button/button-subtle.js';
 import '@brightspace-ui/core/components/tag-list/tag-list.js';
 import '@brightspace-ui/core/components/tag-list/tag-list-item.js';
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
-import { FilterLocalizeMixin } from '../localize-mixin.js';
 import { getComposedChildren } from '@brightspace-ui/core/helpers/dom.js';
-import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
 const DROPDOWN_NAME = 'D2L-LABS-FILTER-DROPDOWN';
 const DROPDOWN_CATEGORY_NAME = 'D2L-LABS-FILTER-DROPDOWN-CATEGORY';
@@ -14,7 +11,7 @@ const DROPDOWN_OPTION_NAME = 'D2L-LABS-FILTER-DROPDOWN-OPTION';
 /**
  * A tag-list allowing the user to see (and remove) the currently applied filters.
  */
-class D2lLabsAppliedFilters extends RtlMixin(FilterLocalizeMixin(LitElement)) {
+class D2lLabsAppliedFilters extends LitElement {
 	static get properties() {
 		return {
 			/**
@@ -35,37 +32,6 @@ class D2lLabsAppliedFilters extends RtlMixin(FilterLocalizeMixin(LitElement)) {
 		return [bodyCompactStyles, css`
 			:host {
 				display: block;
-			}
-
-			d2l-tag-list {
-				flex: 1;
-			}
-
-			.d2l-labs-applied-filters-wrapper {
-				display: flex;
-			}
-
-			.d2l-labs-applied-filters-label {
-				display: inline-block;
-				font-weight: bold;
-				margin-right: 0.25rem;
-				padding-top: 0.3rem;
-			}
-
-			:host([dir="rtl"]) .d2l-labs-applied-filters-label {
-				margin-left: 0.25rem;
-				margin-right: 0;
-			}
-
-			.d2l-labs-applied-filters-none-label {
-				color: var(--d2l-color-corundum);
-				display: inline-block;
-				font-style: italic;
-				padding-top: 0.3rem;
-			}
-
-			#d2l-list-holder {
-				flex: 1;
 			}
 
 			:host([hidden]) {
@@ -95,31 +61,21 @@ class D2lLabsAppliedFilters extends RtlMixin(FilterLocalizeMixin(LitElement)) {
 	}
 
 	render() {
-		const filters = this._selectedEntries && this._selectedEntries.length > 0 ?
-			html`<d2l-tag-list
-				clearable
-				aria-labelledby="d2l-labs-applied-filters-label"
-				@d2l-tag-list-clear="${this._clearFiltersClicked}"
-			>
-				${(this._selectedEntries || []).map((x, index) => html`
-					<d2l-tag-list-item
-						text="${x.text}"
-						deletable
-						key="${index}"
-						@d2l-tag-list-item-clear="${this._multiSelectItemDeleted}"
-					>
-					</d2l-tag-list-item>
-				`)}
-			</d2l-tag-list>`
-			: null;
+		if (!(this._selectedEntries.length)) return nothing;
 
-		return html`
-			<div class="d2l-labs-applied-filters-wrapper">
-				<div id="d2l-list-holder">
-					${filters}
-				</div>
-			</div>
-		`;
+		return html`<d2l-tag-list
+			clearable
+			description="${this.labelText}"
+			@d2l-tag-list-clear="${this._clearFiltersClicked}">
+			${(this._selectedEntries || []).map((x, index) => html`
+				<d2l-tag-list-item
+					text="${x.text}"
+					key="${index}"
+					@d2l-tag-list-item-clear="${this._multiSelectItemDeleted}"
+				>
+				</d2l-tag-list-item>
+			`)}
+		</d2l-tag-list>`;
 	}
 
 	updated(changedProperties) {
