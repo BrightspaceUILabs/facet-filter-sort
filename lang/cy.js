@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "Hidlyddion wedi’u Gosod:",
 	"noActiveFilters": "Dim hidlwyr gweithredol",
-	"filterRemoved": "Tynnwyd hidlydd {filterText}",
 	"clearFilters": "Clirio hidlwyr",
-	"allFiltersRemoved": "Tynnwyd yr holl hidlyddion",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "Chwilio yn ôl {category}",
 	"clear": "Clirio",

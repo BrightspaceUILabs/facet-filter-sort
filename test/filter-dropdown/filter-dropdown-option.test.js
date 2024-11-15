@@ -1,6 +1,6 @@
 import '@brightspace-ui/core/components/menu/menu.js';
 import '../../components/filter-dropdown/filter-dropdown-option.js';
-import { expect, fixture, html, oneEvent } from '@open-wc/testing';
+import { expect, fixture, html, oneEvent } from '@brightspace-ui/testing';
 import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-helper.js';
 
 const basic = html`

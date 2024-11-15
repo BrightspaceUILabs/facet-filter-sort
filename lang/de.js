@@ -3,9 +3,7 @@
 export default {
 	"appliedFilters": "Angewendete Filter:",
 	"noActiveFilters": "Keine Filter aktiv",
-	"filterRemoved": "Filter {filterText} entfernt",
 	"clearFilters": "Filter löschen",
-	"allFiltersRemoved": "Alle Filter wurden entfernt",
 	"categoryTitleMultiple": "{title} ({numSelected})",
 	"searchBy": "Nach {category} suchen",
 	"clear": "Löschen",
