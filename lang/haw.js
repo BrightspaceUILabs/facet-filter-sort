@@ -12,5 +12,5 @@ export default {
 	"filterMultiple": "Kānana: {numOptions} kānana",
 	"filterSingle": "Kānana: 1 kānana",
 	"sort": "ʻano ʻano",
-	"sortWithOption": "Hoʻokaʻawale: {koho}"
+	"sortWithOption": "Hoʻokaʻawale: {option}"
 };
