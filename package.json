@@ -37,7 +37,7 @@
     "lit-analyzer": "^1",
     "stylelint": "^15"
   },
-  "version": "6.1.0",
+  "version": "6.1.1",
   "dependencies": {
     "@brightspace-ui/core": "^3",
     "@brightspace-ui/localize-behavior": "^2",
