@@ -8,8 +8,8 @@ export default {
 	"searchBy": "Pesquisar por {category}",
 	"clear": "Limpar",
 	"filter": "Filtrar",
-	"filterBy": "Filtrar por",
-	"filterMultiple": "Filtro: {numOptions} filtros",
+	"filterBy": "Filtrar Por",
+	"filterMultiple": "Filtro: (numOptions) filtros",
 	"filterSingle": "Filtros: 1",
 	"sort": "Classificar",
 	"sortWithOption": "Classificação: {option}"
