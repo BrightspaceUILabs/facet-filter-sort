@@ -9,7 +9,7 @@ export default {
 	"clear": "Limpar",
 	"filter": "Filtrar",
 	"filterBy": "Filtrar Por",
-	"filterMultiple": "Filtro: (numOptions) filtros",
+	"filterMultiple": "Filtro: {numOptions} filtros",
 	"filterSingle": "Filtros: 1",
 	"sort": "Classificar",
 	"sortWithOption": "Classificação: {option}"
