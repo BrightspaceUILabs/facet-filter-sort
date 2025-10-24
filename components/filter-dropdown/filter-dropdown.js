@@ -186,6 +186,13 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 		if (this._useNewStructure) {
 			this.removeEventListener('d2l-tab-selected', this._handleTabSelected);
+			const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
+			categories.forEach(cat => {
+				if (cat.__tabInfoObserver) {
+					cat.__tabInfoObserver.disconnect();
+					delete cat.__tabInfoObserver;
+				}
+			});
 		} else {
 			this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 		}
@@ -213,7 +220,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	async _handleCategoriesSlotChange() {
 		if (!this._useNewStructure) return;
-		await this.updateComplete;
 
 		const tabsContainer = this.shadowRoot.querySelector('d2l-tabs');
 		const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
