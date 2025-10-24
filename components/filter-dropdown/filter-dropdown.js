@@ -138,7 +138,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 						<span>[[_localizeOrAlt(headerText, 'filterBy', localize, resources)]]</span>
 						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="clearFilters"></d2l-button-subtle>
 					</div>
-					<d2l-tabs text="[[_localizeOrAlt(headerText, 'filterBy', localize, resources)]]">
+					<d2l-tabs>
 						<template is="dom-if" if="[[!_useNewStructure]]">
 							<slot></slot>
 						</template>
