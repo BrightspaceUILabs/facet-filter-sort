@@ -146,7 +146,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 							<template is="dom-repeat" items="[[_tabInfos]]" as="tab">
 								<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs"></d2l-tab>
 							</template>
-							<!-- Categories become panels once processed -->
 							<slot on-slotchange="_handleCategoriesSlotChange" slot="panels"></slot>
 						</template>
 					</d2l-tabs>
@@ -218,11 +217,10 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 		const tabsContainer = this.shadowRoot.querySelector('d2l-tabs');
 		const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
-		tabsContainer._defaultSlotBehavior = false;
 
 		if (!tabsContainer || !categories || categories.length === 0) return;
 
-		// Build tab info list and prepare categories as panels
+		// Build tabInfos which is used to render d2l-tab components
 		const tabInfos = [];
 		categories.forEach((category, index) => {
 			const key = category.getAttribute('key') || `category-${index}`;
