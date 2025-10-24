@@ -144,7 +144,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 						</template>
 						<template is="dom-if" if="[[_useNewStructure]]">
 							<template is="dom-repeat" items="[[_tabInfos]]" as="tab">
-								<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs"></d2l-tab>
+								<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs" selected$="[[tab.selected]]"></d2l-tab>
 							</template>
 							<slot on-slotchange="_handleCategoriesSlotChange" slot="panels"></slot>
 						</template>
@@ -231,19 +231,22 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 		categories.forEach((category, index) => {
 			const key = category.getAttribute('key') || `category-${index}`;
 			const text = category.getAttribute('text');
+			const isSelected = category.hasAttribute('selected');
 
 			category.setAttribute('labelled-by', key);
-			tabInfos.push({ key, text });
+			tabInfos.push({ key, text, selected: isSelected });
 
-			// Observe updates to text
 			if (!category.__tabInfoObserver) {
 				category.__tabInfoObserver = new MutationObserver(() => {
-					const text2 = category.getAttribute('text');
+					const newText = category.getAttribute('text');
+					const newSelected = category.hasAttribute('selected');
 					this._tabInfos = this._tabInfos.map(info => {
-						return info.key === key ? { ...info, text: text2 } : info;
+						return info.key === key
+							? { ...info, text: newText, selected: newSelected }
+							: info;
 					});
 				});
-				category.__tabInfoObserver.observe(category, { attributes: true, attributeFilter: ['text'] });
+				category.__tabInfoObserver.observe(category, { attributes: true, attributeFilter: ['text', 'selected'] });
 			}
 		});
 

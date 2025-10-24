@@ -3,8 +3,11 @@ import '@brightspace-ui/core/components/inputs/input-search.js';
 import '@brightspace-ui/core/components/menu/menu.js';
 import { css, html, LitElement } from 'lit';
 import { FilterLocalizeMixin } from '../localize-mixin.js';
+import { getFlag } from '@brightspace-ui/core/helpers/flags.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { TabPanelMixin } from '@brightspace-ui/core/components/tabs/tab-panel-mixin.js';
+
+const useTabsNewStructure = getFlag('GAUD-7146-tabs-new-structure', false);
 
 /**
  * A component wrapping grouped filters
@@ -102,9 +105,12 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 			this.selected = !this.selected;
 			this.__onSelect(e);
 		});
-		this.addEventListener('d2l-tab-panel-selected', () => {
-			this._dispatchSelected();
-		});
+
+		if (!useTabsNewStructure) {
+			this.addEventListener('d2l-tab-panel-selected', () => {
+				this._dispatchSelected();
+			});
+		}
 	}
 
 	render() {
