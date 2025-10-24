@@ -3,9 +3,13 @@ import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
 import '@brightspace-ui/core/components/tabs/tabs.js';
+import '@brightspace-ui/core/components/tabs/tab.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { getFlag } from '@brightspace-ui/core/helpers/flags.js';
 import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+
+const useTabsNewStructure = getFlag('GAUD-7146-tabs-new-structure', false);
 
 /**
  * A component containing filter options and emitting selection events
@@ -87,6 +91,14 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 			noPaddingFooter: {
 				type: Boolean,
 				value: false
+			},
+			_useNewStructure: {
+				type: Boolean,
+				value: useTabsNewStructure
+			},
+			_tabInfos: {
+				type: Array,
+				value: () => []
 			}
 		};
 	}
@@ -126,8 +138,17 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 						<span>[[_localizeOrAlt(headerText, 'filterBy', localize, resources)]]</span>
 						<d2l-button-subtle text="[[localize('clear')]]" hidden$="[[!totalSelectedOptionCount]]" on-click="clearFilters"></d2l-button-subtle>
 					</div>
-					<d2l-tabs>
-						<slot></slot>
+					<d2l-tabs text="[[_localizeOrAlt(headerText, 'filterBy', localize, resources)]]">
+						<template is="dom-if" if="[[!_useNewStructure]]">
+							<slot></slot>
+						</template>
+						<template is="dom-if" if="[[_useNewStructure]]">
+							<template is="dom-repeat" items="[[_tabInfos]]" as="tab">
+								<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs"></d2l-tab>
+							</template>
+							<!-- Categories become panels once processed -->
+							<slot on-slotchange="_handleCategoriesSlotChange" slot="panels"></slot>
+						</template>
 					</d2l-tabs>
 					<slot name="footer" slot="[[_getFooterSlotValue(_hasFooter)]]" on-slotchange="_handleFooterSlotChange"></slot>
 				</d2l-dropdown-tabs>
@@ -137,7 +158,12 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	attached() {
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
-		this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
+
+		if (this._useNewStructure) {
+			this.addEventListener('d2l-tab-selected', this._handleTabSelected);
+		} else {
+			this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
+		}
 	}
 
 	clearFilters() {
@@ -158,7 +184,12 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	detached() {
 		this.removeEventListener('d2l-dropdown-close', this._handleDropdownClose);
-		this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
+
+		if (this._useNewStructure) {
+			this.removeEventListener('d2l-tab-selected', this._handleTabSelected);
+		} else {
+			this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
+		}
 	}
 
 	focus() {
@@ -181,6 +212,40 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 		return this._localizeOrAlt(openerTextMultiple, 'filterMultiple', 'numOptions', totalSelectedOptionCount);
 	}
 
+	async _handleCategoriesSlotChange() {
+		if (!this._useNewStructure) return;
+		await this.updateComplete;
+
+		const tabsContainer = this.shadowRoot.querySelector('d2l-tabs');
+		const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
+		tabsContainer._defaultSlotBehavior = false;
+
+		if (!tabsContainer || !categories || categories.length === 0) return;
+
+		// Build tab info list and prepare categories as panels
+		const tabInfos = [];
+		categories.forEach((category, index) => {
+			const key = category.getAttribute('key') || `category-${index}`;
+			const text = category.getAttribute('text');
+
+			category.setAttribute('labelled-by', key);
+			tabInfos.push({ key, text });
+
+			// Observe updates to text
+			if (!category.__tabInfoObserver) {
+				category.__tabInfoObserver = new MutationObserver(() => {
+					const text2 = category.getAttribute('text');
+					this._tabInfos = this._tabInfos.map(info => {
+						return info.key === key ? { ...info, text: text2 } : info;
+					});
+				});
+				category.__tabInfoObserver.observe(category, { attributes: true, attributeFilter: ['text'] });
+			}
+		});
+
+		this._tabInfos = tabInfos;
+	}
+
 	_handleDropdownClose(e) {
 		e.stopPropagation();
 		this.dispatchEvent(
@@ -196,6 +261,19 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	_handleFooterSlotChange(e) {
 		this._hasFooter = e.target.assignedNodes().length !== 0;
+	}
+
+	_handleTabSelected(e) {
+		e.stopPropagation();
+		if (!this._useNewStructure) return;
+
+		// Find the corresponding category and dispatch the selection event
+		const tabId = e.target.id;
+		const category = this.querySelector(`d2l-labs-filter-dropdown-category[key="${tabId}"]`);
+
+		if (category) {
+			category._dispatchSelected();
+		}
 	}
 
 	_localizeOrAlt(altText, ...args) {
