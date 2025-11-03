@@ -2,12 +2,11 @@ import '@brightspace-ui/core/components/icons/icon.js';
 import { html, LitElement } from 'lit';
 import { MenuItemRadioMixin } from '@brightspace-ui/core/components/menu/menu-item-radio-mixin.js';
 import { menuItemSelectableStyles } from '@brightspace-ui/core/components/menu/menu-item-selectable-styles.js';
-import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 
 /**
  * A dropdown option menu item component.
  */
-class LabsSortByDropdownOption extends RtlMixin(MenuItemRadioMixin(LitElement)) {
+class LabsSortByDropdownOption extends MenuItemRadioMixin(LitElement) {
 
 	static get styles() {
 		return menuItemSelectableStyles;
