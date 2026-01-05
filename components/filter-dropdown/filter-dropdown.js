@@ -9,7 +9,7 @@ import { getFlag } from '@brightspace-ui/core/helpers/flags.js';
 import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-const useTabsNewStructure = getFlag('GAUD-7146-tabs-new-structure', false);
+const useTabsNewStructure = getFlag('GAUD-7146-tabs-new-structure', true);
 
 /**
  * A component containing filter options and emitting selection events
@@ -157,12 +157,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	attached() {
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
-
-		if (this._useNewStructure) {
-			this.addEventListener('d2l-tab-selected', this._handleTabSelected);
-		} else {
-			this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
-		}
+		this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 	}
 
 	clearFilters() {
@@ -183,9 +178,9 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	detached() {
 		this.removeEventListener('d2l-dropdown-close', this._handleDropdownClose);
+		this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 
 		if (this._useNewStructure) {
-			this.removeEventListener('d2l-tab-selected', this._handleTabSelected);
 			const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
 			categories.forEach(cat => {
 				if (cat.__tabInfoObserver) {
@@ -193,8 +188,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 					delete cat.__tabInfoObserver;
 				}
 			});
-		} else {
-			this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 		}
 	}
 
@@ -268,19 +261,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	_handleFooterSlotChange(e) {
 		this._hasFooter = e.target.assignedNodes().length !== 0;
-	}
-
-	_handleTabSelected(e) {
-		e.stopPropagation();
-		if (!this._useNewStructure) return;
-
-		// Find the corresponding category and dispatch the selection event
-		const tabId = e.target.id;
-		const category = this.querySelector(`d2l-labs-filter-dropdown-category[key="${tabId}"]`);
-
-		if (category) {
-			category._dispatchSelected();
-		}
 	}
 
 	_localizeOrAlt(altText, ...args) {
