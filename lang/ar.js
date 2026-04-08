@@ -5,12 +5,12 @@ export default {
 	"noActiveFilters": "لا توجد عوامل تصفية نشطة",
 	"clearFilters": "مسح عوامل التصفية",
 	"categoryTitleMultiple": "{title} ({numSelected})",
-	"searchBy": "بحث حسب {category}",
+	"searchBy": "البحث حسب {category}",
 	"clear": "مسح",
-	"filter": "عامل التصفية",
-	"filterBy": "تصفية حسب",
-	"filterMultiple": "عامل التصفية: {numOptions} من عوامل التصفية",
-	"filterSingle": "عامل التصفية: عامل تصفية واحد",
+	"filter": "التصفية",
+	"filterBy": "التصفية حسب",
+	"filterMultiple": "التصفية: {numOptions} من عوامل التصفية",
+	"filterSingle": "التصفية: عامل تصفية واحد",
 	"sort": "فرز",
 	"sortWithOption": "فرز: {option}"
 };
