@@ -94,11 +94,6 @@ describe('d2l-labs-filter-dropdown', () => {
 		const getTabs = async() => {
 			let tabs = filter.shadowRoot.querySelector('d2l-tabs').querySelectorAll('d2l-tab');
 
-			// remove with GAUD-7146-tabs-new-structure flag clean up
-			if (tabs.length === 0) {
-				tabs = filter.shadowRoot.querySelector('d2l-tabs').shadowRoot.querySelectorAll('d2l-tab-internal');
-			}
-
 			if (tabs.length === 2) {
 				return tabs;
 			} else {
