@@ -92,7 +92,7 @@ describe('d2l-labs-filter-dropdown', () => {
 	});
 	it('filter categories display correctly', async() => {
 		const getTabs = async() => {
-			let tabs = filter.shadowRoot.querySelector('d2l-tabs').querySelectorAll('d2l-tab');
+			const tabs = filter.shadowRoot.querySelector('d2l-tabs').querySelectorAll('d2l-tab');
 
 			if (tabs.length === 2) {
 				return tabs;
