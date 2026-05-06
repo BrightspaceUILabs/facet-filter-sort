@@ -126,10 +126,10 @@ Note that for the header and opener text overrides, if the terms are to reflect 
 
 - `d2l-labs-filter-dropdown-close`: Fired when the filter dropdown is closed.
 - `d2l-labs-filter-dropdown-cleared`: Fired when the clear button or the clear filters button is pressed to clear all filters.
+- `d2l-labs-filter-dropdown-category-selected`: Fired when a filter tab is selected.
 
 `d2l-labs-filter-dropdown-category`:
 
-- `d2l-labs-filter-dropdown-category-selected`: Fired when a filter tab is selected.
 - `d2l-labs-filter-dropdown-category-searched`: Fired when a filter category is searched.
 - `d2l-labs-filter-dropdown-option-change`: Fired when a filter option is selected.
 
