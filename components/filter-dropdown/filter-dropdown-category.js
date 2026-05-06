@@ -102,10 +102,6 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 			this.selected = !this.selected;
 			this.__onSelect(e);
 		});
-
-		this.addEventListener('d2l-tab-panel-selected', () => {
-			this._dispatchSelected();
-		});
 	}
 
 	render() {
@@ -121,17 +117,6 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 				<slot @slotchange="${this._onSlotChange}"></slot>
 			</d2l-menu>
 		`;
-	}
-
-	_dispatchSelected() {
-		// Event propagation of d2l-tab-panel-selected stopped in d2l-labs-filter-dropdown
-		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-category-selected', {
-			detail: {
-				categoryKey: this.key
-			},
-			bubbles: true,
-			composed: true
-		}));
 	}
 
 	_handleMenuItemChange(e) {

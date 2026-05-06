@@ -133,7 +133,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 					</div>
 					<d2l-tabs>
 						<template is="dom-repeat" items="[[_tabInfos]]" as="tab">
-							<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs" selected$="[[tab.selected]]"></d2l-tab>
+							<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs" selected$="[[tab.selected]]" on-d2l-tab-selected="_dispatchSelected"></d2l-tab>
 						</template>
 						<slot on-slotchange="_handleCategoriesSlotChange" slot="panels"></slot>
 					</d2l-tabs>
@@ -145,7 +145,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	attached() {
 		this.addEventListener('d2l-dropdown-close', this._handleDropdownClose);
-		this.addEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 	}
 
 	clearFilters() {
@@ -166,7 +165,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	detached() {
 		this.removeEventListener('d2l-dropdown-close', this._handleDropdownClose);
-		this.removeEventListener('d2l-tab-panel-selected', this._stopTabPanelSelectedEvent);
 
 		const categories = this.querySelectorAll('d2l-labs-filter-dropdown-category');
 		categories.forEach(cat => {
@@ -179,6 +177,16 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 	focus() {
 		this.shadowRoot.querySelector('d2l-dropdown-button-subtle').focus();
+	}
+
+	_dispatchSelected(e) {
+		this.dispatchEvent(new CustomEvent('d2l-labs-filter-dropdown-category-selected', {
+			detail: {
+				categoryKey: e.target.id
+			},
+			bubbles: true,
+			composed: true
+		}));
 	}
 
 	_getFooterSlotValue(hasFooter) {
@@ -250,11 +258,6 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 	_localizeOrAlt(altText, ...args) {
 		if (!this.localize || !this.resources) return;
 		return altText ? altText : this.localize(...args);
-	}
-
-	// Must be done here (instead of d2l-labs-filter-dropdown-category) as the d2l-dropdown-tabs component needs to receive it
-	_stopTabPanelSelectedEvent(e) {
-		e.stopPropagation();
 	}
 }
 
