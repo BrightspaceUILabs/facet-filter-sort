@@ -1,12 +1,12 @@
 
-import '@brightspace-ui/core/components/tabs/tabs.js';
+import '../../components/filter-dropdown/filter-dropdown.js';
 import '../../components/filter-dropdown/filter-dropdown-category.js';
 import '../../components/filter-dropdown/filter-dropdown-option.js';
 import { expect, fixture, html, oneEvent } from '@brightspace-ui/testing';
 import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-helper.js';
 
 const basic = html`
-	<d2l-tabs>
+	<d2l-labs-filter-dropdown>
 		<d2l-labs-filter-dropdown-category key="1" category-text="Category 1" selected-option-count="3">
 			<d2l-labs-filter-dropdown-option selected text="Option 1 - 1" value="1"></d2l-labs-filter-dropdown-option>
 			<d2l-labs-filter-dropdown-option text="Option 1 - 2" value="2"></d2l-labs-filter-dropdown-option>
@@ -20,7 +20,7 @@ const basic = html`
 			<d2l-labs-filter-dropdown-option text="Option 2 - 2" value="2"></d2l-labs-filter-dropdown-option>
 			<d2l-labs-filter-dropdown-option text="Option 2 - 3" value="3"></d2l-labs-filter-dropdown-option>
 		</d2l-labs-filter-dropdown-category>
-	</d2l-tabs>`;
+	</d2l-labs-filter-dropdown>`;
 
 describe('d2l-labs-filter-dropdown-category', () => {
 	let container;
@@ -87,7 +87,8 @@ describe('d2l-labs-filter-dropdown-category', () => {
 		expect(categories[0].searchValue).to.equal('test');
 	});
 	it('changing the category tab triggers the d2l-labs-filter-dropdown-category-selected event', async() => {
-		setTimeout(() => categories[1].selected = true);
+		const tabs = container.shadowRoot.querySelectorAll('d2l-tab');
+		setTimeout(() => tabs[1].selected = true);
 		const e = await oneEvent(container, 'd2l-labs-filter-dropdown-category-selected');
 		expect(e.detail.categoryKey).to.equal('2');
 	});
