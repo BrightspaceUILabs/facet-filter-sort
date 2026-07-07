@@ -17,6 +17,7 @@ jobs:
         uses: Brightspace/setup-node@main
         with:
           node-version-file: .nvmrc
+          d2l-registry-token: ${{ secrets.D2L_PACKAGE_REGISTRY_AUTH_TOKEN }}
       - name: Create custom-elements.json
         run: |
           npm install web-component-analyzer@1 --no-save
