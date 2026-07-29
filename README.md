@@ -171,7 +171,7 @@ npm start
 ### Linting
 
 ```shell
-# eslint, lit-analyzer, polymer lint and style linting
+# eslint, polymer lint and style linting
 npm run lint
 
 # eslint only
