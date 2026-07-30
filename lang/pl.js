@@ -11,6 +11,6 @@ export default {
 	"filterBy": "Filtruj według",
 	"filterMultiple": "Filtr: Filtry {numOptions}",
 	"filterSingle": "Filtr: 1 filtr",
-	"sort": "Sortowanie",
-	"sortWithOption": "Sortowanie: {option}"
+	"sort": "Sortuj",
+	"sortWithOption": "Sortuj według {option}"
 };
