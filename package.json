@@ -36,7 +36,7 @@
     "eslint-config-brightspace": "^0.25",
     "stylelint": "^15"
   },
-  "version": "6.7.2",
+  "version": "6.7.3",
   "dependencies": {
     "@brightspace-ui/core": "^3",
     "@brightspace-ui/localize-behavior": "^2",
