@@ -4,7 +4,6 @@ import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
 import '@brightspace-ui/core/components/tabs/tab.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { getUseNewTabsStructureFlag } from '@brightspace-ui/core/components/tabs/tabs.js';
 import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
@@ -211,17 +210,12 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 		if (!tabsContainer || !categories || categories.length === 0) return;
 
-		// Clean up when GAUD-8299-core-tabs-use-new-structure flag is removed
-		const useNewTabsStructureFlag = getUseNewTabsStructureFlag();
-
 		// Build tabInfos which is used to render d2l-tab components
 		const tabInfos = [];
 		categories.forEach((category, index) => {
 			const key = category.getAttribute('key') || `category-${index}`;
 			const text = category.getAttribute('text');
-
-			// Clean up when GAUD-8299-core-tabs-use-new-structure flag is removed
-			const isSelected = useNewTabsStructureFlag ? category._selected : category.hasAttribute('selected');
+			const isSelected = category._selected;
 
 			category.setAttribute('labelled-by', key);
 			tabInfos.push({ key, text, selected: isSelected });
@@ -229,9 +223,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 			if (!category.__tabInfoObserver) {
 				category.__tabInfoObserver = new MutationObserver(() => {
 					const newText = category.getAttribute('text');
-
-					// Clean up when GAUD-8299-core-tabs-use-new-structure flag is removed
-					const newSelected = useNewTabsStructureFlag ? category._selected : category.hasAttribute('selected');
+					const newSelected = category._selected;
 
 					this._tabInfos = this._tabInfos.map(info => {
 						return info.key === key
