@@ -3,6 +3,7 @@ import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-button-subtle.js';
 import '@brightspace-ui/core/components/dropdown/dropdown-tabs.js';
 import '@brightspace-ui/core/components/tabs/tab.js';
+import '@brightspace-ui/core/components/tabs/tabs.js';
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { LocalizeBehavior } from '../localize-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
