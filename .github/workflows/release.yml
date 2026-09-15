@@ -18,10 +18,6 @@ jobs:
         with:
           node-version-file: .nvmrc
           d2l-registry-token: ${{ secrets.D2L_PACKAGE_REGISTRY_AUTH_TOKEN }}
-      - name: Create custom-elements.json
-        run: |
-          npm install web-component-analyzer@1 --no-save
-          npx wca analyze components/**/*.js --format json --outFile custom-elements.json
       - name: Semantic Release
         uses: BrightspaceUI/actions/semantic-release@main
         with:

@@ -12,7 +12,6 @@
   },
   "files": [
     "facet-filter-sort.serge.json",
-    "custom-elements.json",
     "/components",
     "/lang"
   ],
