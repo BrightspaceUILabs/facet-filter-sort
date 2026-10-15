@@ -8,6 +8,8 @@ jobs:
     name: Release
     timeout-minutes: 5
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: Brightspace/third-party-actions@actions/checkout
@@ -23,4 +25,3 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.D2L_RELEASE_TOKEN }}
           NPM: true
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
