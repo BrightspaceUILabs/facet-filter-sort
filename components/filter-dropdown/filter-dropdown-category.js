@@ -113,7 +113,7 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 					value="${ifDefined(this.searchValue)}">
 				</d2l-input-search>
 			</div>
-			<d2l-menu @d2l-menu-item-change="${this._handleMenuItemChange}" label="${this.text}">
+			<d2l-menu @d2l-menu-item-change="${this._handleMenuItemChange}" label="${this.getAttribute('text')}">
 				<slot @slotchange="${this._onSlotChange}"></slot>
 			</d2l-menu>
 		`;
@@ -156,6 +156,7 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 		} else {
 			this.setAttribute('text', this.localize('categoryTitleMultiple', 'title', categoryText, 'numSelected', selectedOptionCount));
 		}
+		this.requestUpdate();
 	}
 
 }
