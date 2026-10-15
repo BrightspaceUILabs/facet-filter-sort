@@ -215,7 +215,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 		const tabInfos = [];
 		categories.forEach((category, index) => {
 			const key = category.getAttribute('key') || `category-${index}`;
-			const text = category.getAttribute('text');
+			const text = category._text;
 			const isSelected = category._selected;
 
 			category.setAttribute('labelled-by', key);
@@ -223,7 +223,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 
 			if (!category.__tabInfoObserver) {
 				category.__tabInfoObserver = new MutationObserver(() => {
-					const newText = category.getAttribute('text');
+					const newText = category._text;
 					const newSelected = category._selected;
 
 					this._tabInfos = this._tabInfos.map(info => {
@@ -232,7 +232,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 							: info;
 					});
 				});
-				category.__tabInfoObserver.observe(category, { attributes: true, attributeFilter: ['text', 'selected'] });
+				category.__tabInfoObserver.observe(category, { attributes: true, attributeFilter: ['_text'] });
 			}
 		});
 
