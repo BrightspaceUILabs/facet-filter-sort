@@ -133,7 +133,7 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 					</div>
 					<d2l-tabs>
 						<template is="dom-repeat" items="[[_tabInfos]]" as="tab">
-							<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs" selected$="[[tab.selected]]" on-d2l-tab-selected="_dispatchSelected"></d2l-tab>
+							<d2l-tab id="[[tab.key]]" text="[[tab.text]]" slot="tabs" on-d2l-tab-selected="_dispatchSelected"></d2l-tab>
 						</template>
 						<slot on-slotchange="_handleCategoriesSlotChange" slot="panels"></slot>
 					</d2l-tabs>
@@ -216,19 +216,17 @@ class D2LLabsFilterDropdown extends mixinBehaviors([LocalizeBehavior], PolymerEl
 		categories.forEach((category, index) => {
 			const key = category.getAttribute('key') || `category-${index}`;
 			const text = category._text;
-			const isSelected = category._selected;
 
 			category.setAttribute('labelled-by', key);
-			tabInfos.push({ key, text, selected: isSelected });
+			tabInfos.push({ key, text });
 
 			if (!category.__tabInfoObserver) {
 				category.__tabInfoObserver = new MutationObserver(() => {
 					const newText = category._text;
-					const newSelected = category._selected;
 
 					this._tabInfos = this._tabInfos.map(info => {
 						return info.key === key
-							? { ...info, text: newText, selected: newSelected }
+							? { ...info, text: newText }
 							: info;
 					});
 				});
