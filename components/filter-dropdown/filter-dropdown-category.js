@@ -37,7 +37,8 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 			/**
 			 * The number of selected filter options for that filter category.  When options are selected and de-selected, the consumer is responsible for updating this number after updating its own data store.
 			 */
-			selectedOptionCount: { type: Number, attribute: 'selected-option-count' }
+			selectedOptionCount: { type: Number, attribute: 'selected-option-count' },
+			_text: { type: String, attribute: '_text', reflect: true }
 		};
 	}
 
@@ -96,14 +97,6 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 		}
 	}
 
-	firstUpdated(changedProperties) {
-		super.firstUpdated(changedProperties);
-		this.addEventListener('d2l-menu-item-select', (e) => {
-			this.selected = !this.selected;
-			this.__onSelect(e);
-		});
-	}
-
 	render() {
 		return html`
 			<div class="d2l-labs-filter-dropdown-page-search" ?hidden="${this.disableSearch}">
@@ -113,7 +106,7 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 					value="${ifDefined(this.searchValue)}">
 				</d2l-input-search>
 			</div>
-			<d2l-menu @d2l-menu-item-change="${this._handleMenuItemChange}" label="${this.getAttribute('text')}">
+			<d2l-menu @d2l-menu-item-change="${this._handleMenuItemChange}" label="${this._text}">
 				<slot @slotchange="${this._onSlotChange}"></slot>
 			</d2l-menu>
 		`;
@@ -152,11 +145,10 @@ class LabsFilterDropdownCategory extends FilterLocalizeMixin(TabPanelMixin(LitEl
 
 	_updateTabText(categoryText, selectedOptionCount) {
 		if (selectedOptionCount === 0) {
-			this.setAttribute('text', categoryText);
+			this._text = categoryText;
 		} else {
-			this.setAttribute('text', this.localize('categoryTitleMultiple', 'title', categoryText, 'numSelected', selectedOptionCount));
+			this._text = this.localize('categoryTitleMultiple', 'title', categoryText, 'numSelected', selectedOptionCount);
 		}
-		this.requestUpdate();
 	}
 
 }

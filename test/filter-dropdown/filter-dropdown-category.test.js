@@ -51,11 +51,11 @@ describe('d2l-labs-filter-dropdown-category', () => {
 		await categories[1].updateComplete;
 		expect(categories[0].selectedOptionCount).to.equal(3);
 		expect(categories[0].categoryText).to.equal('Category 1');
-		expect(categories[0].getAttribute('text')).to.equal('Category 1 (3)');
+		expect(categories[0]._text).to.equal('Category 1 (3)');
 
 		expect(categories[1].selectedOptionCount).to.equal(0);
 		expect(categories[1].categoryText).to.equal('Category 2');
-		expect(categories[1].getAttribute('text')).to.equal('Category 2');
+		expect(categories[1]._text).to.equal('Category 2');
 	});
 	it('search input is hidden if disable-search attribute is present', async() => {
 		await categories[0].updateComplete;
